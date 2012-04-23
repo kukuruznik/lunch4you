@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.lunch4you.domain.Meal;
+import com.lunch4you.domain.Article;
 import com.lunch4you.service.MenuService;
-import com.lunch4you.web.dto.MealDto;
+import com.lunch4you.web.dto.ArticleDto;
 
 @Controller
-@RequestMapping( "/meals" )
-public class MealController {
+@RequestMapping( "/articles" )
+public class ArticleController {
 
-	private static final Logger logger = LoggerFactory.getLogger( MealController.class );
+	private static final Logger logger = LoggerFactory.getLogger( ArticleController.class );
 
 	@Autowired
 	private MenuService menuService;
@@ -30,14 +30,14 @@ public class MealController {
 
 	@RequestMapping( value = "/find.json", method = RequestMethod.GET )
 	public @ResponseBody
-	List<MealDto> findAll() {
-		logger.trace( "MealController.findAll called" );
+	List<ArticleDto> findAll() {
+		logger.trace( "ArticleController.findAll called" );
 
-		List<Meal> menu = menuService.getMenu();
-		List<MealDto> menuDto = new ArrayList<MealDto>( menu.size() );
+		List<Article> menu = menuService.getMenu();
+		List<ArticleDto> menuDto = new ArrayList<ArticleDto>( menu.size() );
 
-		for ( Meal meal : menu )
-			menuDto.add( beanMapper.map( meal, MealDto.class ) );
+		for ( Article meal : menu )
+			menuDto.add( beanMapper.map( meal, ArticleDto.class ) );
 		return menuDto;
 	}
 }

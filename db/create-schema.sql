@@ -4,7 +4,7 @@ CREATE TABLE `article` (
   `daily_limit` int(11) DEFAULT NULL,
   `description` varchar(1000) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `isactive` tinyint(1) NOT NULL DEFAULT '1',
   `version` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;

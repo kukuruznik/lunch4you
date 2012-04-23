@@ -6,15 +6,11 @@
           http://dozer.sourceforge.net/schema/beanmapping.xsd">
           
   <mapping> 
-    <class-a>com.lunch4you.domain.Meal</class-a>
-    <class-b>com.lunch4you.web.dto.MealDto</class-b>   
+    <class-a>com.lunch4you.domain.Article</class-a>
+    <class-b>com.lunch4you.web.dto.ArticleDto</class-b>   
     <field>
       <a>id</a>
       <b is-accessible="true">id</b>
-    </field>
-    <field>
-      <a>version</a>
-      <b is-accessible="true">version</b>
     </field>
     <field>
       <a>name</a>
@@ -27,6 +23,35 @@
     <field>
       <a>dailyLimit</a>
       <b is-accessible="true">dailyLimit</b>
+    </field>
+    <field>
+      <a>isActive</a>
+      <b is-accessible="true">isActive</b>
+    </field>
+  </mapping>  
+
+  <mapping> 
+    <class-a>com.lunch4you.domain.Customer</class-a>
+    <class-b>com.lunch4you.web.dto.CustomerDto</class-b>   
+    <field>
+      <a>id</a>
+      <b is-accessible="true">id</b>
+    </field>
+    <field>
+      <a>firstName</a>
+      <b is-accessible="true">firstName</b>
+    </field>
+    <field>
+      <a>lastName</a>
+      <b is-accessible="true">lastName</b>
+    </field>
+    <field>
+      <a>email</a>
+      <b is-accessible="true">email</b>
+    </field>
+    <field>
+      <a>credit</a>
+      <b is-accessible="true">credit</b>
     </field>
   </mapping>  
 

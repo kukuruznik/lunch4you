@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Configurable;
 
 @Configurable
 @Entity
-public class Meal {
+public class Article {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.AUTO )
@@ -26,6 +26,8 @@ public class Meal {
 	private String description;
 
 	private Integer dailyLimit;
+
+	private Boolean isActive = true;
 
 	public Long getId() {
 		return this.id;
@@ -65,6 +67,14 @@ public class Meal {
 
 	public void setDailyLimit( Integer dailyLimit ) {
 		this.dailyLimit = dailyLimit;
+	}
+
+	public Boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive( Boolean isActive ) {
+		this.isActive = isActive;
 	}
 
 	public String toString() {

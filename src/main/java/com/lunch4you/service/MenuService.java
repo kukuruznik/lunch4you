@@ -2,9 +2,12 @@ package com.lunch4you.service;
 
 import java.util.List;
 
-import com.lunch4you.domain.Meal;
+import com.lunch4you.domain.Article;
+import com.lunch4you.domain.Customer;
 
 public interface MenuService {
 
-	List<Meal> getMenu();
+	List<Article> getMenu();
+
+	List<Customer> getAllCustomers();
 }
