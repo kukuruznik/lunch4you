@@ -5,11 +5,12 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
+import com.lunch4you.dao.ArticleDao;
 import com.lunch4you.dao.ArticleFilter;
 import com.lunch4you.domain.Article;
 
 @Repository
-public class JpaArticleDao extends AbstractReadWriteDao<Article, Long, ArticleFilter> {
+public class JpaArticleDao extends AbstractReadWriteDao<Article, Long, ArticleFilter> implements ArticleDao {
 
 	@Override
 	protected Class<Article> getEntityClass() {

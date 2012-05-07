@@ -69,11 +69,11 @@ public class Article {
 		this.dailyLimit = dailyLimit;
 	}
 
-	public Boolean isActive() {
+	public Boolean getIsActive() {
 		return isActive;
 	}
 
-	public void setActive( Boolean isActive ) {
+	public void setIsActive( Boolean isActive ) {
 		this.isActive = isActive;
 	}
 
