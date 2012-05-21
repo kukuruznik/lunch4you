@@ -1,9 +1,12 @@
 package com.lunch4you.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -22,18 +25,22 @@ public class OrderItem {
 
 	@NotNull
 	private String name;
-	
+
 	@NotNull
 	private Integer amount;
-	
+
 	@NotNull
 	private Integer unitPrice;
-	
+
 	@NotNull
 	private Integer totalPrice;
-	
+
 	@NotNull
 	private Long articleId;
+
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
+	@JoinColumn( name = "order_id" )
+	private Order order;
 
 	public Long getId() {
 		return id;
@@ -57,6 +64,14 @@ public class OrderItem {
 
 	public void setName( String name ) {
 		this.name = name;
+	}
+
+	public Integer getAmount() {
+		return amount;
+	}
+
+	public void setAmount( Integer amount ) {
+		this.amount = amount;
 	}
 
 	public Integer getCount() {
@@ -89,6 +104,14 @@ public class OrderItem {
 
 	public void setArticleId( Long articleId ) {
 		this.articleId = articleId;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder( Order order ) {
+		this.order = order;
 	}
 
 	public String toString() {

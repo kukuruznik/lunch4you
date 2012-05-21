@@ -1,6 +1,5 @@
-package com.lunch4you.dao.jpa;
+package com.lunch4you.dao.common;
 
-import com.lunch4you.dao.ReadWriteDaoBase;
 
 public abstract class AbstractReadWriteDao<ENTITY, ID, FILTER> extends AbstractReadOnlyDao<ENTITY, ID, FILTER>
 		implements ReadWriteDaoBase<ENTITY, ID, FILTER> {

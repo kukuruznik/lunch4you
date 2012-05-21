@@ -54,5 +54,22 @@
       <b is-accessible="true">credit</b>
     </field>
   </mapping>  
+          
+  <mapping> 
+    <class-a>com.lunch4you.domain.Order</class-a>
+    <class-b>com.lunch4you.web.dto.OrderDto</class-b>   
+    <field>
+      <a>id</a>
+      <b is-accessible="true">id</b>
+    </field>
+    <field>
+      <a>total</a>
+      <b is-accessible="true">total</b>
+    </field>
+    <field>
+      <a>owner</a>
+      <b is-accessible="true">owner</b>
+    </field>
+  </mapping>  
 
 </mappings>

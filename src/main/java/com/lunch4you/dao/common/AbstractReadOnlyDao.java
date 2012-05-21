@@ -1,4 +1,4 @@
-package com.lunch4you.dao.jpa;
+package com.lunch4you.dao.common;
 
 import java.util.List;
 
@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
-import com.lunch4you.dao.ReadOnlyDaoBase;
 
 public abstract class AbstractReadOnlyDao<ENTITY, ID, FILTER> implements ReadOnlyDaoBase<ENTITY, ID, FILTER> {
 

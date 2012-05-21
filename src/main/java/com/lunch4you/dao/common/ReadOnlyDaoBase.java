@@ -1,4 +1,4 @@
-package com.lunch4you.dao;
+package com.lunch4you.dao.common;
 
 import java.util.List;
 

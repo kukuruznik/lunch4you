@@ -32,7 +32,7 @@ CREATE TABLE `is_prepared` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Table "order" DDL
-CREATE TABLE `order` (
+CREATE TABLE `plain_order` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `owner_id` bigint(20) NOT NULL,
   `total` int(11) NOT NULL DEFAULT '0',
@@ -44,15 +44,18 @@ CREATE TABLE `order` (
 
 -- Table "orderitem" DDL
 CREATE TABLE `order_item` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `amount` int(11) NOT NULL,
   `unit_price` int(11) NOT NULL,
   `total_price` int(11) NOT NULL,
   `article_id` bigint(20) NOT NULL,
+  `order_id` bigint(20) NOT NULL,
   `version` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `order_items_article` (`article_id`),
+  KEY `order_items_order` (`order_id`),
+  CONSTRAINT `order_items_order` FOREIGN KEY (`order_id`) REFERENCES `plain_order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_items_article` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

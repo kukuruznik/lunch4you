@@ -1,4 +1,4 @@
-package com.lunch4you.dao;
+package com.lunch4you.dao.filter;
 
 
 public final class ArticleFilter {
