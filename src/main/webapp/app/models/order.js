@@ -10,7 +10,14 @@ $.Model('App.Models.Order',
 	/* @Static */
 	{
 		findAll: "orders/find.json",
-	  	findOne: "orders/{id}.json"
+	  	findActive: function( success, error ) {
+	  		return $.ajax({
+	  			url: "orders/findActive.json",
+	  			dataType: "json order.models",
+	  			success: success,
+	  			error: error || App.errorHandler
+	  		});
+	  	}
 	},
 
 	/* @Prototype */

@@ -1,11 +1,11 @@
 steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( './views/list.ejs', './views/item.ejs', function( $ ) {
 
 	/**
-	 * @class App.Article.List
+	 * @class App.Order.List
 	 * @parent index
 	 * @inherits jQuery.Controller Lists articles.
 	 */
-	$.Controller( 'App.Article.List',
+	$.Controller( 'App.Order.List',
 
 	/** @Static */
 	{
@@ -14,12 +14,12 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 	/** @Prototype */
 	{
 		init: function() {
-			steal.dev.log( "Article list controller initialized" );
+			steal.dev.log( "Order list controller initialized" );
 			this._render();
 		},
 
 		_render: function() {
-			this.element.html( this.view( 'list', App.Models.Article.findAll() ) );
+			this.element.html( this.view( 'list', App.Models.Order.findActive() ) );
 		}
 	} );
 

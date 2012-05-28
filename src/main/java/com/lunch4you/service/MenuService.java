@@ -8,9 +8,13 @@ import com.lunch4you.domain.Order;
 
 public interface MenuService {
 
+	Article findArticleById( Long id );
+
+	Customer findCustomerByToken( String token );
+
+	Order createOrder( Customer customer, Article article );
+
 	List<Article> getMenu();
 
-	List<Customer> getAllCustomers();
-
-	List<Order> getAllOrders();
+	List<Order> getActiveOrders();
 }

@@ -25,6 +25,9 @@ public class Article {
 
 	private String description;
 
+	@NotNull
+	private Integer price;
+
 	private Integer dailyLimit;
 
 	private Boolean isActive = true;
@@ -59,6 +62,14 @@ public class Article {
 
 	public void setDescription( String description ) {
 		this.description = description;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice( Integer price ) {
+		this.price = price;
 	}
 
 	public Integer getDailyLimit() {

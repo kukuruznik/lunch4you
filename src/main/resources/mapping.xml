@@ -1,75 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mappings xmlns="http://dozer.sourceforge.net"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://dozer.sourceforge.net
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
           http://dozer.sourceforge.net/schema/beanmapping.xsd">
-          
-  <mapping> 
-    <class-a>com.lunch4you.domain.Article</class-a>
-    <class-b>com.lunch4you.web.dto.ArticleDto</class-b>   
-    <field>
-      <a>id</a>
-      <b is-accessible="true">id</b>
-    </field>
-    <field>
-      <a>name</a>
-      <b is-accessible="true">name</b>
-    </field>
-    <field>
-      <a>description</a>
-      <b is-accessible="true">description</b>
-    </field>
-    <field>
-      <a>dailyLimit</a>
-      <b is-accessible="true">dailyLimit</b>
-    </field>
-    <field>
-      <a>isActive</a>
-      <b is-accessible="true">isActive</b>
-    </field>
-  </mapping>  
 
-  <mapping> 
-    <class-a>com.lunch4you.domain.Customer</class-a>
-    <class-b>com.lunch4you.web.dto.CustomerDto</class-b>   
-    <field>
-      <a>id</a>
-      <b is-accessible="true">id</b>
-    </field>
-    <field>
-      <a>firstName</a>
-      <b is-accessible="true">firstName</b>
-    </field>
-    <field>
-      <a>lastName</a>
-      <b is-accessible="true">lastName</b>
-    </field>
-    <field>
-      <a>email</a>
-      <b is-accessible="true">email</b>
-    </field>
-    <field>
-      <a>credit</a>
-      <b is-accessible="true">credit</b>
-    </field>
-  </mapping>  
-          
-  <mapping> 
-    <class-a>com.lunch4you.domain.Order</class-a>
-    <class-b>com.lunch4you.web.dto.OrderDto</class-b>   
-    <field>
-      <a>id</a>
-      <b is-accessible="true">id</b>
-    </field>
-    <field>
-      <a>total</a>
-      <b is-accessible="true">total</b>
-    </field>
-    <field>
-      <a>owner</a>
-      <b is-accessible="true">owner</b>
-    </field>
-  </mapping>  
+	<mapping>
+		<class-a>com.lunch4you.domain.Article</class-a>
+		<class-b>com.lunch4you.web.dto.ArticleDto</class-b>
+		<field>
+			<a>id</a>
+			<b is-accessible="true">id</b>
+		</field>
+		<field>
+			<a>name</a>
+			<b is-accessible="true">name</b>
+		</field>
+		<field>
+			<a>description</a>
+			<b is-accessible="true">description</b>
+		</field>
+		<field>
+			<a>dailyLimit</a>
+			<b is-accessible="true">dailyLimit</b>
+		</field>
+		<field>
+			<a>isActive</a>
+			<b is-accessible="true">isActive</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.lunch4you.domain.Customer</class-a>
+		<class-b>com.lunch4you.web.dto.CustomerDto</class-b>
+		<field>
+			<a>id</a>
+			<b is-accessible="true">id</b>
+		</field>
+		<field>
+			<a>firstName</a>
+			<b is-accessible="true">firstName</b>
+		</field>
+		<field>
+			<a>lastName</a>
+			<b is-accessible="true">lastName</b>
+		</field>
+		<field>
+			<a>email</a>
+			<b is-accessible="true">email</b>
+		</field>
+		<field>
+			<a>credit</a>
+			<b is-accessible="true">credit</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.lunch4you.domain.Order</class-a>
+		<class-b>com.lunch4you.web.dto.OrderDto</class-b>
+		<field>
+			<a>id</a>
+			<b is-accessible="true">id</b>
+		</field>
+		<field>
+			<a>total</a>
+			<b is-accessible="true">total</b>
+		</field>
+		<field>
+			<a>owner</a>
+			<b is-accessible="true">owner</b>
+		</field>
+		<field>
+			<a>status</a>
+			<b is-accessible="true">status</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.lunch4you.domain.OrderItem</class-a>
+		<class-b>com.lunch4you.web.dto.OrderItemDto</class-b>
+		<field>
+			<a>id</a>
+			<b is-accessible="true">id</b>
+		</field>
+		<field>
+			<a>name</a>
+			<b is-accessible="true">name</b>
+		</field>
+		<field>
+			<a>amount</a>
+			<b is-accessible="true">amount</b>
+		</field>
+		<field>
+			<a>unitPrice</a>
+			<b is-accessible="true">unitPrice</b>
+		</field>
+		<field>
+			<a>totalPrice</a>
+			<b is-accessible="true">totalPrice</b>
+		</field>
+		<field>
+			<a>article</a>
+			<b is-accessible="true">article</b>
+		</field>
+	</mapping>
 
 </mappings>

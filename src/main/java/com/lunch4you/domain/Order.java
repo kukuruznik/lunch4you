@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,11 +32,15 @@ public class Order {
 	@NotNull
 	private Integer total;
 
-	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
+	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
 	@JoinColumn( name = "owner_id" )
 	private Customer owner;
 
-	@OneToMany( mappedBy = "order", fetch = FetchType.LAZY )
+	@NotNull
+	@Enumerated( EnumType.STRING )
+	private Status status;
+
+	@OneToMany( mappedBy = "order", fetch = FetchType.EAGER ) // TODO: this should be lazy in the future, but now we have only one item / order
 	private List<OrderItem> items;
 
 	public Long getId() {
@@ -77,11 +83,23 @@ public class Order {
 		this.items = items;
 	}
 
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus( Status status ) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append( '(' ).append( getId() ).append( ") " );
 		sb.append( "Order, owner: " ).append( getOwner() );
 		return sb.toString();
+	}
+
+	public enum Status {
+		OPEN, CLOSED;
 	}
 }

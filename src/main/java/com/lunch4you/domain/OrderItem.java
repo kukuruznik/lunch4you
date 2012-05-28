@@ -35,12 +35,9 @@ public class OrderItem {
 	@NotNull
 	private Integer totalPrice;
 
-	@NotNull
-	private Long articleId;
-
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
-	@JoinColumn( name = "order_id" )
-	private Order order;
+	@JoinColumn( name = "article_id" )
+	private Article article;
 
 	public Long getId() {
 		return id;
@@ -74,14 +71,6 @@ public class OrderItem {
 		this.amount = amount;
 	}
 
-	public Integer getCount() {
-		return amount;
-	}
-
-	public void setCount( Integer count ) {
-		this.amount = count;
-	}
-
 	public Integer getUnitPrice() {
 		return unitPrice;
 	}
@@ -98,27 +87,19 @@ public class OrderItem {
 		this.totalPrice = totalPrice;
 	}
 
-	public Long getArticleId() {
-		return articleId;
+	public Article getArticle() {
+		return article;
 	}
 
-	public void setArticleId( Long articleId ) {
-		this.articleId = articleId;
-	}
-
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder( Order order ) {
-		this.order = order;
+	public void setArticle( Article articleId ) {
+		this.article = articleId;
 	}
 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append( '(' ).append( getId() ).append( ") " );
 		sb.append( "Order item: " ).append( getName() );
-		sb.append( " * " ).append( getCount() );
+		sb.append( " * " ).append( getAmount() );
 		sb.append( " = " ).append( getTotalPrice() ).append( " credit(s)" );
 		return sb.toString();
 	}
