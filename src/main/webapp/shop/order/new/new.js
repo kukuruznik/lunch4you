@@ -1,11 +1,11 @@
 steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( './views/page.ejs', function( $ ) {
 
 	/**
-	 * @class App.Order.New
+	 * @class Shop.Order.New
 	 * @parent index
 	 * @inherits jQuery.Controller Manages ordering (display and submission).
 	 */
-	$.Controller( 'App.Order.New',
+	$.Controller( 'Shop.Order.New',
 
 	/** @Static */
 	{
@@ -19,7 +19,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_render: function() {
-			this.element.html( this.view( 'page', App.Models.Article.findOne() ) );
+			this.element.html( this.view( 'page', Shop.Models.Article.findOne( { id: Shop.params.meal } ) ) );
 		}
 	} );
 

@@ -1,12 +1,12 @@
 steal('jquery/model', 'jquery/lang/json', function(){
 
 /**
- * @class App.Models.Order
+ * @class Shop.Models.Order
  * @parent index
  * @inherits jQuery.Model
  * Wraps backend order services.  
  */
-$.Model('App.Models.Order',
+$.Model('Shop.Models.Order',
 	/* @Static */
 	{
 		findAll: "orders/find.json",
@@ -15,7 +15,7 @@ $.Model('App.Models.Order',
 	  			url: "orders/findActive.json",
 	  			dataType: "json order.models",
 	  			success: success,
-	  			error: error || App.errorHandler
+	  			error: error || Shop.errorHandler
 	  		});
 	  	}
 	},

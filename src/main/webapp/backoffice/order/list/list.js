@@ -5,7 +5,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 	 * @parent index
 	 * @inherits jQuery.Controller Lists articles.
 	 */
-	$.Controller( 'App.Order.List',
+	$.Controller( 'Backoffice.Order.List',
 
 	/** @Static */
 	{
@@ -19,7 +19,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_render: function() {
-			this.element.html( this.view( 'list', App.Models.Order.findActive() ) );
+			this.element.html( this.view( 'list', Backoffice.Models.Order.findActive() ) );
 		}
 	} );
 

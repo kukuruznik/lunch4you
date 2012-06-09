@@ -40,7 +40,8 @@ public class Order {
 	@Enumerated( EnumType.STRING )
 	private Status status;
 
-	@OneToMany( mappedBy = "order", fetch = FetchType.EAGER ) // TODO: this should be lazy in the future, but now we have only one item / order
+	@OneToMany( fetch = FetchType.EAGER ) // TODO: this should be lazy in the future, but now we have only one item / order
+	@JoinColumn( name="order_id" )
 	private List<OrderItem> items;
 
 	public Long getId() {

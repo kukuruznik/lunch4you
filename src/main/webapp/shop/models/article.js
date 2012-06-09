@@ -1,12 +1,12 @@
 steal('jquery/model', 'jquery/lang/json', function(){
 
 /**
- * @class App.Models.Article
+ * @class Shop.Models.Article
  * @parent index
  * @inherits jQuery.Model
  * Wraps backend article services.  
  */
-$.Model('App.Models.Article',
+$.Model('Shop.Models.Article',
 	/* @Static */
 	{
 		findAll: "articles/find.json",

@@ -29,11 +29,16 @@ public class CustomerController {
 	@RequestMapping( value = "/find.json", method = RequestMethod.GET )
 	public @ResponseBody
 	CustomerDto findByToken( @RequestParam String token ) {
-		logger.trace( "CustomerController.findAll called" );
+		logger.trace( "CustomerController.findByToken called" );
 
 		Customer customer = menuService.findCustomerByToken( token );
-		CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
 
-		return customerDto;
+		if ( customer == null ) {
+			return null;
+		} else {
+			CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
+	
+			return customerDto;
+		}
 	}
 }
