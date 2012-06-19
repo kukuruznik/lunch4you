@@ -1,6 +1,14 @@
 <% // var order = this %>
 <% // var meal = order.onlyItem.article %>
-<% var meal = this %>
+<% var meal = this.article %>
+<% var user = this.customer %>
+
+<h1>Welcome <%= user.firstName %> <%= user.lastName %>!</h1>
 
 <h2><%= meal.name %></h2>
-<p>I can't resist!</p>
+<h3>Only <%= meal.price %> bucks.</h3>
+<p>Can't resist!</p>
+
+<form>
+	<input id="order" type="button" value="I want it!" />
+</form>

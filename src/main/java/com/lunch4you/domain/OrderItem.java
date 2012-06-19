@@ -24,16 +24,7 @@ public class OrderItem {
 	private Integer version;
 
 	@NotNull
-	private String name;
-
-	@NotNull
 	private Integer amount;
-
-	@NotNull
-	private Integer unitPrice;
-
-	@NotNull
-	private Integer totalPrice;
 
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
 	@JoinColumn( name = "article_id" )
@@ -55,36 +46,12 @@ public class OrderItem {
 		this.version = version;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName( String name ) {
-		this.name = name;
-	}
-
 	public Integer getAmount() {
 		return amount;
 	}
 
 	public void setAmount( Integer amount ) {
 		this.amount = amount;
-	}
-
-	public Integer getUnitPrice() {
-		return unitPrice;
-	}
-
-	public void setUnitPrice( Integer unitPrice ) {
-		this.unitPrice = unitPrice;
-	}
-
-	public Integer getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice( Integer totalPrice ) {
-		this.totalPrice = totalPrice;
 	}
 
 	public Article getArticle() {
@@ -97,10 +64,10 @@ public class OrderItem {
 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append( '(' ).append( getId() ).append( ") " );
-		sb.append( "Order item: " ).append( getName() );
-		sb.append( " * " ).append( getAmount() );
-		sb.append( " = " ).append( getTotalPrice() ).append( " credit(s)" );
+		sb.append( '(' ).append( id ).append( ") " );
+		sb.append( "Order item: " ).append( article );
+		sb.append( " * " ).append( amount );
+		sb.append( " = " ).append( article == null ? "N/A" : article.getPrice() * amount ).append( " credit(s)" );
 		return sb.toString();
 	}
 }

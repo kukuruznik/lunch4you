@@ -20,6 +20,10 @@
 			<b is-accessible="true">description</b>
 		</field>
 		<field>
+			<a>price</a>
+			<b is-accessible="true">price</b>
+		</field>
+		<field>
 			<a>dailyLimit</a>
 			<b is-accessible="true">dailyLimit</b>
 		</field>
@@ -62,10 +66,6 @@
 			<b is-accessible="true">id</b>
 		</field>
 		<field>
-			<a>total</a>
-			<b is-accessible="true">total</b>
-		</field>
-		<field>
 			<a>owner</a>
 			<b is-accessible="true">owner</b>
 		</field>
@@ -83,20 +83,8 @@
 			<b is-accessible="true">id</b>
 		</field>
 		<field>
-			<a>name</a>
-			<b is-accessible="true">name</b>
-		</field>
-		<field>
 			<a>amount</a>
 			<b is-accessible="true">amount</b>
-		</field>
-		<field>
-			<a>unitPrice</a>
-			<b is-accessible="true">unitPrice</b>
-		</field>
-		<field>
-			<a>totalPrice</a>
-			<b is-accessible="true">totalPrice</b>
 		</field>
 		<field>
 			<a>article</a>

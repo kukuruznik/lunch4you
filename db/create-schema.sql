@@ -8,7 +8,7 @@ CREATE TABLE `article` (
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `version` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Table "customer" DDL
 CREATE TABLE `customer` (
@@ -20,7 +20,7 @@ CREATE TABLE `customer` (
   `credit` int(11) NOT NULL DEFAULT '0',
   `version` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Table "isprepared" DDL
 CREATE TABLE `is_prepared` (
@@ -36,22 +36,18 @@ CREATE TABLE `is_prepared` (
 CREATE TABLE `plain_order` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `owner_id` bigint(20) NOT NULL,
-  `total` int(11) NOT NULL DEFAULT '0',
   `status` varchar(50) NOT NULL,
   `version` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `orders_owner` (`owner_id`),
   KEY `orders_status` (`status`),
   CONSTRAINT `plain_order_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Table "orderitem" DDL
 CREATE TABLE `order_item` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
   `amount` int(11) NOT NULL,
-  `unit_price` int(11) NOT NULL,
-  `total_price` int(11) NOT NULL,
   `article_id` bigint(20) NOT NULL,
   `order_id` bigint(20) NOT NULL,
   `version` int(11) DEFAULT NULL,

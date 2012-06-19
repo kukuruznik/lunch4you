@@ -12,7 +12,7 @@ public interface MenuService {
 
 	Customer findCustomerByToken( String token );
 
-	Order createOrder( Customer customer, Article article );
+	Order createOrder(Long articleId, String token );
 
 	List<Article> getMenu();
 

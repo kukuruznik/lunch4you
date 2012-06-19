@@ -7,8 +7,6 @@ public final class OrderDto {
 
 	public Long id;
 
-	public Integer total;
-
 	public CustomerDto owner;
 
 	public Order.Status status;

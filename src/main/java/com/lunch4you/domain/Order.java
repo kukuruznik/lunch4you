@@ -29,9 +29,6 @@ public class Order {
 	@Version
 	private Integer version;
 
-	@NotNull
-	private Integer total;
-
 	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
 	@JoinColumn( name = "owner_id" )
 	private Customer owner;
@@ -40,8 +37,8 @@ public class Order {
 	@Enumerated( EnumType.STRING )
 	private Status status;
 
-	@OneToMany( fetch = FetchType.EAGER ) // TODO: this should be lazy in the future, but now we have only one item / order
-	@JoinColumn( name="order_id" )
+	@OneToMany( fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE } ) // TODO: this should be lazy in the future, but now we have only one item / order
+	@JoinColumn( name="order_id", insertable=true, nullable=false )
 	private List<OrderItem> items;
 
 	public Long getId() {
@@ -58,14 +55,6 @@ public class Order {
 
 	public void setVersion( Integer version ) {
 		this.version = version;
-	}
-
-	public Integer getTotal() {
-		return total;
-	}
-
-	public void setTotal( Integer totalPrice ) {
-		this.total = totalPrice;
 	}
 
 	public Customer getOwner() {
@@ -95,8 +84,9 @@ public class Order {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append( '(' ).append( getId() ).append( ") " );
-		sb.append( "Order, owner: " ).append( getOwner() );
+		sb.append( '(' ).append( id ).append( ") " );
+		sb.append( "Order, owner: " ).append( owner );
+		sb.append( ", items: " ).append( items );
 		return sb.toString();
 	}
 

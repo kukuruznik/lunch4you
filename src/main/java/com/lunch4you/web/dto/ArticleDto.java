@@ -8,6 +8,8 @@ public final class ArticleDto {
 
 	public String description;
 
+	public Integer price;
+	
 	public Integer dailyLimit;
 	
 	public boolean isActive;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lunch4you.dao.ArticleDao;
 import com.lunch4you.dao.CustomerDao;
@@ -16,6 +17,7 @@ import com.lunch4you.domain.Customer;
 import com.lunch4you.domain.Order;
 import com.lunch4you.domain.OrderItem;
 
+@Transactional
 @Service
 public final class MenuServiceImpl implements MenuService {
 
@@ -43,20 +45,18 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public Order createOrder( Customer customer, Article article ) {
+	public Order createOrder( Long articleId, String token ) {
 		OrderItem item = new OrderItem();
+		Article article = articleDao.load( articleId );
+		Customer customer = findCustomerByToken( token );
 
 		item.setAmount( 1 );
 		item.setArticle( article );
-		item.setName( article.getName() );
-		item.setUnitPrice( article.getPrice() );
-		item.setTotalPrice( article.getPrice() );
 
 		Order newOrder = new Order();
 
 		newOrder.setOwner( customer );
 		newOrder.setStatus( Order.Status.OPEN );
-		newOrder.setTotal( article.getPrice() );
 		newOrder.setItems( Collections.singletonList( item ) );
 
 		return orderDao.insert( newOrder );

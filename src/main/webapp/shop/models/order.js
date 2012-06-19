@@ -17,10 +17,24 @@ $.Model('Shop.Models.Order',
 	  			success: success,
 	  			error: error || Shop.errorHandler
 	  		});
+	  	},
+	  	create: function( article, token, success, error ) {
+	  		return $.ajax({
+	  			url: "orders.json",
+	  			type: "POST",
+	  			contentType: "application/json",
+	  			data: $.toJSON( { articleId: article.id, token: token } ),
+	  			dataType: "json order.model",
+	  			success: success,
+	  			error: error || Shop.errorHandler
+	  		});
 	  	}
 	},
 
 	/* @Prototype */
 	{
+		getTotal: function() {
+			return this.onlyItem.article.price * this.onlyItem.amount;
+		}
 	});
 });

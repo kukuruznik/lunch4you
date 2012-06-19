@@ -61,13 +61,13 @@
         <property name="validationQuery" value="SELECT 1"/>
     </bean>
 
-    <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
-    <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="persistenceUnit"/>
         <property name="dataSource" ref="dataSource"/>
     </bean>
