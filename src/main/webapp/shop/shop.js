@@ -1,6 +1,6 @@
 steal(
 	'./shop.css', 		// application CSS file
-	'/jquery/lang/string/deparam/deparam.js',
+	'//jquery/lang/string/deparam/deparam.js',
 	'./models/models.js',		// steals all your models
 	'./order/new/new.js'
 ).then( function() {	// configure your application
