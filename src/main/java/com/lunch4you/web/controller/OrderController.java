@@ -34,7 +34,7 @@ public class OrderController {
 	@RequestMapping( value = "", method = RequestMethod.POST )
 	public @ResponseBody
 	OrderDto createNew( @RequestBody Map<String, Object> data ) {
-		logger.trace( "OrderController.createNew called" );
+		logger.trace( "OrderController.createNew called with data: " + data );
 
 		long articleId = Long.parseLong( data.get( "articleId" ).toString() );
 		String token = data.get( "token" ).toString();
@@ -45,18 +45,14 @@ public class OrderController {
 		return orderDto;
 	}
 
-	@RequestMapping( value = "/findActive.json", method = RequestMethod.GET )
+	@RequestMapping( value = "/active.json", method = RequestMethod.GET )
 	public @ResponseBody
 	List<OrderDto> findActive() {
 		logger.trace( "OrderController.findActive called" );
 
 		List<Order> orders = menuService.getActiveOrders();
-		List<OrderDto> orderDtos = new ArrayList<OrderDto>( orders.size() );
+		List<OrderDto> orderDtos = mapOrderList( orders );
 
-		for ( Order o : orders ) {
-			OrderDto orderDto = mapOrder( o );
-			orderDtos.add( orderDto );
-		}
 		return orderDtos;
 	}
 
@@ -64,5 +60,15 @@ public class OrderController {
 		OrderDto orderDto = beanMapper.map( o, OrderDto.class );
 		orderDto.onlyItem = beanMapper.map( o.getItems().get( 0 ), OrderItemDto.class );  // TODO: temporary solution only - remove later
 		return orderDto;
+	}
+
+	private List<OrderDto> mapOrderList( List<Order> orders ) {
+		List<OrderDto> orderDtos = new ArrayList<OrderDto>( orders.size() );
+		
+		for ( Order o : orders ) {
+			OrderDto orderDto = mapOrder( o );
+			orderDtos.add( orderDto );
+		}
+		return orderDtos;
 	}
 }

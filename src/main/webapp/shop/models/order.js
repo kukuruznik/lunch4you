@@ -9,15 +9,6 @@ steal('jquery/model', 'jquery/lang/json', function(){
 $.Model('Shop.Models.Order',
 	/* @Static */
 	{
-		findAll: "orders/find.json",
-	  	findActive: function( success, error ) {
-	  		return $.ajax({
-	  			url: "orders/findActive.json",
-	  			dataType: "json order.models",
-	  			success: success,
-	  			error: error || Shop.errorHandler
-	  		});
-	  	},
 	  	create: function( article, token, success, error ) {
 	  		return $.ajax({
 	  			url: "orders.json",

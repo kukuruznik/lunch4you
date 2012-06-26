@@ -9,10 +9,9 @@ steal('jquery/model', 'jquery/lang/json', function(){
 $.Model('Backoffice.Models.Order',
 	/* @Static */
 	{
-		findAll: "orders/find.json",
 	  	findActive: function( success, error ) {
 	  		return $.ajax({
-	  			url: "orders/findActive.json",
+	  			url: "orders/active.json",
 	  			dataType: "json order.models",
 	  			success: success,
 	  			error: error || Backoffice.errorHandler

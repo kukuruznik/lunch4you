@@ -1,0 +1,19 @@
+<% var article = this.article %>
+<% var orders = this.items %>
+
+<h3><span class="switch">+</span> <em><%= article.name %></em> <span class="info"><%= orders.length %> order(s)</span></h3>
+<table class="order-group">
+	<tr>
+		<th class="id-col">#</th>
+		<th class="customer-col">Customer</th>
+	</tr>
+	<% for ( var i = 0; i < orders.length; i++ ) { %>
+	<tr <%= orders[ i ] %>>
+		<%== $.View( '//backoffice/order/list/views/item.ejs', orders[ i ] ) %>
+	</tr>
+	<% } %>
+	<tr>
+		<td>&nbsp;</td>
+		<td><input type="button" value="Close orders"/></td>
+	</tr>
+</table>
