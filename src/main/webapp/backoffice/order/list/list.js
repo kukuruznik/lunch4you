@@ -15,20 +15,17 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 	{
 		init: function() {
 			steal.dev.log( "Order list controller initialized" );
+			this.articleNames = [];
+			this.ordersByArticleMap = {};
+//			this.counter = 0;
 			this._refresh();
 		},
 
 		"h3 click": function( el, evt ) {
-			var signElement = el.find( ".switch" );
-			var sign = signElement.html();
-
-			if ( sign == "+" ) {
-				signElement.html( "-" );
-				el.next().show();
-			} else {
-				signElement.html( "+" );
-				el.next().hide();
-			}
+			var articleName = el.attr( "id" );
+			var orderGroup = this.ordersByArticleMap[ articleName ];
+			orderGroup.closed = !orderGroup.closed;
+			el.parent().html( this.view( 'group', orderGroup ) );
 		},
 
 		"input[type=button] click": function( el, evt ) {
@@ -37,12 +34,20 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 
 		_refresh: function() {
 			Backoffice.Models.Order.findActive().done( this.proxy( "_groupOrdersByArticle" ) );
-//			setTimeout( this.proxy( "_refresh" ), 1000 );
+//			this.counter++;
+//			if ( this.counter < 20 )
+				setTimeout( this.proxy( "_refresh" ), 1000 );
 		},
 
 		_groupOrdersByArticle: function( orders ) {
-			var ordersByArticleMap = {};
-			var articleNames = [];
+			var ordersByArticleMap = this.ordersByArticleMap;
+			var articleNames = this.articleNames;
+
+			// clear the remembered order lists
+			for ( attrName in ordersByArticleMap ) {
+				var orderGroup = ordersByArticleMap[ attrName ];
+				orderGroup.items = [];
+			}
 
 			// grouping together the orders by article
 			$( orders ).each( function( i, order ) {
@@ -56,6 +61,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 					articleNames.push( article.name );
 					orderGroup = {
 						article: article,
+						closed: true,
 						items: [ order ]
 					};
 					ordersByArticleMap[ article.name ] = orderGroup;
@@ -64,6 +70,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 
 			// building a list of orderGroup-s sorted by article name
 			articleNames.sort();
+
 			var orderGroups = [];
 			$( articleNames ).each( function( i, name ) {
 				orderGroups.push( ordersByArticleMap[ name ] );
