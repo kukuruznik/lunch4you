@@ -17,7 +17,7 @@ steal(
 	};
 
 	if ( Shop.params.meal && Shop.params.token )
-		$( '#article' ).shop_order_new();
+		$( '#content' ).shop_order_new();
 	else
 		alert( "Invalid URL!" );
 });

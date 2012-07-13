@@ -1,14 +1,12 @@
-<% // var order = this %>
-<% // var meal = order.onlyItem.article %>
 <% var meal = this.article %>
 <% var user = this.customer %>
 
-<h1>Welcome <%= user.firstName %> <%= user.lastName %>!</h1>
-
-<h2><%= meal.name %></h2>
-<h3>Only <%= meal.price %> bucks.</h3>
-<p>Can't resist!</p>
+<h2><span class="dim">Welcome to Lunch4You</span> <em><%= user.firstName %> <%= user.lastName %></em></h2>
+<hr/>
+<h1><%= meal.name %></h1>
+<h3>Price: <em><%= meal.price %> CZK</em></h3>
+<p><%= meal.description %></p>
 
 <form>
-	<input id="order" type="button" value="I want it!" />
+	<input id="order" type="button" value="confirm order" />
 </form>
