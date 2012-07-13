@@ -1,5 +1,10 @@
+<% console.log( this ) %>
+<% if ( this.length == 0 ) { %>
+	<li>There are no active orders at the moment.</li>
+<% } %>
+
 <% for ( var i = 0; i < this.length; i++ ) { %>
-	<li <%= this[ i ] %>>
+	<li>
 		<%== $.View( '//backoffice/order/list/views/group.ejs', this[ i ] ) %>
 	</li>
 <% } %>

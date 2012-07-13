@@ -27,8 +27,15 @@ public class JpaOrderDao extends AbstractReadWriteDao<Order, Long, OrderFilter> 
 		Root<Order> root = cq.from( Order.class );
 		cq.select( root );
 
-		Predicate eqTokens = builder.equal( root.get( "status" ), f.status );
-		cq.where( eqTokens );
+		Predicate p = builder.and(); // always true
+
+		if ( f.status != null )
+			p = builder.and( p, builder.equal( root.get( "status" ), f.status ) );
+		
+		if ( f.ids != null )
+			p = builder.and( p, root.get( "id" ).in( f.ids ) );
+
+		cq.where( p );
 
 		return cq;
 	}

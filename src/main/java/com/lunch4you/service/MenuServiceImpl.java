@@ -76,4 +76,18 @@ public final class MenuServiceImpl implements MenuService {
 
 		return orders;
 	}
+
+	@Override
+	public List<Long> closeOrders( List<Long> ids ) {
+		OrderFilter filter = new OrderFilter();
+		filter.status = Order.Status.OPEN;
+		filter.ids = ids;
+		List<Order> orders = orderDao.find( filter );
+
+		for ( Order o : orders ) {
+			ids.remove( o.getId() );
+			o.setStatus( Order.Status.CLOSED );
+		}
+		return ids;
+	}
 }

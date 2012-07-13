@@ -45,6 +45,20 @@ public class OrderController {
 		return orderDto;
 	}
 
+	@RequestMapping( value = "/close.json", method = RequestMethod.PUT )
+	public @ResponseBody
+	List<Long> close( @RequestBody List<Integer> intIds ) {
+		// IDs mapped as List<Integer> - bug?
+		List<Long> ids = new ArrayList<Long>( intIds.size() );
+		for ( Integer i : intIds )
+			ids.add( new Long( i ) );
+		logger.trace( "OrderController.close called with ID-s: " + ids );
+
+		List<Long> missingOrders = menuService.closeOrders( ids );
+
+		return missingOrders;
+	}
+
 	@RequestMapping( value = "/active.json", method = RequestMethod.GET )
 	public @ResponseBody
 	List<OrderDto> findActive() {

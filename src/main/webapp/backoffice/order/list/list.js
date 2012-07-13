@@ -25,18 +25,32 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			var articleName = el.attr( "id" );
 			var orderGroup = this.ordersByArticleMap[ articleName ];
 			orderGroup.closed = !orderGroup.closed;
+
 			el.parent().html( this.view( 'group', orderGroup ) );
 		},
 
 		"input[type=button] click": function( el, evt ) {
-			alert( "Not implemented!" );
+			clearTimeout( this.timeOutID );
+			var infoRowElement = el.parents( "table" ).prev();
+			var articleName = infoRowElement.attr( "id" );
+			var orderGroup = this.ordersByArticleMap[ articleName ];
+			var orderIds = $( orderGroup.items ).map( function( index, order ) {
+				return order.id;
+			});
+			orderIds = $.makeArray( orderIds );
+			delete this.ordersByArticleMap[ articleName ];
+			this.articleNames = $( this.articleNames ).map( function( index, name ) {
+				if ( name != articleName )
+					return name;
+			});
+			Backoffice.Models.Order.close( orderIds, this.proxy( "_handleCloseResponse" ) );
 		},
 
 		_refresh: function() {
 			Backoffice.Models.Order.findActive().done( this.proxy( "_groupOrdersByArticle" ) );
 //			this.counter++;
 //			if ( this.counter < 20 )
-				setTimeout( this.proxy( "_refresh" ), 1000 );
+				this.timeOutID = setTimeout( this.proxy( "_refresh" ), 1000 );
 		},
 
 		_groupOrdersByArticle: function( orders ) {
@@ -78,6 +92,13 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 
 			// render the resulting list of order groups
 			this._render( orderGroups );
+		},
+
+		_handleCloseResponse: function( notFound ) {
+			if ( notFound.length > 0 )
+				alert( "Orders with ID-s " + notFound + " not found!" );
+			
+			this._refresh();
 		},
 
 		_render: function( orderGroups ) {

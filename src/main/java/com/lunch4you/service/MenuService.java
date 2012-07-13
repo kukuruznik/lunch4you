@@ -17,4 +17,6 @@ public interface MenuService {
 	List<Article> getMenu();
 
 	List<Order> getActiveOrders();
+	
+	List<Long> closeOrders( List<Long> ids );
 }

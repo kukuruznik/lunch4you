@@ -16,7 +16,19 @@ $.Model('Backoffice.Models.Order',
 	  			success: success,
 	  			error: error || Backoffice.errorHandler
 	  		});
-	  	}
+	  	},
+
+		close: function( ids, success, error ) {
+			return $.ajax({
+				url: "orders/close.json",
+				type: "PUT",
+	  			contentType: "application/json",
+				data: $.toJSON( ids ),
+				dataType: "json",
+				success: success,
+				error: error || Backoffice.errorHandler
+			});
+		}
 	},
 
 	/* @Prototype */
