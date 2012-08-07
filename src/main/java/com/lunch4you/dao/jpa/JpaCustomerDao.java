@@ -27,8 +27,11 @@ public class JpaCustomerDao extends AbstractReadWriteDao<Customer, Long, Custome
 		Root<Customer> root = cq.from( Customer.class );
 		cq.select( root );
 
-		Predicate eqTokens = builder.equal( root.get( "token" ), f.token );
-		cq.where( eqTokens );
+		if ( f != null ) {
+			Predicate eqTokens = builder.equal( root.get( "token" ), f.token );
+
+			cq.where( eqTokens );
+		}
 
 		return cq;
 	}

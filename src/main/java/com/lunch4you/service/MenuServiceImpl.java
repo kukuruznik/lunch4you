@@ -45,6 +45,11 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
+	public List<Customer> getAllCustomers() {
+		return customerDao.loadAll();
+	}
+
+	@Override
 	public Order createOrder( Long articleId, String token ) {
 		OrderItem item = new OrderItem();
 		Article article = articleDao.load( articleId );

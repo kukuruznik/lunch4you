@@ -27,15 +27,17 @@ public class JpaOrderDao extends AbstractReadWriteDao<Order, Long, OrderFilter> 
 		Root<Order> root = cq.from( Order.class );
 		cq.select( root );
 
-		Predicate p = builder.and(); // always true
+		if ( f != null ) {
+			Predicate p = builder.and(); // always true
 
-		if ( f.status != null )
-			p = builder.and( p, builder.equal( root.get( "status" ), f.status ) );
-		
-		if ( f.ids != null )
-			p = builder.and( p, root.get( "id" ).in( f.ids ) );
+			if ( f.status != null )
+				p = builder.and( p, builder.equal( root.get( "status" ), f.status ) );
 
-		cq.where( p );
+			if ( f.ids != null )
+				p = builder.and( p, root.get( "id" ).in( f.ids ) );
+
+			cq.where( p );
+		}
 
 		return cq;
 	}

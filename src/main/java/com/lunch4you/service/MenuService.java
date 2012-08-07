@@ -12,6 +12,8 @@ public interface MenuService {
 
 	Customer findCustomerByToken( String token );
 
+	List<Customer> getAllCustomers();
+
 	Order createOrder(Long articleId, String token );
 
 	List<Article> getMenu();
