@@ -95,10 +95,14 @@
 		</property>
 	</bean>
 
-	<bean id="jobs" class="com.lunch4you.service.JobsImpl">
+	<bean id="mailing" class="com.lunch4you.service.MailingServiceImpl">
 		<property name="from" value="${email.from}"/>
-		<property name="subject" value="${email.subject}"/>
+		<property name="menuSubject" value="${email.menu.subject}"/>
+		<property name="confirmationSubject" value="${email.confirmation.subject}"/>
+		<property name="shopURL" value="${shop.url}"></property>
 	</bean>
+
+	<bean id="jobs" class="com.lunch4you.service.JobsImpl"/>
 
 	<task:scheduled-tasks scheduler="scheduler">
 		<task:scheduled ref="jobs" method="emailMenu" cron="${email.schedule}"/>

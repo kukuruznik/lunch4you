@@ -1,1 +1,6 @@
 Your token is ${token}.
+
+The menu for today is:
+#foreach( ${meal} in ${menu} )
+	- ${meal.Name} for ${meal.Price} bucks (${shopURL}#meal=${meal.Id}&token=${token})
+#end

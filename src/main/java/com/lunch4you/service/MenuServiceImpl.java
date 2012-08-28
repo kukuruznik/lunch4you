@@ -3,7 +3,10 @@ package com.lunch4you.service;
 import java.util.Collections;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSendException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +24,8 @@ import com.lunch4you.domain.OrderItem;
 @Service
 public final class MenuServiceImpl implements MenuService {
 
+	private static final Logger logger = LoggerFactory.getLogger( MenuServiceImpl.class );
+
 	@Autowired
 	private ArticleDao articleDao;
 	
@@ -29,6 +34,9 @@ public final class MenuServiceImpl implements MenuService {
 	
 	@Autowired
 	private OrderDao orderDao;
+	
+	@Autowired
+	private MailingService mailingService;
 
 	@Override
 	public Article findArticleById( Long id ) {
@@ -64,7 +72,15 @@ public final class MenuServiceImpl implements MenuService {
 		newOrder.setStatus( Order.Status.OPEN );
 		newOrder.setItems( Collections.singletonList( item ) );
 
-		return orderDao.insert( newOrder );
+		Order order = orderDao.insert( newOrder );
+
+		try {
+			mailingService.sendOrderConfirmation( order );
+		} catch ( MailSendException e ) {
+			logger.error( "Confirmation e-mail sending failed!", e );
+		}
+
+		return order;
 	}
 
 	@Override
