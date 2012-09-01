@@ -22,16 +22,6 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Table "isprepared" DDL
-CREATE TABLE `is_prepared` (
-  `preparation_id` bigint(20) NOT NULL,
-  `order_item_id` bigint(20) NOT NULL,
-  KEY `isprepared_preparation` (`preparation_id`),
-  KEY `isprepared_orderitem` (`order_item_id`),
-  CONSTRAINT `is_prepared_ibfk_1` FOREIGN KEY (`order_item_id`) REFERENCES `order_item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `is_prepared_ibfk_2` FOREIGN KEY (`preparation_id`) REFERENCES `preparation` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 -- Table "plain_order" DDL
 CREATE TABLE `plain_order` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -69,3 +59,14 @@ CREATE TABLE `preparation` (
   KEY `preparations_article` (`article_id`),
   CONSTRAINT `preparations_article` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Table "isprepared" DDL
+CREATE TABLE `is_prepared` (
+  `preparation_id` bigint(20) NOT NULL,
+  `order_item_id` bigint(20) NOT NULL,
+  KEY `isprepared_preparation` (`preparation_id`),
+  KEY `isprepared_orderitem` (`order_item_id`),
+  CONSTRAINT `is_prepared_ibfk_1` FOREIGN KEY (`order_item_id`) REFERENCES `order_item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `is_prepared_ibfk_2` FOREIGN KEY (`preparation_id`) REFERENCES `preparation` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
