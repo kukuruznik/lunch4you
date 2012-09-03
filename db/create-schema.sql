@@ -7,8 +7,13 @@ CREATE TABLE `article` (
   `name` varchar(255) NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `version` int(11) DEFAULT NULL,
+  `category` int(11) DEFAULT NULL,
+  `name_cz` varchar(255) DEFAULT NULL,
+  `name_en` varchar(255) DEFAULT NULL,
+  `description_cz` varchar(1000) DEFAULT NULL,
+  `description_en` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8;
 
 -- Table "customer" DDL
 CREATE TABLE `customer` (

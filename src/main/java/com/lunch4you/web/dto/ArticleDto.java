@@ -13,4 +13,14 @@ public final class ArticleDto {
 	public Integer dailyLimit;
 	
 	public boolean isActive;
+	
+	public Integer category;
+	
+	public String name_cz;
+	
+	public String name_en;
+	
+	public String description_cz;
+	
+	public String description_en;
 }

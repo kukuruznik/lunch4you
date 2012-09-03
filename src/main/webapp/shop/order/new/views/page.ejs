@@ -3,9 +3,9 @@
 
 <h2><span class="dim">Welcome to Lunch4You</span> <em><%= user.firstName %> <%= user.lastName %></em></h2>
 <hr/>
-<h1><%= meal.name %></h1>
+<h1><%= meal.category %> - <%= meal.name %></h1>
 <h3>Price: <em><%= meal.price %> CZK</em></h3>
-<p><%= meal.description %></p>
+<p><%= meal.description_cz %> / <%= meal.description_en %></p>
 
 <form>
 	<input id="order" type="button" value="confirm order" />

@@ -31,6 +31,26 @@
 			<a>isActive</a>
 			<b is-accessible="true">isActive</b>
 		</field>
+		<field>
+			<a>category</a>
+			<b is-accessible="true">category</b>
+		</field>
+		<field>
+			<a>name_cz</a>
+			<b is-accessible="true">name_cz</b>
+		</field>
+		<field>
+			<a>name_en</a>
+			<b is-accessible="true">name_en</b>
+		</field>
+		<field>
+			<a>description_cz</a>
+			<b is-accessible="true">description_cz</b>
+		</field>
+		<field>
+			<a>description_en</a>
+			<b is-accessible="true">description_en</b>
+		</field>
 	</mapping>
 
 	<mapping>
