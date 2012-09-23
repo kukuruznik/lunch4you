@@ -1,8 +1,23 @@
 <% var meal = this.article %>
 <% var user = this.customer %>
 
-<h2><span class="dim">Welcome to Lunch4You</span> <em><%= user.firstName %> <%= user.lastName %></em></h2>
+<h2><span class="dim">Welcome to Lunch4You</span>
+</h2>
 <hr/>
+<div id="currentCustomerDetails">
+	<%= user.firstName %> <%= user.lastName %>
+	<div id="changeCustomerButton">Change</div>
+</div>
+<form id="customerForm" style="display:none;">
+	Name: <input id="customerName" type="text"/>
+	<br/>
+	Email: <input id="customerEmail" type="text"/>
+	<br/>
+	Subscribe: <input id="menuSubscription" type="checkbox"/>
+	<br/>
+	<input id="submitCustomerDetailsButton" type="button" value="Done"/>
+	<input id="cancelChangeCustomerButton" type="button" value="Cancel"/>
+</form>
 <h1><%= meal.category %> - <%= meal.name %></h1>
 <h3>Price: <em><%= meal.price %> CZK</em></h3>
 <p><%= meal.description_cz %> / <%= meal.description_en %></p>

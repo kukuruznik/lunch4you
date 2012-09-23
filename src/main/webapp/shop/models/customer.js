@@ -16,7 +16,19 @@ $.Model('Shop.Models.Customer',
 	  			success: success,
 	  			error: error || Shop.errorHandler
 	  		});
-	  	}
+	  	},
+		create: function( customer, success, error ) {
+	  		return $.ajax({
+	  			url: "customers.json",
+	  			type: "POST",
+	  			contentType: "application/json",
+	  			data: $.toJSON( customer ),
+	  			dataType: "json customer.model",
+	  			success: success,
+	  			error: error || Shop.errorHandler
+	  		});
+		}
+ 
 	},
 
 	/* @Prototype */
