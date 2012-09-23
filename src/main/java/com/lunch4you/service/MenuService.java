@@ -10,11 +10,15 @@ public interface MenuService {
 
 	Article findArticleById( Long id );
 
+	Customer getCustomer( Long id );
+
 	Customer findCustomerByToken( String token );
 
 	List<Customer> getAllCustomers();
 
-	Order createOrder(Long articleId, String token );
+	Customer registerCustomer( String firstName, String lastName, String email ); // we might need a RegistrationInfo class in the future 
+
+	Order createOrder(Long articleId, Long customerId );
 
 	List<Article> getMenu();
 

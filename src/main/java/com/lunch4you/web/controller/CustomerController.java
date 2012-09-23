@@ -1,11 +1,14 @@
 package com.lunch4you.web.controller;
 
+import java.util.Map;
+
 import org.dozer.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +29,16 @@ public class CustomerController {
 	@Autowired
 	private Mapper beanMapper;
 
+	@RequestMapping( value = "/{id}.json", method = RequestMethod.GET )
+	public @ResponseBody
+	CustomerDto findOne( @PathVariable Long id ) {
+		logger.trace( "CustomerController.findOne called" );
+
+		Customer customer = menuService.getCustomer( id );
+		CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
+		return customerDto;
+	}
+
 	@RequestMapping( value = "/byToken/{token}.json", method = RequestMethod.GET )
 	public @ResponseBody
 	CustomerDto findByToken( @PathVariable String token ) {
@@ -40,5 +53,20 @@ public class CustomerController {
 	
 			return customerDto;
 		}
+	}
+
+	@RequestMapping( value = "", method = RequestMethod.POST )
+	public @ResponseBody
+	CustomerDto createNew( @RequestBody Map<String, Object> data ) {
+		logger.trace( "CustomerController.createNew called with data: " + data );
+
+		String firstName = data.get( "firstName" ).toString();
+		String lastName = data.get( "lastName" ).toString();
+		String email = data.get( "email" ).toString();
+
+		Customer customer = menuService.registerCustomer( firstName, lastName, email );
+		CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
+
+		return customerDto;
 	}
 }

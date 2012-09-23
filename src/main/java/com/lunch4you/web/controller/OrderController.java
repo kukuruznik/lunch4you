@@ -37,9 +37,9 @@ public class OrderController {
 		logger.trace( "OrderController.createNew called with data: " + data );
 
 		long articleId = Long.parseLong( data.get( "articleId" ).toString() );
-		String token = data.get( "token" ).toString();
+		long customerId = Long.parseLong( data.get( "customerId" ).toString() );
 
-		Order order = menuService.createOrder( articleId, token );
+		Order order = menuService.createOrder( articleId, customerId );
 		OrderDto orderDto = mapOrder( order );
 
 		return orderDto;

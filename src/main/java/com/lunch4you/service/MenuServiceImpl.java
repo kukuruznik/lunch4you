@@ -44,6 +44,11 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
+	public Customer getCustomer( Long id ) {
+		return customerDao.load( id );
+	}
+
+	@Override
 	public Customer findCustomerByToken( String token ) {
 		CustomerFilter filter = new CustomerFilter();
 		filter.token = token;
@@ -58,10 +63,23 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public Order createOrder( Long articleId, String token ) {
+	public Customer registerCustomer( String firstName, String lastName, String email ) {
+		Customer newCustomer = new Customer();
+		String token = createToken();
+
+		newCustomer.setCredit( 0 );
+		newCustomer.setEmail( email );
+		newCustomer.setFirstName( firstName );
+		newCustomer.setLastName( lastName );
+		newCustomer.setToken( token );
+		return customerDao.insert( newCustomer );
+	}
+
+	@Override
+	public Order createOrder( Long articleId, Long customerId ) {
 		OrderItem item = new OrderItem();
 		Article article = articleDao.load( articleId );
-		Customer customer = findCustomerByToken( token );
+		Customer customer = getCustomer( customerId );
 
 		item.setAmount( 1 );
 		item.setArticle( article );
@@ -110,5 +128,15 @@ public final class MenuServiceImpl implements MenuService {
 			o.setStatus( Order.Status.CLOSED );
 		}
 		return ids;
+	}
+
+	private String createToken() {
+		StringBuilder token = new StringBuilder( 8 );
+
+		for ( int i = 0; i < 8; i++ ) {
+			char nextChar = (char) (Math.round( Math.random() * 95 ) + 33);
+			token.append( nextChar );
+		}
+		return token.toString();
 	}
 }
