@@ -1,9 +1,12 @@
 package com.lunch4you.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -34,7 +37,11 @@ public class Customer {
 	
 	@NotNull
 	private Integer credit;
-	
+
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
+	@JoinColumn( name = "default_delivery_location_id" )
+	private DeliveryLocation defaultDeliveryLocation;
+
 	public Long getId() {
 		return id;
 	}
@@ -89,6 +96,14 @@ public class Customer {
 
 	public void setCredit( Integer credit ) {
 		this.credit = credit;
+	}
+
+	public DeliveryLocation getDefaultDeliveryLocation() {
+		return defaultDeliveryLocation;
+	}
+
+	public void setDefaultDeliveryLocation(DeliveryLocation deliveryLocation) {
+		this.defaultDeliveryLocation = deliveryLocation;
 	}
 
 	public String toString() {

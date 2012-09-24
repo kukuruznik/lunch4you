@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.lunch4you.domain.Article;
 import com.lunch4you.domain.Customer;
+import com.lunch4you.domain.DeliveryLocation;
 import com.lunch4you.domain.Order;
 
 public interface MenuService {
@@ -17,6 +18,10 @@ public interface MenuService {
 	List<Customer> getAllCustomers();
 
 	Customer registerCustomer( String firstName, String lastName, String email ); // we might need a RegistrationInfo class in the future 
+
+	DeliveryLocation getDeliveryLocation( Long id );
+
+	List<DeliveryLocation> getAllDeliveryLocations();
 
 	Order createOrder(Long articleId, Long customerId );
 

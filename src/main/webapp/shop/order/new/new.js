@@ -24,8 +24,20 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			this.customerDfr = Shop.Models.Customer.findByToken( Shop.params.token );
 			this.customerDfr.done( function (customer) {
 					self.customer = customer;
+					console.log( "customer ", customer);
+					
+					// Set delivery location to customer's default delivery location
+					console.log("customer.defaultDeliveryLocation : ", customer.defaultDeliveryLocation);
+					self.deliveryLocation = customer.defaultDeliveryLocation;
 				}
 			);
+
+			this.deliveryLocationsDfr = Shop.Models.DeliveryLocation.findAll();
+			this.deliveryLocationsDfr.done( function ( locations ) {
+					self.deliveryLocations = locations;
+				}
+			);
+			
 			this._render();
 		},
 
@@ -78,8 +90,39 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			$( "#order" ).attr( "disabled", "disabled" );
 		},
 
+		"#changeDeliveryLocationButton click": function( el, evt ) {
+			console.log( "changeDeliveryLocationButton clicked!" );
+			this._showDeliveryLocationForm();
+		},
+
+		"#submitDeliveryLocationButton click": function( el, evt ) {
+			console.log( "submitDeliveryLocationButton clicked!" );
+
+			var locIndex = $("#deliveryLocationsSelect :selected").index();
+			var location = this.deliveryLocations[locIndex];
+			console.log( "loc ",  location);
+			
+			this.deliveryLocation = location;
+
+			this._render();
+		},
+
+		"#cancelChangeDeliveryLocationButton click": function( el, evt ) {
+			console.log( "cancelChangeDeliveryLocationButton clicked!" );
+			this._render();
+		},
+
+		_showDeliveryLocationForm: function() {
+			$("#deliveryLocationDetails").attr("style", "display : none;");
+			var form = $("#deliveryLocationForm");
+			form.attr("style","display : block;");
+			//$("#customerName").focus();
+			$( "#order" ).attr( "disabled", "disabled" );
+		},
+
 		_render: function() {
-			this.element.html( this.view( 'page', { article: this.articleDfr, customer: this.customerDfr } ) );
+			console.log("this.deliveryLocation : " , this.deliveryLocation);
+			this.element.html( this.view( 'page', { article: this.articleDfr, customer: this.customerDfr, deliveryLocation: this.deliveryLocation, deliveryLocations: this.deliveryLocationsDfr } ) );
 		}
 	} );
 

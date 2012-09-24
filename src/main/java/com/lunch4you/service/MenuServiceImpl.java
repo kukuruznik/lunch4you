@@ -12,11 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lunch4you.dao.ArticleDao;
 import com.lunch4you.dao.CustomerDao;
+import com.lunch4you.dao.DeliveryLocationDao;
 import com.lunch4you.dao.OrderDao;
 import com.lunch4you.dao.filter.CustomerFilter;
 import com.lunch4you.dao.filter.OrderFilter;
 import com.lunch4you.domain.Article;
 import com.lunch4you.domain.Customer;
+import com.lunch4you.domain.DeliveryLocation;
 import com.lunch4you.domain.Order;
 import com.lunch4you.domain.OrderItem;
 
@@ -28,7 +30,10 @@ public final class MenuServiceImpl implements MenuService {
 
 	@Autowired
 	private ArticleDao articleDao;
-	
+
+	@Autowired
+	private DeliveryLocationDao deliveryLocationDao;
+
 	@Autowired
 	private CustomerDao customerDao;
 	
@@ -73,6 +78,16 @@ public final class MenuServiceImpl implements MenuService {
 		newCustomer.setLastName( lastName );
 		newCustomer.setToken( token );
 		return customerDao.insert( newCustomer );
+	}
+
+	@Override
+	public DeliveryLocation getDeliveryLocation( Long id ) {
+		return deliveryLocationDao.load( id );
+	}
+
+	@Override
+	public List<DeliveryLocation> getAllDeliveryLocations() {
+		return deliveryLocationDao.loadAll();
 	}
 
 	@Override
