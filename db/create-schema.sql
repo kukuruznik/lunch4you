@@ -15,6 +15,16 @@ CREATE TABLE `article` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8;
 
+-- Table "delivery_location" DDL
+
+CREATE TABLE `delivery_location` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(254) NOT NULL,
+  `abbreviation` varchar(254) NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
 -- Table "customer" DDL
 CREATE TABLE `customer` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -24,8 +34,11 @@ CREATE TABLE `customer` (
   `token` varchar(50) NOT NULL,
   `credit` int(11) NOT NULL DEFAULT '0',
   `version` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `default_delivery_location_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `customer_default_delivery_location_id` (`default_delivery_location_id`),
+  CONSTRAINT `customer_default_delivery_location_id` FOREIGN KEY (`default_delivery_location_id`) REFERENCES `delivery_location` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Table "plain_order" DDL
 CREATE TABLE `plain_order` (
