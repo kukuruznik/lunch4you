@@ -1,7 +1,7 @@
 steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( './views/list.ejs', './views/item.ejs', function( $ ) {
 
 	/**
-	 * @class App.Order.List
+	 * @class Backoffice.Order.List
 	 * @parent index
 	 * @inherits jQuery.Controller Lists articles.
 	 */
@@ -67,18 +67,18 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			$( orders ).each( function( i, order ) {
 				var article = order.onlyItem.article;
 
-				var orderGroup = ordersByArticleMap[ article.name ];
+				var orderGroup = ordersByArticleMap[ article.name_en ];
 
 				if ( orderGroup )
 					orderGroup.items.push( order );
 				else {
-					articleNames.push( article.name );
+					articleNames.push( article.name_en );
 					orderGroup = {
 						article: article,
 						closed: true,
 						items: [ order ]
 					};
-					ordersByArticleMap[ article.name ] = orderGroup;
+					ordersByArticleMap[ article.name_en ] = orderGroup;
 				}
 			});
 

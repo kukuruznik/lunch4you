@@ -2,7 +2,7 @@
 <% var orders = this.items %>
 <% var closed = this.closed %>
 
-<h3 id="<%= article.name %>"><span class="switch"><%= closed ? '+' : '-' %></span> <em><%= article.name %></em> <span class="info"><%= orders.length %> order(s)</span></h3>
+<h3 id="<%= article.name_en %>"><span class="switch"><%= closed ? '+' : '-' %></span> <em><%= article.name_en %></em> <span class="info"><%= orders.length %> order(s)</span></h3>
 <table class="order-group" <% if ( !closed ) { %>style="display: table;"<% } %>>
 	<tr>
 		<th class="id-col">#</th>

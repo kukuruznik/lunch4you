@@ -4,17 +4,13 @@ public final class ArticleDto {
 
 	public Long id;
 
-	public String name;
-
-	public String description;
-
 	public Integer price;
 	
 	public Integer dailyLimit;
 	
 	public boolean isActive;
 	
-	public Integer category;
+	public CategoryDto category;
 	
 	public String name_cz;
 	

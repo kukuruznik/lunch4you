@@ -39,10 +39,12 @@ Delivery location:
 	<input id="cancelChangeDeliveryLocationButton" type="button" value="Cancel"/>
 </form>
 
-<h1><%= meal.category %> - <%= meal.name %></h1>
+<h1><%= meal.category.name_en %> / <%= meal.category.name_cz %> - <%= meal.name_en %> / <%= meal.name_cz %></h1>
 <h3>Price: <em><%= meal.price %> CZK</em></h3>
-<p><%= meal.description_cz %> / <%= meal.description_en %></p>
+<p><%= meal.description_en %> / <%= meal.description_cz %></p>
 
 <form>
 	<input id="order" type="button" value="confirm order" />
 </form>
+
+<a href="#view=menu&token=user.token">View the menu</a>

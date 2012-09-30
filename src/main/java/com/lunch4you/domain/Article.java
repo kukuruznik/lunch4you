@@ -1,9 +1,12 @@
 package com.lunch4you.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -21,25 +24,24 @@ public class Article {
 	private Integer version;
 
 	@NotNull
-	private String name;
-
-	private String description;
-
-	@NotNull
 	private Integer price;
 
 	private Integer dailyLimit;
 
 	private Boolean isActive = true;
-	
-	private Integer category;
-	
+
+	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
+	@JoinColumn( name = "category_id" )
+	private Category category;
+
+	@NotNull
 	private String name_cz;
-	
+
+	@NotNull
 	private String name_en;
-	
+
 	private String description_cz;
-	
+
 	private String description_en;
 
 	public Long getId() {
@@ -56,22 +58,6 @@ public class Article {
 
 	public void setVersion( Integer version ) {
 		this.version = version;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName( String name ) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return this.description;
-	}
-
-	public void setDescription( String description ) {
-		this.description = description;
 	}
 
 	public Integer getPrice() {
@@ -98,11 +84,11 @@ public class Article {
 		this.isActive = isActive;
 	}
 
-	public Integer getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(Integer category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
@@ -141,7 +127,8 @@ public class Article {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append( '(' ).append( getId() ).append( ") " );
-		sb.append( getName() ).append( " - " ).append( getDescription() );
+		sb.append( getName_cz() ).append( " [" ).append( getName_en() ).append( "] - " );
+		sb.append( getDescription_cz() ).append( " [" ).append( getDescription_en() ).append( "]" );
 		return sb.toString();
 	}
 }

@@ -1,1 +1,1 @@
-You have ordered ${order.Items.get(0).Article.Name} for ${order.Items.get(0).Article.Price} bucks.
+You have ordered ${order.Items.get(0).Article.Name_en} for ${order.Items.get(0).Article.Price} bucks.

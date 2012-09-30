@@ -11,12 +11,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lunch4you.dao.ArticleDao;
+import com.lunch4you.dao.CategoryDao;
 import com.lunch4you.dao.CustomerDao;
 import com.lunch4you.dao.DeliveryLocationDao;
 import com.lunch4you.dao.OrderDao;
 import com.lunch4you.dao.filter.CustomerFilter;
 import com.lunch4you.dao.filter.OrderFilter;
 import com.lunch4you.domain.Article;
+import com.lunch4you.domain.Category;
 import com.lunch4you.domain.Customer;
 import com.lunch4you.domain.DeliveryLocation;
 import com.lunch4you.domain.Order;
@@ -30,6 +32,9 @@ public final class MenuServiceImpl implements MenuService {
 
 	@Autowired
 	private ArticleDao articleDao;
+	
+	@Autowired
+	private CategoryDao categoryDao;
 
 	@Autowired
 	private DeliveryLocationDao deliveryLocationDao;
@@ -119,6 +124,11 @@ public final class MenuServiceImpl implements MenuService {
 	@Override
 	public List<Article> getMenu() {
 		return articleDao.loadAll();
+	}
+
+	@Override
+	public List<Category> getCategories() {
+		return categoryDao.loadAll();
 	}
 
 	@Override

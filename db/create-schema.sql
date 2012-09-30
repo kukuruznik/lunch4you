@@ -1,19 +1,31 @@
 -- Table "article" DDL
+
 CREATE TABLE `article` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `daily_limit` int(11) DEFAULT NULL,
-  `description` varchar(1000) DEFAULT NULL,
   `price` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `version` int(11) DEFAULT NULL,
-  `category` int(11) DEFAULT NULL,
-  `name_cz` varchar(255) DEFAULT NULL,
-  `name_en` varchar(255) DEFAULT NULL,
+  `category_id` bigint(20) DEFAULT NULL,
+  `name_cz` varchar(255) NOT NULL,
+  `name_en` varchar(255) NOT NULL,
   `description_cz` varchar(1000) DEFAULT NULL,
   `description_en` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `category_id` (`category_id`),
+  CONSTRAINT `article_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- Table "category" DDL
+
+CREATE TABLE `category` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name_cz` varchar(255) NOT NULL,
+  `name_en` varchar(255) NOT NULL,
+  `sort_order` int(4) NOT NULL,
+  `version` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Table "delivery_location" DDL
 

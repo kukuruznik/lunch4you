@@ -1,5 +1,6 @@
 package com.lunch4you.dao.jpa;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -20,9 +21,11 @@ public class JpaArticleDao extends AbstractReadWriteDao<Article, Long, ArticleFi
 
 	@Override
 	protected CriteriaQuery<Article> getCriteriaForFilter( ArticleFilter f ) {
-		CriteriaQuery<Article> cq = entityManager.getCriteriaBuilder().createQuery( Article.class );
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Article> cq = cb.createQuery( Article.class );
 		Root<Article> root = cq.from( Article.class );
 		cq.select( root );
+		cq.orderBy( cb.asc( root.get( "name_cz" ) ) );
 
 		// TODO implement filtering
 		return cq;

@@ -33,14 +33,6 @@
 			<b is-accessible="true">id</b>
 		</field>
 		<field>
-			<a>name</a>
-			<b is-accessible="true">name</b>
-		</field>
-		<field>
-			<a>description</a>
-			<b is-accessible="true">description</b>
-		</field>
-		<field>
 			<a>price</a>
 			<b is-accessible="true">price</b>
 		</field>
@@ -71,6 +63,23 @@
 		<field>
 			<a>description_en</a>
 			<b is-accessible="true">description_en</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.lunch4you.domain.Category</class-a>
+		<class-b>com.lunch4you.web.dto.CategoryDto</class-b>
+		<field>
+			<a>id</a>
+			<b is-accessible="true">id</b>
+		</field>
+		<field>
+			<a>name_cz</a>
+			<b is-accessible="true">name_cz</b>
+		</field>
+		<field>
+			<a>name_en</a>
+			<b is-accessible="true">name_en</b>
 		</field>
 	</mapping>
 
