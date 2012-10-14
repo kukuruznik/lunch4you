@@ -15,6 +15,19 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 	{
 		init: function() {
 			steal.dev.log( "Order creation controller initialized" );
+			this._reloadData();
+		},
+
+		update: function() {
+			this._reloadData();
+		},
+
+		"#order click": function( el, evt ) {
+			this._createOrder(this.articleDfr);
+			console.log( "ordered!" );
+		},
+
+		_reloadData: function() {
 			var self = this;
 			this.articleDfr = Shop.Models.Article.findOne( { id: Shop.params.meal } );
 			this.articleDfr.done( function (article) {
@@ -39,11 +52,6 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			);
 			
 			this._render();
-		},
-
-		"#order click": function( el, evt ) {
-			this._createOrder(this.articleDfr);
-			console.log( "ordered!" );
 		},
 
 		_createOrder: function( ) {

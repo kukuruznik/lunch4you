@@ -1,7 +1,7 @@
 steal(
 	'./shop.css', 		// application CSS file
 	'//jquery/lang/string/deparam/deparam.js',
-	'//jquery/event/hashchange/hashchange.js',
+	'//jquery/event/bbq/bbq.js',
 	'./models/models.js',		// steals all your models
 	'./order/new/new.js',
 	'./menu/list/list.js'

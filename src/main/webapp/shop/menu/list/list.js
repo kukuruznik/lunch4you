@@ -15,8 +15,11 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 	{
 		init: function() {
 			steal.dev.log( "Menu list controller initialized" );
-			this.articlesByCategoryMap = {};
-			Shop.Models.Category.findAll().done( this.proxy( "_onCategoriesLoaded" ) );
+			this._reloadMenu();
+		},
+
+		update: function() {
+			this._reloadMenu();
 		},
 
 		"h3 click": function( el, evt ) {
@@ -42,6 +45,11 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 					return name;
 			});
 			Backoffice.Models.Order.close( orderIds, this.proxy( "_handleCloseResponse" ) );
+		},
+
+		_reloadMenu: function() {
+			this.articlesByCategoryMap = {};
+			Shop.Models.Category.findAll().done( this.proxy( "_onCategoriesLoaded" ) );
 		},
 
 		_groupArticlesByCategory: function( articles ) {
