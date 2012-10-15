@@ -1,3 +1,14 @@
+-- Table "category" DDL
+
+CREATE TABLE `category` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name_cz` varchar(255) NOT NULL,
+  `name_en` varchar(255) NOT NULL,
+  `sort_order` int(4) NOT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
 -- Table "article" DDL
 
 CREATE TABLE `article` (
@@ -15,17 +26,6 @@ CREATE TABLE `article` (
   KEY `category_id` (`category_id`),
   CONSTRAINT `article_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
--- Table "category" DDL
-
-CREATE TABLE `category` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name_cz` varchar(255) NOT NULL,
-  `name_en` varchar(255) NOT NULL,
-  `sort_order` int(4) NOT NULL,
-  `version` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Table "delivery_location" DDL
 
