@@ -29,7 +29,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 
 		_reloadData: function() {
 			var self = this;
-			this.articleDfr = Shop.Models.Article.findOne( { id: Shop.params.meal } );
+			this.articleDfr = Shop.Models.Article.findOne( Shop.params.meal );
 			this.articleDfr.done( function (article) {
 					self.article = article;
 				}

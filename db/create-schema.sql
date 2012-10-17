@@ -7,7 +7,7 @@ CREATE TABLE `category` (
   `sort_order` int(4) NOT NULL,
   `version` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 
 -- Table "article" DDL
 
@@ -25,7 +25,7 @@ CREATE TABLE `article` (
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   CONSTRAINT `article_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 
 -- Table "delivery_location" DDL
 
@@ -35,7 +35,7 @@ CREATE TABLE `delivery_location` (
   `abbreviation` varchar(254) NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 
 -- Table "customer" DDL
 CREATE TABLE `customer` (
@@ -50,7 +50,7 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`id`),
   KEY `customer_default_delivery_location_id` (`default_delivery_location_id`),
   CONSTRAINT `customer_default_delivery_location_id` FOREIGN KEY (`default_delivery_location_id`) REFERENCES `delivery_location` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 
 -- Table "plain_order" DDL
 CREATE TABLE `plain_order` (
@@ -62,7 +62,7 @@ CREATE TABLE `plain_order` (
   KEY `orders_owner` (`owner_id`),
   KEY `orders_status` (`status`),
   CONSTRAINT `plain_order_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 
 -- Table "orderitem" DDL
 CREATE TABLE `order_item` (
@@ -76,7 +76,7 @@ CREATE TABLE `order_item` (
   KEY `order_items_order` (`order_id`),
   CONSTRAINT `order_items_order` FOREIGN KEY (`order_id`) REFERENCES `plain_order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_items_article` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 
 -- Table "preparation" DDL
 CREATE TABLE `preparation` (
@@ -88,7 +88,7 @@ CREATE TABLE `preparation` (
   PRIMARY KEY (`id`),
   KEY `preparations_article` (`article_id`),
   CONSTRAINT `preparations_article` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 
 -- Table "isprepared" DDL
 CREATE TABLE `is_prepared` (
@@ -98,5 +98,5 @@ CREATE TABLE `is_prepared` (
   KEY `isprepared_orderitem` (`order_item_id`),
   CONSTRAINT `is_prepared_ibfk_1` FOREIGN KEY (`order_item_id`) REFERENCES `order_item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `is_prepared_ibfk_2` FOREIGN KEY (`preparation_id`) REFERENCES `preparation` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 

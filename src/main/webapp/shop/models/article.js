@@ -9,8 +9,23 @@ steal('jquery/model', 'jquery/lang/json', function(){
 $.Model('Shop.Models.Article',
 	/* @Static */
 	{
-		findAll: "articles/find.json",
-	  	findOne: "articles/{id}.json"
+	  	findAll: function( success, error ) {
+	  		return $.ajax({
+	  			url: "articles/find.json",
+	  			dataType: "json article.models",
+	  			success: success,
+	  			error: error || Shop.errorHandler
+	  		});
+	  	},
+
+	  	findOne: function( id, success, error ) {
+	  		return $.ajax({
+	  			url: "articles/" + id + ".json",
+	  			dataType: "json article.model",
+	  			success: success,
+	  			error: error || Shop.errorHandler
+	  		});
+	  	}
 	},
 
 	/* @Prototype */
