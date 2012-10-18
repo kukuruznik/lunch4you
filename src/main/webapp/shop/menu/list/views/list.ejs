@@ -1,5 +1,10 @@
+<h2><span class="dim">Lunch4You - <%= currentView() %></span></h2>
+<hr/>
+
 <ul>
 	<% for ( var i = 0; i < this.length; i++ ) { %>
-	<li><%= this[ i ].category.name_en %> / <%= this[ i ].category.name_cz %></li>
+	<li class="category">
+		<%== $.View( '//shop/menu/list/views/category.ejs', this[ i ] ) %>
+	</li>
 	<% } %>
 </ul>

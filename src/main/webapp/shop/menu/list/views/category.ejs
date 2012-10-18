@@ -1,0 +1,10 @@
+<% var categoryGroup = this %>
+
+<h3><%= categoryGroup.category.name_en %> / <%= categoryGroup.category.name_cz %></h3>
+<ul>
+	<% for ( var i = 0; i < categoryGroup.items.length; i++ ) { %>
+	<li>
+		<%== $.View( '//shop/menu/list/views/meal.ejs', categoryGroup.items[ i ] ) %>
+	</li>
+	<% } %>
+</ul>

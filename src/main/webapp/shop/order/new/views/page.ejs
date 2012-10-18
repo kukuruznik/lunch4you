@@ -3,16 +3,16 @@
 <% var deliveryLocation = this.deliveryLocation %>
 <% var deliveryLocations = this.deliveryLocations %>
 
-<h2><span class="dim">Welcome to Lunch4You</span>
-</h2>
+<h2><span class="dim">Lunch4You - <%= currentView() %></span></h2>
 <hr/>
-Customer: 
+
+<label>Customer:</label> 
 <div id="currentCustomerDetails">
-	<%= user.firstName %> <%= user.lastName %>
-	<div id="changeCustomerButton">Change</div>
+	<span class="modifiable"><%= user.firstName %> <%= user.lastName %></span>
+	<div id="changeCustomerButton" class="link-button">Change</div>
 </div>
-<br>
-<form id="customerForm" style="display:none;">
+
+<form id="customerForm" class="in-place" style="display:none;">
 	Name: <input id="customerName" type="text"/>
 	<br/>
 	Email: <input id="customerEmail" type="text"/>
@@ -23,12 +23,13 @@ Customer:
 	<input id="cancelChangeCustomerButton" type="button" value="Cancel"/>
 </form>
 
-Delivery location: 
+<label>Delivery location:</label> 
 <div id="deliveryLocationDetails">
-	<%= user.defaultDeliveryLocation.name %>
-	<div id="changeDeliveryLocationButton">Change</div>
+	<span class="modifiable"><%= user.defaultDeliveryLocation.name %></span>
+	<div id="changeDeliveryLocationButton" class="link-button">Change</div>
 </div>
-<form id="deliveryLocationForm" style="display:none;">
+
+<form id="deliveryLocationForm" class="in-place" style="display:none;">
 	<select id="deliveryLocationsSelect">
 	<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
 		<%== $.View( '//shop/order/new/views/deliveryLocationOption.ejs', deliveryLocations[ i ] ) %>
@@ -47,4 +48,4 @@ Delivery location:
 	<input id="order" type="button" value="confirm order" />
 </form>
 
-<a href="#view=menu&token=user.token">View the menu</a>
+<a href="#view=menu&token=<%= Shop.params.token %>">View the whole menu</a>

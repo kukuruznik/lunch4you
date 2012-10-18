@@ -30,8 +30,12 @@ ul {
 	list-style: none;
 }
 
+form {
+	margin-bottom: 1em;
+}
+
 a {
-	color: #ae3d26;
+	color: #c40;
 	text-decoration: none;
 }
 
@@ -48,8 +52,26 @@ hr {
 	border-top: 1px solid grey;
 }
 
-#changeCustomerButton, #changeDeliveryLocationButton {
-	display : inline;
-	color : blue;
-	font-size : 0.5em;
+label {
+	float: left;
+	width: 10em;
+}
+
+.modifiable {
+	font-weight: bold;
+}
+
+.link-button {
+	display: inline;
+	color: #c40;
+	font-size: 0.5em;
+	cursor: pointer;
+}
+
+.in-place {
+	margin-left: 10em;
+}
+
+li.category {
+	margin-bottom: 1em;
 }

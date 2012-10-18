@@ -20,6 +20,15 @@ steal(
 		alert( "An error occured!\nStatus: " + textStatus + "\nDetails: " + error );
 	};
 
+	Shop.viewNames = {
+		menu: "Menu",
+		article: "Meal Order"
+	};
+	
+	$.EJS.Helpers.prototype.currentView = function() {
+		return Shop.viewNames[ Shop.params.view ];
+	};
+
 	$( window ).bind( "hashchange", function() {
 		Shop.params = parseHash();
 		console.log( "Hash changed: ", Shop.params );
