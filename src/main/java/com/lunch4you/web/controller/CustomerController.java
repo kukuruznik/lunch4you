@@ -18,7 +18,6 @@ import com.lunch4you.service.MenuService;
 import com.lunch4you.web.dto.CustomerDto;
 
 @Controller
-@RequestMapping( "/customers" )
 public class CustomerController {
 
 	private static final Logger logger = LoggerFactory.getLogger( CustomerController.class );
@@ -29,7 +28,7 @@ public class CustomerController {
 	@Autowired
 	private Mapper beanMapper;
 
-	@RequestMapping( value = "/{id}.json", method = RequestMethod.GET )
+	@RequestMapping( value = "/backoffice/customers/{id}.json", method = RequestMethod.GET )
 	public @ResponseBody
 	CustomerDto findOne( @PathVariable Long id ) {
 		logger.trace( "CustomerController.findOne called" );
@@ -39,7 +38,7 @@ public class CustomerController {
 		return customerDto;
 	}
 
-	@RequestMapping( value = "/byToken/{token}.json", method = RequestMethod.GET )
+	@RequestMapping( value = "/customers/byToken/{token}.json", method = RequestMethod.GET )
 	public @ResponseBody
 	CustomerDto findByToken( @PathVariable String token ) {
 		logger.trace( "CustomerController.findByToken called" );
@@ -55,7 +54,7 @@ public class CustomerController {
 		}
 	}
 
-	@RequestMapping( value = "", method = RequestMethod.POST )
+	@RequestMapping( value = "/customers", method = RequestMethod.POST )
 	public @ResponseBody
 	CustomerDto createNew( @RequestBody Map<String, Object> data ) {
 		logger.trace( "CustomerController.createNew called with data: " + data );

@@ -20,7 +20,6 @@ import com.lunch4you.web.dto.OrderDto;
 import com.lunch4you.web.dto.OrderItemDto;
 
 @Controller
-@RequestMapping( "/orders" )
 public class OrderController {
 
 	private static final Logger logger = LoggerFactory.getLogger( OrderController.class );
@@ -31,7 +30,7 @@ public class OrderController {
 	@Autowired
 	private Mapper beanMapper;
 
-	@RequestMapping( value = "", method = RequestMethod.POST )
+	@RequestMapping( value = "/orders", method = RequestMethod.POST )
 	public @ResponseBody
 	OrderDto createNew( @RequestBody Map<String, Object> data ) {
 		logger.trace( "OrderController.createNew called with data: " + data );
@@ -45,7 +44,7 @@ public class OrderController {
 		return orderDto;
 	}
 
-	@RequestMapping( value = "/close.json", method = RequestMethod.PUT )
+	@RequestMapping( value = "/backoffice/orders/close.json", method = RequestMethod.PUT )
 	public @ResponseBody
 	List<Long> close( @RequestBody List<Integer> intIds ) {
 		// IDs mapped as List<Integer> - bug?
@@ -59,7 +58,7 @@ public class OrderController {
 		return missingOrders;
 	}
 
-	@RequestMapping( value = "/active.json", method = RequestMethod.GET )
+	@RequestMapping( value = "/backoffice/orders/active.json", method = RequestMethod.GET )
 	public @ResponseBody
 	List<OrderDto> findActive() {
 		logger.trace( "OrderController.findActive called" );

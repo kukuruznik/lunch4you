@@ -11,7 +11,7 @@ $.Model('Backoffice.Models.Order',
 	{
 	  	findActive: function( success, error ) {
 	  		return $.ajax({
-	  			url: "orders/active.json",
+	  			url: "backoffice/orders/active.json",
 	  			dataType: "json order.models",
 	  			success: success,
 	  			error: error || Backoffice.errorHandler
@@ -20,7 +20,7 @@ $.Model('Backoffice.Models.Order',
 
 		close: function( ids, success, error ) {
 			return $.ajax({
-				url: "orders/close.json",
+				url: "backoffice/orders/close.json",
 				type: "PUT",
 	  			contentType: "application/json",
 				data: $.toJSON( ids ),
