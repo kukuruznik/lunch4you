@@ -1,0 +1,43 @@
+<% var deliveryLocations = this %>
+<% var firstNameId = "reg_firstName" %>
+<% var lastNameId = "reg_lastName" %>
+<% var emailId = "reg_email" %>
+<% var ddlId = "reg_ddl" %>
+<% var subscribeId = "reg_subscribe" %>
+
+<form action="javascript:">
+	<table>
+		<tbody>
+			<tr>
+				<td class="label"><label for="<%= firstNameId %>">First Name:</label></td>
+				<td class="value"><input type="text" name="firstName" id="<%= firstNameId %>"/></td>
+			<tr/>
+			<tr>
+				<td class="label"><label for="<%= lastNameId %>">Last Name:</label></td>
+				<td class="value"><input type="text" name="lastName" id="<%= lastNameId %>"/></td>
+			<tr/>
+			<tr>
+				<td class="label"><label for="<%= emailId %>">Email:</label></td>
+				<td class="value"><input type="text" name="email" id="<%= emailId %>"/></td>
+			<tr/>
+			<tr>
+				<td class="label"><label for="<%= ddlId %>">Default Delivery Location:</label></td>
+				<td class="value">
+					<select name="defaultDeliveryLocation" id="<%= ddlId %>">
+					<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
+						<option value="<%= deliveryLocations[ i ].id %>"><%= deliveryLocations[ i ].name %></option>
+					<% } %>
+					</select>
+				</td>
+			<tr/>
+			<tr>
+				<td class="label"><label for="<%= subscribeId %>">Subscribe:</label></td>
+				<td class="value"><input type="checkbox" name="subscribe" id="<%= subscribeId %>"/></td>
+			<tr/>
+			<tr>
+				<td class="label"><input type="submit" value="Done"/></td>
+				<td class="value"><input type="reset" value="Cancel"/></td>
+			</tr>
+		</tbody>
+	</table>
+</form>

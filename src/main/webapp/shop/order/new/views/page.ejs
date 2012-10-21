@@ -6,39 +6,33 @@
 <h2><span class="dim">Lunch4You - <%= currentView() %></span></h2>
 <hr/>
 
-<label>Customer:</label> 
-<div id="currentCustomerDetails">
-	<span class="modifiable"><%= user.firstName %> <%= user.lastName %></span>
-	<div id="changeCustomerButton" class="link-button">Change</div>
+<div>
+	<label>Customer:</label>
+	<div id="currentCustomerDetails">
+		<span class="modifiable"><%= user.firstName %> <%= user.lastName %></span>
+		<div id="changeCustomerButton" class="link-button">Change</div>
+	</div>
+	
+	<div id="customerForm" class="in-place" style="display:none;">
+	</div>
 </div>
 
-<form id="customerForm" class="in-place" style="display:none;">
-	Name: <input id="customerName" type="text"/>
-	<br/>
-	Email: <input id="customerEmail" type="text"/>
-	<br/>
-	Subscribe: <input id="menuSubscription" type="checkbox"/>
-	<br/>
-	<input id="submitCustomerDetailsButton" type="button" value="Done"/>
-	<input id="cancelChangeCustomerButton" type="button" value="Cancel"/>
-</form>
-
-<label>Delivery location:</label> 
 <div id="deliveryLocationDetails">
-	<span class="modifiable"><%= user.defaultDeliveryLocation.name %></span>
-	<div id="changeDeliveryLocationButton" class="link-button">Change</div>
-</div>
-
-<form id="deliveryLocationForm" class="in-place" style="display:none;">
+	<label>Delivery location:</label> 
 	<select id="deliveryLocationsSelect">
 	<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
 		<%== $.View( '//shop/order/new/views/deliveryLocationOption.ejs', deliveryLocations[ i ] ) %>
 	<% } %>
 	</select>
+	<!--span class="modifiable"><%= user.defaultDeliveryLocation.name %></span>
+	<div id="changeDeliveryLocationButton" class="link-button">Change</div-->
+</div>
+
+<!--form id="deliveryLocationForm" class="in-place" style="display:none;">
 	<br/>
 	<input id="submitDeliveryLocationButton" type="button" value="Done"/>
 	<input id="cancelChangeDeliveryLocationButton" type="button" value="Cancel"/>
-</form>
+</form-->
 
 <h1><%= meal.category.name_en %> / <%= meal.category.name_cz %> - <%= meal.name_en %> / <%= meal.name_cz %></h1>
 <h3>Price: <em><%= meal.price %> CZK</em></h3>

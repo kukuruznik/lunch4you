@@ -24,7 +24,10 @@ steal(
 		menu: "Menu",
 		article: "Meal Order"
 	};
-	
+
+	// we need to set this up in order to prevent IE from caching the AJAX responses
+	$.ajaxSetup( { cache: false } );
+
 	$.EJS.Helpers.prototype.currentView = function() {
 		return Shop.viewNames[ Shop.params.view ];
 	};

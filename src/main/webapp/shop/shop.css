@@ -55,6 +55,7 @@ hr {
 label {
 	float: left;
 	width: 10em;
+	line-height: 160%;
 }
 
 .modifiable {
@@ -70,8 +71,38 @@ label {
 
 .in-place {
 	margin-left: 10em;
+	float: left;
+	position: absolute;
+	background-color: white;
+	border: 1px solid silver;
 }
 
 li.category {
 	margin-bottom: 1em;
+}
+
+#customerForm {
+	padding: 1em;
+}
+
+#customerForm form {
+	margin: 0;
+}
+
+#customerForm td.label {
+	text-align: right;
+	padding-right: 0.5em;
+}
+
+#customerForm td label {
+	width: auto;
+	float: right;
+}
+
+#customerForm td.value input[type=text] {
+	width: 20em;
+}
+
+#deliveryLocationDetails {
+	clear: both;
 }

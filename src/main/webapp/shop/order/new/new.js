@@ -1,4 +1,4 @@
-steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( './views/page.ejs', function( $ ) {
+steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common/register_customer" ).then( './views/page.ejs', function( $ ) {
 
 	/**
 	 * @class Shop.Order.New
@@ -27,30 +27,45 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			console.log( "ordered!" );
 		},
 
-		_reloadData: function() {
-			var self = this;
-			this.articleDfr = Shop.Models.Article.findOne( Shop.params.meal );
-			this.articleDfr.done( function (article) {
-					self.article = article;
-				}
-			);
-			this.customerDfr = Shop.Models.Customer.findByToken( Shop.params.token );
-			this.customerDfr.done( function (customer) {
-					self.customer = customer;
-					console.log( "customer ", customer);
-					
-					// Set delivery location to customer's default delivery location
-					console.log("customer.defaultDeliveryLocation : ", customer.defaultDeliveryLocation);
-					self.deliveryLocation = customer.defaultDeliveryLocation;
-				}
-			);
+		"#changeCustomerButton click": function( el, evt ) {
+			console.log( "changeCustomerButton clicked!" );
+			this._showCustomerForm();
+		},
 
-			this.deliveryLocationsDfr = Shop.Models.DeliveryLocation.findAll();
-			this.deliveryLocationsDfr.done( function ( locations ) {
-					self.deliveryLocations = locations;
-				}
-			);
-			
+		"#customerForm close": function( el, evt ) {
+			console.log( "closing form..." );
+			this._hideCustomerForm();
+		},
+		
+		"#customerForm register": function( el, evt, customerData ) {
+			console.log( "registering customer ", customerData );
+
+			var customerDfr = Shop.Models.Customer.create( customerData );
+			customerDfr.done( this.proxy( "_onCustomerLoaded" ) );
+		},
+
+		"#deliveryLocationsSelect change": function( el, evt ) {
+			this.deliveryLocation = el.val();
+		},
+
+		_reloadData: function() {
+			var articleDfr = Shop.Models.Article.findOne( Shop.params.meal );
+			var customerDfr = Shop.Models.Customer.findByToken( Shop.params.token );
+			var deliveryLocationsDfr = Shop.Models.DeliveryLocation.findAll();
+
+			$.when( articleDfr, customerDfr, deliveryLocationsDfr ).done( this.proxy( "_onDataLoaded" ) );
+		},
+
+		_onDataLoaded: function( articleResponse, customerResponse, deliveryLocationsResponse ) {
+			this.article = articleResponse[ 0 ];
+			this.deliveryLocations = deliveryLocationsResponse[ 0 ];
+			this._onCustomerLoaded( customerResponse[ 0 ] );
+		},
+
+		_onCustomerLoaded: function( customer ) {
+			this.customer = customer;
+			this.deliveryLocation = customer.defaultDeliveryLocation;
+
 			this._render();
 		},
 
@@ -62,75 +77,52 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			} );
 		},
 
-		"#changeCustomerButton click": function( el, evt ) {
-			console.log( "changeCustomerButton clicked!" );
-			this._showCustomerForm();
-		},
-		
-		
-		"#submitCustomerDetailsButton click": function( el, evt ) {
-			console.log( "submitCustomerDetailsButton clicked!" );
-			
-			// New customer object
-			var cus = new Object();
-			cus.firstName = $("#customerName").attr("value");
-			cus.lastName = "";
-			cus.email = $("#customerEmail").attr("value");
-			cus.menuSubscription = $("#menuSubscription").attr("checked") == ("checked") ? true : false;
-			
-			console.log(cus);
-			
-			this.customerDfr = Shop.Models.Customer.create(cus);
-			
-			this._render();
-		},
-
-		"#cancelChangeCustomerButton click": function( el, evt ) {
-			console.log( "cancelChangeCustomerButton clicked!" );
-			this._render();
-		},
-
 		_showCustomerForm: function() {
-			$("#currentCustomerDetails").attr("style", "display : none;");
-			var form = $("#customerForm");
-			form.attr("style","display : block;");
-			$("#customerName").focus();
 			$( "#order" ).attr( "disabled", "disabled" );
+			$( "#currentCustomerDetails" ).hide();
+			$( "#customerForm" ).show();
+			this.element.find( "input[type=text]:first" ).focus();
+		},
+		
+		_hideCustomerForm: function() {
+			$( "#customerForm" ).hide();
+			$( "#currentCustomerDetails" ).show();
+			$( "#order" ).removeAttr( "disabled" );
 		},
 
-		"#changeDeliveryLocationButton click": function( el, evt ) {
-			console.log( "changeDeliveryLocationButton clicked!" );
-			this._showDeliveryLocationForm();
-		},
-
-		"#submitDeliveryLocationButton click": function( el, evt ) {
-			console.log( "submitDeliveryLocationButton clicked!" );
-
-			var locIndex = $("#deliveryLocationsSelect :selected").index();
-			var location = this.deliveryLocations[locIndex];
-			console.log( "loc ",  location);
-			
-			this.deliveryLocation = location;
-
-			this._render();
-		},
-
-		"#cancelChangeDeliveryLocationButton click": function( el, evt ) {
-			console.log( "cancelChangeDeliveryLocationButton clicked!" );
-			this._render();
-		},
-
-		_showDeliveryLocationForm: function() {
-			$("#deliveryLocationDetails").attr("style", "display : none;");
-			var form = $("#deliveryLocationForm");
-			form.attr("style","display : block;");
-			//$("#customerName").focus();
-			$( "#order" ).attr( "disabled", "disabled" );
-		},
+//		"#changeDeliveryLocationButton click": function( el, evt ) {
+//			console.log( "changeDeliveryLocationButton clicked!" );
+//			this._showDeliveryLocationForm();
+//		},
+//
+//		"#submitDeliveryLocationButton click": function( el, evt ) {
+//			console.log( "submitDeliveryLocationButton clicked!" );
+//
+//			var locIndex = $("#deliveryLocationsSelect :selected").index();
+//			var location = this.deliveryLocations[locIndex];
+//			console.log( "loc ",  location);
+//			
+//			this.deliveryLocation = location;
+//
+//			this._render();
+//		},
+//
+//		"#cancelChangeDeliveryLocationButton click": function( el, evt ) {
+//			console.log( "cancelChangeDeliveryLocationButton clicked!" );
+//			this._render();
+//		},
+//
+//		_showDeliveryLocationForm: function() {
+//			$("#deliveryLocationDetails").attr("style", "display : none;");
+//			var form = $("#deliveryLocationForm");
+//			form.attr("style","display : block;");
+//			//$("#customerName").focus();
+//			$( "#order" ).attr( "disabled", "disabled" );
+//		},
 
 		_render: function() {
-			console.log("this.deliveryLocation : " , this.deliveryLocation);
-			this.element.html( this.view( 'page', { article: this.articleDfr, customer: this.customerDfr, deliveryLocation: this.deliveryLocation, deliveryLocations: this.deliveryLocationsDfr } ) );
+			this.element.html( this.view( 'page', this ) );
+			$( "#customerForm" ).common_register_customer( { deliveryLocations: this.deliveryLocations } );
 		}
 	} );
 
