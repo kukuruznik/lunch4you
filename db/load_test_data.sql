@@ -13,7 +13,10 @@ INSERT INTO `article` VALUES
 
 -- locations ------------------------------------------------------------------
 INSERT INTO `delivery_location` VALUES
-(1,'DHL','DHL',1);
+(1,'DHL','DHL',1),
+(2,'SITA','SITA',1),
+(3,'INBEV','INBEV',1),
+(4,'RUZE','Bar - OC Ruže',1);
 
 -- customers ------------------------------------------------------------------
 INSERT INTO `customer` VALUES
