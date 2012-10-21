@@ -73,7 +73,10 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public Customer registerCustomer( String firstName, String lastName, String email ) {
+	public Customer registerCustomer( String firstName, String lastName, String email, Long defaultDeliveryLocationId ) {
+		
+		DeliveryLocation ddl = deliveryLocationDao.load( defaultDeliveryLocationId );
+		
 		Customer newCustomer = new Customer();
 		String token = createToken();
 
@@ -82,6 +85,7 @@ public final class MenuServiceImpl implements MenuService {
 		newCustomer.setFirstName( firstName );
 		newCustomer.setLastName( lastName );
 		newCustomer.setToken( token );
+		newCustomer.setDefaultDeliveryLocation( ddl );
 		return customerDao.insert( newCustomer );
 	}
 

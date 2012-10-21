@@ -62,8 +62,12 @@ public class CustomerController {
 		String firstName = data.get( "firstName" ).toString();
 		String lastName = data.get( "lastName" ).toString();
 		String email = data.get( "email" ).toString();
-
-		Customer customer = menuService.registerCustomer( firstName, lastName, email );
+		
+		// TODO - upravit na precitanie z requestu
+		//long defaultDeliveryLocationId = Long.parseLong(data.get( "defaultDeliveryLocationId" ).toString());
+		long defaultDeliveryLocationId = 2;
+		
+		Customer customer = menuService.registerCustomer( firstName, lastName, email, defaultDeliveryLocationId );
 		CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
 
 		return customerDto;

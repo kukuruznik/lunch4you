@@ -18,7 +18,7 @@ public interface MenuService {
 
 	List<Customer> getAllCustomers();
 
-	Customer registerCustomer( String firstName, String lastName, String email ); // we might need a RegistrationInfo class in the future 
+	Customer registerCustomer( String firstName, String lastName, String email, Long defaultDeliveryLocationId  ); // we might need a RegistrationInfo class in the future 
 
 	DeliveryLocation getDeliveryLocation( Long id );
 
