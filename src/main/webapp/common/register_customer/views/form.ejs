@@ -23,7 +23,7 @@
 			<tr>
 				<td class="label"><label for="<%= ddlId %>">Default Delivery Location:</label></td>
 				<td class="value">
-					<select name="defaultDeliveryLocation" id="<%= ddlId %>">
+					<select name="defaultDeliveryLocationId" id="<%= ddlId %>">
 					<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
 						<option value="<%= deliveryLocations[ i ].id %>"><%= deliveryLocations[ i ].name %></option>
 					<% } %>

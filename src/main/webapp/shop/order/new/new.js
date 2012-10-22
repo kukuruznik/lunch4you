@@ -15,6 +15,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 	{
 		init: function() {
 			steal.dev.log( "Order creation controller initialized" );
+			this.element.html( this.view( 'page', this ) );
 			this._reloadData();
 		},
 
@@ -64,7 +65,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 
 		_onCustomerLoaded: function( customer ) {
 			this.customer = customer;
-			this.deliveryLocation = customer.defaultDeliveryLocation;
+			this.deliveryLocation = customer ? customer.defaultDeliveryLocation : null;
 
 			this._render();
 		},
@@ -121,8 +122,17 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 //		},
 
 		_render: function() {
-			this.element.html( this.view( 'page', this ) );
-			$( "#customerForm" ).common_register_customer( { deliveryLocations: this.deliveryLocations } );
+			console.log( "rendering..." );
+			var detailElem = this.element.find( "#detail" );
+
+			if ( !this.article ) {
+				detailElem.html( this.view( "unknownMeal" ) );
+			} else if ( !this.customer ) {
+				detailElem.html( this.view( "unknownCustomer" ) );
+			} else {
+				detailElem.html( this.view( 'orderInfo', this ) );
+				detailElem.find( "#customerForm" ).common_register_customer( { deliveryLocations: this.deliveryLocations } );
+			}
 		}
 	} );
 

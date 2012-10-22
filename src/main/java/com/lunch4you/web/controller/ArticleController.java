@@ -35,8 +35,13 @@ public class ArticleController {
 		logger.trace( "ArticleController.findOne called" );
 
 		Article article = menuService.findArticleById( id );
-		ArticleDto articleDto = beanMapper.map( article, ArticleDto.class );
-		return articleDto;
+
+		if ( article == null ) {
+			return null;
+		} else {
+			ArticleDto articleDto = beanMapper.map( article, ArticleDto.class );
+			return articleDto;
+		}
 	}
 
 	@RequestMapping( value = "/find.json", method = RequestMethod.GET )

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSendException;
+import org.springframework.security.core.codec.Base64;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -160,12 +161,14 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	private String createToken() {
-		StringBuilder token = new StringBuilder( 8 );
+		byte[] random = new byte[ 12 ];
 
-		for ( int i = 0; i < 8; i++ ) {
-			char nextChar = (char) (Math.round( Math.random() * 95 ) + 33);
-			token.append( nextChar );
+		for ( int i = 0; i < random.length; i++ ) {
+			random[ i ] = (byte) (Math.random() * 256 - 128);
 		}
-		return token.toString();
+
+		byte[] encoded = Base64.encode( random  );
+
+		return new String( encoded );
 	}
 }
