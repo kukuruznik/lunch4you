@@ -33,6 +33,10 @@ public class Order {
 	@JoinColumn( name = "owner_id" )
 	private Customer owner;
 
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
+	@JoinColumn( name = "delivery_location_id" )
+	private DeliveryLocation deliveryLocation;
+
 	@NotNull
 	@Enumerated( EnumType.STRING )
 	private Status status;
@@ -63,6 +67,14 @@ public class Order {
 
 	public void setOwner( Customer owner ) {
 		this.owner = owner;
+	}
+
+	public DeliveryLocation getDeliveryLocation() {
+		return deliveryLocation;
+	}
+
+	public void setDeliveryLocation(DeliveryLocation deliveryLocation) {
+		this.deliveryLocation = deliveryLocation;
 	}
 
 	public List<OrderItem> getItems() {

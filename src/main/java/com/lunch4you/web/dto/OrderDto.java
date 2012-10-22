@@ -9,6 +9,8 @@ public final class OrderDto {
 
 	public CustomerDto owner;
 
+	public DeliveryLocationDto deliveryLocation;
+
 	public Order.Status status;
 
 	// TODO: this is a temporary solution,

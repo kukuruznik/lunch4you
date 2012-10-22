@@ -9,12 +9,12 @@ steal('jquery/model', 'jquery/lang/json', function(){
 $.Model('Shop.Models.Order',
 	/* @Static */
 	{
-	  	create: function( article, customer, success, error ) {
+	  	create: function( article, customer, deliveryLocationId, success, error ) {
 	  		return $.ajax({
 	  			url: "orders.json",
 	  			type: "POST",
 	  			contentType: "application/json",
-	  			data: $.toJSON( { articleId: article.id, customerId: customer.id } ),
+	  			data: $.toJSON( { articleId: article.id, customerId: customer.id, deliveryLocationId: deliveryLocationId } ),
 	  			dataType: "json order.model",
 	  			success: success,
 	  			error: error || Shop.errorHandler

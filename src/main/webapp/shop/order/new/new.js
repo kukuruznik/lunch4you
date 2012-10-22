@@ -46,6 +46,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 		},
 
 		"#deliveryLocationsSelect change": function( el, evt ) {
+			// TODO - tu je problem. Raz sa do tejto premennej odklada DeliveryLocatuion object, inokedy zas ID
 			this.deliveryLocation = el.val();
 		},
 
@@ -71,7 +72,9 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 		},
 
 		_createOrder: function( ) {
-			Shop.Models.Order.create( this.article, this.customer, function( order ) {
+			var deliveryLocationId = $("#deliveryLocationsSelect").val();
+			
+			Shop.Models.Order.create( this.article, this.customer, deliveryLocationId, function( order ) {
 				alert( "Ordered!\n" +
 						"Pay us " + order.getTotal() + " bucks!" );
 				$( "#order" ).attr( "disabled", "disabled" );

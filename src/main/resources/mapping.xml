@@ -124,6 +124,10 @@
 			<b is-accessible="true">owner</b>
 		</field>
 		<field>
+			<a>deliveryLocation</a>
+			<b is-accessible="true">deliveryLocation</b>
+		</field>
+		<field>
 			<a>status</a>
 			<b is-accessible="true">status</b>
 		</field>

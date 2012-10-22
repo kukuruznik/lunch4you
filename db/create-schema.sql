@@ -58,10 +58,12 @@ CREATE TABLE `plain_order` (
   `owner_id` bigint(20) NOT NULL,
   `status` varchar(50) NOT NULL,
   `version` int(11) DEFAULT NULL,
+  `delivery_location_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `orders_owner` (`owner_id`),
   KEY `orders_status` (`status`),
-  CONSTRAINT `plain_order_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `plain_order_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `plain_order_ibfk_2` FOREIGN KEY (`delivery_location_id`) REFERENCES `delivery_location` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 -- Table "orderitem" DDL
