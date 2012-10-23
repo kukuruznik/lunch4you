@@ -1,0 +1,13 @@
+{
+	"header.menu": "Menu",
+	"header.order": "Order",
+
+	"order.detail.customer": "Customer",
+	"order.detail.deliveryLocation": "Delivery Location",
+	"order.detail.price": "Price",
+	"order.detail.viewMenu": "Today's Menu",
+
+	"order.detail.action.change": "change",
+	"order.detail.action.order": "Confirm Order",
+	"order.detail.action.changeLanguage": "Čeština"
+}

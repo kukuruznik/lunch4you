@@ -1,0 +1,13 @@
+{
+	"header.menu": "Nabídka",
+	"header.order": "Objednávka",
+
+	"order.detail.customer": "Zákazník",
+	"order.detail.deliveryLocation": "Místo vyzvednutí",
+	"order.detail.price": "Cena",
+	"order.detail.viewMenu": "Dnešní Menu",
+
+	"order.detail.action.change": "změnit",
+	"order.detail.action.order": "Potvrdit objednávku",
+	"order.detail.action.changeLanguage": "English"
+}

@@ -20,5 +20,5 @@ INSERT INTO `delivery_location` VALUES
 
 -- customers ------------------------------------------------------------------
 INSERT INTO `customer` VALUES
-(1,'John','Dick','dick@hotmale.com','aBcDeFg',0,1,1),
+(1,'Stojan','Jakotyc','stojan@tycka.hr','aBcDeFg',0,1,1),
 (2,'Obivan','Kenobi','obivan.kenobi@jedi.uni','fOrCe',0,1,1);

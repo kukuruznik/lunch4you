@@ -15,7 +15,6 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 	{
 		init: function() {
 			steal.dev.log( "Order creation controller initialized" );
-			this.element.html( this.view( 'page', this ) );
 			this._reloadData();
 		},
 
@@ -51,6 +50,8 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 		},
 
 		_reloadData: function() {
+			this.element.html( this.view( 'page', this ) );
+
 			var articleDfr = Shop.Models.Article.findOne( Shop.params.meal );
 			var customerDfr = Shop.Models.Customer.findByToken( Shop.params.token );
 			var deliveryLocationsDfr = Shop.Models.DeliveryLocation.findAll();

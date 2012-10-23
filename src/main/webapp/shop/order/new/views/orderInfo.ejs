@@ -4,10 +4,10 @@
 <% var deliveryLocations = this.deliveryLocations %>
 
 <div>
-	<label>Customer:</label>
+	<label><%= msg( "order.detail.customer" ) %>:</label>
 	<div id="currentCustomerDetails">
 		<span class="modifiable"><%= user.firstName %> <%= user.lastName %></span>
-		<div id="changeCustomerButton" class="link-button">Change</div>
+		<div id="changeCustomerButton" class="link-button"><%= msg( "order.detail.action.change" ) %></div>
 	</div>
 	
 	<div id="customerForm" class="in-place" style="display:none;">
@@ -15,7 +15,7 @@
 </div>
 
 <div id="deliveryLocationDetails">
-	<label>Delivery location:</label> 
+	<label><%= msg( "order.detail.deliveryLocation" ) %>:</label> 
 	<select id="deliveryLocationsSelect">
 	<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
 		<option value="<%= deliveryLocations[ i ].id %>"><%= deliveryLocations[ i ].name %></option>
@@ -31,12 +31,12 @@
 	<input id="cancelChangeDeliveryLocationButton" type="button" value="Cancel"/>
 </form-->
 
-<h1><%= meal.category.name_en %> / <%= meal.category.name_cz %> - <%= meal.name_en %> / <%= meal.name_cz %></h1>
-<h3>Price: <em><%= meal.price %> CZK</em></h3>
-<p><%= meal.description_en %> / <%= meal.description_cz %></p>
+<h1><%= localize( meal.category, "name" ) %> - <%= localize( meal, "name" ) %></h1>
+<h3><%= msg( "order.detail.price" ) %>: <em><%= meal.price %>,- Kč</em></h3>
+<p id="description"><%= localize( meal, "description" ) %></p>
 
-<form>
-	<input id="order" type="button" value="confirm order" />
+<form id="confirm-order">
+	<input id="order" type="button" value="<%= msg( "order.detail.action.order" ) %>" />
 </form>
 
-<a href="#view=menu&token=<%= Shop.params.token %>">View the whole menu</a>
+<p><a href="#view=menu&token=<%= Shop.params.token %>"><%= msg( "order.detail.viewMenu" ) %></a></p>
