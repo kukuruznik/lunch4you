@@ -27,9 +27,18 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', 'jquery
 		},
 		
 		"input[type=reset] click": function( el, evt ) {
-			this.element.trigger( "close" );
+			this._close();
 			evt.preventDefault();
 			return false;
+		},
+
+		_close: function() {
+			this.element.trigger( "close" );
+		},
+
+		"{document} keypress": function( el, evt ) {
+			if ( evt.keyCode == 27 )
+				this._close();
 		},
 
 		_render: function() {

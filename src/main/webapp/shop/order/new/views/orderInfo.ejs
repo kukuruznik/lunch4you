@@ -3,26 +3,28 @@
 <% var deliveryLocation = this.deliveryLocation %>
 <% var deliveryLocations = this.deliveryLocations %>
 
-<div>
-	<label><%= msg( "order.detail.customer" ) %>:</label>
-	<div id="currentCustomerDetails">
-		<span class="modifiable"><%= user.firstName %> <%= user.lastName %></span>
-		<div id="changeCustomerButton" class="link-button"><%= msg( "order.detail.action.change" ) %></div>
+<div id="customer-info">
+	<div>
+		<label><%= msg( "order.detail.customer" ) %>:</label>
+		<div id="currentCustomerDetails">
+			<span class="modifiable"><%= user.firstName %> <%= user.lastName %></span>
+			<div id="changeCustomerButton" class="link-button"><%= msg( "order.detail.action.change" ) %></div>
+		</div>
+		
+		<div id="customerForm" class="in-place" style="display:none;">
+		</div>
 	</div>
 	
-	<div id="customerForm" class="in-place" style="display:none;">
+	<div id="deliveryLocationDetails">
+		<label><%= msg( "order.detail.deliveryLocation" ) %>:</label> 
+		<select id="deliveryLocationsSelect">
+		<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
+			<option value="<%= deliveryLocations[ i ].id %>"><%= deliveryLocations[ i ].name %></option>
+		<% } %>
+		</select>
+		<!--span class="modifiable"><%= user.defaultDeliveryLocation.name %></span>
+		<div id="changeDeliveryLocationButton" class="link-button">Change</div-->
 	</div>
-</div>
-
-<div id="deliveryLocationDetails">
-	<label><%= msg( "order.detail.deliveryLocation" ) %>:</label> 
-	<select id="deliveryLocationsSelect">
-	<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
-		<option value="<%= deliveryLocations[ i ].id %>"><%= deliveryLocations[ i ].name %></option>
-	<% } %>
-	</select>
-	<!--span class="modifiable"><%= user.defaultDeliveryLocation.name %></span>
-	<div id="changeDeliveryLocationButton" class="link-button">Change</div-->
 </div>
 
 <!--form id="deliveryLocationForm" class="in-place" style="display:none;">

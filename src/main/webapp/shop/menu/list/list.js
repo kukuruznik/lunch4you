@@ -97,7 +97,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_render: function( articleGroups ) {
-			this.element.html( this.view( 'list', articleGroups ) );
+			this.element.find( "#detail" ).html( this.view( 'list', articleGroups ) );
 		}
 	} );
 

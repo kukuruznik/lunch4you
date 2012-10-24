@@ -7,6 +7,14 @@
 	"order.detail.price": "Price",
 	"order.detail.viewMenu": "Today's Menu",
 
+	"order.registration.firstName": "First Name",
+	"order.registration.lastName": "Last Name",
+	"order.registration.email": "Email",
+	"order.registration.ddl": "Default Delivery Location",
+	"order.registration.subscribe": "Subscribe",
+	"order.registration.done": "Done",
+	"order.registration.cancel": "Cancel",
+
 	"order.detail.action.change": "change",
 	"order.detail.action.order": "Confirm Order",
 	"order.detail.action.changeLanguage": "Čeština"

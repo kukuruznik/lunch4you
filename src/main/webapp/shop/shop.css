@@ -29,7 +29,7 @@ h2 em,h3 em {
 }
 
 ul {
-	padding: 0 0 0 15px;
+	padding: 0;
 	list-style: none;
 }
 
@@ -63,6 +63,8 @@ label {
 	float: left;
 	width: 10em;
 	line-height: 160%;
+	color: darkblue;
+	text-shadow: 0 1px 0 white;
 }
 
 .modifiable {
@@ -71,26 +73,62 @@ label {
 
 .link-button {
 	display: inline;
-	color: #080;
+	color: blue;
 	font-size: 0.5em;
 	cursor: pointer;
 }
 
 .in-place {
-	margin-left: 10em;
-	float: left;
-	position: absolute;
+	margin: auto;
 	background-color: white;
 	border: 1px solid silver;
+	clear: both;
 }
 
 li.category {
 	margin-bottom: 1em;
 }
 
+#caption {
+	padding: 1em;
+	background-color: #f80;
+	color: white;
+	overflow: auto;
+	cursor: default;
+}
+
+#logo {
+	text-shadow: 1px 1px 2px #840;
+	float: left;
+}
+
+#logo em {
+	color: yellow;
+}
+
+#screen-name {
+	text-align: center;
+	margin: auto;
+	width: 50%;
+	line-height: 2em;
+}
+
 #change-lang {
 	float: right;
-	cursor: pointer;
+	color: #ff8;
+	font-weight: bold;
+}
+
+#detail {
+	padding: 1em;
+	background-color: #ffc;
+}
+
+#customer-info {
+	background-color: #cdf;
+	padding: 0.5em;
+	width: 60%;
+	margin: auto;
 }
 
 #customerForm {
@@ -104,6 +142,8 @@ li.category {
 #customerForm td.label {
 	text-align: right;
 	padding-right: 0.5em;
+	color: gray;
+	font-size: 11pt;
 }
 
 #customerForm td label {
@@ -121,4 +161,9 @@ li.category {
 
 #confirm-order {
 	text-align: center;
+}
+
+a.meal {
+	text-align: center;
+	display: block;
 }

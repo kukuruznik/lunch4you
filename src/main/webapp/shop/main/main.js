@@ -36,6 +36,7 @@ steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order
 			// we need to set this up in order to prevent IE from caching the AJAX responses
 			$.ajaxSetup( { cache: false } );
 
+			// register view helpers
 			$.EJS.Helpers.prototype.currentView = function() {
 				return this.msg( "header." + Shop.params.view );
 			};
@@ -48,6 +49,7 @@ steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order
 				return object[ attrName + "_" + Shop.Main.getLocale() ];
 			};
 
+			// load localization data
 			this._loadDictionary( Shop.Main.getLocale() );
 		},
 
@@ -58,16 +60,20 @@ steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order
 			// URL validation and view selection
 			switch ( Shop.params.view ) {
 			case "menu":
-				if ( Shop.params.token )
+				if ( Shop.params.token ) {
+					$( "#screen-name" ).html( $.EJS.Helpers.prototype.currentView() );
 					$( '#content' ).shop_menu_list();
-				else
+				} else {
 					alert( "Invalid URL! Missing user." );
+				}
 				break;
 			case "order":
-				if ( Shop.params.meal && Shop.params.token )
+				if ( Shop.params.meal && Shop.params.token ) {
+					$( "#screen-name" ).html( $.EJS.Helpers.prototype.currentView() );
 					$( '#content' ).shop_order_new();
-				else
+				} else {
 					alert( "Invalid URL! Missing user and/or article." );
+				}
 				break;
 			default:
 				alert( "Invalid URL! Unknown or missing view." );
@@ -105,6 +111,9 @@ steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order
 		_dictionaryLoaded: function( dictionary ) {
 			steal.dev.log( "... finishing main controller initialization" );
 			Shop.Main.dictionary = dictionary;
+
+			// render the main page structure
+			$( "#content" ).html( this.view( 'page', this ) );
 
 			// start the UI by triggering the initial hash change event
 			$( function() {

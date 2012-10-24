@@ -1,4 +1,4 @@
-steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common/register_customer" ).then( './views/page.ejs', function( $ ) {
+steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common/register_customer" ).then( function( $ ) {
 
 	/**
 	 * @class Shop.Order.New
@@ -50,8 +50,6 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 		},
 
 		_reloadData: function() {
-			this.element.html( this.view( 'page', this ) );
-
 			var articleDfr = Shop.Models.Article.findOne( Shop.params.meal );
 			var customerDfr = Shop.Models.Customer.findByToken( Shop.params.token );
 			var deliveryLocationsDfr = Shop.Models.DeliveryLocation.findAll();
@@ -126,7 +124,6 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 //		},
 
 		_render: function() {
-			console.log( "rendering..." );
 			var detailElem = this.element.find( "#detail" );
 
 			if ( !this.article ) {

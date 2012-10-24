@@ -9,19 +9,19 @@
 	<table>
 		<tbody>
 			<tr>
-				<td class="label"><label for="<%= firstNameId %>">First Name:</label></td>
+				<td class="label"><label for="<%= firstNameId %>"><%= msg( "order.registration.firstName" ) %>:</label></td>
 				<td class="value"><input type="text" name="firstName" id="<%= firstNameId %>"/></td>
 			<tr/>
 			<tr>
-				<td class="label"><label for="<%= lastNameId %>">Last Name:</label></td>
+				<td class="label"><label for="<%= lastNameId %>"><%= msg( "order.registration.lastName" ) %>:</label></td>
 				<td class="value"><input type="text" name="lastName" id="<%= lastNameId %>"/></td>
 			<tr/>
 			<tr>
-				<td class="label"><label for="<%= emailId %>">Email:</label></td>
+				<td class="label"><label for="<%= emailId %>"><%= msg( "order.registration.email" ) %>:</label></td>
 				<td class="value"><input type="text" name="email" id="<%= emailId %>"/></td>
 			<tr/>
 			<tr>
-				<td class="label"><label for="<%= ddlId %>">Default Delivery Location:</label></td>
+				<td class="label"><label for="<%= ddlId %>"><%= msg( "order.registration.ddl" ) %>:</label></td>
 				<td class="value">
 					<select name="defaultDeliveryLocationId" id="<%= ddlId %>">
 					<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
@@ -31,12 +31,12 @@
 				</td>
 			<tr/>
 			<tr>
-				<td class="label"><label for="<%= subscribeId %>">Subscribe:</label></td>
+				<td class="label"><label for="<%= subscribeId %>"><%= msg( "order.registration.subscribe" ) %>:</label></td>
 				<td class="value"><input type="checkbox" name="subscribe" id="<%= subscribeId %>"/></td>
 			<tr/>
 			<tr>
-				<td class="label"><input type="submit" value="Done"/></td>
-				<td class="value"><input type="reset" value="Cancel"/></td>
+				<td class="label"><input type="submit" value="<%= msg( "order.registration.done" ) %>"/></td>
+				<td class="value"><input type="reset" value="<%= msg( "order.registration.cancel" ) %>"/></td>
 			</tr>
 		</tbody>
 	</table>

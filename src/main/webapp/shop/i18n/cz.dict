@@ -7,6 +7,14 @@
 	"order.detail.price": "Cena",
 	"order.detail.viewMenu": "Dnešní Menu",
 
+	"order.registration.firstName": "Jméno",
+	"order.registration.lastName": "Příjmení",
+	"order.registration.email": "Email",
+	"order.registration.ddl": "Tady budu vyzvedávat",
+	"order.registration.subscribe": "Zasílat denní menu",
+	"order.registration.done": "Hotovo",
+	"order.registration.cancel": "Zrušit",
+
 	"order.detail.action.change": "změnit",
 	"order.detail.action.order": "Potvrdit objednávku",
 	"order.detail.action.changeLanguage": "English"
