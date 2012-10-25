@@ -1,6 +1,7 @@
 package com.lunch4you.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,11 +18,14 @@ public class JobsImpl implements Jobs {
 
 	@Override
 	public void emailMenu() {
+
+		List<Map<String,Object>> groupedMenu = menuService.getGroupedMenu();
+
 		List<Customer> allCustomers = menuService.getAllCustomers();
 		List<Article> menu = menuService.getMenu();
 
 		for ( Customer customer : allCustomers ) {
-			mailingService.sendMenu( customer, menu );
+			mailingService.sendMenu( customer, menu, groupedMenu );
 		}
 	}
 }

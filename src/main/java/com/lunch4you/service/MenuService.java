@@ -1,6 +1,7 @@
 package com.lunch4you.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.lunch4you.domain.Article;
 import com.lunch4you.domain.Category;
@@ -27,7 +28,9 @@ public interface MenuService {
 	Order createOrder(Long articleId, Long customerId, Long deliveryLocationId );
 
 	List<Article> getMenu();
-	
+
+	List<Map<String, Object>> getGroupedMenu();
+
 	List<Category> getCategories();
 
 	List<Order> getActiveOrders();

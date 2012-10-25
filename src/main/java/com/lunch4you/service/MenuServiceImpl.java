@@ -1,7 +1,10 @@
 package com.lunch4you.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -130,6 +133,35 @@ public final class MenuServiceImpl implements MenuService {
 	@Override
 	public List<Article> getMenu() {
 		return articleDao.loadAll();
+	}
+
+	@Override
+	public List<Map<String, Object>> getGroupedMenu() {
+		
+		// 1st step - split all articles into lists by categoryId (one list per category)
+		List<Article> articles = articleDao.loadAll();
+		Map<Long, List<Article>> groups = new HashMap<Long, List<Article>>();
+		for(Article article : articles){
+			Long catId = article.getCategory().getId();
+			List<Article> list = groups.get(catId);
+			if(list == null){
+				list = new ArrayList<Article>();
+				groups.put(catId, list);
+			}
+			list.add(article);
+		}
+
+		// 2nd step - create pairs (tuples) for category and respective articles list		
+		List<Map<String,Object>> grMenu = new ArrayList<Map<String, Object>>();
+		List<Category> categories = categoryDao.loadAll();
+		for(Category category : categories){
+			Map<String, Object> groupMap = new HashMap<String, Object>();
+			groupMap.put("category", category);
+			groupMap.put("articles", groups.get(category.getId()));
+			grMenu.add(groupMap);
+		}
+				
+		return grMenu;
 	}
 
 	@Override

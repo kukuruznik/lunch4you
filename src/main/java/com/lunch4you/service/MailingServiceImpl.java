@@ -34,7 +34,7 @@ public class MailingServiceImpl implements MailingService {
 	private String shopURL;
 
 	@Override
-	public void sendMenu( final Customer customer, final List<Article> menu ) {
+	public void sendMenu( final Customer customer, final List<Article> menu, final List<Map<String, Object>> groupedMenu ) {
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 
 			@Override
@@ -44,6 +44,8 @@ public class MailingServiceImpl implements MailingService {
 				model.put( "token", customer.getToken() );
 				model.put( "shopURL", shopURL );
 				model.put( "menu", menu );
+				model.put( "groupedMenu", groupedMenu );
+				
 				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/menuMailTemplate.vm", model  );
 
 				helper.setFrom( from );
