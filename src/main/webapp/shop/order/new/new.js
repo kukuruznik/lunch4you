@@ -23,22 +23,19 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 		},
 
 		"#order click": function( el, evt ) {
-			this._createOrder(this.articleDfr);
-			console.log( "ordered!" );
+			this._createOrder();
 		},
 
 		"#changeCustomerButton click": function( el, evt ) {
-			console.log( "changeCustomerButton clicked!" );
 			this._showCustomerForm();
 		},
 
 		"#customerForm close": function( el, evt ) {
-			console.log( "closing form..." );
 			this._hideCustomerForm();
 		},
 		
 		"#customerForm register": function( el, evt, customerData ) {
-			console.log( "registering customer ", customerData );
+			steal.dev.log( "registering customer ", customerData );
 
 			var customerDfr = Shop.Models.Customer.create( customerData );
 			customerDfr.done( this.proxy( "_onCustomerLoaded" ) );
@@ -70,18 +67,27 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			this._render();
 		},
 
-		_createOrder: function( ) {
-			var deliveryLocationId = $("#deliveryLocationsSelect").val();
+		_createOrder: function() {
+			this._enableOrder( false );
+			var self = this;
+			var deliveryLocationId = $( "#deliveryLocationsSelect" ).val();
 			
 			Shop.Models.Order.create( this.article, this.customer, deliveryLocationId, function( order ) {
 				alert( "Ordered!\n" +
 						"Pay us " + order.getTotal() + " bucks!" );
-				$( "#order" ).attr( "disabled", "disabled" );
+				self._enableOrder( true );
 			} );
 		},
 
+		_enableOrder: function( yes ) {
+			if ( yes )
+				$( "#order" ).removeAttr( "disabled" );
+			else
+				$( "#order" ).attr( "disabled", "disabled" );
+		},
+
 		_showCustomerForm: function() {
-			$( "#order" ).attr( "disabled", "disabled" );
+			this._enableOrder( false );
 			$( "#currentCustomerDetails" ).hide();
 			$( "#customerForm" ).show();
 			this.element.find( "input[type=text]:first" ).focus();
@@ -90,38 +96,8 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 		_hideCustomerForm: function() {
 			$( "#customerForm" ).hide();
 			$( "#currentCustomerDetails" ).show();
-			$( "#order" ).removeAttr( "disabled" );
+			self._enableOrder( true );
 		},
-
-//		"#changeDeliveryLocationButton click": function( el, evt ) {
-//			console.log( "changeDeliveryLocationButton clicked!" );
-//			this._showDeliveryLocationForm();
-//		},
-//
-//		"#submitDeliveryLocationButton click": function( el, evt ) {
-//			console.log( "submitDeliveryLocationButton clicked!" );
-//
-//			var locIndex = $("#deliveryLocationsSelect :selected").index();
-//			var location = this.deliveryLocations[locIndex];
-//			console.log( "loc ",  location);
-//			
-//			this.deliveryLocation = location;
-//
-//			this._render();
-//		},
-//
-//		"#cancelChangeDeliveryLocationButton click": function( el, evt ) {
-//			console.log( "cancelChangeDeliveryLocationButton clicked!" );
-//			this._render();
-//		},
-//
-//		_showDeliveryLocationForm: function() {
-//			$("#deliveryLocationDetails").attr("style", "display : none;");
-//			var form = $("#deliveryLocationForm");
-//			form.attr("style","display : block;");
-//			//$("#customerName").focus();
-//			$( "#order" ).attr( "disabled", "disabled" );
-//		},
 
 		_render: function() {
 			var detailElem = this.element.find( "#detail" );
