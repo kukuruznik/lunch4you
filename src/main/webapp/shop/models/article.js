@@ -18,6 +18,15 @@ $.Model('Shop.Models.Article',
 	  		});
 	  	},
 
+	  	getGroupedMenu: function( success, error ) {
+	  		return $.ajax({
+	  			url: "articles/grouped.json",
+	  			dataType: "json article.models",
+	  			success: success,
+	  			error: error || Shop.errorHandler
+	  		});
+	  	},
+	  	
 	  	findOne: function( id, success, error ) {
 	  		return $.ajax({
 	  			url: "articles/" + id + ".json",

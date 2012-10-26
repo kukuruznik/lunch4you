@@ -1,10 +1,10 @@
-<% var categoryGroup = this %>
+<% var menuGroup = this %>
 
-<h3><%= localize( categoryGroup.category, "name" ) %></h3>
+<h3><%= localize( menuGroup.category, "name" ) %></h3>
 <ul>
-	<% for ( var i = 0; i < categoryGroup.items.length; i++ ) { %>
+	<% for ( var i = 0; i < menuGroup.articles.length; i++ ) { %>
 	<li>
-		<%== $.View( '//shop/menu/list/views/meal.ejs', categoryGroup.items[ i ] ) %>
+		<%== $.View( '//shop/menu/list/views/meal.ejs', menuGroup.articles[ i ] ) %>
 	</li>
 	<% } %>
 </ul>
