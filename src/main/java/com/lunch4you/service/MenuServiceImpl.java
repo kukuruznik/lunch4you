@@ -25,6 +25,8 @@ import com.lunch4you.domain.Article;
 import com.lunch4you.domain.Category;
 import com.lunch4you.domain.Customer;
 import com.lunch4you.domain.DeliveryLocation;
+import com.lunch4you.domain.DeliveryLocationWithArticles;
+import com.lunch4you.domain.Group;
 import com.lunch4you.domain.Order;
 import com.lunch4you.domain.OrderItem;
 
@@ -199,6 +201,7 @@ public final class MenuServiceImpl implements MenuService {
 		List<Map<String,Object>> grMenu = new ArrayList<Map<String, Object>>();
 		List<Article> articles = articleDao.loadAll();
 		for(Article article : articles){
+			DeliveryLocationWithArticles gr = new DeliveryLocationWithArticles();
 			Map<String, Object> groupMap = new HashMap<String, Object>();
 			groupMap.put("article", article);
 			groupMap.put("orders", groups.get(article.getId()));
