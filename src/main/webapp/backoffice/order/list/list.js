@@ -47,51 +47,10 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_refresh: function() {
-			Backoffice.Models.Order.findActive().done( this.proxy( "_groupOrdersByArticle" ) );
-//			this.counter++;
+			Backoffice.Models.Order.getActiveOrdersGroupedByArticle().done( this.proxy( "_render" ) );
+			//			this.counter++;
 //			if ( this.counter < 20 )
-				this.timeOutID = setTimeout( this.proxy( "_refresh" ), 1000 );
-		},
-
-		_groupOrdersByArticle: function( orders ) {
-			var ordersByArticleMap = this.ordersByArticleMap;
-			var articleNames = this.articleNames;
-
-			// clear the remembered order lists
-			for ( attrName in ordersByArticleMap ) {
-				var orderGroup = ordersByArticleMap[ attrName ];
-				orderGroup.items = [];
-			}
-
-			// grouping together the orders by article
-			$( orders ).each( function( i, order ) {
-				var article = order.onlyItem.article;
-
-				var orderGroup = ordersByArticleMap[ article.name_en ];
-
-				if ( orderGroup )
-					orderGroup.items.push( order );
-				else {
-					articleNames.push( article.name_en );
-					orderGroup = {
-						article: article,
-						closed: true,
-						items: [ order ]
-					};
-					ordersByArticleMap[ article.name_en ] = orderGroup;
-				}
-			});
-
-			// building a list of orderGroup-s sorted by article name
-			articleNames.sort();
-
-			var orderGroups = [];
-			$( articleNames ).each( function( i, name ) {
-				orderGroups.push( ordersByArticleMap[ name ] );
-			});
-
-			// render the resulting list of order groups
-			this._render( orderGroups );
+//				this.timeOutID = setTimeout( this.proxy( "_refresh" ), 1000 );
 		},
 
 		_handleCloseResponse: function( notFound ) {
@@ -101,8 +60,8 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			this._refresh();
 		},
 
-		_render: function( orderGroups ) {
-			this.element.html( this.view( 'list', orderGroups ) );
+		_render: function( ordersGroupedByArticle ) {
+			this.element.html( this.view( 'list', ordersGroupedByArticle ) );
 		}
 	} );
 

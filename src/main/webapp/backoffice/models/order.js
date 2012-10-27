@@ -18,6 +18,15 @@ $.Model('Backoffice.Models.Order',
 	  		});
 	  	},
 
+	  	getActiveOrdersGroupedByArticle: function( success, error ) {
+	  		return $.ajax({
+	  			url: "backoffice/orders/activeGroupedByArticle.json",
+	  			dataType: "json order.models",
+	  			success: success,
+	  			error: error || Backoffice.errorHandler
+	  		});
+	  	},
+	  	
 		close: function( ids, success, error ) {
 			return $.ajax({
 				url: "backoffice/orders/close.json",

@@ -34,6 +34,8 @@ public interface MenuService {
 	List<Category> getCategories();
 
 	List<Order> getActiveOrders();
+
+	List<Map<String, Object>> getActiveOrdersByArticle();
 	
 	List<Long> closeOrders( List<Long> ids );
 }

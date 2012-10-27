@@ -1,9 +1,8 @@
 <% var article = this.article %>
-<% var orders = this.items %>
-<% var closed = this.closed %>
+<% var orders = this.orders %>
 
 <h3 id="<%= article.name_en %>"><span class="switch"><%= closed ? '+' : '-' %></span> <em><%= article.name_en %></em> <span class="info"><%= orders.length %> order(s)</span></h3>
-<table class="order-group" <% if ( !closed ) { %>style="display: table;"<% } %>>
+<table class="order-group">
 	<tr>
 		<th class="id-col">#</th>
 		<th class="customer-col">Customer</th>

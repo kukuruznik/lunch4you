@@ -180,6 +180,35 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
+	public List<Map<String, Object>> getActiveOrdersByArticle() {
+		
+		// 1st step - split all orders into lists by ArticleId (one list per article)
+		List<Order> orders = getActiveOrders();
+		Map<Long, List<Order>> groups = new HashMap<Long, List<Order>>();
+		for(Order order : orders){
+			Long artId = order.getItems().get(0).getArticle().getId();
+			List<Order> list = groups.get(artId);
+			if(list == null){
+				list = new ArrayList<Order>();
+				groups.put(artId, list);
+			}
+			list.add(order);
+		}
+
+		// 2nd step - create pairs (tuples) for Article and respective orders list		
+		List<Map<String,Object>> grMenu = new ArrayList<Map<String, Object>>();
+		List<Article> articles = articleDao.loadAll();
+		for(Article article : articles){
+			Map<String, Object> groupMap = new HashMap<String, Object>();
+			groupMap.put("article", article);
+			groupMap.put("orders", groups.get(article.getId()));
+			grMenu.add(groupMap);
+		}
+				
+		return grMenu;
+	}
+
+	@Override
 	public List<Long> closeOrders( List<Long> ids ) {
 		OrderFilter filter = new OrderFilter();
 		filter.status = Order.Status.OPEN;

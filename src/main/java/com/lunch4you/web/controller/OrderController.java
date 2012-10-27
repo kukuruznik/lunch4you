@@ -1,6 +1,7 @@
 package com.lunch4you.web.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lunch4you.domain.Order;
 import com.lunch4you.service.MenuService;
+import com.lunch4you.web.dto.ArticleDto;
 import com.lunch4you.web.dto.OrderDto;
+import com.lunch4you.web.dto.OrderGroupByArticleDto;
 import com.lunch4you.web.dto.OrderItemDto;
 
 @Controller
@@ -85,4 +88,27 @@ public class OrderController {
 		}
 		return orderDtos;
 	}
+
+	@SuppressWarnings( "unchecked" )
+	@RequestMapping( value = "/backoffice/orders/activeGroupedByArticle.json", method = RequestMethod.GET )
+	public @ResponseBody
+	List<OrderGroupByArticleDto> getActiveOrdersGroupedByArticle() {
+		
+		List<Map<String, Object>> groups = menuService.getActiveOrdersByArticle();
+		List<OrderGroupByArticleDto> groupDtos = new ArrayList<OrderGroupByArticleDto>( groups.size() );
+
+		for ( Map<String, Object> group : groups ) {
+			OrderGroupByArticleDto groupDto = new OrderGroupByArticleDto();
+
+			groupDto.article = beanMapper.map( group.get( "article" ), ArticleDto.class );
+			groupDto.orders = new LinkedList<OrderDto>();
+
+			for ( Order order : (List<Order>) group.get( "orders" ) )
+				groupDto.orders.add( beanMapper.map( order, OrderDto.class ) );
+
+			groupDtos.add( groupDto );
+		}
+		return groupDtos;
+	}
+	
 }
