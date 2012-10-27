@@ -1,11 +1,11 @@
-steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( './views/list.ejs', './views/item.ejs', function( $ ) {
+steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( './views/list1.ejs', './views/articleWithOrders.ejs', function( $ ) {
 
 	/**
 	 * @class Backoffice.Order.List
 	 * @parent index
 	 * @inherits jQuery.Controller Lists articles.
 	 */
-	$.Controller( 'Backoffice.Order.List',
+	$.Controller( 'Backoffice.Order.List1',
 
 	/** @Static */
 	{
@@ -15,6 +15,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 	{
 		init: function() {
 			steal.dev.log( "Order list controller initialized" );
+			return;
 			this.articleNames = [];
 			this.ordersByArticleMap = {};
 //			this.counter = 0;
@@ -47,7 +48,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_refresh: function() {
-			Backoffice.Models.Order.getActiveOrdersGroupedByArticle().done( this.proxy( "_render" ) );
+			Backoffice.Models.Order.getActiveOrdersGroupedByArticle().done( this.proxy( "_renderOrdersGroupedByArticle" ) );
 			//			this.counter++;
 //			if ( this.counter < 20 )
 //				this.timeOutID = setTimeout( this.proxy( "_refresh" ), 1000 );
@@ -60,9 +61,11 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			this._refresh();
 		},
 
-		_render: function( ordersGroupedByArticle ) {
-			this.element.html( this.view( 'list', ordersGroupedByArticle ) );
-		}
+		_renderOrdersGroupedByArticle: function( ordersGroupedByArticle ) {
+			console.log("_renderOrdersGroupedByArticle")
+			this.element.html( this.view( 'list1', ordersGroupedByArticle ) );
+		},
+
 	} );
 
 } );

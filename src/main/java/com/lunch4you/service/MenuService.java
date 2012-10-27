@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.lunch4you.domain.Article;
+import com.lunch4you.domain.ArticleWithOrders;
 import com.lunch4you.domain.Category;
 import com.lunch4you.domain.Customer;
 import com.lunch4you.domain.DeliveryLocation;
+import com.lunch4you.domain.DeliveryLocationWithArticles;
 import com.lunch4you.domain.Order;
 
 public interface MenuService {
@@ -35,7 +37,10 @@ public interface MenuService {
 
 	List<Order> getActiveOrders();
 
-	List<Map<String, Object>> getActiveOrdersByArticle();
+	List<ArticleWithOrders> getActiveOrdersByArticle();
+
+	List<DeliveryLocationWithArticles> getActiveOrdersByDeliveryLocation();
 	
 	List<Long> closeOrders( List<Long> ids );
+
 }

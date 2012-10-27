@@ -3,8 +3,11 @@
 	<li>There are no active orders at the moment.</li>
 <% } %>
 
+<b>Table by articles</b>
+
 <% for ( var i = 0; i < this.length; i++ ) { %>
 	<li>
-		<%== $.View( '//backoffice/order/list/views/group.ejs', this[ i ] ) %>
+		<%== $.View( '//backoffice/order/list1/views/articleWithOrders.ejs', this[ i ] ) %>
 	</li>
 <% } %>
+

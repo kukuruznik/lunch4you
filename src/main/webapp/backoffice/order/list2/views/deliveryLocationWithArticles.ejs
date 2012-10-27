@@ -1,0 +1,8 @@
+<% var article = this.article %>
+<% var orders = this.orders %>
+
+<%= article.name_en %> - <%= orders.length %><br/>
+
+	<% for ( var i = 0; i < orders.length; i++ ) { %>
+		<!%== $.View( '//backoffice/order/list/views/item.ejs', orders[ i ] ) %>
+	<% } %>

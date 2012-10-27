@@ -1,7 +1,8 @@
 steal(
 	'./backoffice.css', 		// application CSS file
 	'./models/models.js',		// steals all your models
-	'./order/list/list.js'
+	'./order/list1/list1.js',
+	'./order/list2/list2.js'
 ).then( function() {	// configure your application
 	steal.dev.log( "Lunch4you back-office started." );
 
@@ -22,5 +23,6 @@ steal(
 		}
 	};
 
-	$( '#meals' ).backoffice_order_list();
+	$( '#meals1' ).backoffice_order_list1();
+	$( '#meals2' ).backoffice_order_list2();
 });

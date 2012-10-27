@@ -26,7 +26,16 @@ $.Model('Backoffice.Models.Order',
 	  			error: error || Backoffice.errorHandler
 	  		});
 	  	},
-	  	
+
+	  	getActiveOrdersGroupedByDeliveryLocation: function( success, error ) {
+	  		return $.ajax({
+	  			url: "backoffice/orders/activeGroupedByDeliveryLocation.json",
+	  			dataType: "json order.models",
+	  			success: success,
+	  			error: error || Backoffice.errorHandler
+	  		});
+	  	},
+
 		close: function( ids, success, error ) {
 			return $.ajax({
 				url: "backoffice/orders/close.json",
