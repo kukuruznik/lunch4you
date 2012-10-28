@@ -2,13 +2,13 @@
 <% var deliveryLocation = this.entity %>
 <% var articlesWithOrders = this.items %>
 
-<%= deliveryLocation.abbreviation %><br/>
+<h4><%= deliveryLocation.abbreviation %></h4>
 
 <% for ( var i = 0; i < articlesWithOrders.length; i++ ) { %>
 	<% var articleWithOrders = articlesWithOrders[i] %>
 	<% var article = articleWithOrders.entity %>
 	<% var orders = articleWithOrders.items %>
-	&nbsp;&nbsp;<%= article.name_en %> - <%= orders.length %><br>
+	<h5><%= article.name_en %> - <%= orders.length %></h5>
 
 	<% for ( var j = 0; j < orders.length; j++ ) { %>
 		<% var order = orders[j] %>
