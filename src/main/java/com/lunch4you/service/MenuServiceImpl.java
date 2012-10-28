@@ -1,11 +1,8 @@
 package com.lunch4you.service;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,10 +22,10 @@ import com.lunch4you.dao.filter.OrderFilter;
 import com.lunch4you.domain.Article;
 import com.lunch4you.domain.ArticleWithOrders;
 import com.lunch4you.domain.Category;
+import com.lunch4you.domain.CategoryWithArticles;
 import com.lunch4you.domain.Customer;
 import com.lunch4you.domain.DeliveryLocation;
 import com.lunch4you.domain.DeliveryLocationWithArticles;
-import com.lunch4you.domain.Group;
 import com.lunch4you.domain.Order;
 import com.lunch4you.domain.OrderItem;
 
@@ -140,35 +137,6 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public List<Map<String, Object>> getGroupedMenu() {
-		
-		// 1st step - split all articles into lists by categoryId (one list per category)
-		List<Article> articles = articleDao.loadAll();
-		Map<Long, List<Article>> groups = new HashMap<Long, List<Article>>();
-		for(Article article : articles){
-			Long catId = article.getCategory().getId();
-			List<Article> list = groups.get(catId);
-			if(list == null){
-				list = new ArrayList<Article>();
-				groups.put(catId, list);
-			}
-			list.add(article);
-		}
-
-		// 2nd step - create pairs (tuples) for category and respective articles list		
-		List<Map<String,Object>> grMenu = new ArrayList<Map<String, Object>>();
-		List<Category> categories = categoryDao.loadAll();
-		for(Category category : categories){
-			Map<String, Object> groupMap = new HashMap<String, Object>();
-			groupMap.put("category", category);
-			groupMap.put("articles", groups.get(category.getId()));
-			grMenu.add(groupMap);
-		}
-				
-		return grMenu;
-	}
-
-	@Override
 	public List<Category> getCategories() {
 		return categoryDao.loadAll();
 	}
@@ -183,116 +151,79 @@ public final class MenuServiceImpl implements MenuService {
 		return orders;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lunch4you.service.MenuService#getArticlesByCategories()
+	 * Returns all Articles grouped by Categories. Used for generating menu.
+	 */
 	@Override
-	public List<ArticleWithOrders> getActiveOrdersByArticle() {
-		
-		// 1st step - split all orders into lists by ArticleId (one list per article)
-		List<Order> orders = getActiveOrders();
-		Map<Long, List<Order>> groups = new HashMap<Long, List<Order>>();
-		for(Order order : orders){
-			Long artId = order.getItems().get(0).getArticle().getId();
-			List<Order> list = groups.get(artId);
-			if(list == null){
-				list = new ArrayList<Order>();
-				groups.put(artId, list);
-			}
-			list.add(order);
-		}
+	public LinkedHashMap<Long, CategoryWithArticles> getArticlesByCategories() {
 
-		// 2nd step - create pairs (tuples) for Article and respective orders list		
-		List<ArticleWithOrders> articlesWithOrders = new ArrayList<ArticleWithOrders>();
 		List<Article> articles = articleDao.loadAll();
+		LinkedHashMap<Long, CategoryWithArticles> categoriesWithArticles = new LinkedHashMap<Long, CategoryWithArticles>();
 		for(Article article : articles){
-			ArticleWithOrders group = new ArticleWithOrders();
-			group.entity = article;
-			//group.items.addAll( groups.get(article.getId()) );
-			articlesWithOrders.add(group);
+			Category category = article.getCategory();
+			
+			CategoryWithArticles categoryWithArticles = categoriesWithArticles.get(category.getId());
+			if(categoryWithArticles == null){
+				categoryWithArticles =  new CategoryWithArticles(); 
+				categoryWithArticles.entity = category;
+				categoriesWithArticles.put(category.getId(), categoryWithArticles);
+			}
+			categoryWithArticles.items.put(article.getId(), article);
+		}			
+		return categoriesWithArticles;
+	}
+
+	@Override
+	public LinkedHashMap<Long,ArticleWithOrders> getActiveOrdersByArticle() {
+		
+		List<Order> orders = getActiveOrders();
+		LinkedHashMap<Long, ArticleWithOrders> articlesWithOrders = new LinkedHashMap<Long, ArticleWithOrders>();
+		for(Order order : orders){
+			Article article = order.getItems().get(0).getArticle();
+			
+			ArticleWithOrders articleWithOrders = articlesWithOrders.get(article.getId());
+			if(articleWithOrders == null){
+				articleWithOrders =  new ArticleWithOrders(); 
+				articleWithOrders.entity = article;
+				articlesWithOrders.put(article.getId(), articleWithOrders);
+			}
+			articleWithOrders.items.put(order.getId(), order);
 		}
-				
+						
 		return articlesWithOrders;
 	}
 
 	@Override
-	public List<DeliveryLocationWithArticles> getActiveOrdersByDeliveryLocation() {
+	public LinkedHashMap<Long,DeliveryLocationWithArticles> getActiveOrdersByDeliveryLocation() {
 
-		List<Order> allOrders = getActiveOrders();
+		List<Order> orders = getActiveOrders();
 		
-		// prepare map of all Articles searchable by Id
-		List<Article> allArticles = articleDao.loadAll();
-		Map<Long, Article> allArticlesById = new HashMap<Long, Article>();
-		for(Article article : allArticles){
-			allArticlesById.put(article.getId(), article);
-		}
-
-		// prepare map of all DeliveryLocations searchable by Id
-		List<DeliveryLocation> allLocations = deliveryLocationDao.loadAll();
-		Map<Long, DeliveryLocation> allLocationsById = new HashMap<Long, DeliveryLocation>();
-		for(DeliveryLocation location : allLocations){
-			allLocationsById.put(location.getId(), location);
-		}
-
-		// 1st step - split all orders into lists by LocationId (one list per DeliveryLocation)
-		Map<Long, List<Order>> ordersByLocationId = new HashMap<Long, List<Order>>();
-		for(Order order : allOrders){
-			Long locId = order.getDeliveryLocation().getId();
-			List<Order> list = ordersByLocationId.get(locId);
-			if(list == null){
-				list = new ArrayList<Order>();
-				ordersByLocationId.put(locId, list);
+		/*
+		 * Creates a compelte structure of groups. Structure is being formed during iteration
+		 * over all orders and creating Location or Article groups on-the-fly
+		 */
+		LinkedHashMap<Long, DeliveryLocationWithArticles> locationsWithArticles = new LinkedHashMap<Long, DeliveryLocationWithArticles>();
+		for(Order order : orders){
+			DeliveryLocation location = order.getDeliveryLocation();
+			Article article = order.getItems().get(0).getArticle();
+			
+			DeliveryLocationWithArticles locationWithArticles = locationsWithArticles.get(location.getId());
+			if(locationWithArticles == null){
+				locationWithArticles =  new DeliveryLocationWithArticles(); 
+				locationsWithArticles.put(location.getId(), locationWithArticles);
 			}
-			list.add(order);
-		}
-
-		// this map will contain further maps of oreders split by ArticleId
-		Map<Long, Map<Long, List<Order>>> ordersByLocationId2 = new HashMap<Long, Map<Long,List<Order>>>();
-		for(Long locationId : ordersByLocationId.keySet()){
-			List<Order> ordersInLocation = ordersByLocationId.get(locationId);
-			Map<Long, List<Order>> ordersByArticleId = new HashMap<Long, List<Order>>();
-			for(Order order : ordersInLocation){
-				Long artId = order.getItems().get(0).getArticle().getId();
-				// select appropriate list for current article,if not exist, then create one
-				List<Order> list = ordersByArticleId.get(artId);
-				if(list == null){
-					list = new ArrayList<Order>();
-					ordersByArticleId.put(artId, list);
-				}
-				list.add(order);
+			locationWithArticles.entity = location;
+			
+			ArticleWithOrders articleWithOrders = locationWithArticles.items.get(article.getId());
+			if(articleWithOrders == null){
+				articleWithOrders =  new ArticleWithOrders(); 
+				locationWithArticles.items.put(article.getId(), articleWithOrders);
 			}
-			ordersByLocationId2.put(locationId, ordersByArticleId);
+			articleWithOrders.entity = article;
+			
+			articleWithOrders.items.put(order.getId(), order);			
 		}
-		
-		// simple printing
-		String out = "";
-		List<DeliveryLocationWithArticles> locationsWithArticles = new ArrayList<DeliveryLocationWithArticles>();
-		for(Long locationId : ordersByLocationId2.keySet()){
-			out += "\n LocationId: " + locationId;
-			DeliveryLocationWithArticles locationWithArticles = new DeliveryLocationWithArticles();
-			locationWithArticles.entity = allLocationsById.get(locationId);
-			Map<Long, List<Order>> ordersInLocation = ordersByLocationId2.get(locationId);
-			for(Long articleId : ordersInLocation.keySet()){
-				out += "\n  ArticleId: " + articleId;
-				List<Order> orders = ordersInLocation.get(articleId);
-				ArticleWithOrders articleWithOrders = new ArticleWithOrders();
-				articleWithOrders.entity = allArticlesById.get(articleId);
-				for(Order order : orders){
-					out += "\n   OrderId: " + order.getId();
-					articleWithOrders.items.put(order.getId(), order);
-				}
-				locationWithArticles.items.put(articleId, articleWithOrders);
-			}
-			locationsWithArticles.add(locationWithArticles);
-		}
-
-		// 2nd step - create pairs (tuples) for Article and respective orders list		
-		
-//		List<Article> articles = articleDao.loadAll();
-//		for(Article article : articles){
-//			ArticleWithOrders group = new ArticleWithOrders();
-//			group.entity = article;
-//			group.items.addAll( groups.get(article.getId()) );
-//			locationsWithArticles.add(group);
-//		}
-
 		
 		return locationsWithArticles;
 	}

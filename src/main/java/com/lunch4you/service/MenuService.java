@@ -1,11 +1,13 @@
 package com.lunch4you.service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.lunch4you.domain.Article;
 import com.lunch4you.domain.ArticleWithOrders;
 import com.lunch4you.domain.Category;
+import com.lunch4you.domain.CategoryWithArticles;
 import com.lunch4you.domain.Customer;
 import com.lunch4you.domain.DeliveryLocation;
 import com.lunch4you.domain.DeliveryLocationWithArticles;
@@ -31,15 +33,15 @@ public interface MenuService {
 
 	List<Article> getMenu();
 
-	List<Map<String, Object>> getGroupedMenu();
+	LinkedHashMap<Long, CategoryWithArticles> getArticlesByCategories();
 
 	List<Category> getCategories();
 
 	List<Order> getActiveOrders();
 
-	List<ArticleWithOrders> getActiveOrdersByArticle();
+	LinkedHashMap<Long, ArticleWithOrders> getActiveOrdersByArticle();
 
-	List<DeliveryLocationWithArticles> getActiveOrdersByDeliveryLocation();
+	LinkedHashMap<Long, DeliveryLocationWithArticles> getActiveOrdersByDeliveryLocation();
 	
 	List<Long> closeOrders( List<Long> ids );
 

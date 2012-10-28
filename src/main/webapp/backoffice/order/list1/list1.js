@@ -15,7 +15,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 	{
 		init: function() {
 			steal.dev.log( "Order list controller initialized" );
-			return;
+			//return;
 			this.articleNames = [];
 			this.ordersByArticleMap = {};
 //			this.counter = 0;
@@ -62,7 +62,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_renderOrdersGroupedByArticle: function( ordersGroupedByArticle ) {
-			console.log("_renderOrdersGroupedByArticle")
+			//console.log("_renderOrdersGroupedByArticle")
 			this.element.html( this.view( 'list1', ordersGroupedByArticle ) );
 		},
 

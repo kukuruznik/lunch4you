@@ -1,8 +1,18 @@
-<% var article = this.article %>
-<% var orders = this.orders %>
+<!% this is of class DeliveryLocationWithArticlesDto %>
+<% var deliveryLocation = this.entity %>
+<% var articlesWithOrders = this.items %>
 
-<%= article.name_en %> - <%= orders.length %><br/>
+<%= deliveryLocation.abbreviation %><br/>
 
-	<% for ( var i = 0; i < orders.length; i++ ) { %>
-		<!%== $.View( '//backoffice/order/list/views/item.ejs', orders[ i ] ) %>
+<% for ( var i = 0; i < articlesWithOrders.length; i++ ) { %>
+	<% var articleWithOrders = articlesWithOrders[i] %>
+	<% var article = articleWithOrders.entity %>
+	<% var orders = articleWithOrders.items %>
+	&nbsp;&nbsp;<%= article.name_en %> - <%= orders.length %><br>
+
+	<% for ( var j = 0; j < orders.length; j++ ) { %>
+		<% var order = orders[j] %>
+		&nbsp;&nbsp;&nbsp;&nbsp;<%= order.owner.firstName %> <%= order.owner.lastName %><br>
 	<% } %>
+
+<% } %>

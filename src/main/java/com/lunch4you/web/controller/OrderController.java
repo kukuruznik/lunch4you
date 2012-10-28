@@ -1,7 +1,7 @@
 package com.lunch4you.web.controller;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,13 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lunch4you.domain.Article;
 import com.lunch4you.domain.ArticleWithOrders;
+import com.lunch4you.domain.DeliveryLocation;
 import com.lunch4you.domain.DeliveryLocationWithArticles;
 import com.lunch4you.domain.Order;
 import com.lunch4you.service.MenuService;
 import com.lunch4you.web.dto.ArticleDto;
+import com.lunch4you.web.dto.ArticleWithOrdersDto;
+import com.lunch4you.web.dto.DeliveryLocationDto;
+import com.lunch4you.web.dto.DeliveryLocationWithArticlesDto;
 import com.lunch4you.web.dto.OrderDto;
-import com.lunch4you.web.dto.OrderGroupByArticleDto;
 import com.lunch4you.web.dto.OrderItemDto;
 
 @Controller
@@ -91,48 +95,55 @@ public class OrderController {
 		return orderDtos;
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@RequestMapping( value = "/backoffice/orders/activeGroupedByArticle.json", method = RequestMethod.GET )
 	public @ResponseBody
-	List<OrderGroupByArticleDto> getActiveOrdersGroupedByArticle() {
+	List<ArticleWithOrdersDto> getActiveOrdersGroupedByArticle() {
 		
-		List<ArticleWithOrders> groups = menuService.getActiveOrdersByArticle();
-		List<OrderGroupByArticleDto> groupDtos = new ArrayList<OrderGroupByArticleDto>( groups.size() );
+		LinkedHashMap<Long,ArticleWithOrders> articlesWithOrders = menuService.getActiveOrdersByArticle();
+		List<ArticleWithOrdersDto> articlesWithOrdersDtos = new ArrayList<ArticleWithOrdersDto>( );
 
-		for ( ArticleWithOrders group : groups ) {
-			OrderGroupByArticleDto groupDto = new OrderGroupByArticleDto();
+		for ( ArticleWithOrders articleWithOrders : articlesWithOrders.values() ) {
+			ArticleWithOrdersDto articleWithOrdersDto = new ArticleWithOrdersDto();
 
-			groupDto.article = beanMapper.map( group.entity, ArticleDto.class );
-			groupDto.orders = new LinkedList<OrderDto>();
+			articleWithOrdersDto.entity = beanMapper.map( articleWithOrders.entity, ArticleDto.class );
 
-			for ( Order order : group.items.values() )
-				groupDto.orders.add( beanMapper.map( order, OrderDto.class ) );
+			for ( Order order : articleWithOrders.items.values() )
+				articleWithOrdersDto.items.add( beanMapper.map( order, OrderDto.class ) );
 
-			groupDtos.add( groupDto );
+			articlesWithOrdersDtos.add( articleWithOrdersDto );
 		}
-		return groupDtos;
+		return articlesWithOrdersDtos;
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@RequestMapping( value = "/backoffice/orders/activeGroupedByDeliveryLocation.json", method = RequestMethod.GET )
 	public @ResponseBody
-	List<OrderGroupByArticleDto> getActiveOrdersGroupedByDeliveryLocation() {
+	List<DeliveryLocationWithArticlesDto> getActiveOrdersGroupedByDeliveryLocation() {
 		
-		List<DeliveryLocationWithArticles> groups = menuService.getActiveOrdersByDeliveryLocation();
-		List<OrderGroupByArticleDto> groupDtos = new ArrayList<OrderGroupByArticleDto>( groups.size() );
+		LinkedHashMap<Long,DeliveryLocationWithArticles> locationsWithArticles = menuService.getActiveOrdersByDeliveryLocation();
+		
+		List<DeliveryLocationWithArticlesDto> locationsWithArticlesDtos = new ArrayList<DeliveryLocationWithArticlesDto>();
 
-//		for ( ArticleWithOrders group : groups ) {
-//			OrderGroupByArticleDto groupDto = new OrderGroupByArticleDto();
-//
-//			groupDto.article = beanMapper.map( group.entity, ArticleDto.class );
-//			groupDto.orders = new LinkedList<OrderDto>();
-//
-//			for ( Order order : group.items )
-//				groupDto.orders.add( beanMapper.map( order, OrderDto.class ) );
-//
-//			groupDtos.add( groupDto );
-//		}
-		return groupDtos;
+		for ( DeliveryLocationWithArticles deliveryLocationWithArticles : locationsWithArticles.values() ) {
+			DeliveryLocation deliveryLocation = deliveryLocationWithArticles.entity;
+			DeliveryLocationWithArticlesDto deliveryLocationWithArticlesDto = new DeliveryLocationWithArticlesDto();
+			deliveryLocationWithArticlesDto.entity = beanMapper.map( deliveryLocation, DeliveryLocationDto.class );
+			
+			for ( ArticleWithOrders articleWithOrders : deliveryLocationWithArticles.items.values() ){				
+				Article article = articleWithOrders.entity;
+
+				// Construct complete DTO object before it is added to parent group DTO
+				ArticleWithOrdersDto articleWithOrdersDto = new ArticleWithOrdersDto();												
+				articleWithOrdersDto.entity = beanMapper.map( article, ArticleDto.class );
+
+				for(Order order : articleWithOrders.items.values()){
+					OrderDto orderDto = beanMapper.map( order, OrderDto.class );
+					articleWithOrdersDto.items.add(orderDto);										
+				}
+				deliveryLocationWithArticlesDto.items.add(articleWithOrdersDto);
+			}
+			locationsWithArticlesDtos.add( deliveryLocationWithArticlesDto );
+		}
+		return locationsWithArticlesDtos;
 	}
 
 }

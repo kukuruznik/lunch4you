@@ -1,10 +1,12 @@
 Your token is ${token}.
 
+categoriesWithArticles : ${categoriesWithArticles.size()}
+
 The menu for today is:
-#foreach( ${groupMap} in ${groupedMenu} )
-	#set( $category = $groupMap.get("category") )
+#foreach( ${categoryWithArticles} in ${categoriesWithArticles} )
+	#set( $category = $categoryWithArticles.entity )
 	Category: ${category}
-	#foreach( ${article} in ${groupMap.get("articles")} )
+	#foreach( ${article} in ${categoryWithArticles.items} )
 		Article	- ${article}
 	#end
 

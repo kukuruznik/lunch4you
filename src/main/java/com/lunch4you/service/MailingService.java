@@ -1,16 +1,15 @@
 package com.lunch4you.service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.LinkedHashMap;
 
-import com.lunch4you.domain.Article;
+import com.lunch4you.domain.CategoryWithArticles;
 import com.lunch4you.domain.Customer;
 import com.lunch4you.domain.Order;
 
 
 public interface MailingService {
 
-	void sendMenu( Customer customer, List<Article> menu, List<Map<String,Object>> groupedMenu );
+	void sendMenu( Customer customer, LinkedHashMap<Long,CategoryWithArticles> categoriesWithArticles );
 
 	void sendOrderConfirmation( Order order );
 }

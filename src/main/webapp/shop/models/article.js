@@ -20,7 +20,7 @@ $.Model('Shop.Models.Article',
 
 	  	getGroupedMenu: function( success, error ) {
 	  		return $.ajax({
-	  			url: "articles/grouped.json",
+	  			url: "articles/groupedByCategory.json",
 	  			dataType: "json article.models",
 	  			success: success,
 	  			error: error || Shop.errorHandler

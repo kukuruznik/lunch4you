@@ -15,6 +15,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 	{
 		init: function() {
 			steal.dev.log( "Order list2 controller initialized" );
+			//return;
 //			this.counter = 0;
 			this._refresh();
 		},

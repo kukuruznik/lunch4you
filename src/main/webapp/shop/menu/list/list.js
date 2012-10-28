@@ -1,4 +1,4 @@
-steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( './views/list.ejs', /*'./views/item.ejs',*/ function( $ ) {
+steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( './views/list.ejs', /*'./views/article.ejs',*/ function( $ ) {
 
 	/**
 	 * @class Shop.Menu.List
