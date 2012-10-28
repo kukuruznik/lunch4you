@@ -1,9 +1,8 @@
 package com.lunch4you.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashMap;
 
 public class Group<ENTITY, ITEM> {
 	public ENTITY entity;
-	public List<ITEM> items = new ArrayList<ITEM>();
+	public LinkedHashMap<Long, ITEM> items = new LinkedHashMap<Long, ITEM>();
 }

@@ -105,7 +105,7 @@ public class OrderController {
 			groupDto.article = beanMapper.map( group.entity, ArticleDto.class );
 			groupDto.orders = new LinkedList<OrderDto>();
 
-			for ( Order order : group.items )
+			for ( Order order : group.items.values() )
 				groupDto.orders.add( beanMapper.map( order, OrderDto.class ) );
 
 			groupDtos.add( groupDto );

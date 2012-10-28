@@ -1,0 +1,9 @@
+<% var article = this.article %>
+<% var orders = this.orders %>
+
+<%= article.name_en %> - <%= orders.length %><br/>
+
+	<% for ( var i = 0; i < orders.length; i++ ) { %>
+		<% var order = orders[i] %>
+		&nbsp;&nbsp;<%= order.owner.firstName %> <%= order.owner.lastName %><br>
+	<% } %>
