@@ -1,1 +1,5 @@
 - immutable articles
+
+- Menu Emailing
+	- unsubscribe feature
+	- recommend / invite other feature

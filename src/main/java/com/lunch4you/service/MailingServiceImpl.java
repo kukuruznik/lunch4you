@@ -39,7 +39,7 @@ public class MailingServiceImpl implements MailingService {
 
 			@Override
 			public void prepare( MimeMessage mimeMessage ) throws Exception {
-				MimeMessageHelper helper = new MimeMessageHelper( mimeMessage );
+				MimeMessageHelper helper = new MimeMessageHelper( mimeMessage , "UTF-8");
 				Map<String, Object> model = new HashMap<String, Object>();
 				model.put( "token", customer.getToken() );
 				model.put( "shopURL", shopURL );
@@ -50,7 +50,7 @@ public class MailingServiceImpl implements MailingService {
 				helper.setFrom( from );
 				helper.setTo( customer.getEmail() );
 				helper.setSubject( menuSubject );
-				helper.setText( bodyText );
+				helper.setText( bodyText, true);
 			}
 		};
 		mailSender.send( preparator );

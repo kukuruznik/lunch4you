@@ -25,6 +25,7 @@ public class JobsImpl implements Jobs {
 
 		for ( Customer customer : allCustomers ) {
 			mailingService.sendMenu( customer, groupedMenu );
+			return;
 		}
 	}
 }

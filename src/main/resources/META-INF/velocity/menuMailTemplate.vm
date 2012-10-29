@@ -1,19 +1,18 @@
 Your token is ${token}.
 
-categoriesWithArticles : ${categoriesWithArticles.size()}
-
-The menu for today is:
+The menu for today is:<br>
 #foreach( ${categoryWithArticles} in ${categoriesWithArticles} )
 	#set( $category = $categoryWithArticles.entity )
-	Category: ${category}
+	<h3>${category.name_cz} / ${category.name_en}</h3>
 	#foreach( ${article} in ${categoryWithArticles.items} )
-		Article	- ${article}
+		<a href="${shopURL}#view=order&meal=${article.Id}&token=${token}">
+		${article.name_cz}
+		#if( ${article.name_en} != "" )
+			/ ${article.name_en}
+		#end 
+		</a>
+		<br>
 	#end
 
 #end
 
-
-The menu for today is:
-#foreach( ${meal} in ${menu} )
-	- ${meal.Name_en} / ${meal.Name_cz} for ${meal.Price} bucks (${shopURL}#view=article&meal=${meal.Id}&token=${token})
-#end
