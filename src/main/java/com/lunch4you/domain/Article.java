@@ -44,6 +44,8 @@ public class Article {
 
 	private String description_en;
 
+	private String package_type;
+
 	public Long getId() {
 		return this.id;
 	}
@@ -122,6 +124,14 @@ public class Article {
 
 	public void setDescription_en(String description_en) {
 		this.description_en = description_en;
+	}
+
+	public String getPackage_type() {
+		return package_type;
+	}
+
+	public void setPackage_type( String package_type ) {
+		this.package_type = package_type;
 	}
 
 	public String toString() {

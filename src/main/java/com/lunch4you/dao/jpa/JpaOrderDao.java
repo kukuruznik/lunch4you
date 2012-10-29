@@ -39,6 +39,8 @@ public class JpaOrderDao extends AbstractReadWriteDao<Order, Long, OrderFilter> 
 			cq.where( p );
 		}
 
+		cq.orderBy( builder.asc( root.get( "timestamp" ) ) );
+
 		return cq;
 	}
 }

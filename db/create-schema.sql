@@ -22,6 +22,7 @@ CREATE TABLE `article` (
   `name_en` varchar(255) NOT NULL,
   `description_cz` varchar(1000) DEFAULT NULL,
   `description_en` varchar(1000) DEFAULT NULL,
+  `package_type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   CONSTRAINT `article_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
@@ -59,6 +60,7 @@ CREATE TABLE `plain_order` (
   `status` varchar(50) NOT NULL,
   `version` int(11) DEFAULT NULL,
   `delivery_location_id` bigint(20) NOT NULL,
+  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `orders_owner` (`owner_id`),
   KEY `orders_status` (`status`),
