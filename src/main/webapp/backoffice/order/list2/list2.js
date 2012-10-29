@@ -20,7 +20,6 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			this._refresh();
 		},
 
-
 		_refresh: function() {
 			Backoffice.Models.Order.getActiveOrdersGroupedByDeliveryLocation().done( this.proxy( "_renderOrdersGroupedByDeliveryLocation" ) );
 		},

@@ -2,9 +2,15 @@
 <% var article = this.entity %>
 <% var orders = this.items %>
 
-<h5><%= article.name_cz %> - <%= orders.length %></h5>
-
+	<h5 id="article<%= article.id %>"><%= article.name_cz %> 
+		<span class="orderCount"><%= orders.length %></span>
+	</h5>
+	<div id="customersForArticle<%= article.id %>" class="customers">
 	<% for ( var i = 0; i < orders.length; i++ ) { %>
 		<% var order = orders[i] %>
-		&nbsp;&nbsp;<%= order.owner.firstName %> <%= order.owner.lastName %> (<%= order.deliveryLocation.abbreviation %>)<br>
+		<div class="customer-details">
+			<%= order.owner.firstName %> <%= order.owner.lastName %>
+			<span class="location">(<%= order.deliveryLocation.abbreviation %>)</span>
+		</div>
 	<% } %>
+	</div>

@@ -15,19 +15,19 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 	{
 		init: function() {
 			steal.dev.log( "Order list controller initialized" );
-			//return;
 			this.articleNames = [];
 			this.ordersByArticleMap = {};
 //			this.counter = 0;
 			this._refresh();
 		},
 
-		"h3 click": function( el, evt ) {
-			var articleName = el.attr( "id" );
-			var orderGroup = this.ordersByArticleMap[ articleName ];
-			orderGroup.closed = !orderGroup.closed;
-
-			el.parent().html( this.view( 'group', orderGroup ) );
+		"h5 click": function( el, evt ) {
+			var elementId = el.attr( "id" );
+			// parse out articleId from the element id
+			var articleId = elementId.substring("article".length); 
+			// find div containing customers
+			var customersDiv = $("#customersForArticle" + articleId);
+			customersDiv.toggle();			
 		},
 
 		"input[type=button] click": function( el, evt ) {

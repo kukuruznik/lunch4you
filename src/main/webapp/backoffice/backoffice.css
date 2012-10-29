@@ -49,6 +49,17 @@ h5 {
 	padding: 0.25em;
 	background-color: #ccf;
 	color: #448;
+	font-size: 1.2em;
+	border-bottom : 4px white solid;
+	cursor : pointer;
+}
+
+h5:HOVER {
+	background-color: #eee;
+}
+
+h5 span.orderCount {
+	float : right;
 }
 
 table {
@@ -62,37 +73,30 @@ td {
 	width: 50%;
 }
 
-h3:HOVER {
-	background-color: #eee;
-}
-
-h3 em {
-	font-style: normal;
-	color: navy;
-}
-
-h3 .info {
-	font-weight: normal;
-	float: right;
-}
 
 span.switch {
 	color: gray;
 	font-family: monospace;
 	font-weight: bold;
 	font-size: 16pt;
+	float : right;
 }
 
-table.order-group {
-	display: none;
-	margin-left: 1em;
+div.customers {
+	//background-color : red;
+	display : none;
 }
 
-.id-col {
-	width: 4em;
-	text-align: right;
-	padding-right: 1em;
+div.customer-details {
+	padding-left : 20px;
 }
+
+div.customer-details span.location {
+	float : right;
+	//background-color : red;
+	width : 100px;
+}
+
 
 #overlay {
 	display: none;
