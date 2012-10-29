@@ -1,6 +1,6 @@
 package com.lunch4you.domain;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -45,6 +47,7 @@ public class Order {
 
 	@NotNull
 	@Column(name = "time_stamp")
+	@Temporal( value = TemporalType.TIMESTAMP )
 	private Date timestamp;
 
 	@OneToMany( fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE } ) // TODO: this should be lazy in the future, but now we have only one item / order
