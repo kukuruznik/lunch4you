@@ -97,7 +97,29 @@ div.customer-details span.location {
 	width : 100px;
 }
 
+input {
+	margin: 0.5em auto;
+	display: block;
+}
+
+input[type=text], input[type=password] {
+	width: 100%;
+}
 
 #overlay {
 	display: none;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(128, 128, 128, 0.5);
+}
+
+#login-form {
+	width: 15em;
+	margin: 10em auto;
+	background-color: #eee;
+	padding: 1em 2em;
+	border: 1px solid gray;
 }

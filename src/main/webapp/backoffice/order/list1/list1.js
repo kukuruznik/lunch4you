@@ -21,6 +21,10 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			this._refresh();
 		},
 
+		update: function() {
+			this._refresh();
+		},
+
 		"h5 click": function( el, evt ) {
 			var elementId = el.attr( "id" );
 			// parse out articleId from the element id

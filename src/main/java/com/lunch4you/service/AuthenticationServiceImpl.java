@@ -43,7 +43,7 @@ public class AuthenticationServiceImpl implements UserDetailsService {
 				throw new UsernameNotFoundException( "Unknown user '" + username + "'!" );
 			
 			authorities.add( new GrantedAuthorityImpl( "ROLE_ADMIN" ) );
-			return new User( "kuchar", "szakacs", authorities );
+			return new User( "kuchar", "vari", authorities );
 		}
 	}
 }
