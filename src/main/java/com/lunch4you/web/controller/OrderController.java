@@ -68,7 +68,7 @@ public class OrderController {
 		return missingOrders;
 	}
 
-	@RequestMapping( value = "/backoffice/orders/active.json", method = RequestMethod.GET )
+	@RequestMapping( value = "/backoffice/orders/activeByDate.json", method = RequestMethod.GET )
 	public @ResponseBody
 	List<OrderDto> findActive() {
 		logger.trace( "OrderController.findActive called" );

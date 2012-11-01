@@ -7,20 +7,26 @@
 		<div id="overlay"></div>
 		<h2>Lunch4You Back-office</h2>
 		<hr>
-		
-<table cellspacing="0">
-	<tr>
-		<td>
-		
-			<ul id="meals1"></ul>
+		<div id="tabSelectors" class="tab-selectors">
+			<div id="tabSelector1" class="tab-selector" onClick="onTabClick(1);">cooking</div>
+			<div id="tabSelector2" class="tab-selector" onClick="onTabClick(2);">packaging</div>
+		</div>
+		<div class="tab-contents">
+			<div id="tabContent1" class="tab-content">
+				<table><tr><td>
+					<div id="meals1">
+					</div>
+					</td>
+					<td>
+					<div id="meals3">
+					</div>
+				</td></tr></table>
+			</div>
+			<div id="tabContent2" style="display : none;">
+				<ul id="meals2"></ul>
+			</div>
+		</div>
 
-		</td>
-		
-		<td>
-			<ul id="meals2"></ul>
-		</td>
-	</tr>
-</table>		
 		<script type='text/javascript' src='steal/steal.js?backoffice'></script>
 	</body>
 </html>

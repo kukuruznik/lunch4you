@@ -1,11 +1,11 @@
-steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( './views/list1.ejs', './views/articleWithOrders.ejs', function( $ ) {
+steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( './views/list3.ejs', './views/ordersByDate.ejs', function( $ ) {
 
 	/**
 	 * @class Backoffice.Order.List
 	 * @parent index
 	 * @inherits jQuery.Controller Lists articles.
 	 */
-	$.Controller( 'Backoffice.Order.List1',
+	$.Controller( 'Backoffice.Order.List3',
 
 	/** @Static */
 	{
@@ -14,7 +14,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 	/** @Prototype */
 	{
 		init: function() {
-			steal.dev.log( "Order list1 controller initialized" );
+			steal.dev.log( "Order list3 controller initialized" );
 			this.articleNames = [];
 			this.ordersByArticleMap = {};
 //			this.counter = 0;
@@ -52,7 +52,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_refresh: function() {
-			Backoffice.Models.Order.getActiveOrdersGroupedByArticle().done( this.proxy( "_renderOrdersGroupedByArticle" ) );
+			Backoffice.Models.Order.getActiveOrdersByDate().done( this.proxy( "_renderOrdersByDate" ) );
 			//			this.counter++;
 //			if ( this.counter < 20 )
 //				this.timeOutID = setTimeout( this.proxy( "_refresh" ), 1000 );
@@ -65,9 +65,9 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			this._refresh();
 		},
 
-		_renderOrdersGroupedByArticle: function( ordersGroupedByArticle ) {
+		_renderOrdersByDate: function( ordersByDate ) {
 			//console.log("_renderOrdersGroupedByArticle")
-			this.element.html( this.view( 'list1', ordersGroupedByArticle ) );
+			this.element.html( this.view( 'list3', ordersByDate ) );
 		},
 
 	} );

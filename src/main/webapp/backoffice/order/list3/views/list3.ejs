@@ -2,8 +2,10 @@
 <% if ( this.length == 0 ) { %>
 	<li>There are no active orders at the moment.</li>
 <% } %>
-<b>Table by locations</b>
+
+<b>Table by date</b>
+
 <% for ( var i = 0; i < this.length; i++ ) { %>
-		<%== $.View( '//backoffice/order/list2/views/deliveryLocationWithArticles.ejs', this[ i ] ) %>
+		<%== $.View( '//backoffice/order/list3/views/ordersByDate.ejs', this[ i ] ) %>
 <% } %>
 

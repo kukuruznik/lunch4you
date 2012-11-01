@@ -9,9 +9,10 @@ steal('jquery/model', 'jquery/lang/json', function(){
 $.Model('Backoffice.Models.Order',
 	/* @Static */
 	{
-	  	findActive: function( success, error ) {
+
+	  	getActiveOrdersByDate: function( success, error ) {
 	  		return $.ajax({
-	  			url: "backoffice/orders/active.json",
+	  			url: "backoffice/orders/activeByDate.json",
 	  			dataType: "json order.models",
 	  			success: success,
 	  			error: error || Backoffice.errorHandler

@@ -6,8 +6,6 @@
 <b>Table by articles</b>
 
 <% for ( var i = 0; i < this.length; i++ ) { %>
-	<li>
 		<%== $.View( '//backoffice/order/list1/views/articleWithOrders.ejs', this[ i ] ) %>
-	</li>
 <% } %>
 

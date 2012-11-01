@@ -58,7 +58,17 @@ h5:HOVER {
 	background-color: #eee;
 }
 
-h5 span.orderCount {
+div.tab-selectors{
+	border : 0px grey solid;
+}
+
+div.tab-selectors div.tab-selector{
+	display : inline;
+	text-decoration : underline;
+	cursor : pointer;
+}
+
+span.orderCount {
 	float : right;
 }
 
@@ -69,7 +79,7 @@ table {
 td {
 	vertical-align: top;
 	border: 1px solid silver;
-	padding: 1em;
+	padding: 0em;
 	width: 50%;
 }
 

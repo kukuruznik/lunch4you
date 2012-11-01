@@ -1,0 +1,8 @@
+<!% this is of class Order %>
+<!% var article = this.entity %>
+<% var order = this %>
+
+	<div>
+		<%= order.onlyItem.article.name_cz %> (<%= order.owner.firstName %>) <%= order.owner.lastName %>	
+		<span class="orderCount"><%= order.timeString %></span>
+	</div>
