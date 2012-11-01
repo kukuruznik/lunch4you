@@ -17,6 +17,15 @@ steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order
 			return this.locale;
 		},
 
+		getOtherLocale: function() {
+			var loc = this.getLocale();
+
+			if ( loc == "cz" )
+				return "en";
+			else
+				return "cz";
+		},
+
 		setLocale: function( locale ) {
 			for ( var i = 0; i < this._availableLocales.length; i++ ) {
 				if ( this._availableLocales[ i ] == locale ) {
@@ -81,16 +90,9 @@ steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order
 		},
 
 		"#change-lang click": function( el, evt ) {
-			var locale = Shop.Main.getLocale();
-			var newLocale;
-			console.log( "Current locale = ", locale );
+			var newLocale = Shop.Main.getOtherLocale();
 
-			if ( locale != "cz" )
-				newLocale = "cz";
-			else
-				newLocale = "en";
-
-			console.log( "Switching to ", newLocale );
+			steal.dev.log( "Switching to locale: ", newLocale );
 			Shop.Main.setLocale( newLocale );
 
 			// initiate screen refresh

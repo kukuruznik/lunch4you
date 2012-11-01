@@ -22,20 +22,14 @@
 			<option value="<%= deliveryLocations[ i ].id %>"><%= deliveryLocations[ i ].name %></option>
 		<% } %>
 		</select>
-		<!--span class="modifiable"><%= user.defaultDeliveryLocation.name %></span>
-		<div id="changeDeliveryLocationButton" class="link-button">Change</div-->
 	</div>
 </div>
 
-<!--form id="deliveryLocationForm" class="in-place" style="display:none;">
-	<br/>
-	<input id="submitDeliveryLocationButton" type="button" value="Done"/>
-	<input id="cancelChangeDeliveryLocationButton" type="button" value="Cancel"/>
-</form-->
-
-<h1><%= localize( meal.category, "name" ) %> - <%= localize( meal, "name" ) %></h1>
-<h3><%= msg( "order.detail.price" ) %>: <em><%= meal.price %>,- Kč</em></h3>
+<h4><%= localize( meal.category, "name" ) %></h4>
+<h1><%= localize( meal, "name" ) %></h1>
 <p id="description"><%= localize( meal, "description" ) %></p>
+
+<h3><%= msg( "order.detail.price" ) %>: <em><%= meal.price %>,- Kč</em></h3>
 
 <form id="confirm-order">
 	<input id="order" type="button" value="<%= msg( "order.detail.action.order" ) %>" />

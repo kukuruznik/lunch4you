@@ -45,7 +45,6 @@ public class Order {
 	@Enumerated( EnumType.STRING )
 	private Status status;
 
-	@NotNull
 	@Column(name = "time_stamp")
 	@Temporal( value = TemporalType.TIMESTAMP )
 	private Date timestamp;
