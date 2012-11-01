@@ -1,5 +1,11 @@
 - immutable articles
 
+
+- Menu administration
+
 - Menu Emailing
 	- unsubscribe feature
 	- recommend / invite other feature
+
+- Daily closeup (EOB)
+	- deactivate all orders from previous day
