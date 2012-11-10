@@ -50,11 +50,11 @@ INSERT INTO `delivery_location` VALUES
 (1,"DHL - Mailroom","DHL",1),
 (2,"SITA","SITA",1),
 (3,"INBEV","INBEV",1),
-(4,"OC Ruže","RUZE",1);
+(4,"Osobní Odběr - OC Ruže","RUZE",1);
 
 -- customers ------------------------------------------------------------------
 INSERT INTO `customer` VALUES
-(1,"Aleksey Senko (DHL CZ)","","alexey.senko@dhl.com","aBcDeFg","0","1","1"),
+(1,"Aleksey Senko (DHL CZ)","","ladislav.nemeth@gmail.com","aBcDeFg","0","1","1"),
 (2,"Alena Losikova (DHL CZ)","","","2xAxAxA","0","1","1"),
 (3,"Alena Palkova (DHL CZ)","","","3xAxAxA","0","1","1"),
 (4,"Alena Urbanova (DHL CZ)","","","4xAxAxA","0","1","1"),
