@@ -22,6 +22,7 @@ CREATE TABLE `article` (
   `name_en` varchar(255) NOT NULL,
   `description_cz` varchar(1000) DEFAULT NULL,
   `description_en` varchar(1000) DEFAULT NULL,
+  `new_flag` tinyint(1) NOT NULL DEFAULT '0',
   `package_type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
