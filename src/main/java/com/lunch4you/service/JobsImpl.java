@@ -21,11 +21,10 @@ public class JobsImpl implements Jobs {
 
 		LinkedHashMap<Long,CategoryWithArticles> groupedMenu = menuService.getArticlesByCategories();
 
-		List<Customer> allCustomers = menuService.getAllCustomers();
+		List<Customer> customers = menuService.getActiveCustomers();
 
-		for ( Customer customer : allCustomers ) {
+		for ( Customer customer : customers ) {
 			mailingService.sendMenu( customer, groupedMenu );
-			return;
 		}
 	}
 }
