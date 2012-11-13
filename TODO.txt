@@ -1,7 +1,10 @@
+- OrderItemDao
+	- implement various different ordering options used in backoffice views (in different order)
+
 
 - backoffice view
 	- cooking overview
-		- Table by articles - sort by category
+		- Table by articles - sort by category - rework to use OrderItem DAO
 
 - Packaging Type	P1
 	- create test data
@@ -9,13 +12,14 @@
 	- displaying package type and ordering in views / reports
 
 - Ordering
-	- some meaningful message after order has been submitted	
+	- some meaningful message after order has been submitted	P2
 
 - Menu Emailing
 	- correct ordering 		P1
 	- populate complete Article details (price, etc)	P1
 	- unsubscribe feature	P3
 	- recommend / invite other feature	P3
+	- ordering instructions	P2
 
 - Daily close up (EOB)
 	- deactivate all orders from previous day	P2
