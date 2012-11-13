@@ -1,5 +1,7 @@
 package com.lunch4you.service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -17,6 +19,7 @@ import com.lunch4you.dao.CategoryDao;
 import com.lunch4you.dao.CustomerDao;
 import com.lunch4you.dao.DeliveryLocationDao;
 import com.lunch4you.dao.OrderDao;
+import com.lunch4you.dao.filter.ArticleFilter;
 import com.lunch4you.dao.filter.CustomerFilter;
 import com.lunch4you.dao.filter.OrderFilter;
 import com.lunch4you.domain.Article;
@@ -158,7 +161,9 @@ public final class MenuServiceImpl implements MenuService {
 	@Override
 	public LinkedHashMap<Long, CategoryWithArticles> getArticlesByCategories() {
 
-		List<Article> articles = articleDao.loadAll();
+		ArticleFilter filter = new ArticleFilter();
+		filter.isActive = true;
+		List<Article> articles = articleDao.find(filter );
 		LinkedHashMap<Long, CategoryWithArticles> categoriesWithArticles = new LinkedHashMap<Long, CategoryWithArticles>();
 		for(Article article : articles){
 			Category category = article.getCategory();
@@ -174,13 +179,24 @@ public final class MenuServiceImpl implements MenuService {
 		return categoriesWithArticles;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lunch4you.service.MenuService#getActiveOrdersByArticle()
+	 * 
+	 * This method populates a list of Orders grouped into groups by Articles.
+	 * Ordering is by Article's category, article name (CZ) and then by individual orders
+	 */
 	@Override
 	public LinkedHashMap<Long,ArticleWithOrders> getActiveOrdersByArticle() {
-		
-		List<Order> orders = getActiveOrders();
+
+		/*
+		 * The implementation is quite complicated, because of ordering requirements.
+		 */
+
+		List<Article> allArticles = articleDao.loadAll();
 		LinkedHashMap<Long, ArticleWithOrders> articlesWithOrders = new LinkedHashMap<Long, ArticleWithOrders>();
-		for(Order order : orders){
-			Article article = order.getItems().get(0).getArticle();
+		
+		// first populate final map with all articles (ordered by category), so that final ordering is by category
+		for(Article article : allArticles){
 			
 			ArticleWithOrders articleWithOrders = articlesWithOrders.get(article.getId());
 			if(articleWithOrders == null){
@@ -188,9 +204,29 @@ public final class MenuServiceImpl implements MenuService {
 				articleWithOrders.entity = article;
 				articlesWithOrders.put(article.getId(), articleWithOrders);
 			}
+		}
+		
+		// populate the structure with the actual orders
+		List<Order> orders = getActiveOrders();
+		for(Order order : orders){
+			Article article = order.getItems().get(0).getArticle();
+			
+			ArticleWithOrders articleWithOrders = articlesWithOrders.get(article.getId());
 			articleWithOrders.items.put(order.getId(), order);
 		}
-						
+		
+		// remove any empty Article groups (with no orders)
+		Collection<ArticleWithOrders> temp = new ArrayList<ArticleWithOrders>();
+		// need to create a new temporary collection for future iteration to prevent concurrent modification of linked hash set
+		temp.addAll(articlesWithOrders.values());
+		for(ArticleWithOrders articleWithOrders : temp){
+			
+			boolean empty = articleWithOrders.getItems().isEmpty();
+			if(empty){
+				articlesWithOrders.remove(articleWithOrders.entity.getId());
+			}
+		}
+
 		return articlesWithOrders;
 	}
 

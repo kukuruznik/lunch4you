@@ -17,7 +17,6 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			steal.dev.log( "Order list3 controller initialized" );
 			this.articleNames = [];
 			this.ordersByArticleMap = {};
-//			this.counter = 0;
 			this._refresh();
 		},
 

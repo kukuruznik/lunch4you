@@ -2,17 +2,35 @@
 <% var deliveryLocation = this.entity %>
 <% var articlesWithOrders = this.items %>
 
-<h4><%= deliveryLocation.abbreviation %></h4>
+<td style="width : 100px; padding : 4px;">
+	<h4><%= deliveryLocation.abbreviation %></h4>
+</td>
 
+<td style="width : 600px; border : 0px;">
 <% for ( var i = 0; i < articlesWithOrders.length; i++ ) { %>
 	<% var articleWithOrders = articlesWithOrders[i] %>
 	<% var article = articleWithOrders.entity %>
 	<% var orders = articleWithOrders.items %>
-	<h5><%= article.name_cz %> - <%= orders.length %></h5>
-
+	<table style="border : 0px;" cellspacing="0" cellpadding="0">
+		<tr>
+			<td style="padding : 2px;">
+	<%= article.name_cz %> - <%= orders.length %>
+			</td>
+			
+			<td style="border : 0;">
+			
+				<table style="border : 0px;" border="0" cellspacing="0" cellpadding="0">
 	<% for ( var j = 0; j < orders.length; j++ ) { %>
 		<% var order = orders[j] %>
-		&nbsp;&nbsp;&nbsp;&nbsp;<%= order.owner.firstName %> <%= order.owner.lastName %><br>
+					<tr>
+						<td style="border-width : 1px; padding : 2px;">
+							<%= order.owner.firstName %> <%= order.owner.lastName %><br>
+						</td>
+					</tr>
 	<% } %>
-
+				</table>
+			</td>
+		</tr>
+	</table>
 <% } %>
+</td>

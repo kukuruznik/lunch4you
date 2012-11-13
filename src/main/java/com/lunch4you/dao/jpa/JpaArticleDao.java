@@ -1,7 +1,12 @@
 package com.lunch4you.dao.jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Order;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
@@ -21,13 +26,26 @@ public class JpaArticleDao extends AbstractReadWriteDao<Article, Long, ArticleFi
 
 	@Override
 	protected CriteriaQuery<Article> getCriteriaForFilter( ArticleFilter f ) {
-		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-		CriteriaQuery<Article> cq = cb.createQuery( Article.class );
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Article> cq = builder.createQuery( Article.class );
 		Root<Article> root = cq.from( Article.class );
 		cq.select( root );
-		cq.orderBy( cb.asc( root.get( "name_cz" ) ) );
 
-		// TODO implement filtering
+		if ( f != null ) {
+			Predicate p = builder.and(); // always true
+
+			if ( f.isActive != null )
+				p = builder.and( p, builder.equal( root.get( "isActive" ), f.isActive ) );
+
+			cq.where( p );
+		}
+		
+		List<Order> orderByList = new ArrayList<Order>();
+		orderByList.add(builder.asc( root.get( "category" ).get("sortOrder") ));
+		orderByList.add(builder.asc( root.get( "name_cz" ) ));
+		cq.orderBy( orderByList );
+		
+
 		return cq;
 	}
 }
