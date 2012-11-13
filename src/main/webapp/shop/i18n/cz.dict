@@ -17,5 +17,6 @@
 
 	"order.detail.action.change": "změnit",
 	"order.detail.action.order": "Potvrdit objednávku",
+	"order.detail.action.orderedMsg": "Děkujeme za Vaši objednávku! \nZa malou chvíli obdržíte potvrzujíci email s detaily Vaší objednávky.",
 	"order.detail.action.changeLanguage": "English"
 }

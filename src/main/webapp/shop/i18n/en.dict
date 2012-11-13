@@ -17,5 +17,6 @@
 
 	"order.detail.action.change": "change",
 	"order.detail.action.order": "Confirm Order",
+	"order.detail.action.orderedMsg": "Thank you for ordering! \nIn a short moment you will receive a confirmation email with details of your order.",
 	"order.detail.action.changeLanguage": "Čeština"
 }

@@ -73,8 +73,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			var deliveryLocationId = $( "#deliveryLocationsSelect" ).val();
 			
 			Shop.Models.Order.create( this.article, this.customer, deliveryLocationId, function( order ) {
-				alert( "Ordered!\n" +
-						"Pay us " + order.getTotal() + " bucks!" );
+				alert($.EJS.Helpers.prototype.msg("order.detail.action.orderedMsg"));
 				self._enableOrder( true );
 			} );
 		},
