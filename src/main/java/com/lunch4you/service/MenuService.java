@@ -11,6 +11,7 @@ import com.lunch4you.domain.Customer;
 import com.lunch4you.domain.DeliveryLocation;
 import com.lunch4you.domain.DeliveryLocationWithArticles;
 import com.lunch4you.domain.Order;
+import com.lunch4you.domain.OrderItem;
 
 public interface MenuService {
 
@@ -38,10 +39,13 @@ public interface MenuService {
 
 	List<Order> getActiveOrders();
 
+	List<OrderItem> getActiveOrderItems();
+
 	LinkedHashMap<Long, ArticleWithOrders> getActiveOrdersByArticle();
 
 	LinkedHashMap<Long, DeliveryLocationWithArticles> getActiveOrdersByDeliveryLocation();
 	
 	List<Long> closeOrders( List<Long> ids );
+
 
 }

@@ -19,6 +19,7 @@ import com.lunch4you.dao.CategoryDao;
 import com.lunch4you.dao.CustomerDao;
 import com.lunch4you.dao.DeliveryLocationDao;
 import com.lunch4you.dao.OrderDao;
+import com.lunch4you.dao.OrderItemDao;
 import com.lunch4you.dao.filter.ArticleFilter;
 import com.lunch4you.dao.filter.CustomerFilter;
 import com.lunch4you.dao.filter.OrderFilter;
@@ -52,7 +53,10 @@ public final class MenuServiceImpl implements MenuService {
 	
 	@Autowired
 	private OrderDao orderDao;
-	
+
+	@Autowired
+	private OrderItemDao orderItemDao;
+
 	@Autowired
 	private MailingService mailingService;
 
@@ -154,6 +158,16 @@ public final class MenuServiceImpl implements MenuService {
 		return orders;
 	}
 
+	@Override
+	public List<OrderItem> getActiveOrderItems() {
+		OrderFilter filter = new OrderFilter();
+		filter.status = Order.Status.OPEN;
+
+		List<OrderItem> orderItems = orderItemDao.find( filter );
+
+		return orderItems;
+	}
+
 	/* (non-Javadoc)
 	 * @see com.lunch4you.service.MenuService#getArticlesByCategories()
 	 * Returns all Articles grouped by Categories. Used for generating menu.
@@ -233,16 +247,17 @@ public final class MenuServiceImpl implements MenuService {
 	@Override
 	public LinkedHashMap<Long,DeliveryLocationWithArticles> getActiveOrdersByDeliveryLocation() {
 
-		List<Order> orders = getActiveOrders();
+		List<OrderItem> orderItems = getActiveOrderItems();
 		
 		/*
 		 * Creates a compelte structure of groups. Structure is being formed during iteration
 		 * over all orders and creating Location or Article groups on-the-fly
 		 */
 		LinkedHashMap<Long, DeliveryLocationWithArticles> locationsWithArticles = new LinkedHashMap<Long, DeliveryLocationWithArticles>();
-		for(Order order : orders){
+		for(OrderItem orderItem : orderItems){
+			Order order = orderItem.getOrder();
 			DeliveryLocation location = order.getDeliveryLocation();
-			Article article = order.getItems().get(0).getArticle();
+			Article article = orderItem.getArticle();
 			
 			DeliveryLocationWithArticles locationWithArticles = locationsWithArticles.get(location.getId());
 			if(locationWithArticles == null){
@@ -250,6 +265,9 @@ public final class MenuServiceImpl implements MenuService {
 				locationsWithArticles.put(location.getId(), locationWithArticles);
 			}
 			locationWithArticles.entity = location;
+			
+			// increase count of OrderItems in this group
+			locationWithArticles.countOrderItems ++;
 			
 			ArticleWithOrders articleWithOrders = locationWithArticles.items.get(article.getId());
 			if(articleWithOrders == null){
