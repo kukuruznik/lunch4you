@@ -30,6 +30,11 @@ public class OrderItem {
 	@JoinColumn( name = "article_id" )
 	private Article article;
 
+//	insert="false" update="false"
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn( name = "order_id", insertable=false, updatable=false  )
+	private Order order;
+
 	public Long getId() {
 		return id;
 	}
@@ -62,6 +67,14 @@ public class OrderItem {
 		this.article = articleId;
 	}
 
+	public Order getOrder() {
+		return order;
+	}
+	
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append( '(' ).append( id ).append( ") " );
@@ -70,4 +83,5 @@ public class OrderItem {
 		sb.append( " = " ).append( article == null ? "N/A" : article.getPrice() * amount ).append( " credit(s)" );
 		return sb.toString();
 	}
+
 }

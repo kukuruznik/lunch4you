@@ -41,7 +41,7 @@ public class MailingServiceImpl implements MailingService {
 			public void prepare( MimeMessage mimeMessage ) throws Exception {
 				MimeMessageHelper helper = new MimeMessageHelper( mimeMessage , "UTF-8");
 				Map<String, Object> model = new HashMap<String, Object>();
-				model.put( "token", customer.getToken() );
+				model.put( "customer", customer);
 				model.put( "shopURL", shopURL );
 				model.put( "categoriesWithArticles", categoriesWithArticles.values() );
 				

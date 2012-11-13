@@ -127,6 +127,7 @@ public class OrderController {
 			DeliveryLocation deliveryLocation = deliveryLocationWithArticles.entity;
 			DeliveryLocationWithArticlesDto deliveryLocationWithArticlesDto = new DeliveryLocationWithArticlesDto();
 			deliveryLocationWithArticlesDto.entity = beanMapper.map( deliveryLocation, DeliveryLocationDto.class );
+			deliveryLocationWithArticlesDto.countOrderItems = deliveryLocationWithArticles.countOrderItems;
 			
 			for ( ArticleWithOrders articleWithOrders : deliveryLocationWithArticles.items.values() ){				
 				Article article = articleWithOrders.entity;

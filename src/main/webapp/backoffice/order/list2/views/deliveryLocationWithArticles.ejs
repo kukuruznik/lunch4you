@@ -1,9 +1,12 @@
 <!% this is of class DeliveryLocationWithArticlesDto %>
 <% var deliveryLocation = this.entity %>
 <% var articlesWithOrders = this.items %>
+<% var countOrderItems = this.countOrderItems %>
 
 <td style="width : 100px; padding : 4px;">
-	<h4><%= deliveryLocation.abbreviation %></h4>
+	<h4><%= deliveryLocation.abbreviation %> </h4>
+	<%= countOrderItems %> 
+	
 </td>
 
 <td style="width : 600px; border : 0px;">

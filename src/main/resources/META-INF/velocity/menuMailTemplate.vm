@@ -1,18 +1,81 @@
-Your token is ${token}.
+<html>
+	<head>
+		<style>
+			body{
+			}
+			
+			table.menuTable {
+				table-layout : fixed;
+				border-collapse : collapse;
+				width : 1000px;
+			}
 
-The menu for today is:<br>
+			table.menuTable td {
+				border : 0px #eeeeee solid;
+			}
+			
+			table.menuTable tr.headerRow td{
+			}
+			
+			table.menuTable td.categoryCell {
+				//width : 100%;
+				font-size : 1.5em;
+				font-weight : bold;
+				padding-top : 20px;
+			}
+
+			table.menuTable td.articleCell {
+				width : *;
+			}
+
+			table.menuTable td.priceCell {
+				width : 100px;
+			}
+		</style>
+	</head>
+	
+	<body>
+Customer: ${customer.token}.
+
+
+
+#set( $articleCounter = 0 )
+
+	<table border="0" class="menuTable">
+		<tr class="headerRow">
+			<td class="articleCell"></td>
+			<td class="priceCell"></td>	
+		</tr>
 #foreach( ${categoryWithArticles} in ${categoriesWithArticles} )
-	#set( $category = $categoryWithArticles.entity )
-	<h3>${category.name_cz} / ${category.name_en}</h3>
-	#foreach( ${article} in ${categoryWithArticles.items} )
-		<a href="${shopURL}#view=order&meal=${article.Id}&token=${token}">
-		${article.name_cz}
-		#if( ${article.name_en} != "" )
-			/ ${article.name_en}
-		#end 
-		</a>
-		<br>
+		#set( $category = $categoryWithArticles.entity )
+		<tr>
+			<td colspan="2" class="categoryCell">
+				${category.name_cz} / ${category.name_en}
+			</td>
+		</tr>
+		#foreach( ${article} in ${categoryWithArticles.items} )
+		#set( $articleCounter = $articleCounter + 1 )
+		<tr>
+			<td class="articleCell">
+			${articleCounter}. <a href="${shopURL}#view=order&meal=${article.Id}&token=${customer.token}">
+			${article.name_cz}
+			#if( ${article.name_en} != "" )
+				/ ${article.name_en}
+			#end 
+			</a>
+			- 
+			${article.description_cz}
+			#if( ${article.description_en} != "" )
+				/ ${article.description_en}
+			#end 
+			</td>
+			<td class="priceCell">
+				${article.price} CZK,-
+			</td>
+		</tr>
 	#end
 
 #end
-
+	</table>
+	</body>
+</html>
