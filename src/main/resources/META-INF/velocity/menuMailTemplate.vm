@@ -35,7 +35,8 @@
 	</head>
 	
 	<body>
-Customer: ${customer.token}.
+
+Customer: ${customer.firstName} ${customer.lastName} &lt;${customer.email}&gt;
 
 
 
