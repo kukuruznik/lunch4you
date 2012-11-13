@@ -193,6 +193,32 @@ span.flag {
 }
 
 a.meal {
-	text-align: center;
-	display: block;
+}
+
+#menuTable {
+	table-layout : fixed;
+	border-collapse : collapse;
+	width : 100%;
+}
+
+#menuTable td {
+	border : 0px #eeeeee solid;
+}
+
+#menuTable tr.headerRow td{
+}
+
+#menuTable td.categoryCell {
+	//width : 100%;
+	font-size : 1.5em;
+	font-weight : bold;
+	padding-top : 20px;
+}
+
+#menuTable td.articleCell {
+	width : *;
+}
+
+#menuTable td.priceCell {
+	width : 100px;
 }
