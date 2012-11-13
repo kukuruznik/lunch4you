@@ -15,6 +15,7 @@
 	- some meaningful message after order has been submitted	P2
 
 - Menu Emailing
+	- Manual triggering of menu emailing P1
 	- correct ordering 		P1
 	- populate complete Article details (price, etc)	P1
 	- unsubscribe feature	P3
@@ -26,3 +27,8 @@
 	
 - Menu administration P4
 	
+	
+- Different installation packages for DEV and PROD versions
+	- Differences:
+		- shop URL (localhost vs. www.lunch4you.cz)
+		- emailing job enabled / disabled
