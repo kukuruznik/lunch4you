@@ -1,11 +1,24 @@
-- immutable articles
 
+- backoffice view
+	- cooking overview
+		- Table by articles - sort by category
 
-- Menu administration
+- Packaging Type	P1
+	- create test data
+	- modify INSERT script on google spreadsheet
+	- displaying package type and ordering in views / reports
+
+- Ordering
+	- some meaningful message after order has been submitted	
 
 - Menu Emailing
-	- unsubscribe feature
-	- recommend / invite other feature
+	- correct ordering 		P1
+	- populate complete Article details (price, etc)	P1
+	- unsubscribe feature	P3
+	- recommend / invite other feature	P3
 
-- Daily closeup (EOB)
-	- deactivate all orders from previous day
+- Daily close up (EOB)
+	- deactivate all orders from previous day	P2
+	
+- Menu administration P4
+	
