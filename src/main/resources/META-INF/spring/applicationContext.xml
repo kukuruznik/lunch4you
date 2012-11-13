@@ -105,9 +105,9 @@
 
 	<bean id="jobs" class="com.lunch4you.service.JobsImpl"/>
 
-	<task:scheduled-tasks scheduler="scheduler">
+	<!-- task:scheduled-tasks scheduler="scheduler">
 		<task:scheduled ref="jobs" method="emailMenu" cron="${email.schedule}"/>
-	</task:scheduled-tasks>
+	</task:scheduled-tasks -->
 
 	<task:scheduler id="scheduler"/>
 </beans>
