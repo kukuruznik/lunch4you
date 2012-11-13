@@ -48,6 +48,7 @@ CREATE TABLE `customer` (
   `token` varchar(50) NOT NULL,
   `credit` int(11) NOT NULL DEFAULT '0',
   `version` int(11) DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `default_delivery_location_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `customer_default_delivery_location_id` (`default_delivery_location_id`),
