@@ -38,6 +38,8 @@ public class Customer {
 	@NotNull
 	private Integer credit;
 
+	private Boolean isActive = true;
+
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
 	@JoinColumn( name = "default_delivery_location_id" )
 	private DeliveryLocation defaultDeliveryLocation;
@@ -96,6 +98,14 @@ public class Customer {
 
 	public void setCredit( Integer credit ) {
 		this.credit = credit;
+	}
+
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	public DeliveryLocation getDefaultDeliveryLocation() {

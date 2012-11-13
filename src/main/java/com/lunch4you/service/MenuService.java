@@ -47,5 +47,7 @@ public interface MenuService {
 	
 	List<Long> closeOrders( List<Long> ids );
 
+	List<Customer> getActiveCustomers();
+
 
 }

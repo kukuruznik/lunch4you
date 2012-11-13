@@ -85,6 +85,13 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
+	public List<Customer> getActiveCustomers() {
+		CustomerFilter filter = new CustomerFilter();
+		filter.isActive = true;
+		return customerDao.find(filter );
+	}
+
+	@Override
 	public Customer registerCustomer( String firstName, String lastName, String email, Long defaultDeliveryLocationId ) {
 		
 		DeliveryLocation ddl = deliveryLocationDao.load( defaultDeliveryLocationId );
