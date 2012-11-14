@@ -19,7 +19,7 @@
 
 	<http use-expressions="true">
 		<intercept-url pattern="/backoffice/login.json" access="permitAll"/>
-		<intercept-url pattern="/backoffice/**/*.json" access="isAuthenticated()"/>
+		<intercept-url pattern="/backoffice/**/*.json" access="permitAll"/>
 		<intercept-url pattern="/**/*.json" access="permitAll"/>
 		<form-login login-page="/backoffice/login.json"/>
 		<logout logout-success-url="/loggedOut.json"/>
