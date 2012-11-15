@@ -43,6 +43,7 @@ public class JpaOrderItemDao extends AbstractReadWriteDao<OrderItem, Long, Order
 		List<Order> orderByList = new ArrayList<Order>();
 		orderByList.add( builder.asc( root.get("order").get( "deliveryLocation" ).get("abbreviation") ) );
 		orderByList.add( builder.asc( root.get("article").get( "category" ).get("sortOrder") ) );
+		orderByList.add( builder.asc( root.get("article").get("name_cz") ) );
 		orderByList.add( builder.asc( root.get("order").get( "owner" ).get("firstName") ) );
 		cq.orderBy( orderByList );
 
