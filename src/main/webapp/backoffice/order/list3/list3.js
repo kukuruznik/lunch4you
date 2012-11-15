@@ -67,7 +67,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		_renderOrdersByDate: function( ordersByDate ) {
 			//console.log("_renderOrdersGroupedByArticle")
 			this.element.html( this.view( 'list3', ordersByDate ) );
-		},
+		}
 
 	} );
 

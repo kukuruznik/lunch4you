@@ -71,7 +71,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		_renderOrdersGroupedByArticle: function( ordersGroupedByArticle ) {
 			//steal.dev.log("_renderOrdersGroupedByArticle")
 			this.element.html( this.view( 'list1', ordersGroupedByArticle ) );
-		},
+		}
 
 	} );
 
