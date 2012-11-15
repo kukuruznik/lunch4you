@@ -1,5 +1,7 @@
 package com.lunch4you.web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.dozer.Mapper;
@@ -52,6 +54,23 @@ public class CustomerController {
 	
 			return customerDto;
 		}
+	}
+
+	@RequestMapping( value = "/customers/sendMenu.json", method = RequestMethod.GET )
+	public @ResponseBody
+	List<CustomerDto> sendMenu( ) {
+		logger.trace( "CustomerController.sendMenu called" );
+
+		List<Customer> customers = menuService.sendMenu();
+		
+		List<CustomerDto> customerDtos = new ArrayList<CustomerDto>();
+		
+		for(Customer customer : customers){
+			CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
+			customerDtos.add(customerDto);
+		}
+		
+		return customerDtos;
 	}
 
 	@RequestMapping( value = "/customers", method = RequestMethod.POST )

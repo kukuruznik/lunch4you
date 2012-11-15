@@ -290,6 +290,20 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
+	public List<Customer> sendMenu( ) {
+
+		LinkedHashMap<Long,CategoryWithArticles> groupedMenu = getArticlesByCategories();
+
+		List<Customer> customers = getActiveCustomers();
+
+		for ( Customer customer : customers ) {
+			mailingService.sendMenu( customer, groupedMenu );
+		}
+		
+		return customers;
+	}
+
+	@Override
 	public List<Long> closeOrders( List<Long> ids ) {
 		OrderFilter filter = new OrderFilter();
 		filter.status = Order.Status.OPEN;

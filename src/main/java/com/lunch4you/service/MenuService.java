@@ -49,5 +49,7 @@ public interface MenuService {
 
 	List<Customer> getActiveCustomers();
 
+	List<Customer> sendMenu();
+
 
 }
