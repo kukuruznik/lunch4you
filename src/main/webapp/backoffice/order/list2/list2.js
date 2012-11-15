@@ -26,6 +26,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 
 		_refresh: function() {
 			Backoffice.Models.Order.getActiveOrdersGroupedByDeliveryLocation().done( this.proxy( "_renderOrdersGroupedByDeliveryLocation" ) );
+			this.timeOutID = setTimeout( this.proxy( "_refresh" ), 60000 );
 		},
 
 		_renderOrdersGroupedByDeliveryLocation: function( ordersGroupedByArticle ) {

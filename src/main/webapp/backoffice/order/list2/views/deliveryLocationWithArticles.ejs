@@ -3,31 +3,31 @@
 <% var articlesWithOrders = this.items %>
 <% var countOrderItems = this.countOrderItems %>
 
-<td style="width : 100px; padding : 4px;">
-	<h4><%= deliveryLocation.abbreviation %> </h4>
+<td class="deliveryLocationCell">
+	<%= deliveryLocation.abbreviation %><br>
 	<%= countOrderItems %> 
 	
 </td>
 
-<td style="width : 600px; border : 0px;">
+<td class="articlesCell">
 <% for ( var i = 0; i < articlesWithOrders.length; i++ ) { %>
 	<% var articleWithOrders = articlesWithOrders[i] %>
 	<% var article = articleWithOrders.entity %>
 	<% var orders = articleWithOrders.items %>
-	<table style="border : 0px;" cellspacing="0" cellpadding="0">
+	<table class="articlesTable">
 		<tr>
-			<td style="padding : 2px;">
-	<%= article.name_cz %> - <%= orders.length %>
+			<td class="articleCell" style="padding : 2px;">
+				<%= article.name_cz %> - <%= orders.length %>
 			</td>
 			
-			<td style="border : 0;">
+			<td class="ordersCell">
 			
-				<table style="border : 0px;" border="0" cellspacing="0" cellpadding="0">
+				<table class="ordersTable">
 	<% for ( var j = 0; j < orders.length; j++ ) { %>
 		<% var order = orders[j] %>
 					<tr>
-						<td style="border-width : 1px; padding : 2px;">
-							<%= order.owner.firstName %> <%= order.owner.lastName %><br>
+						<td class="orderCell">
+							<%= order.owner.firstName %> <%= order.owner.lastName %>
 						</td>
 					</tr>
 	<% } %>

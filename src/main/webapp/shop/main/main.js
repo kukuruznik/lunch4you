@@ -64,7 +64,7 @@ steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order
 
 		"{window} hashchange": function( el, evt ) {
 			Shop.params = $.bbq.getState();
-			console.log( "Hash changed: ", Shop.params );
+			steal.dev.log( "Hash changed: ", Shop.params );
 
 			// URL validation and view selection
 			switch ( Shop.params.view ) {

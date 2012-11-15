@@ -2,8 +2,10 @@
 <% var article = this.entity %>
 <% var orders = this.items %>
 
-	<h5 id="article<%= article.id %>"><%= article.name_cz %> 
+	<h5 id="article<%= article.id %>">
+		<span class="articleName"><%= article.name_cz %></span>
 		<span class="orderCount"><%= orders.length %></span>
+		<div style="clear : both;"></div>
 	</h5>
 	<div id="customersForArticle<%= article.id %>" class="customers">
 	<% for ( var i = 0; i < orders.length; i++ ) { %>

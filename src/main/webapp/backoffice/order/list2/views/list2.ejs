@@ -1,12 +1,12 @@
-<% console.log( this ) %>
 <% if ( this.length == 0 ) { %>
-	<li>There are no active orders at the moment.</li>
+	<div>There are no active orders at the moment.</div>
 <% } %>
-<table style="table-layout:fixed; width : 600px; border-width : 2px;" cellspacing="0" cellpadding="0">
 <% for ( var i = 0; i < this.length; i++ ) { %>
+<table id="packagingTable">
 	<tr>
 		<%== $.View( '//backoffice/order/list2/views/deliveryLocationWithArticles.ejs', this[ i ] ) %>
 	</tr>
-<% } %>
 </table>
+<br class="pageBreak">
+<% } %>
 

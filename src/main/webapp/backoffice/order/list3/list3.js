@@ -54,7 +54,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			Backoffice.Models.Order.getActiveOrdersByDate().done( this.proxy( "_renderOrdersByDate" ) );
 			//			this.counter++;
 //			if ( this.counter < 20 )
-//				this.timeOutID = setTimeout( this.proxy( "_refresh" ), 1000 );
+				this.timeOutID = setTimeout( this.proxy( "_refresh" ), 60000 );
 		},
 
 		_handleCloseResponse: function( notFound ) {

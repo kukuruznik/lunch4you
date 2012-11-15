@@ -2,7 +2,18 @@
 <!% var article = this.entity %>
 <% var order = this %>
 
-	<div>
-		<%= order.onlyItem.article.name_cz %> (<%= order.owner.firstName %>) <%= order.owner.lastName %>	
-		<span class="orderCount"><%= order.timeString %></span>
+	<div class="orderRow">
+		<span class="articleName">
+			<%= order.onlyItem.article.name_cz %>
+		</span>
+		<span class="customerDetails">
+			<a href="mailto:<%= order.owner.email %>" target="newMail"><%= order.owner.firstName %> <%= order.owner.lastName %></a>
+		</span>
+
+		<span class="deliveryLocation">
+			<%= order.deliveryLocation.abbreviation %>
+		</span>
+		 	
+		<span class="orderTime"><%= order.timeString %></span>
+		<div style="clear : both;"></div>
 	</div>

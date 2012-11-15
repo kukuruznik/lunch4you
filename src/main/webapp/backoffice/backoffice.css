@@ -2,7 +2,7 @@ body {
 	font-family:Lucida Sans,Lucida Grande,Arial,sans-serif;
 	margin:0;
 	line-height:22px;
-	width:960px;
+	width:1080px;
 	margin:0 auto;
 }
 h1 {
@@ -11,11 +11,6 @@ h1 {
 	line-height:30px;
 }
 
-ul{
-	padding: 0; 
-	list-style : none;
-	margin: 0;
-}
 
 a {
 	color:#ae3d26;
@@ -44,7 +39,45 @@ h4 {
 	color: gray;
 }
 
-h5 {
+br.pageBreak {
+	page-break-after : always;
+}
+
+h5:HOVER {
+	background-color: #eee;
+}
+
+div.tab-selectors{
+	border : 0px grey solid;
+	margin-bottom : 10px;
+}
+
+div.tab-selectors div.tab-selector{
+	display : inline;
+	text-decoration : underline;
+	cursor : pointer;
+}
+
+#cookingViewTable {
+	width: *;
+	border-spacing : 10px;
+	table-layout : fixed;
+}
+
+
+#cookingViewTable td{
+	padding : 10px;
+	vertical-align: top;
+	border: 1px solid silver;
+}
+
+#meals1{
+	overflow : hidden;
+	width : 400px;
+}
+
+
+#meals1 h5 {
 	margin: 0;
 	padding: 0.25em;
 	background-color: #ccf;
@@ -54,35 +87,138 @@ h5 {
 	cursor : pointer;
 }
 
-h5:HOVER {
-	background-color: #eee;
+#meals1 .articleName {
+	position : relative;
+	width : 350px;
+	white-space : nowrap;
+	overflow : hidden;
+	display : block;
+	float : left;
+	border : 0px black solid;
 }
 
-div.tab-selectors{
-	border : 0px grey solid;
-}
-
-div.tab-selectors div.tab-selector{
-	display : inline;
-	text-decoration : underline;
-	cursor : pointer;
-}
-
-span.orderCount {
+#meals1 .orderCount {
 	float : right;
+	padding-right : 0px;
+	border : 0px black solid;
 }
 
-table {
-	width: 100%;
+#meals3{
+	width : 620px;
 }
 
-td {
-	vertical-align: top;
-	border: 1px solid silver;
-	padding: 0em;
-	width: 50%;
+#meals3 .orderRow {
+	background-color : #eeeeee;
+	border: 1px lightgray solid;
+	border-bottom : 0;
+	padding : 2px;
 }
 
+#meals3 .articleName {
+	width : 230px;
+	white-space : nowrap;
+	overflow : hidden;
+	xdisplay : block;
+	float : left;
+	padding-left : 5px;
+	border : 0px black solid;
+}
+
+#meals3 .customerDetails {
+	width : 250px;
+	white-space : nowrap;
+	overflow : hidden;
+	display : block;
+	float : left;
+	padding-left : 5px;
+	border : 0px black solid;
+}
+
+#meals3 .deliveryLocation {
+	width : 50px;
+	white-space : nowrap;
+	overflow : hidden;
+	display : block;
+	float : left;
+	padding-left : 5px;
+	border : 0px black solid;
+}
+
+#meals3 .orderTime {
+	float : right;
+	padding-right : 5px;
+	border : 0px black solid;
+}
+
+/***************************************/
+
+#meals2 #packagingTable{
+	table-layout:fixed; 
+	width : 1000px;
+	border-spacing : 0px;
+	//border-collapse:collapse;
+	border : 2px black solid;
+	font-size : 1.5em; 
+}
+
+
+#meals2 #packagingTable td{
+	/* This coloroverrides all different colors for particular cells */
+	border-color : black;
+}
+
+
+#meals2 .deliveryLocationCell {
+	border : 2px red solid;
+	width : 80px; 
+	padding : 4px;
+	vertical-align : top;
+}
+
+#meals2 .articlesCell {
+	border : 0px red solid;
+	padding : 0px;
+	width : *; 
+}
+
+#meals2 .articlesTable {
+	table-layout : fixed;
+	width : 100%;
+	border-spacing : 0px;
+	//border-collapse:collapse;
+	border : 0px black solid;
+}
+
+
+#meals2 .articlesTable td{
+	padding : 0px;
+}
+
+#meals2 .articleCell {
+	width : 500px; 
+	padding : 4px;
+	vertical-align : top;
+	border : 2px gray solid;
+}
+
+#meals2 .ordersCell {
+	width : *; 
+	border : 0px gray solid;
+}
+
+#meals2 .ordersTable {
+	table-layout : fixed;
+	width : 100%;
+	border-spacing : 0px;
+	//border-collapse : collapse;
+	border : 0px green solid;
+}
+
+#meals2 .ordersTable td {
+	border : 2px lightgreen solid;
+	height : 1.5em;
+	padding-left : 4px;
+}
 
 span.switch {
 	color: gray;

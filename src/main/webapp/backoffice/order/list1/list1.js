@@ -1,6 +1,8 @@
 steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( './views/list1.ejs', './views/articleWithOrders.ejs', function( $ ) {
 
 	/**
+	 * Cooking view - Orders grouped by Articles
+	 * 
 	 * @class Backoffice.Order.List
 	 * @parent index
 	 * @inherits jQuery.Controller Lists articles.
@@ -52,10 +54,11 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_refresh: function() {
-			Backoffice.Models.Order.getActiveOrdersGroupedByArticle().done( this.proxy( "_renderOrdersGroupedByArticle" ) );
-			//			this.counter++;
+			Backoffice.Models.Order.getActiveOrdersGroupedByArticle().done( this.proxy( "_renderOrdersGroupedByArticle" ) );			
+//			this.counter++;
 //			if ( this.counter < 20 )
-//				this.timeOutID = setTimeout( this.proxy( "_refresh" ), 1000 );
+				this.timeOutID = setTimeout( this.proxy( "_refresh" ), 60000 );
+				//alert(this.timeOutID);
 		},
 
 		_handleCloseResponse: function( notFound ) {
@@ -66,7 +69,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_renderOrdersGroupedByArticle: function( ordersGroupedByArticle ) {
-			//console.log("_renderOrdersGroupedByArticle")
+			//steal.dev.log("_renderOrdersGroupedByArticle")
 			this.element.html( this.view( 'list1', ordersGroupedByArticle ) );
 		},
 

@@ -9,7 +9,7 @@ steal(
 	steal.dev.log( "Lunch4you back-office started." );
 
 	Backoffice.errorHandler = function( jqXHR, textStatus, error ) {
-		console.log( "response error ", jqXHR.status );
+		steal.dev.log( "response error ", jqXHR.status );
 		if ( jqXHR.status == 404 ) {
 			$( '#overlay' ).common_login();
 		} else {
