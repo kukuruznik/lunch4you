@@ -1,1 +1,17 @@
-You have ordered ${order.Items.get(0).Article.Name_en} for ${order.Items.get(0).Article.Price} bucks.
+Dear customer,
+
+This is an automated confirmation email about your recently placed order to Lunch4you service. Please note that some links within this email are personalized for your account, do not forward this email to other recipients.
+
+Order details:
+
+Meal:               ${order.Items.get(0).Article.Name_cz}/${order.Items.get(0).Article.Name_en}
+Price:              ${order.Items.get(0).Article.Price},- CZK.
+Delivery location:  ${order.deliveryLocation.name}
+Ordered on:         ${orderDateFormatted}
+
+
+For further ordering please use following link:
+${shopURL}#view=menu&token=${order.owner.token}
+
+Important Note!!!
+This is automatically generated email, please do not reply. In case of any questions or issues, please contact Lunch4you service at ${contactURL}

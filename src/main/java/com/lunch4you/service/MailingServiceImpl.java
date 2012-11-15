@@ -1,5 +1,7 @@
 package com.lunch4you.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -32,6 +34,8 @@ public class MailingServiceImpl implements MailingService {
 	private String confirmationSubject;
 
 	private String shopURL;
+	
+	private String contactURL;
 
 	@Override
 	public void sendMenu( final Customer customer, final LinkedHashMap<Long,CategoryWithArticles> categoriesWithArticles ) {
@@ -43,6 +47,7 @@ public class MailingServiceImpl implements MailingService {
 				Map<String, Object> model = new HashMap<String, Object>();
 				model.put( "customer", customer);
 				model.put( "shopURL", shopURL );
+				model.put( "contactURL", contactURL );
 				model.put( "categoriesWithArticles", categoriesWithArticles.values() );
 				
 				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/menuMailTemplate.vm", model  );
@@ -62,15 +67,20 @@ public class MailingServiceImpl implements MailingService {
 
 			@Override
 			public void prepare( MimeMessage mimeMessage ) throws Exception {
-				MimeMessageHelper helper = new MimeMessageHelper( mimeMessage );
+				MimeMessageHelper helper = new MimeMessageHelper( mimeMessage , "UTF-8");
 				Map<String, Object> model = new HashMap<String, Object>();
 				model.put( "order", order );
+				// need to create new date, cause order does not have date assigned yet as it is assigned by DB
+				// TODO Change this once date on new order is assigned by the app
+				model.put( "orderDate", new Date());
+				model.put( "shopURL", shopURL );
+				model.put( "contactURL", contactURL );
 				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/confirmationMailTemplate.vm", model  );
 
 				helper.setFrom( from );
 				helper.setTo( order.getOwner().getEmail() );
 				helper.setSubject( confirmationSubject );
-				helper.setText( bodyText );
+				helper.setText( bodyText, false );
 			}
 		};
 		mailSender.send( preparator );
@@ -90,5 +100,13 @@ public class MailingServiceImpl implements MailingService {
 
 	public void setShopURL( String shopURL ) {
 		this.shopURL = shopURL;
+	}
+
+	public String getContactURL() {
+		return contactURL;
+	}
+
+	public void setContactURL(String contactURL) {
+		this.contactURL = contactURL;
 	}
 }
