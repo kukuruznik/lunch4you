@@ -1,11 +1,24 @@
-- OrderItemDao
-	- implement various different ordering options used in backoffice views (in different order)
+- Customer (DB)
+	- add "created_on" (timestamp), so that we can track new customers
+	- add "deactivated_on", to track when people unsubscribed
 
+- Order
+	- assigning of the timestamp must be reworked to be assigned by the app, so that the date is also available in Domain object (e.g. for email confirmation)  P4
+
+- OrderItemDao
+	- implement various different ordering options used in backoffice views (in different order) p4
+
+- Login
+	- Login does not work on production server. There seems to be some reference to localhost:8080 for login script
 
 - backoffice view
 	- cooking overview
 		- Table by articles - sort by category - rework to use OrderItem DAO
-
+		- Table by date
+			- add email + delivery location
+	- packaging view
+		- generate each delivery location per separate page
+		- show soups and small salads with different colors
 - Packaging Type	P1
 	- create test data
 	- modify INSERT script on google spreadsheet
@@ -13,6 +26,10 @@
 
 - Ordering
 	- some meaningful message after order has been submitted	P2
+	- confirmation email - create some meaningful email text containing P1
+		- Customer, Article,Price, Delivery Location, pickup instructions
+	- Find out how to publish ordering/pickup instructions
+		- probably different instructions for each delivery location
 
 - Menu Emailing
 	- Manual triggering of menu emailing P1
