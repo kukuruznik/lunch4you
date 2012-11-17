@@ -50,7 +50,7 @@ public class MailingServiceImpl implements MailingService {
 				model.put( "contactURL", contactURL );
 				model.put( "categoriesWithArticles", categoriesWithArticles.values() );
 				
-				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/menuMailTemplate.vm", model  );
+				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/menuMailTemplate.vm", "UTF-8", model  );
 
 				helper.setFrom( from );
 				helper.setTo( customer.getEmail() );
@@ -75,7 +75,7 @@ public class MailingServiceImpl implements MailingService {
 				model.put( "orderDate", new Date());
 				model.put( "shopURL", shopURL );
 				model.put( "contactURL", contactURL );
-				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/confirmationMailTemplate.vm", model  );
+				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/confirmationMailTemplate.vm", "UTF-8", model  );
 
 				helper.setFrom( from );
 				helper.setTo( order.getOwner().getEmail() );
