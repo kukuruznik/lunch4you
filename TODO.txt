@@ -1,3 +1,18 @@
+- General
+	- All dates are displayed in UTC time
+	
+- Pickup and payment instructions
+	- separate payment and pickup instructions fr each delivery location
+	- display instructions in menu, order detail form and confirmation email
+	
+- Discount on Category
+	- Soups / Small salads discount if ordered with main meal
+
+- UI Localization / Language
+	- Language toggle switch does not work in IE6
+	- Currently UI shows the flag of the other language (to which language will bechanged after clicking) P2
+		This is not intuitive as people expect it to show current setting. PLus it would not work if we had 3 languages. We need to implement some kind of a selector
+
 - Customer (DB)
 	- add "created_on" (timestamp), so that we can track new customers
 	- add "deactivated_on", to track when people unsubscribed
@@ -18,18 +33,24 @@
 			- add email + delivery location
 	- packaging view
 		- generate each delivery location per separate page
-		- show soups and small salads with different colors
+		- individual artices with different colors
+		- Number of meals to BOLD
+		
 - Packaging Type	P1
 	- create test data
 	- modify INSERT script on google spreadsheet
 	- displaying package type and ordering in views / reports
 
 - Ordering
+	- Add "comments" field to Ordering form
 	- some meaningful message after order has been submitted	P2
-	- confirmation email - create some meaningful email text containing P1
 		- Customer, Article,Price, Delivery Location, pickup instructions
 	- Find out how to publish ordering/pickup instructions
 		- probably different instructions for each delivery location
+
+- Order Confirmation email
+	- add pickup instructions
+
 
 - Menu Emailing
 	- Manual triggering of menu emailing P1
@@ -38,6 +59,7 @@
 	- unsubscribe feature	P3
 	- recommend / invite other feature	P3
 	- ordering instructions	P2
+	- New Flag - P2
 
 - Daily close up (EOB)
 	- deactivate all orders from previous day	P2
