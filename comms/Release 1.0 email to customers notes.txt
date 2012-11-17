@@ -1,0 +1,7 @@
+
+- Ordering process
+	- instead of opening an email dialog, it opens Web UI. Users are automaticlly loggedin.
+
+- features
+	- switch between EN / CZ
+	- confirmation email
