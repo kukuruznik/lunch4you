@@ -1,0 +1,60 @@
+			body{
+				font-family : Lucida Grande;
+				background-color : white;
+			}
+			
+			h4 {
+				margin-bottom : 0.1em;
+			}
+			
+			p {
+				margin-top : 0.2em;
+				margin-bottom : 1em;
+			}
+			
+			div.headerText, div.footerText, hr {
+				width : 900px;
+				text-align : justify;
+				
+			}
+			
+			table.menuTable {
+				table-layout : fixed;
+				border-collapse : collapse;
+				width : 900px;
+				margin : 0px;
+				border : 2px lightgray outset;
+			}
+
+			table.menuTable td {
+				border : 0px #eeeeee solid;
+				background-color : #ffc;
+			}
+			
+			table.menuTable tr.headerRow td{
+			}
+			
+			table.menuTable td.categoryCell {
+				//width : 100%;
+				font-size : 1.5em;
+				font-weight : bold;
+				padding-top : 20px;
+				padding-left : 10px;
+			}
+
+			table.menuTable td.articleCell {
+				width : *;
+				padding-left : 10px;
+			}
+
+			table.menuTable td.priceCell {
+				width : 100px;
+			}
+			
+			span.nowrap {
+				white-space: nowrap;
+			}
+			
+			span.special-price {
+				color:red; position: relative; top: -0.2em; font-size: 80%;
+			}

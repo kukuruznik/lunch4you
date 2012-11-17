@@ -1,43 +1,18 @@
 <html>
 	<head>
 		<style>
-			body{
-			}
-			
-			table.menuTable {
-				table-layout : fixed;
-				border-collapse : collapse;
-				width : 1000px;
-			}
-
-			table.menuTable td {
-				border : 0px #eeeeee solid;
-			}
-			
-			table.menuTable tr.headerRow td{
-			}
-			
-			table.menuTable td.categoryCell {
-				//width : 100%;
-				font-size : 1.5em;
-				font-weight : bold;
-				padding-top : 20px;
-			}
-
-			table.menuTable td.articleCell {
-				width : *;
-			}
-
-			table.menuTable td.priceCell {
-				width : 100px;
-			}
+		#include( "META-INF/velocity/menuMailTemplate.css" )
 		</style>
 	</head>
 	
 	<body>
+	
+	<div class="headerText">
+		#set( $headerName = "META-INF/velocity/menuMailTemplate_header_" + $customer.defaultDeliveryLocation.abbreviation + ".html")
+		#parse( $headerName )
+	</div>
 
-Customer: ${customer.firstName} ${customer.lastName} &lt;${customer.email}&gt;
-
+	<hr style="border : 0px; border-top : 1px lightgray solid;">
 
 
 #set( $articleCounter = 0 )
@@ -71,12 +46,26 @@ Customer: ${customer.firstName} ${customer.lastName} &lt;${customer.email}&gt;
 			#end 
 			</td>
 			<td class="priceCell">
-				${article.price} CZK,-
+				<span class="nowrap">
+				${article.price},- CZK
+				#if( ${category.id} == 1 or ${category.id} == 2)
+					<span class="special-price" title="Please refer to special prices note at the bottom of this email">***</span>
+				#end
+				</span>
+				
+				
 			</td>
 		</tr>
 	#end
 
 #end
 	</table>
+	<hr style="border : 0px; border-top : 1px lightgray solid;">	
+	<span class="special-price">***</span> <i>Cena této položky je 10,- CZK, jeli objednána s hlavním jídlem. / Price of this item is 10,- CZK when ordered together with a main meal</i>
+	<br>&nbsp;
+	<div class="footerText">
+		#parse( "META-INF/velocity/menuMailTemplate_footer.html" )
+	</div>
+
 	</body>
 </html>
