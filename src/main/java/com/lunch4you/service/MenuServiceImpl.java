@@ -20,6 +20,7 @@ import com.lunch4you.dao.CustomerDao;
 import com.lunch4you.dao.DeliveryLocationDao;
 import com.lunch4you.dao.OrderDao;
 import com.lunch4you.dao.OrderItemDao;
+import com.lunch4you.dao.ReferralDao;
 import com.lunch4you.dao.filter.ArticleFilter;
 import com.lunch4you.dao.filter.CustomerFilter;
 import com.lunch4you.dao.filter.OrderFilter;
@@ -32,6 +33,7 @@ import com.lunch4you.domain.DeliveryLocation;
 import com.lunch4you.domain.DeliveryLocationWithArticles;
 import com.lunch4you.domain.Order;
 import com.lunch4you.domain.OrderItem;
+import com.lunch4you.domain.Referral;
 
 @Transactional
 @Service
@@ -56,6 +58,9 @@ public final class MenuServiceImpl implements MenuService {
 
 	@Autowired
 	private OrderItemDao orderItemDao;
+
+	@Autowired
+	private ReferralDao referralDao;
 
 	@Autowired
 	private MailingService mailingService;
@@ -104,6 +109,7 @@ public final class MenuServiceImpl implements MenuService {
 		newCustomer.setFirstName( firstName );
 		newCustomer.setLastName( lastName );
 		newCustomer.setToken( token );
+		newCustomer.setIsActive( true );
 		newCustomer.setDefaultDeliveryLocation( ddl );
 		return customerDao.insert( newCustomer );
 	}
@@ -301,6 +307,42 @@ public final class MenuServiceImpl implements MenuService {
 		}
 		
 		return customers;
+	}
+
+	@Override
+	public Referral createReferral(long senderId, long deliveryLocationId,
+			String recipientEmail, String referralMessage) {
+		
+		Customer sender = getCustomer(senderId);
+		
+		String recipientName = recipientEmail.substring(0, recipientEmail.indexOf("@"));
+		// Find out if customer with this email already exists
+		CustomerFilter customerFilter = new CustomerFilter();
+		customerFilter.email = recipientEmail;
+		List<Customer> recipients = customerDao.find(customerFilter);
+		Customer recipient;
+		if(recipients.size() == 0){
+			// Customer does not exist yet, create a new one
+			recipient = registerCustomer(recipientName, "", recipientEmail, deliveryLocationId);
+		}else{
+			recipient = recipients.get(0);
+		}
+
+
+		Referral referral = new Referral();
+		referral.setSender(sender);
+		referral.setRecipient(recipient);
+		referral.setReferralMessage( referralMessage );
+		
+		referralDao.insert( referral );
+		
+		mailingService.sendReferral(referral);
+		
+		mailingService.sendMenu(recipient, getArticlesByCategories());
+
+		// TODO subscribe new customer
+		
+		return referral;
 	}
 
 	@Override

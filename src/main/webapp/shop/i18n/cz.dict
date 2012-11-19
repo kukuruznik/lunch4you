@@ -16,7 +16,16 @@
 	"order.registration.cancel": "Zrušit",
 
 	"order.detail.action.change": "změnit",
-	"order.detail.action.order": "Potvrdit objednávku",
+	"order.detail.action.order": "Poslat objednávku",
 	"order.detail.action.orderedMsg": "Děkujeme za Vaši objednávku! \nZa malou chvíli obdržíte potvrzujíci email s detaily Vaší objednávky.",
-	"order.detail.action.changeLanguage": "English"
+	"order.detail.action.changeLanguage": "English",
+
+	"referral.detail.sender" : "Odesílatel",
+	"referral.detail.recipientEmail": "Příjemcův email",
+	"referral.detail.referralMessage" : "Zpráva pro příjemce",
+	"referral.detail.action.recommend" : "Zaslat doporučení",
+	"referral.detail.validation.emptyEmailAddress" : "Emailová adresa musí být vyplněna!",
+	"referral.detail.validation.invalidEmailFormat" : "Nesprávný formát emailové adresy!",	
+	"referral.detail.action.referralMsg" : "Doporučení bylo úspěšně odesláno!"
+	
 }

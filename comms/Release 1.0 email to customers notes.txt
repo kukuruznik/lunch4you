@@ -1,7 +1,19 @@
 
 - Ordering process
 	- instead of opening an email dialog, it opens Web UI. Users are automaticlly loggedin.
+	- Each meal = separate order
+
+- Email forwarding - DO NOT forward! Links are personalized to enable automatic login
+
+- Discount calculation
 
 - features
 	- switch between EN / CZ
 	- confirmation email
+	
+	
+	
+What's being prepared
+- Discount calculation
+- Transcript / view of today's / this weeks orders
+- Credit system

@@ -3,11 +3,9 @@
 	
 - Pickup and payment instructions
 	- separate payment and pickup instructions fr each delivery location
-	- display instructions in menu, order detail form and confirmation email
+		- currently only DHL implemented
+		- currently only in the menu email, should these instructions be displayed on th Web as welll
 	
-- Discount on Category
-	- Soups / Small salads discount if ordered with main meal
-
 - UI Localization / Language
 	- Language toggle switch does not work in IE6
 	- Currently UI shows the flag of the other language (to which language will bechanged after clicking) P2
@@ -24,7 +22,7 @@
 	- implement various different ordering options used in backoffice views (in different order) p4
 
 - Login
-	- Login does not work on production server. There seems to be some reference to localhost:8080 for login script
+	- Login does not work on production server. There seems to be some reference to localhost:8080 for login script	P2
 
 - backoffice view
 	- cooking overview
@@ -33,29 +31,29 @@
 			- add email + delivery location
 	- packaging view
 		- generate each delivery location per separate page
-		- individual artices with different colors
+		- individual artices with different colors (based on category)
 		- Number of meals to BOLD
 		
-- Packaging Type	P1
+- Packaging Type	P4
 	- create test data
 	- modify INSERT script on google spreadsheet
 	- displaying package type and ordering in views / reports
 
 - Ordering
-	- Add "comments" field to Ordering form
-	- some meaningful message after order has been submitted	P2
-		- Customer, Article,Price, Delivery Location, pickup instructions
+	- Add "comments" field to Ordering form		P1
 	- Find out how to publish ordering/pickup instructions
 		- probably different instructions for each delivery location
 
 - Order Confirmation email
-	- add pickup instructions
+	- add pickup instructions	P2
 
+- Online Menu
+	- add Special discount functionality (use manu emailing as template)
 
 - Menu Emailing
-	- Manual triggering of menu emailing P1
+	- Manual triggering of menu emailing, currently only as JSON URL but no UI	 P3
+	- make sure that each emailing is isolatedin a separate transaction to prevent whole batch scrapping due to some individual data problem	P1
 	- correct ordering 		P1
-	- populate complete Article details (price, etc)	P1
 	- unsubscribe feature	P3
 	- recommend / invite other feature	P3
 	- ordering instructions	P2
@@ -65,7 +63,7 @@
 	- deactivate all orders from previous day	P2
 	
 - Menu administration P4
-	
+
 	
 - Different installation packages for DEV and PROD versions
 	- Differences:

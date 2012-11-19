@@ -1,4 +1,4 @@
-steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order/new", "shop/menu/list" ).then( function( $ ) {
+steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order/new", "shop/menu/list", "shop/referral/new" ).then( function( $ ) {
 
 	/**
 	 * @class Shop.Main
@@ -73,7 +73,7 @@ steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order
 					$( "#screen-name" ).html( $.EJS.Helpers.prototype.currentView() );
 					$( '#content' ).shop_menu_list();
 				} else {
-					alert( "Invalid URL! Missing user." );
+					alert( "Invalid URL! Missing user token." );
 				}
 				break;
 			case "order":
@@ -82,6 +82,14 @@ steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order
 					$( '#content' ).shop_order_new();
 				} else {
 					alert( "Invalid URL! Missing user and/or article." );
+				}
+				break;
+			case "referral":
+				if ( Shop.params.token ) {
+					$( "#screen-name" ).html( $.EJS.Helpers.prototype.currentView() );
+					$( '#content' ).shop_referral_new();
+				} else {
+					alert( "Invalid URL! Missing user token." );
 				}
 				break;
 			default:

@@ -51,6 +51,7 @@ CREATE TABLE `customer` (
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `default_delivery_location_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `customer_email` (`email`),
   KEY `customer_default_delivery_location_id` (`default_delivery_location_id`),
   CONSTRAINT `customer_default_delivery_location_id` FOREIGN KEY (`default_delivery_location_id`) REFERENCES `delivery_location` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
@@ -82,6 +83,20 @@ CREATE TABLE `order_item` (
   KEY `order_items_order` (`order_id`),
   CONSTRAINT `order_items_order` FOREIGN KEY (`order_id`) REFERENCES `plain_order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_items_article` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+-- Table "referral" DDL
+CREATE TABLE `referral` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `sender_id` bigint(20) NOT NULL,
+  `recipient_id` bigint(20) NOT NULL,
+  `referral_message` varchar(1000) NOT NULL,
+  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `referral_sender` (`sender_id`),
+  KEY `referral_recipient` (`recipient_id`),
+  CONSTRAINT `referral_ibfk_1` FOREIGN KEY (`sender_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `referral_ibfk_2` FOREIGN KEY (`recipient_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 -- Table "preparation" DDL

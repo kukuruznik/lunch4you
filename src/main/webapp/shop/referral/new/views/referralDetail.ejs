@@ -1,0 +1,31 @@
+<% var user = this.customer %>
+<% var deliveryLocation = this.deliveryLocation %>
+<% var deliveryLocations = this.deliveryLocations %>
+
+<div id="referral-info">
+	<div>
+		<label><%= msg( "referral.detail.sender" ) %>:</label>
+		<div id="currentCustomerDetails">
+			<span class="modifiable"><%= user.firstName %> <%= user.lastName %></span>
+		</div>
+		
+	</div>
+
+	<div id="recipientEmailDiv">
+		<label><%= msg( "referral.detail.recipientEmail" ) %>:</label> 
+		<input id="recipientEmail" type="text" value="ladislav.nemeth@gmail.com">
+	</div>
+
+	<div id="referralMessageDiv">
+		<label><%= msg( "referral.detail.referralMessage" ) %>:</label> 
+		<textarea id="referralMessage">I think you might like this delivery service...</textarea>
+	</div>
+	
+</div>
+
+
+
+<form id="send-referral">
+	<input id="submitReferralButton" type="button" value="<%= msg( "referral.detail.action.recommend" ) %>" />
+</form>
+

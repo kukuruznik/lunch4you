@@ -1,0 +1,50 @@
+#set( $sender = ${referral.sender})
+#set( $recipient = ${referral.recipient})
+<html>
+	<head>
+		<style>
+		#include( "META-INF/velocity/referralMailTemplate.css" )
+		</style>
+	</head>
+	
+	<body>
+	
+		
+	<div class="headerText">
+	<p>
+	Dear recipient,
+	</p>
+	<p>
+	You are receiving this message because ${sender.firstName} ${sender.lastName} &lt; ${sender.email} &gt; wants to recommend to you the Lunch4you food delivery service.
+	</p>
+
+#if( ${referral.referralMessage} != "" )
+	<p>
+	The sender has provided following personal message:<br>
+	---------------------------------------------<br>
+	${referral.referralMessage}
+	<br>
+	---------------------------------------------
+	</p>
+#end	
+
+	<p>
+	<a href="${shopURL}#view=menu&token=${customer.token}">Lunch4you</a> is an online food delivery service operating within Chodov Office Park
+	delivering mostly Italian and Czech cuisine meals directly to companies within Chodov Park.
+	</p>
+
+	<p>
+	Together with this message you should receive another email with complete menu for this week. Using the links in the Menu email will help you to
+	order in only 2 clicks!!! No registration is needed as all links in all emails from Lunch4you are personalized to automatically detect your account.
+	</p>
+
+	</div>
+
+
+	<hr style="border : 0px; border-top : 1px lightgray solid;">
+
+
+	</table>
+
+	</body>
+</html>

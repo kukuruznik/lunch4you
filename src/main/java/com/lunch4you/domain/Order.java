@@ -1,7 +1,9 @@
 package com.lunch4you.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -25,6 +28,12 @@ import org.springframework.beans.factory.annotation.Configurable;
 @Configurable
 @Entity( name="plain_order" )
 public class Order {
+
+	private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm");
+	
+	static {
+		TIME_FORMAT.setTimeZone(TimeZone.getTimeZone("Europe/Prague"));
+	}
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.AUTO )
@@ -48,6 +57,9 @@ public class Order {
 	@Column(name = "time_stamp")
 	@Temporal( value = TemporalType.TIMESTAMP )
 	private Date timestamp;
+
+	@Transient
+	private String timeFormatted;
 
 	@OneToMany( fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE } ) // TODO: this should be lazy in the future, but now we have only one item / order
 	@JoinColumn( name="order_id", insertable=true, nullable=false )
@@ -107,6 +119,17 @@ public class Order {
 
 	public void setTimestamp( Date timestamp ) {
 		this.timestamp = timestamp;
+	}
+
+	public String getTimeFormatted() {
+		if(timestamp != null){
+			return TIME_FORMAT.format(timestamp);
+		}
+		return null;
+	}
+
+	public void setTimeFormatted(String timeFormatted) {
+		this.timeFormatted = timeFormatted;
 	}
 
 	@Override

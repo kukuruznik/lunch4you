@@ -12,6 +12,7 @@ import com.lunch4you.domain.DeliveryLocation;
 import com.lunch4you.domain.DeliveryLocationWithArticles;
 import com.lunch4you.domain.Order;
 import com.lunch4you.domain.OrderItem;
+import com.lunch4you.domain.Referral;
 
 public interface MenuService {
 
@@ -50,6 +51,9 @@ public interface MenuService {
 	List<Customer> getActiveCustomers();
 
 	List<Customer> sendMenu();
+
+	Referral createReferral(long senderId, long deliveryLocationId,
+			String recipientEmail, String referralMessage);
 
 
 }

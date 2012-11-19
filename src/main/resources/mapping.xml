@@ -136,8 +136,8 @@
 			<b is-accessible="true">timestamp</b>
 		</field>
 		<field>
-			<a>timestamp</a>
-			<b date-format="HH:mm" is-accessible="true">timeString</b>
+			<a>timeFormatted</a>
+			<b is-accessible="true">timeString</b>
 		</field>
 		<field>
 			<a>status</a>
@@ -159,6 +159,31 @@
 		<field>
 			<a>article</a>
 			<b is-accessible="true">article</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.lunch4you.domain.Referral</class-a>
+		<class-b>com.lunch4you.web.dto.ReferralDto</class-b>
+		<field>
+			<a>id</a>
+			<b is-accessible="true">id</b>
+		</field>
+		<field>
+			<a>sender</a>
+			<b is-accessible="true">sender</b>
+		</field>
+		<field>
+			<a>recipient</a>
+			<b is-accessible="true">recipient</b>
+		</field>
+		<field>
+			<a>referralMessage</a>
+			<b is-accessible="true">referralMessage</b>
+		</field>
+		<field>
+			<a>timestamp</a>
+			<b is-accessible="true">timestamp</b>
 		</field>
 	</mapping>
 

@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lunch4you.domain.Customer;
+import com.lunch4you.domain.Referral;
 import com.lunch4you.service.MenuService;
 import com.lunch4you.web.dto.CustomerDto;
+import com.lunch4you.web.dto.ReferralDto;
 
 @Controller
 public class CustomerController {
@@ -87,5 +89,23 @@ public class CustomerController {
 		CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
 
 		return customerDto;
+	}
+
+	@RequestMapping( value = "/customers/createReferral.json", method = RequestMethod.POST )
+	public @ResponseBody
+	ReferralDto createReferral( @RequestBody Map<String, Object> data ) {
+		logger.trace( "CustomerController.createReferral called" );
+		
+		// senderId: customer.id, deliveryLocationId: deliveryLocationId, recipientEmail : recipientEmail, referralMessage 
+		long senderId = Long.parseLong(data.get( "senderId" ).toString());
+		long deliveryLocationId = Long.parseLong(data.get( "deliveryLocationId" ).toString());
+		String recipientEmail = data.get( "recipientEmail" ).toString();
+		String referralMessage = data.get( "referralMessage" ).toString();
+
+		Referral referral = menuService.createReferral(senderId, deliveryLocationId, recipientEmail, referralMessage);
+		
+		ReferralDto referralDto = beanMapper.map( referral, ReferralDto.class );
+
+		return referralDto;
 	}
 }

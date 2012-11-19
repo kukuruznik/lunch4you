@@ -36,6 +36,9 @@ public class JpaCustomerDao extends AbstractReadWriteDao<Customer, Long, Custome
 			if ( f.token != null )
 				p = builder.and( p, builder.equal( root.get( "token" ), f.token ) );
 
+			if ( f.email != null )
+				p = builder.and( p, builder.equal( root.get( "email" ), f.email ) );
+
 			cq.where( p );
 		}
 

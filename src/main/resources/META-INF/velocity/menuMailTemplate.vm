@@ -8,8 +8,11 @@
 	<body>
 	
 	<div class="headerText">
-		#set( $headerName = "META-INF/velocity/menuMailTemplate_header_" + $customer.defaultDeliveryLocation.abbreviation + ".html")
-		#parse( $headerName )
+		#set( $headerTemplateName = "META-INF/velocity/menuMailTemplate_header_" + $customer.defaultDeliveryLocation.abbreviation + ".html")
+		#parse( $headerTemplateName )
+		
+		<p>
+		<span class="importantNote"> Important Note : </span> All links in this email are personalized to automatically select your account. Please do not forward this email. If you would like to recommend Lunch4you to a friend, plese use the link below the menu.
 	</div>
 
 	<hr style="border : 0px; border-top : 1px lightgray solid;">
@@ -19,21 +22,25 @@
 
 	<table border="0" class="menuTable">
 		<tr class="headerRow">
+			<td class="counterCell"></td>
 			<td class="articleCell"></td>
 			<td class="priceCell"></td>	
 		</tr>
 #foreach( ${categoryWithArticles} in ${categoriesWithArticles} )
 		#set( $category = $categoryWithArticles.entity )
 		<tr>
-			<td colspan="2" class="categoryCell">
+			<td colspan="3" class="categoryCell">
 				${category.name_cz} / ${category.name_en}
 			</td>
 		</tr>
 		#foreach( ${article} in ${categoryWithArticles.items} )
 		#set( $articleCounter = $articleCounter + 1 )
 		<tr>
+			<td class="counterCell">
+			${articleCounter}.
+			</td>
 			<td class="articleCell">
-			${articleCounter}. <a href="${shopURL}#view=order&meal=${article.Id}&token=${customer.token}">
+			<a href="${shopURL}#view=order&meal=${article.Id}&token=${customer.token}">
 			${article.name_cz}
 			#if( ${article.name_en} != "" )
 				/ ${article.name_en}
@@ -59,12 +66,29 @@
 	#end
 
 #end
+		<tr>
+			<td class="counterCell">
+				<span class="special-price">***</span> 
+			</td>
+			<td class="menuNotes" colspan="2">
+				<i>Cena této položky je 10,- CZK, jeli objednána s hlavním jídlem. / Price of this item is 10,- CZK when ordered together with a main meal</i>
+			</td>
+		</tr>
 	</table>
 	<hr style="border : 0px; border-top : 1px lightgray solid;">	
-	<span class="special-price">***</span> <i>Cena této položky je 10,- CZK, jeli objednána s hlavním jídlem. / Price of this item is 10,- CZK when ordered together with a main meal</i>
-	<br>&nbsp;
+	
 	<div class="footerText">
-		#parse( "META-INF/velocity/menuMailTemplate_footer.html" )
+		<p>
+		<a href="${shopURL}#view=menu&token=${customer.token}">Complete online menu</a>
+		 | 
+		<a href="${shopURL}#view=referral&token=${customer.token}">Recommend Lunch4you to a friend</a>
+		</p>
+	</div>
+	
+	
+	<div class="footerText">
+		#set( $footerTemplateName = "META-INF/velocity/menuMailTemplate_footer_" + $customer.defaultDeliveryLocation.abbreviation + ".html")
+		#parse( $footerTemplateName )
 	</div>
 
 	</body>

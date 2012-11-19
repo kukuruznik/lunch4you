@@ -16,7 +16,16 @@
 	"order.registration.cancel": "Cancel",
 
 	"order.detail.action.change": "change",
-	"order.detail.action.order": "Confirm Order",
+	"order.detail.action.order": "Submit Order",
 	"order.detail.action.orderedMsg": "Thank you for ordering! \nIn a short moment you will receive a confirmation email with details of your order.",
-	"order.detail.action.changeLanguage": "Čeština"
+	"order.detail.action.changeLanguage": "Čeština",
+
+	"referral.detail.sender" : "Sender",
+	"referral.detail.recipientEmail": "Recipient email",
+	"referral.detail.referralMessage" : "Personal message",
+	"referral.detail.action.recommend" : "Send Referral",
+	"referral.detail.validation.emptyEmailAddress" : "Email address must not be empty!",	
+	"referral.detail.validation.invalidEmailFormat" : "Invalid email address format!",
+	"referral.detail.action.referralMsg" : "Referral successfully submitted!"
+	
 }

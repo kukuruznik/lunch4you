@@ -12,12 +12,17 @@
 				margin-bottom : 1em;
 			}
 			
+			span.importantNote {
+				color : red;
+				font-weight : bold;
+			}
+			
 			div.headerText, div.footerText, hr {
 				width : 900px;
 				text-align : justify;
 				
 			}
-			
+
 			table.menuTable {
 				table-layout : fixed;
 				border-collapse : collapse;
@@ -29,6 +34,7 @@
 			table.menuTable td {
 				border : 0px #eeeeee solid;
 				background-color : #ffc;
+				vertical-align: top;
 			}
 			
 			table.menuTable tr.headerRow td{
@@ -42,6 +48,11 @@
 				padding-left : 10px;
 			}
 
+			table.menuTable td.CounterCell {
+				width : 30px;
+				padding-left : 10px;
+			}
+
 			table.menuTable td.articleCell {
 				width : *;
 				padding-left : 10px;
@@ -49,6 +60,11 @@
 
 			table.menuTable td.priceCell {
 				width : 100px;
+			}
+			
+			table.menuTable td.menuNotes {
+				padding-top : 10px;
+				padding-left : 10px;
 			}
 			
 			span.nowrap {

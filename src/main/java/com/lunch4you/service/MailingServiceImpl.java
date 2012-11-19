@@ -1,6 +1,5 @@
 package com.lunch4you.service;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -18,6 +17,7 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 import com.lunch4you.domain.CategoryWithArticles;
 import com.lunch4you.domain.Customer;
 import com.lunch4you.domain.Order;
+import com.lunch4you.domain.Referral;
 
 public class MailingServiceImpl implements MailingService {
 
@@ -27,11 +27,15 @@ public class MailingServiceImpl implements MailingService {
 	@Autowired
 	private VelocityEngine velocityEngine;
 
+	private String backofficeEmailAddress;
+	
 	private String from;
 
 	private String menuSubject;
 	
 	private String confirmationSubject;
+
+	private String referralSubject;
 
 	private String shopURL;
 	
@@ -69,6 +73,7 @@ public class MailingServiceImpl implements MailingService {
 			public void prepare( MimeMessage mimeMessage ) throws Exception {
 				MimeMessageHelper helper = new MimeMessageHelper( mimeMessage , "UTF-8");
 				Map<String, Object> model = new HashMap<String, Object>();
+				model.put( "customer", order.getOwner() );
 				model.put( "order", order );
 				// need to create new date, cause order does not have date assigned yet as it is assigned by DB
 				// TODO Change this once date on new order is assigned by the app
@@ -86,6 +91,36 @@ public class MailingServiceImpl implements MailingService {
 		mailSender.send( preparator );
 	}
 	
+	@Override
+	public void sendReferral(final Referral referral) {
+		MimeMessagePreparator preparator = new MimeMessagePreparator() {
+
+			@Override
+			public void prepare( MimeMessage mimeMessage ) throws Exception {
+				MimeMessageHelper helper = new MimeMessageHelper( mimeMessage , "UTF-8");
+				Map<String, Object> model = new HashMap<String, Object>();
+				model.put( "referral", referral );
+				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/referralMailTemplate.vm", "UTF-8", model  );
+
+				helper.setFrom( from );
+				helper.setTo( referral.getRecipient().getEmail() );
+				helper.setBcc( backofficeEmailAddress );
+				helper.setSubject( referralSubject );
+				helper.setText( bodyText, true );
+			}
+		};
+		mailSender.send( preparator );
+		
+	}
+
+	public String getBackofficeEmailAddress() {
+		return backofficeEmailAddress;
+	}
+
+	public void setBackofficeEmailAddress(String backofficeEmailAddress) {
+		this.backofficeEmailAddress = backofficeEmailAddress;
+	}
+
 	public void setFrom( String from ) {
 		this.from = from;
 	}
@@ -96,6 +131,14 @@ public class MailingServiceImpl implements MailingService {
 	
 	public void setConfirmationSubject( String subject ) {
 		this.confirmationSubject = subject;
+	}
+
+	public String getReferralSubject() {
+		return referralSubject;
+	}
+
+	public void setReferralSubject(String referralSubject) {
+		this.referralSubject = referralSubject;
 	}
 
 	public void setShopURL( String shopURL ) {
@@ -109,4 +152,5 @@ public class MailingServiceImpl implements MailingService {
 	public void setContactURL(String contactURL) {
 		this.contactURL = contactURL;
 	}
+
 }

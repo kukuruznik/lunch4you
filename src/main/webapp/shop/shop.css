@@ -66,7 +66,7 @@ hr {
 
 label {
 	float: left;
-	width: 10em;
+	width: 12em;
 	line-height: 160%;
 	color: darkblue;
 	text-shadow: 0 1px 0 white;
@@ -147,7 +147,7 @@ span.flag {
 	background-color: #ffc;
 }
 
-#customer-info {
+#customer-info, #referral-info {
 	background-color: #cdf;
 	padding: 0.5em;
 	width: 60%;
@@ -180,7 +180,7 @@ span.flag {
 	width: 20em;
 }
 
-#deliveryLocationDetails {
+#deliveryLocationDetails, #recipientEmailDiv, #referralMessageDiv {
 	clear: both;
 }
 
@@ -188,9 +188,24 @@ span.flag {
 	margin: 0 0 3em;
 }
 
-#confirm-order {
+#confirm-order, #send-referral {
+	padding-top : 20px;
 	text-align: center;
 }
+
+/*
+	Referral form 
+	================================================= 
+*/
+
+#recipientEmail {
+	width : 300px;
+}
+
+#referralMessage {
+	width : 300px;
+}
+
 
 a.meal {
 }

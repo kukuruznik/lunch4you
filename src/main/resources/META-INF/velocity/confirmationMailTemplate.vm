@@ -7,11 +7,11 @@ Order details:
 Meal:               ${order.Items.get(0).Article.Name_cz}/${order.Items.get(0).Article.Name_en}
 Price:              ${order.Items.get(0).Article.Price},- CZK.
 Delivery location:  ${order.deliveryLocation.name}
-Ordered on:         ${orderDateFormatted}
+Ordered on:         ${orderDate}
 
 
 For further ordering please use following link:
-${shopURL}#view=menu&token=${order.owner.token}
+${shopURL}#view=menu&token=${customer.token}
 
 Important Note!!!
 This is automatically generated email, please do not reply. In case of any questions or issues, please contact Lunch4you service at ${contactURL}
