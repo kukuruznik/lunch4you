@@ -34,8 +34,8 @@ public class JpaOrderItemDao extends AbstractReadWriteDao<OrderItem, Long, Order
 		if ( f != null ) {
 			Predicate p = builder.and(); // always true
 
-//			if ( f.status != null )
-//				p = builder.and( p, builder.equal( root.get("order").get( "status" ), f.status ) );
+			if ( f.status != null )
+				p = builder.and( p, builder.equal( root.get("order").get( "status" ), f.status ) );
 
 			cq.where( p );
 		}
