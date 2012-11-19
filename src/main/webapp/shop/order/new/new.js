@@ -95,7 +95,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 		_hideCustomerForm: function() {
 			$( "#customerForm" ).hide();
 			$( "#currentCustomerDetails" ).show();
-			self._enableOrder( true );
+			this._enableOrder( true );
 		},
 
 		_render: function() {
