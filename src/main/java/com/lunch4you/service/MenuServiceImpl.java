@@ -1,16 +1,20 @@
 package com.lunch4you.service;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSendException;
-import org.springframework.security.core.codec.Base64;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -102,8 +106,8 @@ public final class MenuServiceImpl implements MenuService {
 		DeliveryLocation ddl = deliveryLocationDao.load( defaultDeliveryLocationId );
 		
 		Customer newCustomer = new Customer();
-		String token = createToken();
 
+		String token = createToken( email );
 		newCustomer.setCredit( 0 );
 		newCustomer.setEmail( email );
 		newCustomer.setFirstName( firstName );
@@ -296,17 +300,28 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public List<Customer> sendMenu( ) {
+	public List<Map<String,Object>> sendMenu( ) {
 
 		LinkedHashMap<Long,CategoryWithArticles> groupedMenu = getArticlesByCategories();
 
 		List<Customer> customers = getActiveCustomers();
+		
+		List<Map<String, Object>> results = new ArrayList<Map<String,Object>>();
 
 		for ( Customer customer : customers ) {
-			mailingService.sendMenu( customer, groupedMenu );
+			Map<String, Object> resultElement = new HashMap<String, Object>();
+			results.add(resultElement);
+			resultElement.put("customer", customer);
+			try{
+				mailingService.sendMenu( customer, groupedMenu );
+				resultElement.put("result", "success" );
+			}catch (Exception e) {
+				e.printStackTrace();
+				resultElement.put("result", e.toString() );
+			}
 		}
 		
-		return customers;
+		return results;
 	}
 
 	@Override
@@ -359,15 +374,18 @@ public final class MenuServiceImpl implements MenuService {
 		return ids;
 	}
 
-	private String createToken() {
-		byte[] random = new byte[ 12 ];
-
-		for ( int i = 0; i < random.length; i++ ) {
-			random[ i ] = (byte) (Math.random() * 256 - 128);
+	private String createToken(String base) {
+		
+		try {
+			MessageDigest m = MessageDigest.getInstance("MD5");
+			byte[] data = base.getBytes(); 
+		    m.update(data,0,data.length);
+		    return new BigInteger(1,m.digest()).toString(16);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "";
 		}
-
-		byte[] encoded = Base64.encode( random  );
-
-		return new String( encoded );
+		
 	}
 }

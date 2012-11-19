@@ -2,6 +2,7 @@ package com.lunch4you.service;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.lunch4you.domain.Article;
 import com.lunch4you.domain.ArticleWithOrders;
@@ -50,7 +51,7 @@ public interface MenuService {
 
 	List<Customer> getActiveCustomers();
 
-	List<Customer> sendMenu();
+	List<Map<String, Object>> sendMenu();
 
 	Referral createReferral(long senderId, long deliveryLocationId,
 			String recipientEmail, String referralMessage);

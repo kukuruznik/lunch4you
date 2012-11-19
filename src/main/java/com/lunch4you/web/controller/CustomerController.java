@@ -1,6 +1,5 @@
 package com.lunch4you.web.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -60,19 +59,20 @@ public class CustomerController {
 
 	@RequestMapping( value = "/customers/sendMenu.json", method = RequestMethod.GET )
 	public @ResponseBody
-	List<CustomerDto> sendMenu( ) {
+	List<Map<String, Object>> sendMenu( ) {
 		logger.trace( "CustomerController.sendMenu called" );
 
-		List<Customer> customers = menuService.sendMenu();
+		List<Map<String,Object>> results = menuService.sendMenu();
 		
-		List<CustomerDto> customerDtos = new ArrayList<CustomerDto>();
-		
-		for(Customer customer : customers){
-			CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
-			customerDtos.add(customerDto);
+				
+		// replace each customer object in the result set with CustomerDTO object
+		for(Map<String, Object> result : results){
+			Customer customer = (Customer) result.get("customer");
+//			CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
+			result.put("customer", customer.getFirstName() + " " + customer.getLastName() + " " + customer.getEmail());
 		}
 		
-		return customerDtos;
+		return results;
 	}
 
 	@RequestMapping( value = "/customers", method = RequestMethod.POST )
