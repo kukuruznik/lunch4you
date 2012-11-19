@@ -5,7 +5,7 @@ INSERT INTO `category` VALUES
 (3,"Velké saláty","Large salads",3,1),
 (4,"Těstoviny","Pasta",4,1),
 (5,"Rizota","Risotto",5,1),
-(6,"Hotovky","Other",6,1),
+(6,"Minutky","Other",6,1),
 (7,"Speciální nabídka","Special offer",7,1);
 
 -- menu -----------------------------------------------------------------------
