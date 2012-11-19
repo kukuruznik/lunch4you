@@ -89,7 +89,19 @@
 	<div class="footerText">
 		#set( $footerTemplateName = "META-INF/velocity/menuMailTemplate_footer_" + $customer.defaultDeliveryLocation.abbreviation + ".html")
 		#parse( $footerTemplateName )
+
+		<h4>Lunch4you Contacts</h4>
+		<p>
+		In case of any questions or issues please contact Lunch4you at <a href="mailto:Lunch4you.cz@gmail.com">Lunch4you.cz@gmail.com</a> or call +420 774096313.
+		</p>
+
+		<p>
+		Regards,<br>
+		- Lunch4you team
+		</p>
+
 	</div>
+
 
 	</body>
 </html>
