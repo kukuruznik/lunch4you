@@ -14,4 +14,4 @@ For further ordering please use following link:
 ${shopURL}#view=menu&token=${customer.token}
 
 Important Note!!!
-This is automatically generated email, please do not reply. In case of any questions or issues, please contact Lunch4you service at ${contactURL}
+This is automatically generated email, please do not reply. In case of any questions or issues, please contact Lunch4you service at ${contactDetails}

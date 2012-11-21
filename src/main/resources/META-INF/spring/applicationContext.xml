@@ -98,6 +98,7 @@
 
 	<bean id="mailing" class="com.lunch4you.service.MailingServiceImpl">
 		<property name="backofficeEmailAddress" value="${email.backoffice.address}"/>
+		<property name="contactDetails" value="${email.contactDetails}"/>
 		<property name="from" value="${email.from}"/>
 		<property name="menuSubject" value="${email.menu.subject}"/>
 		<property name="confirmationSubject" value="${email.confirmation.subject}"/>
