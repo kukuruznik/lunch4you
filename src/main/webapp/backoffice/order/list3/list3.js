@@ -33,23 +33,41 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			customersDiv.toggle();			
 		},
 
-		"input[type=button] click": function( el, evt ) {
-			clearTimeout( this.timeOutID );
-			var infoRowElement = el.parents( "table" ).prev();
-			var articleName = infoRowElement.attr( "id" );
-			var orderGroup = this.ordersByArticleMap[ articleName ];
-			var orderIds = $( orderGroup.items ).map( function( index, order ) {
-				return order.id;
+		
+		"#orderItemSelectorAllCheckbox click": function( el, evt ) {
+			var checked = el.attr("checked");
+			var orderSelectors = $(".orderItemSelectorCheckbox");
+			orderSelectors.each(function( index ){
+				if(checked){					
+					$(this).attr("checked", true);
+				}else{
+					$(this).attr("checked", false);
+				}
 			});
+		},
+		
+		"#ordersActionButton click": function( el, evt ) {
+			var action = el.attr("action");
+			var orderSelectors = $(".orderItemSelectorCheckbox:checked");
+			if(orderSelectors.size() == 0 ){
+				alert("No orders selected!");
+				return;
+			}
+			if( !confirm("Are you sure you want to " + action.toUpperCase() + " these Orders?") ){
+				return;
+			}
+			
+			var orderIds = $( orderSelectors ).map( function( index, checkboxEl ) {
+				return checkboxEl.id.substring(checkboxEl.id.lastIndexOf("_") + 1);
+			});
+			
 			orderIds = $.makeArray( orderIds );
-			delete this.ordersByArticleMap[ articleName ];
-			this.articleNames = $( this.articleNames ).map( function( index, name ) {
-				if ( name != articleName )
-					return name;
-			});
-			Backoffice.Models.Order.close( orderIds, this.proxy( "_handleCloseResponse" ) );
+			
+			clearTimeout( this.timeOutID );
+			Backoffice.Models.Order.executeAction( orderIds, action, this.proxy( "_handleCloseResponse" ) );
 		},
 
+		
 		_refresh: function() {
 			Backoffice.Models.Order.getActiveOrdersByDate().done( this.proxy( "_renderOrdersByDate" ) );
 			//			this.counter++;

@@ -4,6 +4,23 @@
 
 <b>Table by date</b>
 
+
+	<div class="headerRow">
+		<span class="orderItemSelector">
+			<input id="orderItemSelectorAllCheckbox" type="checkbox" class="orderItemSelectorAllCheckbox">
+		</span>
+
+		<span class="orderAction">
+			<span id="ordersActionButton" action="close">close</span>
+		</span>
+		|
+		<span class="orderAction">
+			<span id="ordersActionButton" action="delete">delete</span>
+		</span>
+		 	
+		<div style="clear : both;"></div>
+	</div>
+
 <% for ( var i = 0; i < this.length; i++ ) { %>
 		<%== $.View( '//backoffice/order/list3/views/ordersByDate.ejs', this[ i ] ) %>
 <% } %>

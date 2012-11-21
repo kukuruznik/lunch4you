@@ -37,9 +37,9 @@ $.Model('Backoffice.Models.Order',
 	  		});
 	  	},
 
-		close: function( ids, success, error ) {
+		executeAction: function( ids, action, success, error ) {
 			return $.ajax({
-				url: "backoffice/orders/close.json",
+				url: "backoffice/orders/" + action + ".json",
 				type: "PUT",
 	  			contentType: "application/json",
 				data: $.toJSON( ids ),

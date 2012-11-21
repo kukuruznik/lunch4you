@@ -3,6 +3,9 @@
 <% var order = this %>
 
 	<div class="orderRow">
+		<span class="orderItemSelector">
+			<input id="orderItemSelectorCheckbox_<%= order.id %>" type="checkbox" class="orderItemSelectorCheckbox">
+		</span>
 		<span class="articleName">
 			<%= order.onlyItem.article.name_cz %>
 		</span>

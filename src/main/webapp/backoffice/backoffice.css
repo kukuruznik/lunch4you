@@ -104,28 +104,45 @@ div.tab-selectors div.tab-selector{
 }
 
 #meals3{
-	width : 620px;
+	width : 630px;
 }
 
-#meals3 .orderRow {
+#meals3 .orderRow, .headerRow {
 	background-color : #eeeeee;
 	border: 1px lightgray solid;
 	border-bottom : 0;
 	padding : 2px;
 }
 
+#meals3 .orderAction {
+	text-decoration : underline;
+	color : blue;
+	cursor : pointer;
+	padding-left : 5px;
+	padding-right : 5px;
+}
+
+#meals3 .orderItemSelector {
+	padding : 0px;
+	float : left;
+	border : 0px black solid;
+}
+
+#meals3 .orderItemSelectorCheckbox, .orderItemSelectorAllCheckbox {
+	margin : 4px;
+}
+
 #meals3 .articleName {
 	width : 230px;
 	white-space : nowrap;
 	overflow : hidden;
-	xdisplay : block;
 	float : left;
 	padding-left : 5px;
 	border : 0px black solid;
 }
 
 #meals3 .customerDetails {
-	width : 250px;
+	width : 220px;
 	white-space : nowrap;
 	overflow : hidden;
 	display : block;

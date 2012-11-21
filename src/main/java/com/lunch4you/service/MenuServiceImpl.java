@@ -374,6 +374,17 @@ public final class MenuServiceImpl implements MenuService {
 		return ids;
 	}
 
+	@Override
+	public void deleteOrders( List<Long> ids ) {
+		OrderFilter filter = new OrderFilter();
+		filter.ids = ids;
+		List<Order> orders = orderDao.find( filter );
+
+		for ( Order o : orders ) {
+			orderDao.delete(o);
+		}
+	}
+
 	private String createToken(String base) {
 		
 		try {

@@ -29,6 +29,8 @@ public class MailingServiceImpl implements MailingService {
 
 	private String backofficeEmailAddress;
 	
+	private String contactDetails;
+	
 	private String from;
 
 	private String menuSubject;
@@ -52,6 +54,7 @@ public class MailingServiceImpl implements MailingService {
 				model.put( "customer", customer);
 				model.put( "shopURL", shopURL );
 				model.put( "contactURL", contactURL );
+				model.put( "contactDetails", contactDetails );
 				model.put( "categoriesWithArticles", categoriesWithArticles.values() );
 				
 				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/menuMailTemplate.vm", "UTF-8", model  );
@@ -59,7 +62,7 @@ public class MailingServiceImpl implements MailingService {
 				helper.setFrom( from );
 				helper.setTo( customer.getEmail() );
 				helper.setSubject( menuSubject );
-				helper.setText( bodyText, true);
+				helper.setText( bodyText, true );
 			}
 		};
 		mailSender.send( preparator );
@@ -80,6 +83,7 @@ public class MailingServiceImpl implements MailingService {
 				model.put( "orderDate", new Date());
 				model.put( "shopURL", shopURL );
 				model.put( "contactURL", contactURL );
+				model.put( "contactDetails", contactDetails );
 				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/confirmationMailTemplate.vm", "UTF-8", model  );
 
 				helper.setFrom( from );
@@ -111,6 +115,14 @@ public class MailingServiceImpl implements MailingService {
 		};
 		mailSender.send( preparator );
 		
+	}
+
+	public String getContactDetails() {
+		return contactDetails;
+	}
+
+	public void setContactDetails(String contactDetails) {
+		this.contactDetails = contactDetails;
 	}
 
 	public String getBackofficeEmailAddress() {

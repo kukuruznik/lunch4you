@@ -49,12 +49,15 @@ public interface MenuService {
 	
 	List<Long> closeOrders( List<Long> ids );
 
+	void deleteOrders(List<Long> ids);
+
 	List<Customer> getActiveCustomers();
 
 	List<Map<String, Object>> sendMenu();
 
 	Referral createReferral(long senderId, long deliveryLocationId,
 			String recipientEmail, String referralMessage);
+
 
 
 }

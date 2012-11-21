@@ -56,16 +56,29 @@ public class OrderController {
 
 	@RequestMapping( value = "/backoffice/orders/close.json", method = RequestMethod.PUT )
 	public @ResponseBody
-	List<Long> close( @RequestBody List<Integer> intIds ) {
+	List<Long> close( @RequestBody List<String> intIds ) {
 		// IDs mapped as List<Integer> - bug?
 		List<Long> ids = new ArrayList<Long>( intIds.size() );
-		for ( Integer i : intIds )
-			ids.add( new Long( i ) );
+		for ( String id : intIds )
+			ids.add( Long.parseLong( id ) );
 		logger.trace( "OrderController.close called with ID-s: " + ids );
 
 		List<Long> missingOrders = menuService.closeOrders( ids );
 
 		return missingOrders;
+	}
+
+	@RequestMapping( value = "/backoffice/orders/delete.json", method = RequestMethod.PUT )
+	public @ResponseBody
+	void delete( @RequestBody List<String> intIds ) {
+		// IDs mapped as List<Integer> - bug?
+		List<Long> ids = new ArrayList<Long>( intIds.size() );
+		for ( String id : intIds )
+			ids.add( Long.parseLong( id ) );
+		logger.trace( "OrderController.delete called with ID-s: " + ids );
+
+		menuService.deleteOrders(ids);
+		logger.trace( "OrderController.delete called with ID-s: " + ids );
 	}
 
 	@RequestMapping( value = "/backoffice/orders/activeByDate.json", method = RequestMethod.GET )
