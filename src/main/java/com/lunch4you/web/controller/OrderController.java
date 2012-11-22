@@ -1,6 +1,7 @@
 package com.lunch4you.web.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,7 +71,7 @@ public class OrderController {
 
 	@RequestMapping( value = "/backoffice/orders/delete.json", method = RequestMethod.PUT )
 	public @ResponseBody
-	void delete( @RequestBody List<String> intIds ) {
+	List<Long> delete( @RequestBody List<String> intIds ) {
 		// IDs mapped as List<Integer> - bug?
 		List<Long> ids = new ArrayList<Long>( intIds.size() );
 		for ( String id : intIds )
@@ -79,6 +80,7 @@ public class OrderController {
 
 		menuService.deleteOrders(ids);
 		logger.trace( "OrderController.delete called with ID-s: " + ids );
+		return Collections.emptyList();
 	}
 
 	@RequestMapping( value = "/backoffice/orders/activeByDate.json", method = RequestMethod.GET )

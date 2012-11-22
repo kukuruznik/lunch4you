@@ -30,8 +30,7 @@ public class OrderItem {
 	@JoinColumn( name = "article_id" )
 	private Article article;
 
-//	insert="false" update="false"
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE )
 	@JoinColumn( name = "order_id", insertable=false, updatable=false  )
 	private Order order;
 
