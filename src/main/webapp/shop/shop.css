@@ -180,7 +180,7 @@ span.flag {
 	width: 20em;
 }
 
-#deliveryLocationDetails, #recipientEmailDiv, #referralMessageDiv {
+#deliveryLocationDetails, #recipientEmailDiv, #referralMessageDiv, #noteDiv  {
 	clear: both;
 }
 

@@ -31,7 +31,7 @@ public interface MenuService {
 
 	List<DeliveryLocation> getAllDeliveryLocations();
 
-	Order createOrder(Long articleId, Long customerId, Long deliveryLocationId );
+	Order createOrder(Long articleId, Long customerId, Long deliveryLocationId, String note );
 
 	List<Article> getMenu();
 

@@ -48,8 +48,9 @@ public class OrderController {
 		long articleId = Long.parseLong( data.get( "articleId" ).toString() );
 		long customerId = Long.parseLong( data.get( "customerId" ).toString() );
 		long deliveryLocationId = Long.parseLong( data.get( "deliveryLocationId" ).toString() );
+		String note = data.get( "note" ).toString();
 
-		Order order = menuService.createOrder( articleId, customerId, deliveryLocationId );
+		Order order = menuService.createOrder( articleId, customerId, deliveryLocationId, note );
 		OrderDto orderDto = mapOrder( order );
 
 		return orderDto;

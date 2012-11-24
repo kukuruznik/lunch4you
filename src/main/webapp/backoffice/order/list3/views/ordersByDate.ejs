@@ -19,4 +19,10 @@
 		 	
 		<span class="orderTime"><%= order.timeString %></span>
 		<div style="clear : both;"></div>
+	<% if( order.note ) { %>
+		<span class="note">
+			<%= order.note %>
+		</span>
+		<div style="clear : both;"></div>
+	<% } %>
 	</div>

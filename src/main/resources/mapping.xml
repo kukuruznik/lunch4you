@@ -143,6 +143,10 @@
 			<a>status</a>
 			<b is-accessible="true">status</b>
 		</field>
+		<field>
+			<a>note</a>
+			<b is-accessible="true">note</b>
+		</field>
 	</mapping>
 
 	<mapping>

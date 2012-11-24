@@ -4,6 +4,7 @@
 
 	"order.detail.customer": "Zákazník",
 	"order.detail.deliveryLocation": "Místo vyzvednutí",
+	"order.detail.note": "Poznámka",
 	"order.detail.price": "Cena",
 	"order.detail.viewMenu": "Dnešní Menu",
 

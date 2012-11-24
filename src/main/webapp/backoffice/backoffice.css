@@ -167,6 +167,17 @@ div.tab-selectors div.tab-selector{
 	border : 0px black solid;
 }
 
+#meals3 .note {
+	width : 500px;
+	white-space : normal;
+	color : red;
+	overflow : hidden;
+	display : block;
+	float : left;
+	margin-left : 30px;
+	border : 0px black solid;
+}
+
 /***************************************/
 
 #meals2 #packagingTable{
@@ -187,7 +198,7 @@ div.tab-selectors div.tab-selector{
 
 #meals2 .deliveryLocationCell {
 	border : 2px red solid;
-	width : 80px; 
+	width : 120px; 
 	padding : 4px;
 	vertical-align : top;
 }

@@ -14,6 +14,8 @@ public final class OrderDto {
 	public DeliveryLocationDto deliveryLocation;
 
 	public Order.Status status;
+	
+	public String note;
 
 	public Date timestamp;
 

@@ -54,6 +54,8 @@ public class Order {
 	@Enumerated( EnumType.STRING )
 	private Status status;
 
+	private String note;
+
 	@Column(name = "time_stamp")
 	@Temporal( value = TemporalType.TIMESTAMP )
 	private Date timestamp;
@@ -111,6 +113,14 @@ public class Order {
 
 	public void setStatus( Status status ) {
 		this.status = status;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	public Date getTimestamp() {

@@ -129,7 +129,7 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public Order createOrder( Long articleId, Long customerId, Long deliveryLocationId ) {
+	public Order createOrder( Long articleId, Long customerId, Long deliveryLocationId, String note ) {
 		OrderItem item = new OrderItem();
 		Article article = articleDao.load( articleId );
 		Customer customer = getCustomer( customerId );
@@ -141,6 +141,7 @@ public final class MenuServiceImpl implements MenuService {
 
 		newOrder.setOwner( customer );
 		newOrder.setDeliveryLocation( deliveryLocation );
+		newOrder.setNote( note );
 		newOrder.setStatus( Order.Status.OPEN );
 		newOrder.setItems( Collections.singletonList( item ) );
 

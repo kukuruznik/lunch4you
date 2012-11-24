@@ -61,6 +61,7 @@ CREATE TABLE `plain_order` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `owner_id` bigint(20) NOT NULL,
   `status` varchar(50) NOT NULL,
+  `note` varchar(4000) NOT NULL,
   `version` int(11) DEFAULT NULL,
   `delivery_location_id` bigint(20) NOT NULL,
   `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

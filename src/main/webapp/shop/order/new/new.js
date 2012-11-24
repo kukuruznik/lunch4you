@@ -71,8 +71,9 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			this._enableOrder( false );
 			var self = this;
 			var deliveryLocationId = $( "#deliveryLocationsSelect" ).val();
+			var note = $( "#note" ).val();
 			
-			Shop.Models.Order.create( this.article, this.customer, deliveryLocationId, function( order ) {
+			Shop.Models.Order.create( this.article, this.customer, deliveryLocationId, note, function( order ) {
 				alert($.EJS.Helpers.prototype.msg("order.detail.action.orderedMsg"));
 				self._enableOrder( true );
 			} );

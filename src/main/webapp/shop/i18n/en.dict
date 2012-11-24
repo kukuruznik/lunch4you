@@ -4,6 +4,7 @@
 
 	"order.detail.customer": "Customer",
 	"order.detail.deliveryLocation": "Delivery Location",
+	"order.detail.note": "Note",
 	"order.detail.price": "Price",
 	"order.detail.viewMenu": "Today's Menu",
 
