@@ -1,5 +1,6 @@
 package com.lunch4you.dao.jpa;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -20,9 +21,12 @@ public class JpaDeliveryLocationDao extends AbstractReadWriteDao<DeliveryLocatio
 
 	@Override
 	protected CriteriaQuery<DeliveryLocation> getCriteriaForFilter( DeliveryLocationFilter f ) {
-		CriteriaQuery<DeliveryLocation> cq = entityManager.getCriteriaBuilder().createQuery( DeliveryLocation.class );
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<DeliveryLocation> cq = builder.createQuery( DeliveryLocation.class );
 		Root<DeliveryLocation> root = cq.from( DeliveryLocation.class );
 		cq.select( root );
+
+		cq.orderBy( builder.asc( root.get( "abbreviation" ) ) );
 
 		// TODO implement filtering
 		return cq;
