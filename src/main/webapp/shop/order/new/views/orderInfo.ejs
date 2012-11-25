@@ -16,10 +16,12 @@
 	</div>
 	
 	<div id="deliveryLocationDetails">
-		<label><%= msg( "order.detail.deliveryLocation" ) %>:</label> 
+		<label><%= msg( "order.detail.deliveryLocation" ) %>:</label>
+		 
 		<select id="deliveryLocationsSelect">
 		<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
-			<option value="<%= deliveryLocations[ i ].id %>"><%= deliveryLocations[ i ].name %></option>
+			<option value="<%= deliveryLocations[ i ].id %>" 
+				<%= (deliveryLocation.id == deliveryLocations[ i ].id) ? "selected" : "" %> ><%= deliveryLocations[ i ].name %></option>
 		<% } %>
 		</select>
 	</div>
