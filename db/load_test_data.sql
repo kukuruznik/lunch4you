@@ -103,9 +103,10 @@ description_en=VALUES(description_en), price=VALUES(price), new_flag=VALUES(new_
 -- locations ------------------------------------------------------------------
 INSERT INTO `delivery_location` VALUES
 (1,"DHL - Mailroom","DHL",1),
-(2,"SITA","SITA",1),
+(2,"SITA - Old office","SITA_OLD",1),
 (3,"INBEV","INBEV",1),
-(4,"Osobní Odběr - OC Ruže","RUZE",1);
+(4,"Osobní Odběr - OC Ruže","RUZE",1),
+(2,"SITA - New office","SITA_NEW",1);
 
 INSERT INTO customer (Id,first_name,last_name, email, token, credit, version, is_active, default_delivery_location_id) VALUES 
 (1,"Aitor Del Campo","","Aitor.DelCampo@dhl.com",MD5("Aitor Del CampoxBucG5"),0,1,0,1),
