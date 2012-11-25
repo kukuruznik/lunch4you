@@ -1,3 +1,8 @@
+==========   BUGS     =====================
+- when someone uses link for a meal which is not active at the moment, system does not give any message.
+
+
+==========   TODO     =====================
 - General
 	- All dates are displayed in UTC time
 	
@@ -69,3 +74,7 @@
 	- Differences:
 		- shop URL (localhost vs. www.lunch4you.cz)
 		- emailing job enabled / disabled
+		
+		
+- Maintenance
+	- backup script with emailing for DB
