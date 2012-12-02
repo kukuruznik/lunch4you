@@ -1,0 +1,9 @@
+<% var user = this.customer %>
+
+<div class="customer-box">
+<% if ( user ) { %>
+	<div id="profile-edit"></div>
+<% } else { %>
+	<p><%= msg( "profile.edit.user.anonymous.message" ) %></p>
+<% } %>
+</div>

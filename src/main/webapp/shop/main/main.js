@@ -1,4 +1,13 @@
-steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order/new", "shop/menu/list", "shop/referral/new" ).then( function( $ ) {
+steal(
+	"jquery/controller",
+	"jquery/event/bbq",
+	"jquery/dom/cookie",
+	"shop/utils",
+	"shop/order/new",
+	"shop/menu/list",
+	"shop/referral/new",
+	"shop/profile/edit"
+).then( function( $ ) {
 
 	/**
 	 * @class Shop.Main
@@ -13,7 +22,7 @@ steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order
 
 		getLocale: function() {
 			if ( !this.locale )
-				this.locale = $.cookie( "locale" ) || "cz";
+				this.locale = this._load( "locale" ) || "cz";
 			return this.locale;
 		},
 
@@ -29,11 +38,33 @@ steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order
 		setLocale: function( locale ) {
 			for ( var i = 0; i < this._availableLocales.length; i++ ) {
 				if ( this._availableLocales[ i ] == locale ) {
+					this._save( "locale", locale );
 					this.locale = locale;
-					$.cookie( "locale", locale );
 					break;
 				}
 			}
+		},
+
+		getToken: function() {
+			if ( !this.token )
+				this.token = this._load( "token" );
+			return this.token;
+		},
+
+		setToken: function( token ) {
+			this._save( "token", token );
+			this.token = token;
+		},
+
+		_load: function( key ) {
+			var value = $.cookie( key );
+			steal.dev.log( "load from cookie: ", key, " = ", value );
+			return value;
+		},
+
+		_save: function( key, value ) {
+			steal.dev.log( "save into cookie: ", key, " = ", value );
+			$.cookie( key, value );
 		}
 	},
 
@@ -58,53 +89,30 @@ steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order
 				return object[ attrName + "_" + Shop.Main.getLocale() ];
 			};
 
-			// load localization data
-			this._loadDictionary( Shop.Main.getLocale() );
-		},
+			// if the user token is set in the URL then save it and remove from the URL
+			var hash = $.bbq.getState();
 
-		"{window} hashchange": function( el, evt ) {
-			Shop.params = $.bbq.getState();
-			steal.dev.log( "Hash changed: ", Shop.params );
+			if ( hash.token ) {
+				this.Class.setToken( hash.token );
+				$.bbq.removeState( "token" );
+			}
 
-			// URL validation and view selection
-			switch ( Shop.params.view ) {
-			case "menu":
-				if ( Shop.params.token ) {
-					$( "#screen-name" ).html( $.EJS.Helpers.prototype.currentView() );
-					$( '#content' ).shop_menu_list();
-				} else {
-					alert( "Invalid URL! Missing user token." );
-				}
-				break;
-			case "order":
-				if ( Shop.params.meal && Shop.params.token ) {
-					$( "#screen-name" ).html( $.EJS.Helpers.prototype.currentView() );
-					$( '#content' ).shop_order_new();
-				} else {
-					alert( "Invalid URL! Missing user and/or article." );
-				}
-				break;
-			case "referral":
-				if ( Shop.params.token ) {
-					$( "#screen-name" ).html( $.EJS.Helpers.prototype.currentView() );
-					$( '#content' ).shop_referral_new();
-				} else {
-					alert( "Invalid URL! Missing user token." );
-				}
-				break;
-			default:
-				alert( "Invalid URL! Unknown or missing view." );
+			// if we know the user token, then let's get the user data from the server,
+			// otherwise we set user to null and only anonymous actions will be enabled
+			var token = this.Class.getToken();
+
+			if ( token ) {
+				Shop.Models.Customer.findByToken( token, this.proxy( "_customerLoaded" ) );
+			} else {
+				this._customerLoaded( null );
 			}
 		},
 
-		"#change-lang click": function( el, evt ) {
-			var newLocale = Shop.Main.getOtherLocale();
+		_customerLoaded: function( customer ) {
+			Shop.customer = customer;
 
-			steal.dev.log( "Switching to locale: ", newLocale );
-			Shop.Main.setLocale( newLocale );
-
-			// initiate screen refresh
-			this._loadDictionary( newLocale );
+			// load localization data
+			this._loadDictionary( this.Class.getLocale() );
 		},
 
 		_loadDictionary: function( locale ) {
@@ -120,15 +128,62 @@ steal( "jquery/controller", "jquery/event/bbq", "jquery/dom/cookie", "shop/order
 
 		_dictionaryLoaded: function( dictionary ) {
 			steal.dev.log( "... finishing main controller initialization" );
-			Shop.Main.dictionary = dictionary;
+			this.Class.dictionary = dictionary;
 
 			// render the main page structure
 			$( "#content" ).html( this.view( 'page', this ) );
+
+			this.initialized = true;
 
 			// start the UI by triggering the initial hash change event
 			$( function() {
 				$( window ).trigger( "hashchange" );
 			});
+		},
+
+		"{window} hashchange": function( el, evt ) {
+			if ( !this.initialized )
+				return;
+
+			Shop.params = $.bbq.getState();
+			steal.dev.log( "Hash changed: ", Shop.params );
+
+			// URL validation and view selection
+			switch ( Shop.params.view ) {
+			case "menu":
+				this._setScreen( "shop_menu_list" );
+				break;
+			case "order":
+				if ( Shop.params.meal ) {
+					this._setScreen( "shop_order_new" );
+				} else {
+					alert( "Invalid URL! Missing article." );
+				}
+				break;
+			case "referral":
+				this._setScreen( "shop_referral_new" );
+				break;
+			case "profile":
+				this._setScreen( "shop_profile_edit" );
+				break;
+			default:
+				alert( "Invalid URL! Unknown or missing view." );
+			};
+		},
+
+		"#change-lang click": function( el, evt ) {
+			var newLocale = this.Class.getOtherLocale();
+
+			steal.dev.log( "Switching to locale: ", newLocale );
+			Shop.Main.setLocale( newLocale );
+
+			// initiate screen refresh
+			this._loadDictionary( newLocale );
+		},
+
+		_setScreen: function( controllerName ) {
+			$( "#screen-name" ).html( $.EJS.Helpers.prototype.currentView() );
+			$( '#detail' )[ controllerName ]();
 		}
 	});
 

@@ -9,14 +9,24 @@ steal('jquery/model', 'jquery/lang/json', function(){
 $.Model('Shop.Models.Customer',
 	/* @Static */
 	{
-	  	findByToken: function( token, success, error ) {
-	  		return $.ajax({
+		findByToken: function( token, success, error ) {
+			return $.ajax({
 	  			url: "customers/byToken/" + token + ".json",
 	  			dataType: "json customer.model",
 	  			success: success,
 	  			error: error || Shop.errorHandler
 	  		});
 	  	},
+
+	  	getCurrent: function( success, error ) {
+			return $.ajax({
+	  			url: "shop/currentCustomer.json",
+	  			dataType: "json customer.model",
+	  			success: success,
+	  			error: error || Shop.errorHandler
+	  		});
+	  	},
+
 		create: function( customer, success, error ) {
 	  		return $.ajax({
 	  			url: "customers.json",
@@ -27,6 +37,18 @@ $.Model('Shop.Models.Customer',
 	  			success: success,
 	  			error: error || Shop.errorHandler
 	  		});
+		},
+		
+		update: function( token, customer, success, error ) {
+			return $.ajax({
+				url: "customers/byToken/" + token + ".json",
+				type: "PUT",
+				contentType: "application/json",
+				data: $.toJSON( customer ),
+				dataType: "json customer.model",
+				success: success,
+				error: error || Shop.errorHandler
+			});
 		},
 		
 		createReferral: function( customer, deliveryLocationId, recipientEmail, referralMessage, success, error ) {

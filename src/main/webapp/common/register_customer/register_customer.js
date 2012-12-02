@@ -15,7 +15,8 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', 'jquery
 	{
 		init: function() {
 			steal.dev.log( "Customer registation form controller initialized" );
-			this.deliveryLocations = this.options.deliveryLocations;
+			this.deliveryLocations = this.options.deliveryLocations || [];
+			this.customer = this.options.customer || {};
 			this._render();
 		},
 
@@ -42,7 +43,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', 'jquery
 		},
 
 		_render: function() {
-			this.element.html( this.view( 'form', this.deliveryLocations ) );
+			this.element.html( this.view( 'form', this ) );
 		}
 	});
 });

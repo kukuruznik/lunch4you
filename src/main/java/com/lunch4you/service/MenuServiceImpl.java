@@ -101,7 +101,7 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public Customer registerCustomer( String firstName, String lastName, String email, Long defaultDeliveryLocationId ) {
+	public Customer registerCustomer( String firstName, String lastName, String email, Long defaultDeliveryLocationId, boolean wantsToReceiveMenu ) {
 		
 		DeliveryLocation ddl = deliveryLocationDao.load( defaultDeliveryLocationId );
 		
@@ -113,9 +113,14 @@ public final class MenuServiceImpl implements MenuService {
 		newCustomer.setFirstName( firstName );
 		newCustomer.setLastName( lastName );
 		newCustomer.setToken( token );
-		newCustomer.setIsActive( true );
+		newCustomer.setIsActive( wantsToReceiveMenu );
 		newCustomer.setDefaultDeliveryLocation( ddl );
 		return customerDao.insert( newCustomer );
+	}
+
+	@Override
+	public Customer updateCustomer( Customer customer ) {
+		return customerDao.update( customer );
 	}
 
 	@Override
@@ -339,7 +344,7 @@ public final class MenuServiceImpl implements MenuService {
 		Customer recipient;
 		if(recipients.size() == 0){
 			// Customer does not exist yet, create a new one
-			recipient = registerCustomer(recipientName, "", recipientEmail, deliveryLocationId);
+			recipient = registerCustomer(recipientName, "", recipientEmail, deliveryLocationId, true);
 		}else{
 			recipient = recipients.get(0);
 		}

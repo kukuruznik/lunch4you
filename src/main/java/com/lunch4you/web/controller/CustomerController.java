@@ -85,9 +85,22 @@ public class CustomerController {
 		String email = data.get( "email" ).toString();
 		long defaultDeliveryLocationId = Long.parseLong(data.get( "defaultDeliveryLocationId" ).toString());
 		
-		Customer customer = menuService.registerCustomer( firstName, lastName, email, defaultDeliveryLocationId );
+		Customer customer = menuService.registerCustomer( firstName, lastName, email, defaultDeliveryLocationId, true );
 		CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
 
+		return customerDto;
+	}
+	
+	@RequestMapping( value = "/customers/byToken/{token}.json", method = RequestMethod.PUT )
+	public @ResponseBody
+	CustomerDto updateCurrent( @RequestBody CustomerDto customerDto ) {
+		logger.trace( "CustomerController.updateCurrent called with data: " + customerDto );
+
+		Customer customer = menuService.getCustomer( customerDto.id );
+		beanMapper.map( customerDto, customer );
+		customer = menuService.updateCustomer( customer );
+		customerDto = beanMapper.map( customer, CustomerDto.class );
+		
 		return customerDto;
 	}
 

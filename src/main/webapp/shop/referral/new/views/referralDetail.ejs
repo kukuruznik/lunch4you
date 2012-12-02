@@ -1,8 +1,7 @@
 <% var user = this.customer %>
-<% var deliveryLocation = this.deliveryLocation %>
-<% var deliveryLocations = this.deliveryLocations %>
 
-<div id="referral-info">
+<div class="customer-box">
+<% if ( user ) { %>
 	<div>
 		<label><%= msg( "referral.detail.sender" ) %>:</label>
 		<div id="currentCustomerDetails">
@@ -20,12 +19,12 @@
 		<label><%= msg( "referral.detail.referralMessage" ) %>:</label> 
 		<textarea id="referralMessage"></textarea>
 	</div>
+
+	<form id="send-referral">
+		<input id="submitReferralButton" type="button" value="<%= msg( "referral.detail.action.recommend" ) %>" />
+	</form>
+<% } else { %>
+	<p><%= msg( "referral.detail.user.anonymous.message" ) %></p>
+<% } %>
 	
 </div>
-
-
-
-<form id="send-referral">
-	<input id="submitReferralButton" type="button" value="<%= msg( "referral.detail.action.recommend" ) %>" />
-</form>
-

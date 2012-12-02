@@ -27,7 +27,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_render: function( groupedMenu ) {
-			this.element.find( "#detail" ).html( this.view( 'list', groupedMenu ) );
+			this.element.html( this.view( 'list', groupedMenu ) );
 		}
 	} );
 

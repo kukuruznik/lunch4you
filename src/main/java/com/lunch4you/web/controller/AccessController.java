@@ -29,9 +29,12 @@ public class AccessController {
 		return principal.getName();
 	}
 
-	@RequestMapping(value = "/backoffice/currentCustomer", method = RequestMethod.GET)
+	@RequestMapping(value = "/shop/currentCustomer", method = RequestMethod.GET)
 	public @ResponseBody
 	CustomerDto getCurrentCustomer(Principal principal) {
+		if ( principal == null )
+			return null;
+
 		try {
 			Long customerId = Long.parseLong( principal.getName() );
 			Customer customer = customerDao.load( customerId );

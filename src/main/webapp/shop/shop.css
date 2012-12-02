@@ -1,5 +1,5 @@
 body {
-	font-family: Lucida Sans, Lucida Grande, Arial, sans-serif;
+	font-family: Lucida Sans, Lucida Grande, Tahoma, sans-serif;
 	margin: 0;
 	line-height: 22px;
 	width: 960px;
@@ -90,6 +90,15 @@ label {
 	clear: both;
 }
 
+.customer-box {
+	background-color: #cdf;
+	padding: 0.5em;
+	width: 60%;
+	margin: auto;
+	border: 1px solid silver;
+	border-radius: 4px;
+}
+
 li.category {
 	margin-bottom: 1em;
 }
@@ -145,15 +154,6 @@ span.flag {
 #detail {
 	padding: 1em;
 	background-color: #ffc;
-}
-
-#customer-info, #referral-info {
-	background-color: #cdf;
-	padding: 0.5em;
-	width: 60%;
-	margin: auto;
-	border: 1px solid silver;
-	border-radius: 4px;
 }
 
 #customerForm {

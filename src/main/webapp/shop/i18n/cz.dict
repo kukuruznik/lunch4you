@@ -1,25 +1,31 @@
 {
 	"header.menu": "Nabídka",
 	"header.order": "Objednávka",
+	"header.referral": "Doporučení",
+	"header.profile": "Uživatelský Profil",
 
 	"order.detail.customer": "Zákazník",
 	"order.detail.deliveryLocation": "Místo vyzvednutí",
 	"order.detail.note": "Poznámka",
 	"order.detail.price": "Cena",
 	"order.detail.viewMenu": "Dnešní Menu",
-
-	"order.registration.firstName": "Jméno",
-	"order.registration.lastName": "Příjmení",
-	"order.registration.email": "Email",
-	"order.registration.ddl": "Tady budu vyzvedávat",
-	"order.registration.subscribe": "Zasílat denní menu",
-	"order.registration.done": "Hotovo",
-	"order.registration.cancel": "Zrušit",
+	"order.detail.user.anonymous": "Anonymní Uživatel",
+	"order.detail.user.anonymous.message": "Pouze registrovaní uživatelé mohou založit objednávku.",
 
 	"order.detail.action.change": "změnit",
 	"order.detail.action.order": "Poslat objednávku",
 	"order.detail.action.orderedMsg": "Děkujeme za Vaši objednávku! \nZa malou chvíli obdržíte potvrzujíci email s detaily Vaší objednávky.",
 	"order.detail.action.changeLanguage": "English",
+
+	"customer.registration.firstName": "Jméno",
+	"customer.registration.lastName": "Příjmení",
+	"customer.registration.email": "Email",
+	"customer.registration.ddl": "Tady budu vyzvedávat",
+	"customer.registration.subscribe": "Zasílat denní menu",
+	"customer.registration.done": "Hotovo",
+	"customer.registration.cancel": "Zrušit",
+
+	"profile.edit.user.anonymous.message": "Nejste přihlášen. Informace o profilu není k dispozici.",
 
 	"referral.detail.sender" : "Odesílatel",
 	"referral.detail.recipientEmail": "Příjemcův email",
@@ -27,6 +33,7 @@
 	"referral.detail.action.recommend" : "Zaslat doporučení",
 	"referral.detail.validation.emptyEmailAddress" : "Emailová adresa musí být vyplněna!",
 	"referral.detail.validation.invalidEmailFormat" : "Nesprávný formát emailové adresy!",	
-	"referral.detail.action.referralMsg" : "Doporučení bylo úspěšně odesláno!"
-	
+	"referral.detail.action.referralMsg" : "Doporučení bylo úspěšně odesláno!",
+	"referral.detail.user.anonymous.message": "Pouze registrovaní uživatelé mohou poslat doporučení."
+
 }

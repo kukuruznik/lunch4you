@@ -1,4 +1,6 @@
-<% var deliveryLocations = this %>
+<% var deliveryLocations = this.deliveryLocations %>
+<% var user = this.customer %>
+<% var ddl = user.defaultDeliveryLocation.id %>
 <% var firstNameId = "reg_firstName" %>
 <% var lastNameId = "reg_lastName" %>
 <% var emailId = "reg_email" %>
@@ -9,34 +11,36 @@
 	<table>
 		<tbody>
 			<tr>
-				<td class="label"><label for="<%= firstNameId %>"><%= msg( "order.registration.firstName" ) %>:</label></td>
-				<td class="value"><input type="text" name="firstName" id="<%= firstNameId %>"/></td>
+				<td class="label"><label for="<%= firstNameId %>"><%= msg( "customer.registration.firstName" ) %>:</label></td>
+				<td class="value"><input type="text" name="firstName" id="<%= firstNameId %>" value="<%= user.firstName %>"/></td>
 			<tr/>
 			<tr>
-				<td class="label"><label for="<%= lastNameId %>"><%= msg( "order.registration.lastName" ) %>:</label></td>
-				<td class="value"><input type="text" name="lastName" id="<%= lastNameId %>"/></td>
+				<td class="label"><label for="<%= lastNameId %>"><%= msg( "customer.registration.lastName" ) %>:</label></td>
+				<td class="value"><input type="text" name="lastName" id="<%= lastNameId %>" value="<%= user.lastName %>"/></td>
 			<tr/>
 			<tr>
-				<td class="label"><label for="<%= emailId %>"><%= msg( "order.registration.email" ) %>:</label></td>
-				<td class="value"><input type="text" name="email" id="<%= emailId %>"/></td>
+				<td class="label"><label for="<%= emailId %>"><%= msg( "customer.registration.email" ) %>:</label></td>
+				<td class="value"><input type="text" name="email" id="<%= emailId %>" value="<%= user.email %>"/></td>
 			<tr/>
 			<tr>
-				<td class="label"><label for="<%= ddlId %>"><%= msg( "order.registration.ddl" ) %>:</label></td>
+				<td class="label"><label for="<%= ddlId %>"><%= msg( "customer.registration.ddl" ) %>:</label></td>
 				<td class="value">
 					<select name="defaultDeliveryLocationId" id="<%= ddlId %>">
 					<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
-						<option value="<%= deliveryLocations[ i ].id %>"><%= deliveryLocations[ i ].name %></option>
+						<option value="<%= deliveryLocations[ i ].id %>" <%= deliveryLocations[ i ].id == ddl ? "selected='selected'" : "" %>>
+							<%= deliveryLocations[ i ].name %>
+						</option>
 					<% } %>
 					</select>
 				</td>
 			<tr/>
 			<tr>
-				<td class="label"><label for="<%= subscribeId %>"><%= msg( "order.registration.subscribe" ) %>:</label></td>
-				<td class="value"><input type="checkbox" name="subscribe" id="<%= subscribeId %>"/></td>
+				<td class="label"><label for="<%= subscribeId %>"><%= msg( "customer.registration.subscribe" ) %>:</label></td>
+				<td class="value"><input type="checkbox" name="subscribe" id="<%= subscribeId %>" <%= user.isActive ? "checked='checked'" : "" %>/></td>
 			<tr/>
 			<tr>
-				<td class="label"><input type="submit" value="<%= msg( "order.registration.done" ) %>"/></td>
-				<td class="value"><input type="reset" value="<%= msg( "order.registration.cancel" ) %>"/></td>
+				<td class="label"><input type="reset" value="<%= msg( "customer.registration.cancel" ) %>"/></td>
+				<td class="value"><input type="submit" value="<%= msg( "customer.registration.done" ) %>"/></td>
 			</tr>
 		</tbody>
 	</table>

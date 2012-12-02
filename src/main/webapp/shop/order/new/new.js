@@ -26,43 +26,22 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			this._createOrder();
 		},
 
-		"#changeCustomerButton click": function( el, evt ) {
-			this._showCustomerForm();
-		},
-
-		"#customerForm close": function( el, evt ) {
-			this._hideCustomerForm();
-		},
-		
-		"#customerForm register": function( el, evt, customerData ) {
-			steal.dev.log( "registering customer ", customerData );
-
-			var customerDfr = Shop.Models.Customer.create( customerData );
-			customerDfr.done( this.proxy( "_onCustomerLoaded" ) );
-		},
-
 		"#deliveryLocationsSelect change": function( el, evt ) {
-			// TODO - tu je problem. Raz sa do tejto premennej odklada DeliveryLocatuion object, inokedy zas ID
 			this.deliveryLocation = el.val();
 		},
 
 		_reloadData: function() {
 			var articleDfr = Shop.Models.Article.findOne( Shop.params.meal );
-			var customerDfr = Shop.Models.Customer.findByToken( Shop.params.token );
 			var deliveryLocationsDfr = Shop.Models.DeliveryLocation.findAll();
 
-			$.when( articleDfr, customerDfr, deliveryLocationsDfr ).done( this.proxy( "_onDataLoaded" ) );
+			$.when( articleDfr, deliveryLocationsDfr ).done( this.proxy( "_onDataLoaded" ) );
 		},
 
-		_onDataLoaded: function( articleResponse, customerResponse, deliveryLocationsResponse ) {
+		_onDataLoaded: function( articleResponse, deliveryLocationsResponse ) {
 			this.article = articleResponse[ 0 ];
 			this.deliveryLocations = deliveryLocationsResponse[ 0 ];
-			this._onCustomerLoaded( customerResponse[ 0 ] );
-		},
-
-		_onCustomerLoaded: function( customer ) {
-			this.customer = customer;
-			this.deliveryLocation = customer ? customer.defaultDeliveryLocation : null;
+			this.customer = Shop.customer; // can be null!
+			this.deliveryLocation = this.customer ? this.customer.defaultDeliveryLocation : null;
 
 			this._render();
 		},
@@ -79,36 +58,18 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			} );
 		},
 
-		_enableOrder: function( yes ) {
-			if ( yes )
-				$( "#order" ).removeAttr( "disabled" );
-			else
-				$( "#order" ).attr( "disabled", "disabled" );
-		},
-
-		_showCustomerForm: function() {
-			this._enableOrder( false );
-			$( "#currentCustomerDetails" ).hide();
-			$( "#customerForm" ).show();
-			this.element.find( "input[type=text]:first" ).focus();
-		},
-		
-		_hideCustomerForm: function() {
-			$( "#customerForm" ).hide();
-			$( "#currentCustomerDetails" ).show();
-			this._enableOrder( true );
+		_enableOrder: function( enable ) {
+			var button = $( "#order" );
+			Shop.Utils.enableInput( button, enable );
 		},
 
 		_render: function() {
-			var detailElem = this.element.find( "#detail" );
-
 			if ( !this.article ) {
-				detailElem.html( this.view( "unknownMeal" ) );
-			} else if ( !this.customer ) {
-				detailElem.html( this.view( "unknownCustomer" ) );
+				this.element.html( this.view( "unknownMeal" ) );
 			} else {
-				detailElem.html( this.view( 'orderInfo', this ) );
-				detailElem.find( "#customerForm" ).common_register_customer( { deliveryLocations: this.deliveryLocations } );
+				this.element.html( this.view( "orderInfo", this ) );
+				if ( !this.customer )
+					this._enableOrder( false );
 			}
 		}
 	} );

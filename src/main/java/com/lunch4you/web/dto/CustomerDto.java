@@ -12,6 +12,8 @@ public class CustomerDto {
 	public String email;
 
 	public Integer credit;
+	
+	public boolean isActive;
 
 	public DeliveryLocationDto defaultDeliveryLocation;
 }

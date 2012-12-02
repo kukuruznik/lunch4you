@@ -1,34 +1,44 @@
 <% var meal = this.article %>
 <% var user = this.customer %>
-<% var deliveryLocation = this.deliveryLocation %>
+<% var deliveryLocation = this.deliveryLocation || this.deliveryLocations[ 0 ] %>
 <% var deliveryLocations = this.deliveryLocations %>
 
-<div id="customer-info">
+<div class="customer-box">
 	<div>
 		<label><%= msg( "order.detail.customer" ) %>:</label>
 		<div id="currentCustomerDetails">
-			<span class="modifiable"><%= user.firstName %> <%= user.lastName %></span>
-			<div id="changeCustomerButton" class="link-button"><%= msg( "order.detail.action.change" ) %></div>
-		</div>
+		<% if ( user ) { %>
+			<div>
+				<span class="modifiable">
+					<%= user.firstName %> <%= user.lastName %>
+				</span>
+			</div>
+			<div id="deliveryLocationDetails">
+				<label><%= msg( "order.detail.deliveryLocation" ) %>:</label>
 		
-		<div id="customerForm" class="in-place" style="display:none;">
-		</div>
-	</div>
-	
-	<div id="deliveryLocationDetails">
-		<label><%= msg( "order.detail.deliveryLocation" ) %>:</label>
-		 
-		<select id="deliveryLocationsSelect">
-		<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
-			<option value="<%= deliveryLocations[ i ].id %>" 
-				<%= (deliveryLocation.id == deliveryLocations[ i ].id) ? "selected" : "" %> ><%= deliveryLocations[ i ].name %></option>
+				<select id="deliveryLocationsSelect">
+				<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
+					<option value="<%= deliveryLocations[ i ].id %>" 
+						<%= (deliveryLocation.id == deliveryLocations[ i ].id) ? "selected" : "" %> ><%= deliveryLocations[ i ].name %></option>
+				<% } %>
+				</select>
+			</div>
+		
+			<div id="noteDiv">
+				<label><%= msg( "order.detail.note" ) %>:</label> 
+				<textarea id="note"></textarea>
+			</div>
+			<!--div id="changeCustomerButton" class="link-button"><%= msg( "order.detail.action.change" ) %></div-->
+		<% } else { %>
+			<span class="modifiable">
+				<%= msg( "order.detail.user.anonymous" ) %>
+			</span>
+			<p><%= msg( "order.detail.user.anonymous.message" ) %></p>
 		<% } %>
-		</select>
-	</div>
-	
-	<div id="noteDiv">
-		<label><%= msg( "order.detail.note" ) %>:</label> 
-		<textarea id="note"></textarea>
+		</div>
+
+		<!--div id="customerForm" class="in-place" style="display:none;"-->
+		</div>
 	</div>
 
 </div>
@@ -43,4 +53,4 @@
 	<input id="order" type="button" value="<%= msg( "order.detail.action.order" ) %>" />
 </form>
 
-<p><a href="#view=menu&token=<%= Shop.params.token %>"><%= msg( "order.detail.viewMenu" ) %></a></p>
+<p><a href="#view=menu"><%= msg( "order.detail.viewMenu" ) %></a></p>

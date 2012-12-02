@@ -25,7 +25,9 @@ public interface MenuService {
 
 	List<Customer> getAllCustomers();
 
-	Customer registerCustomer( String firstName, String lastName, String email, Long defaultDeliveryLocationId  ); // we might need a RegistrationInfo class in the future 
+	Customer registerCustomer( String firstName, String lastName, String email, Long defaultDeliveryLocationId, boolean wantsToReceiveMenu ); // we might need a RegistrationInfo class in the future 
+	
+	Customer updateCustomer( Customer customer ); // we might need a RegistrationInfo class in the future 
 
 	DeliveryLocation getDeliveryLocation( Long id );
 
@@ -55,9 +57,6 @@ public interface MenuService {
 
 	List<Map<String, Object>> sendMenu();
 
-	Referral createReferral(long senderId, long deliveryLocationId,
-			String recipientEmail, String referralMessage);
-
-
+	Referral createReferral(long senderId, long deliveryLocationId, String recipientEmail, String referralMessage);
 
 }

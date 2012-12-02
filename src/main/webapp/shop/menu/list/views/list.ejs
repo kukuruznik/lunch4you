@@ -15,7 +15,7 @@
 			<% var article = articles[j] %>
 			<tr>
 				<td class="articleCell">
-					<a class="meal" href="#view=order&meal=<%= article.id %>&token=<%= Shop.params.token %>"><%= localize( article, "name" ) %></a>
+					<a class="meal" href="#view=order&meal=<%= article.id %>"><%= localize( article, "name" ) %></a>
 					- <%= localize( article, "description" ) %>
 				</td>
 				<td class="priceCell">
