@@ -1,0 +1,9 @@
+Release plan / Roadmap
+======  Major features  ======
+- Blocking meal (out of stock, etc)
+- Login
+- Delivery time selection
+
+======  Minor features  ======
+- "New" article indicator
+
