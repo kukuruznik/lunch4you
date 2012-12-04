@@ -12,7 +12,7 @@
 		#parse( $headerTemplateName )
 		
 		<p>
-		<span class="importantNote"> Important Note : </span> All links in this email are personalized to automatically select your account. Please do not forward this email. If you would like to recommend Lunch4you to a friend, plese use the link below the menu.
+		<span class="importantNote"> Important Note : </span> All links in this email are personalized to authenticate you automatically. Please do not forward this email. If you would like to recommend Lunch4you to a friend, plese use the link below the menu.
 	</div>
 
 	<hr style="border : 0px; border-top : 1px lightgray solid;">
@@ -60,7 +60,6 @@
 				#end
 				</span>
 				
-				
 			</td>
 		</tr>
 	#end
@@ -79,7 +78,13 @@
 	
 	<div class="footerText">
 		<p>
-		<a href="${shopURL}#view=menu&token=${customer.token}">Complete online menu</a>
+		<!-- 
+		<a href="${shopURL}#view=profile&token=${customer.token}"
+			title="Click here to edit your profile, subscribe/unsubscribe, etc..."
+		>My profile</a>
+		 | 
+		 -->
+		<a href="${shopURL}#view=menu&token=${customer.token}">Menu online</a>
 		 | 
 		<a href="${shopURL}#view=referral&token=${customer.token}">Recommend Lunch4you to a friend</a>
 		</p>

@@ -111,6 +111,10 @@
 			<b is-accessible="true">credit</b>
 		</field>
 		<field>
+			<a>isActive</a>
+			<b is-accessible="true">isActive</b>
+		</field>
+		<field>
 			<a>defaultDeliveryLocation</a>
 			<b is-accessible="true">defaultDeliveryLocation</b>
 		</field>

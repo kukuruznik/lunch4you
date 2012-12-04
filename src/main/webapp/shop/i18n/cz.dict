@@ -2,7 +2,7 @@
 	"header.menu": "Nabídka",
 	"header.order": "Objednávka",
 	"header.referral": "Doporučení",
-	"header.profile": "Uživatelský Profil",
+	"header.profile": "Uživatelský profil",
 
 	"order.detail.customer": "Zákazník",
 	"order.detail.deliveryLocation": "Místo vyzvednutí",
@@ -20,9 +20,9 @@
 	"customer.registration.firstName": "Jméno",
 	"customer.registration.lastName": "Příjmení",
 	"customer.registration.email": "Email",
-	"customer.registration.ddl": "Tady budu vyzvedávat",
-	"customer.registration.subscribe": "Zasílat denní menu",
-	"customer.registration.done": "Hotovo",
+	"customer.registration.ddl": "Místo vyzvednutí",
+	"customer.registration.subscribe": "Zasílat týdení menu",
+	"customer.registration.done": "Uložit",
 	"customer.registration.cancel": "Zrušit",
 
 	"profile.edit.user.anonymous.message": "Nejste přihlášen. Informace o profilu není k dispozici.",

@@ -1,10 +1,23 @@
 ==========   BUGS     =====================
 - when someone uses link for a meal which is not active at the moment, system does not give any message.
-
+- backoffice data is cached on DHL proxy, need to add non-cache for .json files
+- after deleting / closing orders in backoffice view, only the table with orders refreshes, need to refresh the table by articles as well
 
 ==========   TODO     =====================
+
+
+- Rollout - Accenture
+	- notification about pickup at OC Ruze
+	- edit account / unsubscribe
+	- ordering time for pickup at OC Ruze
+	- double ordering prevention
+	
+
 - General
 	- All dates are displayed in UTC time
+
+- UI Consolidation
+	- technique for building editable forms. Currently Register Customer uses tables, Refarral dialog uses DIVs.
 	
 - Pickup and payment instructions
 	- separate payment and pickup instructions fr each delivery location
@@ -15,6 +28,10 @@
 	- Language toggle switch does not work in IE6
 	- Currently UI shows the flag of the other language (to which language will bechanged after clicking) P2
 		This is not intuitive as people expect it to show current setting. PLus it would not work if we had 3 languages. We need to implement some kind of a selector
+
+- Article
+	- Consider maintaining sort order of meals within a category
+	- New Flag - P2
 
 - Customer (DB)
 	- add "created_on" (timestamp), so that we can track new customers
@@ -45,27 +62,30 @@
 	- displaying package type and ordering in views / reports
 
 - Ordering
-	- Add "comments" field to Ordering form		P1
+	- Delivery location - create checkbox to treat the selected delivery location as default (stored in profile)
 	- Find out how to publish ordering/pickup instructions
 		- probably different instructions for each delivery location
 
+- Referral dialog
+	- create "Email preview" so that user can see what message will be sent to recipient 	P4
+
 - Order Confirmation email
-	- add pickup instructions	P2
+	- consider what other information needs to be included	P2
 
 - Online Menu
 	- add Special discount functionality (use manu emailing as template)
 
+- Emailing general
+	- refactor VM templates (mostly headers and footers) to use more templates with variables rather than clones of the same texts
+		- introduce new variables (e.g. time of ordering, location)
+
 - Menu Emailing
 	- Manual triggering of menu emailing, currently only as JSON URL but no UI	 P3
-	- make sure that each emailing is isolatedin a separate transaction to prevent whole batch scrapping due to some individual data problem	P1
-	- correct ordering 		P1
 	- unsubscribe feature	P3
-	- recommend / invite other feature	P3
-	- ordering instructions	P2
 	- New Flag - P2
 
 - Daily close up (EOB)
-	- deactivate all orders from previous day	P2
+	- deactivate all orders from previous day, currently manual process 	P4
 	
 - Menu administration P4
 

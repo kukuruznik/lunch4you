@@ -184,6 +184,11 @@ span.flag {
 	clear: both;
 }
 
+#noteDiv textarea {
+	width : 25em;
+	height : 6em;
+}
+
 #description {
 	margin: 0 0 3em;
 }
@@ -199,11 +204,12 @@ span.flag {
 */
 
 #recipientEmail {
-	width : 300px;
+	width : 20em;
 }
 
 #referralMessage {
-	width : 300px;
+	width : 25em;
+	height : 6em;
 }
 
 

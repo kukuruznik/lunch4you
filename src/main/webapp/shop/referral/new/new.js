@@ -45,7 +45,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			var referralMessage = $( "#referralMessage" ).attr( "value" );
 
 			Shop.Models.Customer.createReferral( this.customer, deliveryLocationId, recipientEmail, referralMessage, function( referral ) {
-				alert( Shop.Utils.getLocalizedMessage( "referral.detail.action.referralMsg" ) );
+				alert( $.EJS.Helpers.prototype.msg( "referral.detail.action.referralMsg" ) );
 				self._enableReferralSubmit( true );
 			} );
 		},
@@ -54,12 +54,12 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			var email = $( "#recipientEmail" ).attr( "value" );
 			
 			if ($.trim(email) == "") {				
-				alert( Shop.Utils.getLocalizedMessage( "referral.detail.validation.emptyEmailAddress" ) );
+				alert( $.EJS.Helpers.prototype.msg( "referral.detail.validation.emptyEmailAddress" ) );
 				return false;
 			}
 
 			if ( !Shop.Utils.isEmailAddressValid( email ) ) {
-				alert( Shop.Utils.getLocalizedMessage( "referral.detail.validation.invalidEmailFormat" ) );
+				alert( $.EJS.Helpers.prototype.msg( "referral.detail.validation.invalidEmailFormat" ) );
 				return false;
 			}
 			return true;

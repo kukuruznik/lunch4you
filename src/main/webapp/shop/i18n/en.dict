@@ -1,11 +1,11 @@
 {
 	"header.menu": "Menu",
 	"header.order": "Order",
-	"header.referral": "Recommendation",
+	"header.referral": "Referral",
 	"header.profile": "User Profile",
 
 	"order.detail.customer": "Customer",
-	"order.detail.deliveryLocation": "Delivery Location",
+	"order.detail.deliveryLocation": "Pickup Location",
 	"order.detail.note": "Note",
 	"order.detail.price": "Price",
 	"order.detail.viewMenu": "Today's Menu",
@@ -20,20 +20,20 @@
 	"customer.registration.firstName": "First Name",
 	"customer.registration.lastName": "Last Name",
 	"customer.registration.email": "Email",
-	"customer.registration.ddl": "Default Delivery Location",
-	"customer.registration.subscribe": "Subscribe",
-	"customer.registration.done": "Done",
+	"customer.registration.ddl": "Default Pickup Location",
+	"customer.registration.subscribe": "Subscribe to weekly menu",
+	"customer.registration.done": "Save",
 	"customer.registration.cancel": "Cancel",
 
 	"profile.edit.user.anonymous.message": "Not logged in. No profile information available.",
 
 	"referral.detail.sender" : "Sender",
-	"referral.detail.recipientEmail": "Recipient email",
-	"referral.detail.referralMessage" : "Personal message",
+	"referral.detail.recipientEmail": "Recipient Email",
+	"referral.detail.referralMessage" : "Personal Message",
 	"referral.detail.action.recommend" : "Send Referral",
 	"referral.detail.validation.emptyEmailAddress" : "Email address must not be empty!",	
 	"referral.detail.validation.invalidEmailFormat" : "Invalid email address format!",
 	"referral.detail.action.referralMsg" : "Referral successfully submitted!",
-	"referral.detail.user.anonymous.message": "Please register. Only registered users can send recommendations."
+	"referral.detail.user.anonymous.message": "Please register. Only registered users can send referrals."
 	
 }
