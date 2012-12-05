@@ -59,6 +59,7 @@ steal(
 		_load: function( key ) {
 			var value = $.cookie( key );
 			steal.dev.log( "load from cookie: ", key, " = ", value );
+			//alert( "load from cookie: " + key + " = " + value );
 			return value;
 		},
 
@@ -94,12 +95,13 @@ steal(
 
 			if ( hash.token ) {
 				this.Class.setToken( hash.token );
-				$.bbq.removeState( "token" );
+				//$.bbq.removeState( "token" );
 			}
 
 			// if we know the user token, then let's get the user data from the server,
 			// otherwise we set user to null and only anonymous actions will be enabled
 			var token = this.Class.getToken();
+			//alert( "token = " + token);
 
 			if ( token ) {
 				Shop.Models.Customer.findByToken( token, this.proxy( "_customerLoaded" ) );
@@ -110,6 +112,8 @@ steal(
 
 		_customerLoaded: function( customer ) {
 			Shop.customer = customer;
+
+			//alert( "customer = " + Shop.customer);
 
 			// load localization data
 			this._loadDictionary( this.Class.getLocale() );
