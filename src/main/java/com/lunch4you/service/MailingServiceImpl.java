@@ -110,6 +110,8 @@ public class MailingServiceImpl implements MailingService {
 				MimeMessageHelper helper = new MimeMessageHelper( mimeMessage , "UTF-8");
 				Map<String, Object> model = new HashMap<String, Object>();
 				model.put( "referral", referral );
+				model.put( "shopURL", shopURL );
+				model.put( "customer", referral.getRecipient() );
 				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/referralMailTemplate.vm", "UTF-8", model  );
 
 				helper.setFrom( from );

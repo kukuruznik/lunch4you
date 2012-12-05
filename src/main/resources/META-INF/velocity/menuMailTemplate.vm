@@ -12,7 +12,7 @@
 		#parse( $headerTemplateName )
 		
 		<p>
-		<span class="importantNote"> Important Note : </span> All links in this email are personalized to authenticate you automatically. Please do not forward this email. If you would like to recommend Lunch4you to a friend, plese use the link below the menu.
+		<span class="importantNote"> Important Note : </span> All links in this email are personalized to authenticate you automatically. Please do not forward this email. If you would like to recommend Lunch4you to a friend, please use the link below the menu.
 	</div>
 
 	<hr style="border : 0px; border-top : 1px lightgray solid;">
