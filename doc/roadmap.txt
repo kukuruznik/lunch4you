@@ -3,7 +3,11 @@ Release plan / Roadmap
 - Blocking meal (out of stock, etc)
 - Login
 - Delivery time selection
+- Multiple articles in one order
+- Discounts calculation
+- Caffeteria interface
 
 ======  Minor features  ======
 - "New" article indicator
+- Food ingredients / allergen information
 
