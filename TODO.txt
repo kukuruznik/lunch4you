@@ -2,6 +2,7 @@
 - when someone uses link for a meal which is not active at the moment, system does not give any message.
 - backoffice data is cached on DHL proxy, need to add non-cache for .json files
 - after deleting / closing orders in backoffice view, only the table with orders refreshes, need to refresh the table by articles as well
+- Language selector in IE6 is completely outside service box and does not do anything when clicked
 
 ==========   TODO     =====================
 
@@ -15,6 +16,16 @@
 
 - General
 	- All dates are displayed in UTC time
+	- DB review - constraints, indexes, etc.
+	- automated DB backup
+	- Need to clearly identify common objects needed in all controllers and how they can be accessed
+		- token
+		- customer
+		- reference data (delivery locations, etc)
+	- main.js loads needed data in a sequential way (callback chain), but New order code uses $.when(..).done()
+	- when to use static member functions and when prototype???
+	- rename MenuService to something more appropriate
+	- reafactor delivery location selector into a template
 
 - UI Consolidation
 	- technique for building editable forms. Currently Register Customer uses tables, Refarral dialog uses DIVs.
@@ -67,6 +78,7 @@
 		- probably different instructions for each delivery location
 
 - Referral dialog
+	- add Default Delivery Location select box to define recipient's delivey location. P2
 	- create "Email preview" so that user can see what message will be sent to recipient 	P4
 
 - Order Confirmation email
