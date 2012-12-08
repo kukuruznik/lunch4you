@@ -1,21 +1,21 @@
 <% var user = this.customer %>
 
-<div class="customer-box">
+<div class="customer-box input-form">
 <% if ( user ) { %>
-	<div>
+	<div class="input-form-row">
 		<label><%= msg( "referral.detail.sender" ) %>:</label>
 		<div id="currentCustomerDetails">
-			<span class="modifiable"><%= user.firstName %> <%= user.lastName %></span>
+			<span class=""><%= user.firstName %> <%= user.lastName %></span>
 		</div>
 		
 	</div>
 
-	<div id="recipientEmailDiv">
+	<div class="input-form-row">
 		<label><%= msg( "referral.detail.recipientEmail" ) %>:</label> 
 		<input id="recipientEmail" type="text" value="">
 	</div>
 
-	<div id="referralMessageDiv">
+	<div class="input-form-row">
 		<label><%= msg( "referral.detail.referralMessage" ) %>:</label> 
 		<textarea id="referralMessage"></textarea>
 	</div>
