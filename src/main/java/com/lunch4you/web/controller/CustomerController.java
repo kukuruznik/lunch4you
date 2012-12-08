@@ -91,7 +91,7 @@ public class CustomerController {
 		return customerDto;
 	}
 	
-	@RequestMapping( value = "/customers/byToken/{token}.json", method = RequestMethod.PUT )
+	@RequestMapping( value = "/customers/updateCustomer.json", method = RequestMethod.POST )
 	public @ResponseBody
 	CustomerDto updateCurrent( @RequestBody CustomerDto customerDto ) {
 		logger.trace( "CustomerController.updateCurrent called with data: " + customerDto );
@@ -100,6 +100,28 @@ public class CustomerController {
 		beanMapper.map( customerDto, customer );
 		customer = menuService.updateCustomer( customer );
 		customerDto = beanMapper.map( customer, CustomerDto.class );
+		
+		return customerDto;
+	}
+	
+	
+	/**
+	 * Updates only certain attributes related to user's profile
+	 * @param data
+	 * @return
+	 */
+	@RequestMapping( value = "/customers/updateProfile.json", method = RequestMethod.POST )
+	public @ResponseBody
+	CustomerDto updateProfile( @RequestBody Map<String, Object> data ) {
+		logger.trace( "CustomerController.updateProfile called with data: " + data );
+		
+		Object cust = data.get( "customer" );
+		Customer customerProfile = beanMapper.map(cust, Customer.class);
+		long defaultDeliveryLocationId = Long.parseLong( data.get( "defaultDeliveryLocationId" ).toString() );
+		
+		Customer customer = menuService.updateCustomerProfile( customerProfile, defaultDeliveryLocationId );
+
+		CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
 		
 		return customerDto;
 	}

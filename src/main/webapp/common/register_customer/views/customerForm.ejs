@@ -1,0 +1,45 @@
+<% var deliveryLocations = this.deliveryLocations %>
+<% var user = this.customer %>
+<% var ddl = user.defaultDeliveryLocation.id %>
+<% var firstNameId = "reg_firstName" %>
+<% var lastNameId = "reg_lastName" %>
+<% var emailId = "reg_email" %>
+<% var ddlId = "reg_ddl" %>
+<% var subscribeId = "reg_subscribe" %>
+
+<form id="customerForm" class="input-form" action="javascript:">
+	<div class="input-form-row">
+		<label for="<%= firstNameId %>"><%= msg( "customer.registration.firstName" ) %>:</label>
+		<input type="text" name="firstName" id="<%= firstNameId %>" value="<%= user.firstName %>"/>
+	</div>
+
+	<div class="input-form-row">
+		<label for="<%= lastNameId %>"><%= msg( "customer.registration.lastName" ) %>:</label>
+		<input type="text" name="lastName" id="<%= lastNameId %>" value="<%= user.lastName %>"/>
+	</div>
+
+	<div class="input-form-row">
+		<label for="<%= emailId %>"><%= msg( "customer.registration.email" ) %>:</label>
+		<input type="text" name="email" id="<%= emailId %>" value="<%= user.email %>"/>
+	</div>
+
+	<div class="input-form-row">
+		<label for="<%= ddlId %>"><%= msg( "customer.registration.ddl" ) %>:</label>
+	
+		<select name="defaultDeliveryLocationId" id="<%= ddlId %>">
+		<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
+			<option value="<%= deliveryLocations[ i ].id %>" <%= deliveryLocations[ i ].id == ddl ? "selected='selected'" : "" %>>
+				<%= deliveryLocations[ i ].name %>
+			</option>
+		<% } %>
+		</select>
+	</div>
+	<div class="input-form-row">
+		<label for="<%= subscribeId %>"><%= msg( "customer.registration.subscribe" ) %>:</label>
+		<input type="checkbox" name="subscribe" id="<%= subscribeId %>" <%= user.isActive ? "checked='checked'" : "" %>/>
+	</div>
+	<div class="input-form-buttons-row">
+		<input type="submit" value="<%= msg( "customer.registration.done" ) %>"/>
+		<input type="reset" value="<%= msg( "customer.registration.cancel" ) %>"/>
+	</div>
+</form>

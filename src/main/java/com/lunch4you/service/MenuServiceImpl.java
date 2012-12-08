@@ -123,6 +123,25 @@ public final class MenuServiceImpl implements MenuService {
 		return customerDao.update( customer );
 	}
 
+	/**
+	 * Updates customer object with data provided in @customerProfile object
+	 */
+	@Override
+	public Customer updateCustomerProfile(Customer profile,
+			long defaultDeliveryLocationId) {
+		
+		Customer target = customerDao.load( profile.getId());
+		DeliveryLocation ddl = deliveryLocationDao.load( defaultDeliveryLocationId );
+
+		target.setFirstName( profile.getFirstName() );
+		target.setLastName( profile.getLastName() );
+		target.setEmail( profile.getEmail() );
+		target.setDefaultDeliveryLocation( ddl );
+		
+		return customerDao.update( target );
+		
+	}
+
 	@Override
 	public DeliveryLocation getDeliveryLocation( Long id ) {
 		return deliveryLocationDao.load( id );
@@ -405,4 +424,5 @@ public final class MenuServiceImpl implements MenuService {
 		}
 		
 	}
+
 }

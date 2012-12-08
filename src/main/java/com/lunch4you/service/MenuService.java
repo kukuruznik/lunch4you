@@ -59,4 +59,7 @@ public interface MenuService {
 
 	Referral createReferral(long senderId, long deliveryLocationId, String recipientEmail, String referralMessage);
 
+	Customer updateCustomerProfile(Customer customerProfile,
+			long defaultDeliveryLocationId);
+
 }

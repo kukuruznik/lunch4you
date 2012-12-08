@@ -1,4 +1,4 @@
-steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', 'jquery/dom/form_params' ).then( './views/form.ejs', function( $ ) {
+steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', 'jquery/dom/form_params' ).then( './views/customerForm.ejs', function( $ ) {
 
 	/**
 	 * @class Common.RegisterCustomer
@@ -22,11 +22,12 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', 'jquery
 
 		"input[type=submit] click": function( el, evt ) {
 			var formParams = this.element.find( "form" ).formParams();
-			this.element.trigger( "register", formParams );
+			this.element.trigger( "updateProfile", formParams );
 			evt.preventDefault();
 			return false;
 		},
 		
+
 		"input[type=reset] click": function( el, evt ) {
 			this._close();
 			evt.preventDefault();
@@ -41,9 +42,9 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', 'jquery
 			if ( evt.keyCode == 27 )
 				this._close();
 		},
-
+				
 		_render: function() {
-			this.element.html( this.view( 'form', this ) );
+			this.element.html( this.view( 'customerForm', this ) );
 		}
 	});
 });
