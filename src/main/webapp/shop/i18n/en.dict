@@ -24,6 +24,9 @@
 	"customer.registration.subscribe": "Subscribe to weekly menu",
 	"customer.registration.done": "Save",
 	"customer.registration.cancel": "Cancel",
+	"customer.registration.updateSuccess.msg" : "Profile successfully updated",
+	"customer.registration.validation.emptyEmailAddress" : "Email address must not be empty!",
+	"customer.registration.validation.invalidEmailFormat" : "Invalid email address format!",
 
 	"profile.edit.user.anonymous.message": "Not logged in. No profile information available.",
 

@@ -24,6 +24,9 @@
 	"customer.registration.subscribe": "Zasílat týdení menu",
 	"customer.registration.done": "Uložit",
 	"customer.registration.cancel": "Zrušit",
+	"customer.registration.updateSuccess.msg" : "Profil byl úspěšne aktualizován",
+	"customer.registration.validation.emptyEmailAddress" : "Emailová adresa musí být vyplněna!",
+	"customer.registration.validation.invalidEmailFormat" : "Nesprávný formát emailové adresy!",
 
 	"profile.edit.user.anonymous.message": "Nejste přihlášen. Informace o profilu není k dispozici.",
 
