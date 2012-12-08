@@ -64,13 +64,6 @@ hr {
 	border-top: 1px solid grey;
 }
 
-label {
-	float: left;
-	width: 12em;
-	line-height: 160%;
-	color: darkblue;
-	text-shadow: 0 1px 0 white;
-}
 
 .modifiable {
 	font-weight: bold;
@@ -91,6 +84,9 @@ label {
 }
 
 .customer-box {
+}
+
+.input-form {
 	background-color: #cdf;
 	padding: 0.5em;
 	width: 60%;
@@ -98,6 +94,35 @@ label {
 	border: 1px solid silver;
 	border-radius: 4px;
 }
+
+.input-form-row {
+	padding : 2px 0px;
+	clear : both;
+}
+
+.input-form-buttons-row {
+	text-align : center;
+	padding : 0.5em;
+	clear : both;
+	border : 0px red solid;
+}
+
+.input-form label {
+	float: left;
+	width: 12em;
+	line-height: 160%;
+	color: gray;
+	font-size : 11pt;
+	text-align : right;
+	padding-right : .5em;
+	text-shadow: 0 1px 0 white;
+}
+
+
+.input-form input[type=text] {
+	width: 20em;
+}
+
 
 li.category {
 	margin-bottom: 1em;
@@ -154,34 +179,6 @@ span.flag {
 #detail {
 	padding: 1em;
 	background-color: #ffc;
-}
-
-#customerForm {
-	padding: 1em;
-}
-
-#customerForm form {
-	margin: 0;
-}
-
-#customerForm td.label {
-	text-align: right;
-	padding-right: 0.5em;
-	color: gray;
-	font-size: 11pt;
-}
-
-#customerForm td label {
-	width: auto;
-	float: right;
-}
-
-#customerForm td.value input[type=text] {
-	width: 20em;
-}
-
-#deliveryLocationDetails, #recipientEmailDiv, #referralMessageDiv, #noteDiv  {
-	clear: both;
 }
 
 #noteDiv textarea {
