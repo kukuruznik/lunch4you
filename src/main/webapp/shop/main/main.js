@@ -5,8 +5,8 @@ steal(
 	"shop/utils",
 	"shop/order/new",
 	"shop/menu/list",
-	"shop/referral/new",
-	"shop/profile/edit"
+	"shop/referral/new/newReferral.js",
+	"shop/profile/edit/editProfile.js"
 ).then( function( $ ) {
 
 	/**
@@ -108,6 +108,18 @@ steal(
 			} else {
 				this._customerLoaded( null );
 			}
+		},
+
+		/**
+		 * Reloads current customer object (by token). This method should be called after any updates to user's profile
+		 */
+		_reloadCustomer: function() {
+			var token = this.Class.getToken();
+			Shop.Models.Customer.findByToken( token, this.proxy( "_customerReloaded" ) );
+		},
+
+		_customerReloaded: function( customer ) {
+			Shop.customer = customer;
 		},
 
 		_customerLoaded: function( customer ) {

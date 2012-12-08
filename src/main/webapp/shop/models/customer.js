@@ -39,12 +39,12 @@ $.Model('Shop.Models.Customer',
 	  		});
 		},
 		
-		update: function( token, customer, success, error ) {
+		updateProfile: function( customer, defaultDeliveryLocationId, success, error ) {
 			return $.ajax({
-				url: "customers/byToken/" + token + ".json",
-				type: "PUT",
+				url: "customers/updateProfile.json",
+				type: "POST",
 				contentType: "application/json",
-				data: $.toJSON( customer ),
+	  			data: $.toJSON( { customer: customer, defaultDeliveryLocationId: defaultDeliveryLocationId} ),
 				dataType: "json customer.model",
 				success: success,
 				error: error || Shop.errorHandler
