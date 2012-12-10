@@ -1,7 +1,7 @@
 <% var user = this.customer %>
 
-<div class="customer-box input-form">
 <% if ( user ) { %>
+<form id="referralForm" class="input-form" action="javascript:">
 	<div class="input-form-row">
 		<label><%= msg( "referral.detail.sender" ) %>:</label>
 		<div id="currentCustomerDetails">
@@ -20,11 +20,11 @@
 		<textarea id="referralMessage"></textarea>
 	</div>
 
-	<form id="send-referral">
-		<input id="submitReferralButton" type="button" value="<%= msg( "referral.detail.action.recommend" ) %>" />
-	</form>
+	<div class="input-form-buttons-row">
+		<input id="submitButton" type="button" value="<%= msg( "referral.detail.action.recommend" ) %>" />
+	</div>
+</form>
 <% } else { %>
 	<p><%= msg( "referral.detail.user.anonymous.message" ) %></p>
 <% } %>
 	
-</div>
