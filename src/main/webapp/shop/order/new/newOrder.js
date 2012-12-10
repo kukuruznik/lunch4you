@@ -22,7 +22,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			this._reloadData();
 		},
 
-		"#order click": function( el, evt ) {
+		"#submitButton click": function( el, evt ) {
 			this._createOrder();
 		},
 
@@ -47,29 +47,33 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 		},
 
 		_createOrder: function() {
-			this._enableOrder( false );
+			this._enableSubmit( false );
 			var self = this;
 			var deliveryLocationId = $( "#deliveryLocationsSelect" ).val();
 			var note = $( "#note" ).val();
 			
 			Shop.Models.Order.create( this.article, this.customer, deliveryLocationId, note, function( order ) {
-				alert($.EJS.Helpers.prototype.msg("order.detail.action.orderedMsg"));
-				self._enableOrder( true );
+				self._renderConfirmation();
 			} );
 		},
 
-		_enableOrder: function( enable ) {
-			var button = $( "#order" );
+		_enableSubmit: function( enable ) {
+			var button = $( "#submitButton" );
 			Shop.Utils.enableInput( button, enable );
 		},
 
+		_renderConfirmation: function() {
+			this.element.html( this.view( "orderConfirmation", this ) );
+		},
+
 		_render: function() {
+			// TODO show screenwith non authenticated user
+			if ( !this.customer )
+				this._enableSubmit( false );
 			if ( !this.article ) {
 				this.element.html( this.view( "unknownMeal" ) );
 			} else {
-				this.element.html( this.view( "orderInfo", this ) );
-				if ( !this.customer )
-					this._enableOrder( false );
+				this.element.html( this.view( "orderForm", this ) );
 			}
 		}
 	} );

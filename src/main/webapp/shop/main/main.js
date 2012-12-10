@@ -3,7 +3,7 @@ steal(
 	"jquery/event/bbq",
 	"jquery/dom/cookie",
 	"shop/utils",
-	"shop/order/new",
+	"shop/order/new/newOrder.js",
 	"shop/menu/list",
 	"shop/referral/new/newReferral.js",
 	"shop/profile/edit/editProfile.js"
