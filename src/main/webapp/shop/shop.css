@@ -51,10 +51,6 @@ a:hover {
 	text-decoration: underline;
 }
 
-p {
-	text-align: center;
-}
-
 .dim {
 	color: #c84;
 }
@@ -81,46 +77,6 @@ hr {
 	background-color: white;
 	border: 1px solid silver;
 	clear: both;
-}
-
-.customer-box {
-}
-
-.input-form {
-	background-color: #cdf;
-	padding: 0.5em;
-	width: 60%;
-	margin: auto;
-	border: 1px solid silver;
-	border-radius: 4px;
-}
-
-.input-form-row {
-	padding : 2px 0px;
-	clear : both;
-}
-
-.input-form-buttons-row {
-	text-align : center;
-	padding : 0.5em;
-	clear : both;
-	border : 0px red solid;
-}
-
-.input-form label {
-	float: left;
-	width: 12em;
-	line-height: 160%;
-	color: gray;
-	font-size : 11pt;
-	text-align : right;
-	padding-right : .5em;
-	text-shadow: 0 1px 0 white;
-}
-
-
-.input-form input[type=text] {
-	width: 20em;
 }
 
 
@@ -181,33 +137,113 @@ span.flag {
 	background-color: #ffc;
 }
 
-#noteDiv textarea {
-	width : 25em;
-	height : 6em;
+/*
+	General message dialogue 
+	================================================= 
+*/
+
+.general-message-dialogue {
+	background-color: #eeeeee;
+	padding: 0.5em;
+	width: 60%;
+	margin: auto;
+	border: 1px solid silver;
+	border-radius: 4px;
 }
 
-#description {
-	margin: 0 0 3em;
+/*
+	General input form 
+	================================================= 
+*/
+
+.input-form {
+	background-color: #cdf;
+	padding: 0.5em;
+	width: 60%;
+	margin: auto;
+	border: 1px solid silver;
+	border-radius: 4px;
 }
 
+.input-form-row {
+	padding : 2px 0px;
+	clear : both;
+}
+
+.input-form-buttons-row {
+	text-align : center;
+	padding : 0.5em;
+	clear : both;
+	border : 0px red solid;
+}
+
+.input-form label {
+	float: left;
+	width: 12em;
+	line-height: 160%;
+	color: gray;
+	font-size : 11pt;
+	text-align : right;
+	padding-right : .5em;
+	text-shadow: 0 1px 0 white;
+}
+
+
+.input-form input[type=text] {
+	width: 20em;
+}
+
+/* TODO change to general input form styles */
 #confirm-order, #send-referral {
 	padding-top : 20px;
 	text-align: center;
 }
 
 /*
-	Referral form 
+	Customer form 
 	================================================= 
 */
 
-#recipientEmail {
-	width : 20em;
+.customer-box {
 }
+
+/*
+	Order form 
+	================================================= 
+*/
+
+#articleName {
+	font-weight : bold;	
+}
+
+#articleDescription {
+	font-size : .8em;
+}
+
+#note {
+	width : 25em;
+	height : 4em;
+}
+
+#description {
+	margin: 0 0 3em;
+}
+
+
+/*
+	Referral form 
+	================================================= 
+*/
 
 #referralMessage {
 	width : 25em;
 	height : 6em;
 }
+
+/*
+	Menu (article list) 
+	================================================= 
+*/
 
 
 a.meal {
