@@ -7,6 +7,7 @@
 	"order.detail.customer": "Customer",
 	"order.detail.deliveryLocation": "Pickup Location",
 	"order.detail.note": "Note",
+	"order.detail.article": "Meal Name",
 	"order.detail.price": "Price",
 	"order.detail.viewMenu": "Today's Menu",
 	"order.detail.user.anonymous": "Anonymous User",
@@ -14,7 +15,7 @@
 
 	"order.detail.action.change": "change",
 	"order.detail.action.order": "Submit Order",
-	"order.detail.action.orderedMsg": "Thank you for ordering! \nIn a short moment you will receive a confirmation email with details of your order.",
+	"order.detail.action.orderedMsg": "Your order has been successfully submitted! In a short moment you will receive a confirmation email with details of your order.",
 	"order.detail.action.changeLanguage": "Čeština",
 
 	"customer.registration.firstName": "First Name",
