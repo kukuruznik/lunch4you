@@ -26,6 +26,7 @@
 	- when to use static member functions and when prototype???
 	- rename MenuService to something more appropriate
 	- reafactor delivery location selector into a template
+	- consider refactoring general message (after updates, ordering, etc) into one parametrizable message dialogue
 
 - UI Consolidation
 	- technique for building editable forms. Currently Register Customer uses tables, Refarral dialog uses DIVs.
