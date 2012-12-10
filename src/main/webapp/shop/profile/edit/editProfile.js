@@ -48,11 +48,14 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			cust.firstName = $.trim( $( "#reg_firstName" ).attr( "value" ));
 			cust.lastName = $.trim( $( "#reg_lastName" ).attr( "value" ));
 			cust.email = $.trim( $( "#reg_email" ).attr( "value" ));
-			cust.isActive = $( "#reg_subscribe" ).attr( "checked" ) == "checked";
+			cust.isSubscribedMenuWeekly = $( "#reg_subscribeMenuWeekly" ).attr( "checked" ) == "checked";
+			cust.isSubscribedNews = $( "#reg_subscribeNews" ).attr( "checked" ) == "checked";
 			var ddlId = $( "#reg_ddl" ).val();
-			
-			Shop.Models.Customer.updateProfile( cust, ddlId , function( referral ) {
-				alert( $.EJS.Helpers.prototype.msg( "customer.registration.updateSuccess.msg" ) );
+
+			var self = this;
+
+			Shop.Models.Customer.updateProfile( cust, ddlId , function( ) {
+				self._renderConfirmation();
 				Shop.Main.prototype._reloadCustomer();
 			} );
 		},
@@ -86,6 +89,10 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			}
 			return result[0];
 				
+		},
+
+		_renderConfirmation: function() {
+			this.element.html( this.view( "updateConfirmation", this ) );
 		},
 
 		_render: function() {
