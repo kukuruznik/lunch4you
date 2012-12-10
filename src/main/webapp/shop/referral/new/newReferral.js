@@ -22,7 +22,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			this._reloadData();
 		},
 
-		"#submitReferralButton click": function( el, evt ) {
+		"#submitButton click": function( el, evt ) {
 			this._submitReferral();
 		},
 
