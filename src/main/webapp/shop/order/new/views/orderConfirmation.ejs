@@ -1,0 +1,9 @@
+<% var article = this.article %>
+<% var user = this.customer %>
+
+
+<div class="general-message-dialogue">
+	<%= msg( "order.detail.action.orderedMsg" ) %>
+</div>
+
+<p><a href="#view=menu&token=<%= Shop.params.token %>"><%= msg( "order.detail.viewMenu" ) %></a></p>

@@ -1,0 +1,55 @@
+<% var article = this.article %>
+<% var user = this.customer %>
+<% var deliveryLocation = this.deliveryLocation || this.deliveryLocations[ 0 ] %>
+<% var deliveryLocations = this.deliveryLocations %>
+
+<% if ( user ) { %>
+<form id="orderForm" class="input-form" action="javascript:">
+	
+	<div class="input-form-row">
+		<label><%= msg( "order.detail.article" ) %>:</label> 
+		<div id="articleName"><%= localize( article, "name" ) %></div>
+	</div>
+
+	<div class="input-form-row">
+		<label>&nbsp;</label> 
+		<div id="articleDescription"><%= localize( article, "description" ) %></div>
+	</div>
+	
+	<div class="input-form-row">
+		<label><%= msg( "order.detail.price" ) %>:</label>
+		<%= article.price %>,- CZK
+	</div>
+
+	<div class="input-form-row">
+		<label><%= msg( "order.detail.customer" ) %>:</label>
+			<%= user.firstName %> <%= user.lastName %>
+	</div>
+	<div class="input-form-row">
+		<label><%= msg( "order.detail.deliveryLocation" ) %>:</label>
+
+		<select id="deliveryLocationsSelect">
+		<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
+			<option value="<%= deliveryLocations[ i ].id %>" 
+				<%= (deliveryLocation.id == deliveryLocations[ i ].id) ? "selected" : "" %> ><%= deliveryLocations[ i ].name %></option>
+		<% } %>
+		</select>
+	</div>
+
+	<div class="input-form-row">
+		<label><%= msg( "order.detail.note" ) %>:</label> 
+		<textarea id="note"></textarea>
+	</div>
+
+	<div class="input-form-buttons-row">
+		<input id="submitButton" type="button" value="<%= msg( "order.detail.action.order" ) %>" />
+	</div>
+
+</form>
+<% } else { %>
+	<span class="modifiable">
+		<%= msg( "order.detail.user.anonymous" ) %>
+	</span>
+	<p><%= msg( "order.detail.user.anonymous.message" ) %></p>
+<% } %>
+
