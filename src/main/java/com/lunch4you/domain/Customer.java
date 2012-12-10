@@ -40,6 +40,10 @@ public class Customer {
 
 	private Boolean isActive = true;
 
+	private Boolean isSubscribedMenuWeekly = true;
+
+	private Boolean isSubscribedNews = true;
+
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
 	@JoinColumn( name = "default_delivery_location_id" )
 	private DeliveryLocation defaultDeliveryLocation;
@@ -114,6 +118,22 @@ public class Customer {
 
 	public void setDefaultDeliveryLocation(DeliveryLocation deliveryLocation) {
 		this.defaultDeliveryLocation = deliveryLocation;
+	}
+
+	public Boolean getIsSubscribedMenuWeekly() {
+		return isSubscribedMenuWeekly;
+	}
+
+	public void setIsSubscribedMenuWeekly(Boolean isSubscribedMenuWeekly) {
+		this.isSubscribedMenuWeekly = isSubscribedMenuWeekly;
+	}
+
+	public Boolean getIsSubscribedNews() {
+		return isSubscribedNews;
+	}
+
+	public void setIsSubscribedNews(Boolean isSubscribedNews) {
+		this.isSubscribedNews = isSubscribedNews;
 	}
 
 	public String toString() {

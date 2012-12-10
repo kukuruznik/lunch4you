@@ -118,6 +118,14 @@
 			<a>defaultDeliveryLocation</a>
 			<b is-accessible="true">defaultDeliveryLocation</b>
 		</field>
+		<field>
+			<a>isSubscribedMenuWeekly</a>
+			<b is-accessible="true">isSubscribedMenuWeekly</b>
+		</field>
+		<field>
+			<a>isSubscribedNews</a>
+			<b is-accessible="true">isSubscribedNews</b>
+		</field>
 	</mapping>
 
 	<mapping>

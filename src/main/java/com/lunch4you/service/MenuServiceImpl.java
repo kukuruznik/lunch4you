@@ -137,6 +137,8 @@ public final class MenuServiceImpl implements MenuService {
 		target.setLastName( profile.getLastName() );
 		target.setEmail( profile.getEmail() );
 		target.setDefaultDeliveryLocation( ddl );
+		target.setIsSubscribedMenuWeekly( profile.getIsSubscribedMenuWeekly() );
+		target.setIsSubscribedNews( profile.getIsSubscribedNews() );
 		
 		return customerDao.update( target );
 		

@@ -50,6 +50,8 @@ CREATE TABLE `customer` (
   `version` int(11) DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `default_delivery_location_id` bigint(20) NOT NULL,
+  `is_subscribed_menu_weekly` tinyint(1) DEFAULT '1',
+  `is_subscribed_news` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `customer_email` (`email`),
   KEY `customer_default_delivery_location_id` (`default_delivery_location_id`),

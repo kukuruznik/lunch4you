@@ -5,9 +5,11 @@
 <% var lastNameId = "reg_lastName" %>
 <% var emailId = "reg_email" %>
 <% var ddlId = "reg_ddl" %>
-<% var subscribeId = "reg_subscribe" %>
+<% var subscribeMenuWeeklyId = "reg_subscribeMenuWeekly" %>
+<% var subscribeNewsId = "reg_subscribeNews" %>
 
 <form id="customerForm" class="input-form" action="javascript:">
+
 	<div class="input-form-row">
 		<label for="<%= firstNameId %>"><%= msg( "customer.registration.firstName" ) %>:</label>
 		<input type="text" name="firstName" id="<%= firstNameId %>" value="<%= user.firstName %>"/>
@@ -35,11 +37,16 @@
 		</select>
 	</div>
 	<div class="input-form-row">
-		<label for="<%= subscribeId %>"><%= msg( "customer.registration.subscribe" ) %>:</label>
-		<input type="checkbox" name="subscribe" id="<%= subscribeId %>" <%= user.isActive ? "checked='checked'" : "" %>/>
+		<label for="<%= subscribeMenuWeeklyId %>"><%= msg( "customer.registration.subscribeMenuWeekly" ) %>:</label>
+		<input type="checkbox" name="subscribe" id="<%= subscribeMenuWeeklyId %>" <%= user.isSubscribedMenuWeekly ? "checked='checked'" : "" %>/>
 	</div>
+	<div class="input-form-row">
+		<label for="<%= subscribeNewsId %>" 
+			title="<%= msg( "customer.registration.subscribeNews.title" ) %>"><%= msg( "customer.registration.subscribeNews" ) %>:</label>
+		<input type="checkbox" name="subscribe" id="<%= subscribeNewsId %>" <%= user.isSubscribedNews ? "checked='checked'" : "" %>/>
+	</div>
+
 	<div class="input-form-buttons-row">
-		<input type="submit" value="<%= msg( "customer.registration.done" ) %>"/>
-		<input type="reset" value="<%= msg( "customer.registration.cancel" ) %>"/>
+		<input type="button" id="submitButton" value="<%= msg( "customer.registration.done" ) %>"/>
 	</div>
 </form>

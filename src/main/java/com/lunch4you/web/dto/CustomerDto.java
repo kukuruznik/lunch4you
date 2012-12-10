@@ -16,4 +16,8 @@ public class CustomerDto {
 	public boolean isActive;
 
 	public DeliveryLocationDto defaultDeliveryLocation;
+
+	public Boolean isSubscribedMenuWeekly = true;
+
+	public Boolean isSubscribedNews = true;
 }
