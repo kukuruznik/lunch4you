@@ -3,6 +3,7 @@ Context file pointing to the lunch4you war:
 	/etc/tomcat6/Catalina/localhost/lunch4you.xml
 
 
+server: vs833.web4u.cz
 
 Installation:
 
