@@ -103,11 +103,39 @@ steal(
 			var token = this.Class.getToken();
 			//alert( "token = " + token);
 
+			var customerDfr = null;
+			
 			if ( token ) {
-				Shop.Models.Customer.findByToken( token, this.proxy( "_customerLoaded" ) );
+				customerDfr = Shop.Models.Customer.findByToken( token, this.proxy( "_customerLoaded" ) );
 			} else {
-				this._customerLoaded( null );
+				customerDfr = function(){
+					return null;
+				};
 			}
+			
+			
+			var deliveryLocationsDfr = Shop.Models.DeliveryLocation.findAll();
+			var dictionaryDfr = this._loadDictionary( this.Class.getLocale() );
+
+			$.when( customerDfr, deliveryLocationsDfr, dictionaryDfr ).done( this.proxy( "_onDataLoaded" ) );
+			
+		},
+
+		_onDataLoaded: function( customerResponse, deliveryLocationsResponse, dictionaryResponse ) {
+			this.deliveryLocations = deliveryLocationsResponse[ 0 ];
+			
+			// render the main page structure
+			$( "#content" ).html( this.view( 'page', this ) );
+
+			this.initialized = true;
+
+			return;
+
+
+			// start the UI by triggering the initial hash change event
+			$( function() {
+				$( window ).trigger( "hashchange" );
+			});
 		},
 
 		/**
@@ -115,24 +143,15 @@ steal(
 		 */
 		_reloadCustomer: function() {
 			var token = this.Class.getToken();
-			Shop.Models.Customer.findByToken( token, this.proxy( "_customerReloaded" ) );
-		},
-
-		_customerReloaded: function( customer ) {
-			Shop.customer = customer;
+			Shop.Models.Customer.findByToken( token, this.proxy( "_customerLoaded" ) );
 		},
 
 		_customerLoaded: function( customer ) {
 			Shop.customer = customer;
-
-			//alert( "customer = " + Shop.customer);
-
-			// load localization data
-			this._loadDictionary( this.Class.getLocale() );
 		},
 
 		_loadDictionary: function( locale ) {
-			$.ajax({
+			return $.ajax({
 	  			url: "shop/i18n/" + locale + ".dict",
 	  			dataType: "json",
 	  			success: this.proxy( "_dictionaryLoaded" ),
@@ -143,18 +162,7 @@ steal(
 		},
 
 		_dictionaryLoaded: function( dictionary ) {
-			steal.dev.log( "... finishing main controller initialization" );
 			this.Class.dictionary = dictionary;
-
-			// render the main page structure
-			$( "#content" ).html( this.view( 'page', this ) );
-
-			this.initialized = true;
-
-			// start the UI by triggering the initial hash change event
-			$( function() {
-				$( window ).trigger( "hashchange" );
-			});
 		},
 
 		"{window} hashchange": function( el, evt ) {
