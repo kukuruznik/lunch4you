@@ -1,8 +1,36 @@
-<div id="caption">
-	<a id="change-lang" href="javascript:"><span id="<%= Shop.Main.getOtherLocale() %>" class="flag"></span><%= msg( "order.detail.action.changeLanguage" ) %></a>
-	<h2 id="logo">Lunch<em>4</em>You</h2>
-	<h2 id="screen-name"></h2>
+<% var locales = Shop.Main.getAvailableLocales(); %>
+<% var navItems = Shop.Main.getNavigationItems(); %>
+
+<div id="main-caption">
+	
+	<div id="main-logo">Lunch<em>4</em>You</div>
+	<div id="main-screen-name">Screeen Name</div>
+	<div id="main-lang" >
+		<div id="main-lang-flag" class="main-lang-flag-<%= Shop.Main.getLocale() %>"></div>
+		<div id="main-lang-selector-container" >
+		<% for ( var i = 0; i < locales.length; i++ ) { %>
+			<%= i > 0 ? "|" : "" %>
+			<a id="main-lang-selector" locale="<%= locales[i] %>" href="javascript:"><%= locales[i] %></a>
+		<% } %>
+		</div>
+	</div>
+	<div id="main-customerInfo">
+		<% if(Shop.customer){ %>
+		<a id="main-customer-link" href="javascript:"> <%= Shop.customer.firstName %> <%= Shop.customer.lastName %></a>
+		<% } else { %>
+			Anonymous
+		<% }%>
+	</div>
+	<div id="main-navigation">
+		<% for ( var i = 0; i < navItems.length; i++ ) { %>
+			<%= i > 0 ? "|" : "" %>
+			<a id="main-navigation-selector" navigationIndex="<%= i %>" href="javascript:"><%= navItems[i] %></a>
+		<% } %>
+	</div>
+
 </div>
 
-<div id="detail">
+
+
+<div id="main-detail">
 </div>

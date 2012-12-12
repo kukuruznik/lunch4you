@@ -43,8 +43,8 @@ form {
 }
 
 a {
-	color: #080;
-	text-decoration: none;
+	Xcolor: #080;
+	Xtext-decoration: none;
 }
 
 a:hover {
@@ -84,55 +84,94 @@ li.category {
 	margin-bottom: 1em;
 }
 
-span.flag {
-	display: block;
-	width: 48px;
-	height: 24px;
-	margin: 0 auto 4px;
-	border: 1px solid black;
-	box-shadow: 0 0 8px 2px #ff8;
-}
-
-#cz {
-	background-image: url("../cz.png");
-}
-
-#en {
-	background-image: url("../en.png");
-}
-
-#caption {
-	padding: 1em;
+#main-caption {
+	Xpadding: 1em;
 	background-color: #f80;
 	color: white;
 	overflow: auto;
 	cursor: default;
+	clear : both;
+	text-align: center;
+	border : 2px green solid;
 }
 
-#logo {
+#main-logo {
 	text-shadow: 1px 1px 2px #840;
 	float: left;
+	font-size: 1.5em;
+	font-weight: bold; 
+	border : 0px black solid;
 }
 
-#logo em {
+#main-logo em {
 	color: yellow;
 }
 
-#screen-name {
+#main-screen-name {
+	display : inline;
 	text-align: center;
-	margin: auto;
+	margin: 0;
 	width: 50%;
-	line-height: 2em;
+	Xline-height: 2em;
+	left : 200px;
+	border : 2px blue solid;
 }
 
-#change-lang {
+#main-customerInfo {
+	float : right;
+	Xline-height: 2em;
+	font-size : 0.8em;
+	padding : 0px 4px;
+	Xheight : 50px;
+	border : 1px black solid;	
+}
+
+#main-lang {
 	float: right;
 	color: #ff8;
 	font-size: 75%;
+	text-align: right;
+	clear : right;
+	border : 2px green solid;
+}
+
+#main-lang-selector-container {
+	border : 2px violet solid;
+	float : right;
+}
+
+#main-lang-selector {
+	margin: 0px;
+	padding : 4px;
+}
+
+#main-lang-flag {
+	display: block;
+	width: 48px;
+	height: 24px;
+	Xmargin: 0 auto 4px;
+	float : right;
+	border: 1px black solid ;
+	box-shadow: 0 0 8px 2px #ff8;
+}
+
+
+.main-lang-flag-cz {
+	background-image: url("../cz.png");
+}
+
+.main-lang-flag-en {
+	background-image: url("../en.png");
+}
+
+#main-navigation {
+	clear: both;
+	border : 2px blue solid;
 	text-align: center;
 }
 
-#detail {
+
+#main-detail {
 	padding: 1em;
 	background-color: #ffc;
 }
@@ -218,6 +257,10 @@ span.flag {
 
 #articleDescription {
 	font-size : .8em;
+}
+
+#setDdlDiv {
+	font-size: .8em; 
 }
 
 #note {

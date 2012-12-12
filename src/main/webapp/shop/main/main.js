@@ -19,20 +19,21 @@ steal(
 	/** @Static */
 	{
 		_availableLocales: [ "cz", "en" ],
+		
+		_navigationItems: [ "menu", "referral" ],
+
+		getNavigationItems : function() {
+			return this._navigationItems;
+		},
+
+		getAvailableLocales : function() {
+			return this._availableLocales;
+		},
 
 		getLocale: function() {
 			if ( !this.locale )
 				this.locale = this._load( "locale" ) || "cz";
 			return this.locale;
-		},
-
-		getOtherLocale: function() {
-			var loc = this.getLocale();
-
-			if ( loc == "cz" )
-				return "en";
-			else
-				return "cz";
 		},
 
 		setLocale: function( locale ) {
@@ -66,7 +67,32 @@ steal(
 		_save: function( key, value ) {
 			steal.dev.log( "save into cookie: ", key, " = ", value );
 			$.cookie( key, value );
+		},
+
+		getDeliveryLocationById : function (id){
+			var result = $.grep(Shop.deliveryLocations, function(deliveryLocation){
+				return deliveryLocation.id == id;
+			});
+			if(result.length == 0){
+				alert("Error, DeliveryLocation not found for id : " + id);
+				return null;
+			}
+			if(result.length > 1){
+				alert("Error, Multiple DeliveryLocations found for id : " + id);
+				return null;
+			}
+			return result[0];
+				
+		},
+
+		/**
+		 * Reloads current customer object (by token). This method should be called after any updates to user's profile
+		 */
+		reloadCustomer: function() {
+			var token = this.getToken();
+			Shop.Models.Customer.findByToken( token, this.proxy( "_customerLoaded" ) );
 		}
+
 	},
 
 	/** @Prototype */
@@ -114,55 +140,50 @@ steal(
 			}
 			
 			
-			var deliveryLocationsDfr = Shop.Models.DeliveryLocation.findAll();
-			var dictionaryDfr = this._loadDictionary( this.Class.getLocale() );
+			var deliveryLocationsDfr = Shop.Models.DeliveryLocation.findAll( this.proxy( "_deliveryLocationsLoaded" ) );
+			
+			var dictionaryDfr = Shop.Models.Dictionary.loadDictionary( this.Class.getLocale(), this.proxy( "_dictionaryLoaded" ) );
 
-			$.when( customerDfr, deliveryLocationsDfr, dictionaryDfr ).done( this.proxy( "_onDataLoaded" ) );
+			$.when( customerDfr, deliveryLocationsDfr, dictionaryDfr ).done( this.proxy( "_dataLoaded" ) );
 			
 		},
 
-		_onDataLoaded: function( customerResponse, deliveryLocationsResponse, dictionaryResponse ) {
-			this.deliveryLocations = deliveryLocationsResponse[ 0 ];
+		_dataLoaded: function( customerResponse, deliveryLocationsResponse, dictionaryResponse ) {
 			
 			// render the main page structure
 			$( "#content" ).html( this.view( 'page', this ) );
 
 			this.initialized = true;
-
-			return;
-
-
+			
 			// start the UI by triggering the initial hash change event
 			$( function() {
 				$( window ).trigger( "hashchange" );
 			});
 		},
 
-		/**
-		 * Reloads current customer object (by token). This method should be called after any updates to user's profile
-		 */
-		_reloadCustomer: function() {
-			var token = this.Class.getToken();
-			Shop.Models.Customer.findByToken( token, this.proxy( "_customerLoaded" ) );
-		},
-
 		_customerLoaded: function( customer ) {
 			Shop.customer = customer;
 		},
 
-		_loadDictionary: function( locale ) {
-			return $.ajax({
-	  			url: "shop/i18n/" + locale + ".dict",
-	  			dataType: "json",
-	  			success: this.proxy( "_dictionaryLoaded" ),
-	  			error: function() {
-	  				alert( "Error loading localization data for locale '" + locale + "'" );
-	  			}
-	  		});
+		_deliveryLocationsLoaded: function( deliveryLocations ) {
+			Shop.deliveryLocations = deliveryLocations;
 		},
 
 		_dictionaryLoaded: function( dictionary ) {
 			this.Class.dictionary = dictionary;
+		},
+
+		_loadDictionary : function ( locale ){
+			var dictionaryDfr = Shop.Models.Dictionary.loadDictionary( this.Class.getLocale(), this.proxy( "_dictionaryLoaded" ) );
+			$.when(dictionaryDfr).done(this.proxy( function(){
+
+				var cl = "main-lang-flag-" + this.Class.getLocale();
+				$("#main-lang-flag").attr("class", cl);
+
+				$( function() {
+					$( window ).trigger( "hashchange" );
+				});
+			}));
 		},
 
 		"{window} hashchange": function( el, evt ) {
@@ -194,9 +215,13 @@ steal(
 				alert( "Invalid URL! Unknown or missing view." );
 			};
 		},
+		
+		"#main-customer-link click" : function( el, evt ) {
+			window.location.hash = "#view=profile&token=" + Shop.params.token;
+		},
 
-		"#change-lang click": function( el, evt ) {
-			var newLocale = this.Class.getOtherLocale();
+		"#main-lang-selector click": function( el, evt ) {
+			var newLocale = el.attr("locale");
 
 			steal.dev.log( "Switching to locale: ", newLocale );
 			Shop.Main.setLocale( newLocale );
@@ -204,10 +229,16 @@ steal(
 			// initiate screen refresh
 			this._loadDictionary( newLocale );
 		},
+		
+		"#main-navigation-selector click" : function( el, evt ) {
+			var navIndex = el.attr("navigationIndex");
+			var navItem = this.Class.getNavigationItems()[navIndex];
+			window.location.hash = "#view=" + navItem + "&token=" + Shop.params.token;
+		},
 
 		_setScreen: function( controllerName ) {
-			$( "#screen-name" ).html( $.EJS.Helpers.prototype.currentView() );
-			$( '#detail' )[ controllerName ]();
+			$( "#main-screen-name" ).html( $.EJS.Helpers.prototype.currentView() );
+			$( '#main-detail' )[ controllerName ]();
 		}
 	});
 
