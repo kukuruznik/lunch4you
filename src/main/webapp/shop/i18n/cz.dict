@@ -6,6 +6,7 @@
 
 	"order.detail.customer": "Zákazník",
 	"order.detail.deliveryLocation": "Místo vyzvednutí",
+	"order.detail.setDefaultDeliveryLocation" : "Použít jako předvolené pro budoucí objednávky",
 	"order.detail.note": "Poznámka",
 	"order.detail.article": "Název jídla",
 	"order.detail.price": "Cena",
@@ -17,6 +18,7 @@
 	"order.detail.action.order": "Poslat objednávku",
 	"order.detail.action.orderedMsg": "Vaše objednávka byla úspěsně založena! Za malou chvíli obdržíte potvrzujíci email s detaily Vaší objednávky.",
 	"order.detail.action.changeLanguage": "English",
+	"order.detail.validation.emptyDeliveryLocation" : "Prosíme vyberte místo vyzvednutí objednaného zboží",	
 
 	"customer.registration.firstName": "Jméno",
 	"customer.registration.lastName": "Příjmení",

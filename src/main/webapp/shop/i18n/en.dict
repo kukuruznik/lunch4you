@@ -5,7 +5,8 @@
 	"header.profile": "User Profile",
 
 	"order.detail.customer": "Customer",
-	"order.detail.deliveryLocation": "Pickup Location",
+	"order.detail.deliveryLocation": "Delivery Location",
+	"order.detail.setDefaultDeliveryLocation" : "Set as default delivery location for future orders",
 	"order.detail.note": "Note",
 	"order.detail.article": "Meal Name",
 	"order.detail.price": "Price",
@@ -17,6 +18,7 @@
 	"order.detail.action.order": "Submit Order",
 	"order.detail.action.orderedMsg": "Your order has been successfully submitted! In a short moment you will receive a confirmation email with details of your order.",
 	"order.detail.action.changeLanguage": "Čeština",
+	"order.detail.validation.emptyDeliveryLocation" : "Please select Delivery Location of your order",	
 
 	"customer.registration.firstName": "First Name",
 	"customer.registration.lastName": "Last Name",
