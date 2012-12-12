@@ -94,9 +94,11 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public List<Customer> getActiveCustomers() {
+	public List<Customer> getSubscribedCustomers(Boolean menuWeekly, Boolean news) {
 		CustomerFilter filter = new CustomerFilter();
 		filter.isActive = true;
+		filter.isSubscribedMenuWeekly = menuWeekly;
+		filter.isSubscribedNews = news;
 		return customerDao.find(filter );
 	}
 
@@ -142,6 +144,15 @@ public final class MenuServiceImpl implements MenuService {
 		
 		return customerDao.update( target );
 		
+	}
+
+	@Override
+	public void setDefaultDeliveryLocation(long customerId,
+			long deliveryLocationId) {
+		Customer target = customerDao.load( customerId );
+		DeliveryLocation dl = deliveryLocationDao.load( deliveryLocationId );
+		target.setDefaultDeliveryLocation( dl );
+		customerDao.update( target );
 	}
 
 	@Override
@@ -331,7 +342,7 @@ public final class MenuServiceImpl implements MenuService {
 
 		LinkedHashMap<Long,CategoryWithArticles> groupedMenu = getArticlesByCategories();
 
-		List<Customer> customers = getActiveCustomers();
+		List<Customer> customers = getSubscribedCustomers(true, null);
 		
 		List<Map<String, Object>> results = new ArrayList<Map<String,Object>>();
 

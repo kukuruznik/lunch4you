@@ -33,6 +33,12 @@ public class JpaCustomerDao extends AbstractReadWriteDao<Customer, Long, Custome
 			if ( f.isActive != null )
 				p = builder.and( p, builder.equal( root.get( "isActive" ), f.isActive ) );
 
+			if ( f.isSubscribedMenuWeekly != null )
+				p = builder.and( p, builder.equal( root.get( "isSubscribedMenuWeekly" ), f.isSubscribedMenuWeekly ) );
+
+			if ( f.isSubscribedNews != null )
+				p = builder.and( p, builder.equal( root.get( "isSubscribedNews" ), f.isSubscribedNews ) );
+
 			if ( f.token != null )
 				p = builder.and( p, builder.equal( root.get( "token" ), f.token ) );
 

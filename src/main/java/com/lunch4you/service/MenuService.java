@@ -53,7 +53,7 @@ public interface MenuService {
 
 	void deleteOrders(List<Long> ids);
 
-	List<Customer> getActiveCustomers();
+	List<Customer> getSubscribedCustomers(Boolean menuWeekly, Boolean news);
 
 	List<Map<String, Object>> sendMenu();
 
@@ -61,5 +61,8 @@ public interface MenuService {
 
 	Customer updateCustomerProfile(Customer customerProfile,
 			long defaultDeliveryLocationId);
+
+	void setDefaultDeliveryLocation(long customerId, long deliveryLocationId);
+
 
 }

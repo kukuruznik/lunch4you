@@ -8,4 +8,8 @@ public final class CustomerFilter {
 	public String token;
 	
 	public Boolean isActive;
+	
+	public Boolean isSubscribedMenuWeekly;
+
+	public Boolean isSubscribedNews;
 }

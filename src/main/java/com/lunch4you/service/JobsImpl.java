@@ -21,7 +21,7 @@ public class JobsImpl implements Jobs {
 
 		LinkedHashMap<Long,CategoryWithArticles> groupedMenu = menuService.getArticlesByCategories();
 
-		List<Customer> customers = menuService.getActiveCustomers();
+		List<Customer> customers = menuService.getSubscribedCustomers(true, false);
 
 		for ( Customer customer : customers ) {
 			mailingService.sendMenu( customer, groupedMenu );
