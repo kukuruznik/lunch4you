@@ -84,6 +84,7 @@
 
 - Order Confirmation email
 	- consider what other information needs to be included	P2
+	- send different email to Lunch4you showing all important info already in subject P2
 
 - Online Menu
 	- add Special discount functionality (use manu emailing as template)
