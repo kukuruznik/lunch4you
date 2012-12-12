@@ -75,22 +75,6 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			return true;
 		},
 
-		_getDeliveryLocationById : function (id){
-			var result = $.grep(this.deliveryLocations, function(deliveryLocation){
-				return deliveryLocation.id == id;
-			});
-			if(result.length == 0){
-				alert("Error, DeliveryLocation not found for id : " + id);
-				return null;
-			}
-			if(result.length > 1){
-				alert("Error, Multiple DeliveryLocations found for id : " + id);
-				return null;
-			}
-			return result[0];
-				
-		},
-
 		_renderConfirmation: function() {
 			this.element.html( this.view( "updateConfirmation", this ) );
 		},
