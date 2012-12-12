@@ -49,7 +49,7 @@ CREATE TABLE `customer` (
   `credit` int(11) NOT NULL DEFAULT '0',
   `version` int(11) DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
-  `default_delivery_location_id` bigint(20) NOT NULL,
+  `default_delivery_location_id` bigint(20) DEFAULT NULL,
   `is_subscribed_menu_weekly` tinyint(1) DEFAULT '1',
   `is_subscribed_news` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
