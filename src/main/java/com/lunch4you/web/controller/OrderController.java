@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lunch4you.dao.CustomerDao;
 import com.lunch4you.domain.Article;
 import com.lunch4you.domain.ArticleWithOrders;
 import com.lunch4you.domain.DeliveryLocation;
@@ -48,8 +49,13 @@ public class OrderController {
 		long articleId = Long.parseLong( data.get( "articleId" ).toString() );
 		long customerId = Long.parseLong( data.get( "customerId" ).toString() );
 		long deliveryLocationId = Long.parseLong( data.get( "deliveryLocationId" ).toString() );
+		boolean setDefaultDeliveryLocation = Boolean.parseBoolean( data.get( "setDefaultDeliveryLocation" ).toString() );
 		String note = data.get( "note" ).toString();
-
+		
+		if(setDefaultDeliveryLocation){
+			menuService.setDefaultDeliveryLocation( customerId, deliveryLocationId );
+		}
+		
 		Order order = menuService.createOrder( articleId, customerId, deliveryLocationId, note );
 		OrderDto orderDto = mapOrder( order );
 
