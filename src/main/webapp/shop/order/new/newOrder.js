@@ -27,7 +27,28 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 		},
 
 		"#deliveryLocationsSelect change": function( el, evt ) {
-			this.deliveryLocation = el.val();
+			var selectedId = el.val();
+			var ddlDiv = $( "#setDdlDiv" );
+			var checkboxEl = $( "#setDefaultDeliveryLocation" );
+			if(selectedId == -1){
+				ddlDiv.hide();				
+				return;
+			}
+			// TODO show some details about selected location
+			var custDdlId = null;
+			if(Shop.customer && Shop.customer.defaultDeliveryLocation)
+				custDdlId = Shop.customer.defaultDeliveryLocation.id;
+			if(!custDdlId || custDdlId != selectedId){
+				ddlDiv.show();
+				// make checkbox checked only if there is no DDL in profile. Otherwise the user probably just wants
+				// to exceptionally deliver to a different location
+				if(!custDdlId){
+					checkboxEl.attr("checked","true");
+				}
+			}else{
+				ddlDiv.hide();				
+			}
+			
 		},
 
 		_reloadData: function() {
@@ -47,14 +68,39 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 		},
 
 		_createOrder: function() {
+			if ( ! this._validateOrderForm() )
+				return;
 			this._enableSubmit( false );
 			var self = this;
-			var deliveryLocationId = $( "#deliveryLocationsSelect" ).val();
+
+			var custDdlId = null;
+			if(Shop.customer && Shop.customer.defaultDeliveryLocation)
+				custDdlId = Shop.customer.defaultDeliveryLocation.id;
+
+			var selectedDlId = $( "#deliveryLocationsSelect" ).val();
+			var setDefaultDeliveryLocation = $( "#setDefaultDeliveryLocation" ).attr("checked") ? true : false;
+			
+			// Set selected DL as default only if checkbox is checked and:
+			// 1) customer has no Default Delivery location set in his profile or
+			// 2) selected location is different from the one in the profile
+			var setDdl = setDefaultDeliveryLocation && ( !custDdlId || custDdlId != selectedDlId);
+			
 			var note = $( "#note" ).val();
 			
-			Shop.Models.Order.create( this.article, this.customer, deliveryLocationId, note, function( order ) {
+			Shop.Models.Order.create( this.article, this.customer, selectedDlId, setDdl, note, function( order ) {
 				self._renderConfirmation();
 			} );
+		},
+
+		_validateOrderForm : function() {
+			var deliveryLocationId = $( "#deliveryLocationsSelect" ).val();
+
+			if(deliveryLocationId == -1){
+				alert( $.EJS.Helpers.prototype.msg( "order.detail.validation.emptyDeliveryLocation" ) );
+				return false;				
+			}
+			
+			return true;
 		},
 
 		_enableSubmit: function( enable ) {
