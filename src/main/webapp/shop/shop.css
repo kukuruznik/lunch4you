@@ -88,7 +88,7 @@ li.category {
 	Xpadding: 1em;
 	background-color: #f80;
 	color: white;
-	overflow: auto;
+	overflow: hidden;
 	cursor: default;
 	clear : both;
 	text-align: center;
@@ -102,7 +102,8 @@ li.category {
 #main-logo {
 	text-shadow: 1px 1px 2px #840;
 	float: left;
-	font-size: 1.5em;
+	font-size: 2em;
+	padding : 10px;
 	font-weight: bold; 
 	border : 0px black solid;
 }
@@ -126,7 +127,7 @@ li.category {
 	Xline-height: 2em;
 	font-size : 0.8em;
 	padding : 0px 4px;
-	Xheight : 50px;
+	margin : 4px;
 	border : 0px black solid;	
 }
 
@@ -141,37 +142,48 @@ li.category {
 
 #main-lang-selector-container {
 	border : 0px violet solid;
+	margin : 4px;
 	float : right;
+	width : 50px;
 }
 
 #main-lang-selector {
+	float : right;
 	margin: 0px;
-	padding : 4px;
+	padding : 0px;
+	border: 0px blue solid;
 }
 
-#main-lang-flag {
-	display: block;
-	width: 48px;
-	height: 24px;
-	Xmargin: 0 auto 4px;
-	float : right;
-	border: 1px black solid ;
-	box-shadow: 0 0 8px 2px #ff8;
+.main-lang-flag {
+	display : block;
+	margin: 0px;
+	width: 17px;
+	height: 13px;
+	border: 0px black solid;
+	margin : 4px;
 }
 
 
 .main-lang-flag-cz {
-	background-image: url("../cz.png");
+	background-image: url("../cz.gif");
 }
 
 .main-lang-flag-en {
-	background-image: url("../en.png");
+	background-image: url("../en.gif");
 }
 
 #main-navigation {
 	clear: both;
+	color : black;
 	border : 0px blue solid;
 	text-align: center;
+}
+
+#main-navigation a {
+	padding : 4px;
+	Xborder-width : 1px 1px 0px 1px;
+	Xborder-color : white;
+	Xborder-style: solid;
 }
 
 

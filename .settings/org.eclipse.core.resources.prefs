@@ -1,6 +1,9 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
+encoding//src/main/resources/META-INF/velocity/menuMailTemplate.vm=UTF-8
+encoding//src/main/resources/META-INF/velocity/menuMailTemplate_footer_ACCENTURE.html=UTF-8
+encoding//src/main/resources/META-INF/velocity/menuMailTemplate_header_default.html=UTF-8
 encoding//src/test/java=UTF-8
 encoding//src/test/resources=UTF-8
 encoding/<project>=UTF-8

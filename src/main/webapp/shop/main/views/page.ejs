@@ -6,11 +6,13 @@
 	<div id="main-logo">Lunch<em>4</em>You</div>
 	<div id="main-screen-name">Screeen Name</div>
 	<div id="main-lang" >
-		<div id="main-lang-flag" class="main-lang-flag-<%= Shop.Main.getLocale() %>"></div>
+		
 		<div id="main-lang-selector-container" >
 		<% for ( var i = 0; i < locales.length; i++ ) { %>
-			<%= i > 0 ? "|" : "" %>
-			<a id="main-lang-selector" locale="<%= locales[i] %>" href="javascript:"><%= locales[i] %></a>
+			<%= i > 0 ? "" : "" %>
+			<a id="main-lang-selector" locale="<%= locales[i] %>" href="javascript:"><div class="main-lang-flag main-lang-flag-<%= locales[i] %>"></div>
+				<!--%= locales[i] %-->
+			</a>
 		<% } %>
 		</div>
 	</div>
