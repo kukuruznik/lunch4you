@@ -5,6 +5,9 @@ steal(
 	"shop/utils",
 	"shop/order/new/newOrder.js",
 	"shop/menu/list",
+	"shop/home/home.js",
+	"shop/contacts/contacts.js",
+	"shop/ordering/ordering.js",
 	"shop/referral/new/newReferral.js",
 	"shop/profile/edit/editProfile.js"
 ).then( function( $ ) {
@@ -20,7 +23,7 @@ steal(
 	{
 		_availableLocales: [ "cz", "en" ],
 		
-		_navigationItems: [ "menu", "referral" ],
+		_navigationItems: [ "home", "menu", "ordering", "contacts" ],
 
 		getNavigationItems : function() {
 			return this._navigationItems;
@@ -149,16 +152,7 @@ steal(
 		},
 
 		_dataLoaded: function( customerResponse, deliveryLocationsResponse, dictionaryResponse ) {
-			
-			// render the main page structure
-			$( "#content" ).html( this.view( 'page', this ) );
-
-			this.initialized = true;
-			
-			// start the UI by triggering the initial hash change event
-			$( function() {
-				$( window ).trigger( "hashchange" );
-			});
+			this._render();			
 		},
 
 		_customerLoaded: function( customer ) {
@@ -176,16 +170,22 @@ steal(
 		_loadDictionary : function ( locale ){
 			var dictionaryDfr = Shop.Models.Dictionary.loadDictionary( this.Class.getLocale(), this.proxy( "_dictionaryLoaded" ) );
 			$.when(dictionaryDfr).done(this.proxy( function(){
-
-				var cl = "main-lang-flag-" + this.Class.getLocale();
-				$("#main-lang-flag").attr("class", cl);
-
-				$( function() {
-					$( window ).trigger( "hashchange" );
-				});
+				this._render();			
 			}));
 		},
 
+		_render: function() {
+			// render the main page structure
+			$( "#content" ).html( this.view( 'page', this ) );
+
+			this.initialized = true;
+			
+			// start the UI by triggering the initial hash change event
+			$( function() {
+				$( window ).trigger( "hashchange" );
+			});		
+		},
+		
 		"{window} hashchange": function( el, evt ) {
 			if ( !this.initialized )
 				return;
@@ -195,6 +195,15 @@ steal(
 
 			// URL validation and view selection
 			switch ( Shop.params.view ) {
+			case "home":
+				this._setScreen( "shop_home" );
+				break;
+			case "contacts":
+				this._setScreen( "shop_contacts" );
+				break;
+			case "ordering":
+				this._setScreen( "shop_ordering" );
+				break;
 			case "menu":
 				this._setScreen( "shop_menu_list" );
 				break;

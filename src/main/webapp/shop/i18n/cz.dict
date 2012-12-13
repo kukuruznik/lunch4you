@@ -4,6 +4,11 @@
 	"header.referral": "Doporučení",
 	"header.profile": "Uživatelský profil",
 
+	"main.navigation.items.home": "Domovská stránka",
+	"main.navigation.items.menu": "Dnešní Menu",
+	"main.navigation.items.ordering": "Jak si objednat",
+	"main.navigation.items.contacts": "Kontakty",
+
 	"order.detail.customer": "Zákazník",
 	"order.detail.deliveryLocation": "Místo vyzvednutí",
 	"order.detail.setDefaultDeliveryLocation" : "Použít jako předvolené pro budoucí objednávky",

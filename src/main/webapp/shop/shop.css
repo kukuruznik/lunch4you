@@ -43,8 +43,8 @@ form {
 }
 
 a {
-	Xcolor: #080;
-	Xtext-decoration: none;
+	color: #080;
+	text-decoration: none;
 }
 
 a:hover {
@@ -92,7 +92,11 @@ li.category {
 	cursor: default;
 	clear : both;
 	text-align: center;
-	border : 2px green solid;
+	border : 0px green solid;
+}
+
+#main-caption a {
+	color : white;
 }
 
 #main-logo {
@@ -108,13 +112,13 @@ li.category {
 }
 
 #main-screen-name {
-	display : inline;
+	display : none;
 	text-align: center;
 	margin: 0;
 	width: 50%;
 	Xline-height: 2em;
 	left : 200px;
-	border : 2px blue solid;
+	border : 0px blue solid;
 }
 
 #main-customerInfo {
@@ -123,7 +127,7 @@ li.category {
 	font-size : 0.8em;
 	padding : 0px 4px;
 	Xheight : 50px;
-	border : 1px black solid;	
+	border : 0px black solid;	
 }
 
 #main-lang {
@@ -132,11 +136,11 @@ li.category {
 	font-size: 75%;
 	text-align: right;
 	clear : right;
-	border : 2px green solid;
+	border : 0px green solid;
 }
 
 #main-lang-selector-container {
-	border : 2px violet solid;
+	border : 0px violet solid;
 	float : right;
 }
 
@@ -166,7 +170,7 @@ li.category {
 
 #main-navigation {
 	clear: both;
-	border : 2px blue solid;
+	border : 0px blue solid;
 	text-align: center;
 }
 

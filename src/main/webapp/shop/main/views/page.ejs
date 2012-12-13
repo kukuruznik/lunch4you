@@ -24,7 +24,7 @@
 	<div id="main-navigation">
 		<% for ( var i = 0; i < navItems.length; i++ ) { %>
 			<%= i > 0 ? "|" : "" %>
-			<a id="main-navigation-selector" navigationIndex="<%= i %>" href="javascript:"><%= navItems[i] %></a>
+			<a id="main-navigation-selector" navigationIndex="<%= i %>" href="javascript:"><%= msg( "main.navigation.items." + navItems[i] ) %></a>
 		<% } %>
 	</div>
 
