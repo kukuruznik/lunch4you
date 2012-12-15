@@ -1,28 +1,32 @@
-	<table id="menuTable">
-		<tr class="headerRow">
-			<td class="articleCell"></td>
-			<td class="priceCell"></td>	
-		</tr>
-	<% for ( var i = 0; i < this.length; i++ ) { %>
-		<% var category =  this[i].entity; %>
-		<% var articles = this[i].items %>
+<% var token = Shop.params.token %>
+	
+<table id="menuTable">
+	<tr class="headerRow">
+		<td class="articleCell"></td>
+		<td class="priceCell"></td>	
+	</tr>
+<% for ( var i = 0; i < this.length; i++ ) { %>
+	<% var category =  this[i].entity; %>
+	<% var articles = this[i].items %>
+	<tr>
+		<td colspan="2" class="categoryCell">
+			<%= localize( category, "name" ) %>
+		</td>
+	</tr>
+	<% for ( var j = 0; j < articles.length; j++ ) { %>
+		<% var article = articles[j] %>
 		<tr>
-			<td colspan="2" class="categoryCell">
-				<%= localize( category, "name" ) %>
+			<td class="articleCell">
+				<a class="meal" href="<%= '#view=order&meal=' + article.id + (token ? '&token=' + token : '') %>">
+					<%= localize( article, "name" ) %>
+				</a>
+				- <%= localize( article, "description" ) %>
+			</td>
+			<td class="priceCell">
+				<%= article.price %>,- CZK
 			</td>
 		</tr>
-		<% for ( var j = 0; j < articles.length; j++ ) { %>
-			<% var article = articles[j] %>
-			<tr>
-				<td class="articleCell">
-					<a class="meal" href="#view=order&meal=<%= article.id %>&token=<%= Shop.params.token %>"><%= localize( article, "name" ) %></a>
-					- <%= localize( article, "description" ) %>
-				</td>
-				<td class="priceCell">
-					<%= article.price %>,- CZK
-				</td>
-			</tr>
-		<% } %>
-		
 	<% } %>
-	</table>
+	
+<% } %>
+</table>

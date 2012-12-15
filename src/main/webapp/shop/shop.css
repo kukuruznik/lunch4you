@@ -110,6 +110,8 @@ li.category {
 
 #main-logo em {
 	color: yellow;
+	font-style: normal;
+	text-shadow: none;
 }
 
 #main-screen-name {

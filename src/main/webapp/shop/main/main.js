@@ -35,14 +35,14 @@ steal(
 
 		getLocale: function() {
 			if ( !this.locale )
-				this.locale = this._load( "locale" ) || "cz";
+				this.locale = Shop.Utils.loadFromCookie( "locale" ) || "cz";
 			return this.locale;
 		},
 
 		setLocale: function( locale ) {
 			for ( var i = 0; i < this._availableLocales.length; i++ ) {
 				if ( this._availableLocales[ i ] == locale ) {
-					this._save( "locale", locale );
+					Shop.Utils.saveToCookie( "locale", locale );
 					this.locale = locale;
 					break;
 				}
@@ -51,41 +51,28 @@ steal(
 
 		getToken: function() {
 			if ( !this.token )
-				this.token = this._load( "token" );
+				this.token = Shop.Utils.loadFromCookie( "token" );
 			return this.token;
 		},
 
 		setToken: function( token ) {
-			this._save( "token", token );
+			Shop.Utils.saveToCookie( "token", token );
 			this.token = token;
 		},
 
-		_load: function( key ) {
-			var value = $.cookie( key );
-			steal.dev.log( "load from cookie: ", key, " = ", value );
-			//alert( "load from cookie: " + key + " = " + value );
-			return value;
-		},
-
-		_save: function( key, value ) {
-			steal.dev.log( "save into cookie: ", key, " = ", value );
-			$.cookie( key, value );
-		},
-
 		getDeliveryLocationById : function (id){
-			var result = $.grep(Shop.deliveryLocations, function(deliveryLocation){
+			var result = $.grep( Shop.deliveryLocations, function( deliveryLocation ) {
 				return deliveryLocation.id == id;
 			});
-			if(result.length == 0){
-				alert("Error, DeliveryLocation not found for id : " + id);
+			if ( result.length == 0 ) {
+				alert( "Error, DeliveryLocation not found for id : " + id );
 				return null;
 			}
-			if(result.length > 1){
-				alert("Error, Multiple DeliveryLocations found for id : " + id);
+			if( result.length > 1 ) {
+				alert( "Error, Multiple DeliveryLocations found for id : " + id );
 				return null;
 			}
 			return result[0];
-				
 		},
 
 		/**
@@ -94,8 +81,18 @@ steal(
 		reloadCustomer: function() {
 			var token = this.getToken();
 			Shop.Models.Customer.findByToken( token, this.proxy( "_customerLoaded" ) );
-		}
+		},
 
+		navigateTo: function( viewName, params ) {
+			var token = Shop.params.token;
+			var newState = params || {};
+
+			newState.view = viewName;
+			if ( token && !newState.token )
+				newState.token = token;
+
+			$.bbq.pushState( newState, 2 );
+		}
 	},
 
 	/** @Prototype */
@@ -119,13 +116,9 @@ steal(
 				return object[ attrName + "_" + Shop.Main.getLocale() ];
 			};
 
+			this._parseHash();
 			// if the user token is set in the URL then save it and remove from the URL
-			var hash = $.bbq.getState();
-
-			if ( hash.token ) {
-				this.Class.setToken( hash.token );
-				//$.bbq.removeState( "token" );
-			}
+			this._rememberToken();
 
 			// if we know the user token, then let's get the user data from the server,
 			// otherwise we set user to null and only anonymous actions will be enabled
@@ -137,7 +130,7 @@ steal(
 			if ( token ) {
 				customerDfr = Shop.Models.Customer.findByToken( token, this.proxy( "_customerLoaded" ) );
 			} else {
-				customerDfr = function(){
+				customerDfr = function() {
 					return null;
 				};
 			}
@@ -147,13 +140,13 @@ steal(
 			
 			var dictionaryDfr = Shop.Models.Dictionary.loadDictionary( this.Class.getLocale(), this.proxy( "_dictionaryLoaded" ) );
 
-			$.when( customerDfr, deliveryLocationsDfr, dictionaryDfr ).done( this.proxy( "_dataLoaded" ) );
+			$.when( customerDfr, deliveryLocationsDfr, dictionaryDfr ).done( this.proxy( "_render" ) );
 			
 		},
 
-		_dataLoaded: function( customerResponse, deliveryLocationsResponse, dictionaryResponse ) {
-			this._render();			
-		},
+//		_dataLoaded: function( customerResponse, deliveryLocationsResponse, dictionaryResponse ) {
+//			this._render();			
+//		},
 
 		_customerLoaded: function( customer ) {
 			Shop.customer = customer;
@@ -169,9 +162,7 @@ steal(
 
 		_loadDictionary : function ( locale ){
 			var dictionaryDfr = Shop.Models.Dictionary.loadDictionary( this.Class.getLocale(), this.proxy( "_dictionaryLoaded" ) );
-			$.when(dictionaryDfr).done(this.proxy( function(){
-				this._render();			
-			}));
+			$.when( dictionaryDfr ).done( this.proxy( "_render" ) );			
 		},
 
 		_render: function() {
@@ -190,7 +181,7 @@ steal(
 			if ( !this.initialized )
 				return;
 
-			Shop.params = $.bbq.getState();
+			this._parseHash();
 			steal.dev.log( "Hash changed: ", Shop.params );
 
 			// URL validation and view selection
@@ -226,7 +217,7 @@ steal(
 		},
 		
 		"#main-customer-link click" : function( el, evt ) {
-			window.location.hash = "#view=profile&token=" + Shop.params.token;
+			this.Class.navigateTo( "profile" );
 		},
 
 		"#main-lang-selector click": function( el, evt ) {
@@ -239,10 +230,24 @@ steal(
 			this._loadDictionary( newLocale );
 		},
 		
-		"#main-navigation-selector click" : function( el, evt ) {
+		".main-navigation-selector click" : function( el, evt ) {
 			var navIndex = el.attr("navigationIndex");
 			var navItem = this.Class.getNavigationItems()[navIndex];
-			window.location.hash = "#view=" + navItem + "&token=" + Shop.params.token;
+			this.Class.navigateTo( navItem );
+		},
+
+		_parseHash: function() {
+			Shop.params = $.bbq.getState();
+		},
+
+		_rememberToken: function() {
+			var token = Shop.params.token;
+
+			if ( token ) {
+				this.Class.setToken( token );
+				if ( Shop.Utils.isCookieEnabled() )
+					$.bbq.removeState( "token" );
+			}
 		},
 
 		_setScreen: function( controllerName ) {
