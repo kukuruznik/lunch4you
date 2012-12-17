@@ -13,6 +13,7 @@ import com.lunch4you.domain.DeliveryLocation;
 import com.lunch4you.domain.DeliveryLocationWithArticles;
 import com.lunch4you.domain.Order;
 import com.lunch4you.domain.OrderItem;
+import com.lunch4you.domain.OrderResult;
 import com.lunch4you.domain.Referral;
 
 public interface MenuService {
@@ -33,7 +34,7 @@ public interface MenuService {
 
 	List<DeliveryLocation> getAllDeliveryLocations();
 
-	Order createOrder(Long articleId, Long customerId, Long deliveryLocationId, String note );
+	OrderResult createOrder(Long articleId, Long customerId, Long deliveryLocationId, String note );
 
 	List<Article> getMenu();
 

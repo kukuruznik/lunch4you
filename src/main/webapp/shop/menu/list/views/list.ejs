@@ -1,32 +1,44 @@
-<% var token = Shop.params.token %>
+<div id="menuDiv">
 	
-<table id="menuTable">
-	<tr class="headerRow">
-		<td class="articleCell"></td>
-		<td class="priceCell"></td>	
-	</tr>
-<% for ( var i = 0; i < this.length; i++ ) { %>
-	<% var category =  this[i].entity; %>
-	<% var articles = this[i].items %>
-	<tr>
-		<td colspan="2" class="categoryCell">
-			<%= localize( category, "name" ) %>
-		</td>
-	</tr>
-	<% for ( var j = 0; j < articles.length; j++ ) { %>
-		<% var article = articles[j] %>
+
+	<table id="menuTable">
+		<tr class="headerRow">
+			<td class="articleCell"></td>
+			<td class="priceCell"></td>	
+		</tr>
+	<% for ( var i = 0; i < this.length; i++ ) { %>
+		<% var category =  this[i].entity; %>
+		<% var articles = this[i].items %>
 		<tr>
-			<td class="articleCell">
-				<a class="meal" href="<%= '#view=order&meal=' + article.id + (token ? '&token=' + token : '') %>">
-					<%= localize( article, "name" ) %>
-				</a>
-				- <%= localize( article, "description" ) %>
-			</td>
-			<td class="priceCell">
-				<%= article.price %>,- CZK
+			<td colspan="2" class="categoryCell">
+				<%= localize( category, "name" ) %>
 			</td>
 		</tr>
+		<% for ( var j = 0; j < articles.length; j++ ) { %>
+			<% 
+				var article = articles[j];
+				var soldOut = article.isSoldOut; 
+			%>
+			<tr class="articleRow">
+				<td class="articleCell">
+					<div class="meal-header">
+						<a class="meal <%= soldOut ? "meal-sold-out" : "" %>" href="#view=order&meal=<%= article.id %>&token=<%= Shop.params.token %>"><%= localize( article, "name" ) %></a>
+						<% if(soldOut) { %> 
+							<span class="meal-sold-out-label">(<%= msg("menu.article.soldOut.label") %>)</span> 
+						<% } %>
+					</div>
+					<div class="meal-description">
+						<%= localize( article, "description" ) %>
+						<span class="meal-padding">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </span>
+					</div>
+				</td>
+				<td class="priceCell">
+					&nbsp;<br>
+					<%= article.price %>,- Kč
+				</td>
+			</tr>
+		<% } %>
+		
 	<% } %>
-	
-<% } %>
-</table>
+	</table>
+</div>

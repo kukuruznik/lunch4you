@@ -2,10 +2,11 @@ Release plan / Roadmap
 ======  Major features  ======
 - Blocking meal (out of stock, etc)
 - Login
+- Different pricing for delivery and restaurant
 - Delivery time selection
 - Multiple articles in one order
 - Discounts calculation
-- Caffeteria interface
+- Cafetteria interface
 
 ======  Minor features  ======
 - "New" article indicator

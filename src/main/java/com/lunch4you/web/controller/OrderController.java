@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.lunch4you.dao.CustomerDao;
 import com.lunch4you.domain.Article;
 import com.lunch4you.domain.ArticleWithOrders;
 import com.lunch4you.domain.DeliveryLocation;
 import com.lunch4you.domain.DeliveryLocationWithArticles;
 import com.lunch4you.domain.Order;
+import com.lunch4you.domain.OrderResult;
 import com.lunch4you.service.MenuService;
 import com.lunch4you.web.dto.ArticleDto;
 import com.lunch4you.web.dto.ArticleWithOrdersDto;
@@ -29,6 +29,7 @@ import com.lunch4you.web.dto.DeliveryLocationDto;
 import com.lunch4you.web.dto.DeliveryLocationWithArticlesDto;
 import com.lunch4you.web.dto.OrderDto;
 import com.lunch4you.web.dto.OrderItemDto;
+import com.lunch4you.web.dto.OrderResultDto;
 
 @Controller
 public class OrderController {
@@ -43,7 +44,7 @@ public class OrderController {
 
 	@RequestMapping( value = "/orders", method = RequestMethod.POST )
 	public @ResponseBody
-	OrderDto createNew( @RequestBody Map<String, Object> data ) {
+	OrderResultDto createNew( @RequestBody Map<String, Object> data ) {
 		logger.trace( "OrderController.createNew called with data: " + data );
 
 		long articleId = Long.parseLong( data.get( "articleId" ).toString() );
@@ -56,10 +57,10 @@ public class OrderController {
 			menuService.setDefaultDeliveryLocation( customerId, deliveryLocationId );
 		}
 		
-		Order order = menuService.createOrder( articleId, customerId, deliveryLocationId, note );
-		OrderDto orderDto = mapOrder( order );
+		OrderResult result = menuService.createOrder( articleId, customerId, deliveryLocationId, note );
+		OrderResultDto orderResultDto = mapOrderResult( result );
 
-		return orderDto;
+		return orderResultDto;
 	}
 
 	@RequestMapping( value = "/backoffice/orders/close.json", method = RequestMethod.PUT )
@@ -99,6 +100,11 @@ public class OrderController {
 		List<OrderDto> orderDtos = mapOrderList( orders );
 
 		return orderDtos;
+	}
+
+	private OrderResultDto mapOrderResult( OrderResult result ) {
+		OrderResultDto orderResultDto = beanMapper.map(result, OrderResultDto.class);
+		return orderResultDto;
 	}
 
 	private OrderDto mapOrder( Order o ) {

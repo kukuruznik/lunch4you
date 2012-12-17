@@ -9,7 +9,9 @@ public final class ArticleDto {
 	public Integer dailyLimit;
 	
 	public boolean isActive;
-	
+
+	public boolean isSoldOut;
+
 	public CategoryDto category;
 	
 	public String name_cz;

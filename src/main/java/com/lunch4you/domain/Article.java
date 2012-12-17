@@ -133,6 +133,10 @@ public class Article {
 	public void setPackage_type( String package_type ) {
 		this.package_type = package_type;
 	}
+	
+	public boolean isSoldOut(){
+		return dailyLimit != null && dailyLimit == 0;
+	}
 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

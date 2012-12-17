@@ -49,6 +49,10 @@
 			<b is-accessible="true">isActive</b>
 		</field>
 		<field>
+			<a get-method="isSoldOut">isSoldOut</a>
+			<b is-accessible="true">isSoldOut</b>
+		</field>
+		<field>
 			<a>category</a>
 			<b is-accessible="true">category</b>
 		</field>
@@ -158,6 +162,19 @@
 		<field>
 			<a>note</a>
 			<b is-accessible="true">note</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.lunch4you.domain.OrderResult</class-a>
+		<class-b>com.lunch4you.web.dto.OrderResultDto</class-b>
+		<field>
+			<a>order</a>
+			<b is-accessible="true">orderDto</b>
+		</field>
+		<field>
+			<a>resultCode</a>
+			<b is-accessible="true">resultCode</b>
 		</field>
 	</mapping>
 

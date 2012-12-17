@@ -37,6 +37,7 @@ import com.lunch4you.domain.DeliveryLocation;
 import com.lunch4you.domain.DeliveryLocationWithArticles;
 import com.lunch4you.domain.Order;
 import com.lunch4you.domain.OrderItem;
+import com.lunch4you.domain.OrderResult;
 import com.lunch4you.domain.Referral;
 
 @Transactional
@@ -166,9 +167,30 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public Order createOrder( Long articleId, Long customerId, Long deliveryLocationId, String note ) {
+	public OrderResult createOrder( Long articleId, Long customerId, Long deliveryLocationId, String note ) {
+
+		OrderResult result = new OrderResult();
+		
 		OrderItem item = new OrderItem();
 		Article article = articleDao.load( articleId );
+
+		if( !article.getIsActive() ){
+			result.setResultCode( OrderResult.ResultCode.NOT_AVAILABLE );
+			return result;
+		}
+
+		Integer dailyLimit = article.getDailyLimit();
+
+		if( dailyLimit != null ){
+			if( article.isSoldOut() ){
+				result.setResultCode( OrderResult.ResultCode.SOLD_OUT );
+				return result;
+			} else {				
+				dailyLimit --;
+				article.setDailyLimit( dailyLimit );
+			}
+		}
+
 		Customer customer = getCustomer( customerId );
 		DeliveryLocation deliveryLocation = deliveryLocationDao.load( deliveryLocationId );
 		item.setAmount( 1 );
@@ -182,15 +204,20 @@ public final class MenuServiceImpl implements MenuService {
 		newOrder.setStatus( Order.Status.OPEN );
 		newOrder.setItems( Collections.singletonList( item ) );
 
+
 		Order order = orderDao.insert( newOrder );
+		
 
 		try {
 			mailingService.sendOrderConfirmation( order );
 		} catch ( MailSendException e ) {
 			logger.error( "Confirmation e-mail sending failed!", e );
 		}
-
-		return order;
+		
+		result.setResultCode( OrderResult.ResultCode.OK );
+		result.setOrder(order);
+		
+		return result;
 	}
 
 	@Override

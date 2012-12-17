@@ -9,6 +9,8 @@
 	"main.navigation.items.ordering": "Jak si objednat",
 	"main.navigation.items.contacts": "Kontakty",
 
+	"menu.article.soldOut.label": "Vyprodáno",
+
 	"order.detail.customer": "Zákazník",
 	"order.detail.deliveryLocation": "Místo vyzvednutí",
 	"order.detail.setDefaultDeliveryLocation" : "Použít jako předvolené pro budoucí objednávky",
@@ -21,7 +23,11 @@
 
 	"order.detail.action.change": "změnit",
 	"order.detail.action.order": "Poslat objednávku",
-	"order.detail.action.orderedMsg": "Vaše objednávka byla úspěsně založena! Za malou chvíli obdržíte potvrzujíci email s detaily Vaší objednávky.",
+	"order.detail.action.orderedMsg_OK": "Vaše objednávka byla úspěsně založena! Za malou chvíli obdržíte potvrzujíci email s detaily Vaší objednávky.",
+	"order.detail.action.orderedMsg_NOT_AVAILABLE": "Omlouváme se, ale požadované jídlo momentálně není v ponuce. Pokud jste klikli na link v týdenním Manu emailu, pravděpodobně jste použili starší email.",
+	"order.detail.action.orderedMsg_SOLD_OUT": "Omlouváme se, ale požadované jídlo bylo již mezičasem vyprodáno.",
+	"order.detail.action.orderedMsg_NOT_EXISTS": "Omlouváme se, ale požadované jídlo neexstuje.",
+	"order.detail.action.orderedMsg_NOT_AUTHENTICATED": "Omlouváme se, ale tahle akce je přístupna jen pro přihlašené uživatele.",
 	"order.detail.action.changeLanguage": "English",
 	"order.detail.validation.emptyDeliveryLocation" : "Prosíme vyberte místo vyzvednutí objednaného zboží",	
 

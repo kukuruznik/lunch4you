@@ -25,11 +25,11 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 		},
 
 		_reloadData: function() {
-			Shop.Models.DeliveryLocation.findAll( this.proxy( "_onDataLoaded" ) );
+			this._onDataLoaded();
 		},
 
-		_onDataLoaded: function( deliveryLocations ) {
-			this.deliveryLocations = deliveryLocations;
+		_onDataLoaded: function( ) {
+			this.deliveryLocations = Shop.deliveryLocations;
 						
 			this.customer = Shop.customer; // can be null!
 			this.deliveryLocation = this.customer ? this.customer.defaultDeliveryLocation : null;

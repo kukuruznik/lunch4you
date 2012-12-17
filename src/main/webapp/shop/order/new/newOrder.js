@@ -52,19 +52,41 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 		},
 
 		_reloadData: function() {
-			var articleDfr = Shop.Models.Article.findOne( Shop.params.meal );
-			var deliveryLocationsDfr = Shop.Models.DeliveryLocation.findAll();
-
-			$.when( articleDfr, deliveryLocationsDfr ).done( this.proxy( "_onDataLoaded" ) );
+			Shop.Models.Article.findOne( Shop.params.meal , this.proxy( "_onDataLoaded" ));
 		},
 
-		_onDataLoaded: function( articleResponse, deliveryLocationsResponse ) {
-			this.article = articleResponse[ 0 ];
-			this.deliveryLocations = deliveryLocationsResponse[ 0 ];
+		_onDataLoaded: function( article ) {
+			this.article = article;
+			this.deliveryLocations = Shop.deliveryLocations;
 			this.customer = Shop.customer; // can be null!
 			this.deliveryLocation = this.customer ? this.customer.defaultDeliveryLocation : null;
 
-			this._render();
+			var orderResult = new function(){};
+
+			if ( !this.customer ){
+				orderResult.resultCode = "NOT_AUTHENTICATED";
+				this._renderMessage(orderResult);
+				return;				
+			}
+			if ( !this.article ) {
+				orderResult.resultCode = "NOT_EXISTS";
+				this._renderMessage(orderResult);
+				return;				
+			} 
+
+			// check if this meal is unavailable or sold out
+			if(!article.isActive){
+				orderResult.resultCode = "NOT_AVAILABLE";
+				this._renderMessage(orderResult);
+				return;
+			}
+			if(article.isSoldOut){
+				orderResult.resultCode = "SOLD_OUT";
+				this._renderMessage(orderResult);
+				return;
+			}
+
+			this._renderForm();
 		},
 
 		_createOrder: function() {
@@ -87,8 +109,8 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			
 			var note = $( "#note" ).val();
 			
-			Shop.Models.Order.create( this.article, this.customer, selectedDlId, setDdl, note, function( order ) {
-				self._renderConfirmation();
+			Shop.Models.Order.create( this.article, this.customer, selectedDlId, setDdl, note, function( orderResult ) {
+				self._renderMessage(orderResult);
 			} );
 		},
 
@@ -108,19 +130,13 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			Shop.Utils.enableInput( button, enable );
 		},
 
-		_renderConfirmation: function() {
-			this.element.html( this.view( "orderConfirmation", this ) );
+		_renderMessage: function( orderResult ) {
+			this.orderResult = orderResult;
+			this.element.html( this.view( "orderMessage", this ) );
 		},
 
-		_render: function() {
-			// TODO show screenwith non authenticated user
-			if ( !this.customer )
-				this._enableSubmit( false );
-			if ( !this.article ) {
-				this.element.html( this.view( "unknownMeal" ) );
-			} else {
-				this.element.html( this.view( "orderForm", this ) );
-			}
+		_renderForm: function() {
+			this.element.html( this.view( "orderForm", this ) );
 		}
 	} );
 

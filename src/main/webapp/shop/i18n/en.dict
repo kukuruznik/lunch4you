@@ -9,6 +9,8 @@
 	"main.navigation.items.ordering": "How to order",
 	"main.navigation.items.contacts": "Contacts",
 
+	"menu.article.soldOut.label": "Sold Out",
+
 	"order.detail.customer": "Customer",
 	"order.detail.deliveryLocation": "Delivery Location",
 	"order.detail.setDefaultDeliveryLocation" : "Set as default delivery location for future orders",
@@ -21,7 +23,11 @@
 
 	"order.detail.action.change": "change",
 	"order.detail.action.order": "Submit Order",
-	"order.detail.action.orderedMsg": "Your order has been successfully submitted! In a short moment you will receive a confirmation email with details of your order.",
+	"order.detail.action.orderedMsg_OK": "Your order has been successfully submitted! In a short moment you will receive a confirmation email with details of your order.",
+	"order.detail.action.orderedMsg_NOT_AVAILABLE": "Sory, meal not available in current Menu.",
+	"order.detail.action.orderedMsg_SOLD_OUT": "Sory, meal has been sold out in the meantime.",
+	"order.detail.action.orderedMsg_NOT_EXISTS": "Sorry, meal does not exist.",
+	"order.detail.action.orderedMsg_NOT_AUTHENTICATED": "Sorry, this function is available only to authenticated users.",
 	"order.detail.action.changeLanguage": "Čeština",
 	"order.detail.validation.emptyDeliveryLocation" : "Please select Delivery Location of your order",	
 
