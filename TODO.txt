@@ -42,6 +42,7 @@
 		This is not intuitive as people expect it to show current setting. PLus it would not work if we had 3 languages. We need to implement some kind of a selector
 
 - Article
+	- Add "Code" to article, add it to menu display - P1
 	- Consider maintaining sort order of meals within a category
 	- New Flag - P2
 
