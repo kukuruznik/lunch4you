@@ -1,0 +1,40 @@
+<% var article = this %>
+		<td colspan="3" class="articleEditCell">
+
+<form id="articleForm" class="input-form" action="javascript:">
+	<input name="categoryId" type="hidden" value="<%= article.category.id %>"> 
+	<input name="id" type="hidden" value="<%= article.id %>">
+	 
+	<div class="input-form-row">
+		<label>Name(CZ):</label> 
+		<input name="name_cz" type="text" value="<%= article.name_cz %>">
+	</div>
+
+	<div class="input-form-row">
+		<label>Name(EN):</label> 
+		<input name="name_en" type="text" value="<%= article.name_en %>">
+	</div>
+
+	<div class="input-form-row">
+		<label>Description (CZ):</label> 
+		<textarea name="description_cz"><%= article.description_cz %></textarea>
+	</div>
+	<div class="input-form-row">
+		<label>Description (EN):</label> 
+		<textarea name="description_en"><%= article.description_en %></textarea>
+	</div>
+	<div class="input-form-row">
+		<label>Price:</label> 
+		<input name="price" type="text" value="<%= article.price %>">
+	</div>
+
+		
+
+
+	<div class="input-form-buttons-row">
+		<input id="submitButton" type="button" value="Save" /> 
+		<input id="cancelButton" type="button" value="Cancel" />
+	</div>
+</form>
+
+		</td>

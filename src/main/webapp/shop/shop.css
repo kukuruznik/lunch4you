@@ -208,47 +208,6 @@ li.category {
 	border-radius: 4px;
 }
 
-/*
-	General input form 
-	================================================= 
-*/
-
-.input-form {
-	background-color: #cdf;
-	padding: 0.5em;
-	width: 60%;
-	margin: auto;
-	border: 1px solid silver;
-	border-radius: 4px;
-}
-
-.input-form-row {
-	padding : 2px 0px;
-	clear : both;
-}
-
-.input-form-buttons-row {
-	text-align : center;
-	padding : 0.5em;
-	clear : both;
-	border : 0px red solid;
-}
-
-.input-form label {
-	float: left;
-	width: 12em;
-	line-height: 160%;
-	color: gray;
-	font-size : 11pt;
-	text-align : right;
-	padding-right : .5em;
-	text-shadow: 0 1px 0 white;
-}
-
-
-.input-form input[type=text] {
-	width: 20em;
-}
 
 /* TODO change to general input form styles */
 #confirm-order, #send-referral {
@@ -309,6 +268,7 @@ li.category {
 #menuDiv {
 	width : 100%;
 	border : 0px red solid;
+	Xbackground: url("../bg_content2.png") repeat-y scroll left top transparent;
 }
 
 #menuTable {

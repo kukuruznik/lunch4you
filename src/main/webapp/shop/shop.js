@@ -1,5 +1,6 @@
 steal(
 	'./shop.css', 			// application CSS file
+	'common/form.css', 			// application CSS file
 	'./models/models.js'	// steals all your models
 ).then(
 	"shop/main",				// main controller...

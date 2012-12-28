@@ -38,7 +38,7 @@ public interface MenuService {
 
 	List<Article> getMenu();
 
-	LinkedHashMap<Long, CategoryWithArticles> getArticlesByCategories();
+	LinkedHashMap<Long, CategoryWithArticles> getArticlesByCategories(boolean activeOnly);
 
 	List<Category> getCategories();
 
@@ -64,6 +64,12 @@ public interface MenuService {
 			long defaultDeliveryLocationId);
 
 	void setDefaultDeliveryLocation(long customerId, long deliveryLocationId);
+
+	Article createOrUpdateArticle(Article article, long categoryId);
+
+	Article setArticleActive(Long articleID, boolean active);
+
+	Article setArticleLimit(Long articleId, Integer limit);
 
 
 }

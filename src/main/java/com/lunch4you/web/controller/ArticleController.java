@@ -3,6 +3,7 @@ package com.lunch4you.web.controller;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.dozer.Mapper;
 import org.slf4j.Logger;
@@ -10,8 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lunch4you.domain.Article;
@@ -63,10 +66,10 @@ public class ArticleController {
 	
 	@RequestMapping( value = "/groupedByCategory.json", method = RequestMethod.GET )
 	public @ResponseBody
-	List<CategoryWithArticlesDto> getArticlesGroupedByCategory() {
+	List<CategoryWithArticlesDto> getArticlesGroupedByCategory(@RequestParam boolean activeOnly) {
 		logger.trace( "ArticleController.getGroupedMenu called" );
 		
-		LinkedHashMap<Long,CategoryWithArticles> categoriesWithArticles = menuService.getArticlesByCategories();
+		LinkedHashMap<Long,CategoryWithArticles> categoriesWithArticles = menuService.getArticlesByCategories( activeOnly );
 		List<CategoryWithArticlesDto> categoriesWithArticlesDtos = new ArrayList<CategoryWithArticlesDto>( );
 
 		for ( CategoryWithArticles categoryWithArticles : categoriesWithArticles.values() ) {
@@ -80,5 +83,47 @@ public class ArticleController {
 			categoriesWithArticlesDtos.add( categoryWithArticlesDto );
 		}
 		return categoriesWithArticlesDtos;
+	}
+
+	/**
+	 * Updates only certain attributes of the article
+	 * @param data
+	 * @return
+	 */
+	@RequestMapping( value = "/createOrUpdateArticle.json", method = RequestMethod.POST )
+	public @ResponseBody
+	ArticleDto createOrUpdateArticle( @RequestBody Map<String, Object> data ) {
+		
+		Object art = data.get( "article" );
+		Article article = beanMapper.map(art, Article.class);
+		long categoryId = Long.parseLong( data.get( "categoryId" ).toString() );
+		
+		Article updatedArticle = menuService.createOrUpdateArticle( article, categoryId );
+
+		ArticleDto articleDto = beanMapper.map( updatedArticle, ArticleDto.class );
+		
+		return articleDto;
+	}
+	
+	@RequestMapping( value = "/setActive.json", method = RequestMethod.GET )
+	public @ResponseBody
+	ArticleDto setActive(@RequestParam Long articleId, @RequestParam boolean active) {
+		
+		Article updatedArticle = menuService.setArticleActive( articleId, active );
+
+		ArticleDto articleDto = beanMapper.map( updatedArticle, ArticleDto.class );
+		
+		return articleDto;
+	}
+
+	@RequestMapping( value = "/setLimit.json", method = RequestMethod.GET )
+	public @ResponseBody
+	ArticleDto setActive(@RequestParam Long articleId, @RequestParam Integer limit) {
+		
+		Article updatedArticle = menuService.setArticleLimit( articleId, limit );
+
+		ArticleDto articleDto = beanMapper.map( updatedArticle, ArticleDto.class );
+		
+		return articleDto;
 	}
 }

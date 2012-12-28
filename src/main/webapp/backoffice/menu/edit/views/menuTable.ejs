@@ -1,0 +1,27 @@
+<div id="menuDiv">
+
+	<table id="menuTable" border="1">
+		<tr class="headerRow">
+			<td class="articleCell"></td>
+			<td class="priceCell"></td>	
+			<td class="actionsCell"></td>	
+		</tr>
+	<% for ( var i = 0; i < this.length; i++ ) { %>
+		<% var category =  this[i].entity; %>
+		<% var articles = this[i].items %>
+		<tr categoryId="<%= category.id %>">
+			<td colspan="3" class="categoryCell">
+				<%= category.name_cz %>
+				<a href="javascript:" class="createArticleLink" categoryId="<%= category.id %>">New Article</a>
+			</td>
+		</tr>
+		<% for ( var j = 0; j < articles.length; j++ ) { %>
+			<% var article = articles[j]; %>
+			<tr class="articleRow" articleId="<%= article.id %>">
+			<%== $.View( '//backoffice/menu/edit/views/articleRow.ejs', article ) %>			
+			</tr>
+		<% } %>
+		
+	<% } %>
+	</table>
+</div>

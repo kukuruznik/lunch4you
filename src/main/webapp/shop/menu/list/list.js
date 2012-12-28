@@ -23,7 +23,8 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_reloadMenu: function() {
-			Shop.Models.Article.getGroupedMenu().done( this.proxy( "_render" ) );
+			var activeOnly = true;
+			Shop.Models.Article.getGroupedMenu( activeOnly ).done( this.proxy( "_render" ) );
 		},
 
 		_render: function( groupedMenu ) {

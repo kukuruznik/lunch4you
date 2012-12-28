@@ -297,3 +297,136 @@ input[type=text], input[type=password] {
 	padding: 1em 2em;
 	border: 1px solid gray;
 }
+
+
+/*
+	Article form 
+	================================================= 
+*/
+
+#articleForm {
+}
+
+
+/*
+	Menu table
+	================================================= 
+*/
+
+
+#menuTable td.articleEditCell {
+	width : 100%;
+	border : 0px blue solid;
+}
+
+
+#menuEdit {
+	width : 100%;
+	border : 0px red solid;
+}
+
+#menuTable {
+	table-layout : fixed;
+	border-collapse : collapse;
+	width : 100%;
+	border : 0px black solid;
+	margin-left : 0px;
+}
+
+#menuTable td {
+	text-align: left;
+	border : 0px #eeeeee solid;
+	font: Arial; 
+}
+
+#menuTable tr.headerRow td{
+}
+
+#menuTable td.categoryCell {
+	//width : 100%;
+	font-size : 1.2em;
+	Xfont-weight : bold;
+	padding : 20px 0px 10px 0px;
+}
+
+#menuTable td.categoryCell a.createArticleLink {
+	font-size : 10pt;
+	color : blue;
+}
+
+#menuTable td.articleCell {
+	width : *;
+	padding-left : 50px;
+	white-space: nowrap;
+	padding-top : .5em;
+	padding-bottom : .5em;
+}
+
+#menuTable td.articleCell div.meal-header {
+	display : block;
+	clear : both;
+}
+
+#menuTable td.articleCell a.meal {
+	color : black;
+	Xfont-weight: bold;
+}
+
+
+#menuTable a.meal-sold-out {
+	Xtext-decoration: line-through;
+	Xcolor : lightgray;
+}
+
+#menuTable span.meal-sold-out-label {
+	font-size : .8em;
+	font-style : italic; 
+	color : red;
+}
+
+#menuTable span.meal-new-label {
+	font-size : .8em;
+	font-style : italic; 
+	color : red;
+}
+
+#menuTable div.meal-description {
+	font-style : italic;
+	font-size : 0.8em;
+	color : #9C822D;
+	width : 100%;
+	overflow : hidden;
+	float : left;
+}
+
+#menuTable span.meal-padding {
+	color : gray;
+	font-size : .5em;
+}
+
+#menuTable td.priceCell {
+	vertical-align : top;
+	width : 100px;
+	padding-left : 5px;
+	padding-top : .5em;
+}
+
+#menuTable td.actionsCell {
+	vertical-align : top;
+	width : 200px;
+	padding-top : .5em;
+	border : 0px red solid;
+}
+
+#menuTable td.actionsCell a {
+	font-size : 0.8em;
+	color : blue;
+}
+
+#menuTable input.daily-limit-input {
+	width : 30px;
+	text-align : right;
+	display : inline;
+	border : 1px blue solid;
+	margin : 0px;
+}

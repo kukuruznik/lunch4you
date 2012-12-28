@@ -255,10 +255,11 @@ public final class MenuServiceImpl implements MenuService {
 	 * Returns all Articles grouped by Categories. Used for generating menu.
 	 */
 	@Override
-	public LinkedHashMap<Long, CategoryWithArticles> getArticlesByCategories() {
+	public LinkedHashMap<Long, CategoryWithArticles> getArticlesByCategories(boolean activeOnly) {
 
 		ArticleFilter filter = new ArticleFilter();
-		filter.isActive = true;
+		if(activeOnly)
+			filter.isActive = true;
 		List<Article> articles = articleDao.find(filter );
 		LinkedHashMap<Long, CategoryWithArticles> categoriesWithArticles = new LinkedHashMap<Long, CategoryWithArticles>();
 		for(Article article : articles){
@@ -273,6 +274,56 @@ public final class MenuServiceImpl implements MenuService {
 			categoryWithArticles.items.put(article.getId(), article);
 		}			
 		return categoriesWithArticles;
+	}
+
+	@Override
+	public Article createOrUpdateArticle(Article article, long categoryId) {
+		Long articleId = article.getId();
+		Article target;
+		if(articleId == null){
+			target = new Article();
+		} else {
+			target = articleDao.load( article.getId());
+		}
+		Category category = categoryDao.load( categoryId );
+
+		target.setName_cz( article.getName_cz());
+		target.setName_en( article.getName_en());
+		target.setDescription_cz( article.getDescription_cz());
+		target.setDescription_en( article.getDescription_en());
+		target.setPrice( article.getPrice() );
+		target.setCategory( category );
+		
+		if(articleId == null){
+			articleDao.insert( target );
+		} else {
+			articleDao.update( target );
+		}
+		
+		return target;
+		
+	}
+
+	@Override
+	public Article setArticleActive(Long articleId, boolean active) {
+		Article target = articleDao.load( articleId );
+		
+		target.setIsActive( active );
+		
+		articleDao.update( target );
+		
+		return target;
+	}
+
+	@Override
+	public Article setArticleLimit(Long articleId, Integer limit) {
+		Article target = articleDao.load( articleId );
+		
+		target.setDailyLimit( limit );
+		
+		articleDao.update( target );
+		
+		return target;
 	}
 
 	/* (non-Javadoc)
@@ -367,7 +418,7 @@ public final class MenuServiceImpl implements MenuService {
 	@Override
 	public List<Map<String,Object>> sendMenu( ) {
 
-		LinkedHashMap<Long,CategoryWithArticles> groupedMenu = getArticlesByCategories();
+		LinkedHashMap<Long,CategoryWithArticles> groupedMenu = getArticlesByCategories(true);
 
 		List<Customer> customers = getSubscribedCustomers(true, null);
 		
@@ -418,7 +469,7 @@ public final class MenuServiceImpl implements MenuService {
 		
 		mailingService.sendReferral(referral);
 		
-		mailingService.sendMenu(recipient, getArticlesByCategories());
+		mailingService.sendMenu(recipient, getArticlesByCategories(true));
 
 		// TODO subscribe new customer
 		
