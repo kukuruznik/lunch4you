@@ -10,6 +10,8 @@ public final class ArticleDto {
 	
 	public boolean isActive;
 
+	public boolean isNew;
+
 	public boolean isSoldOut;
 
 	public CategoryDto category;

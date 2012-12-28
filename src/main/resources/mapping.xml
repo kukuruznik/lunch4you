@@ -49,6 +49,10 @@
 			<b is-accessible="true">isActive</b>
 		</field>
 		<field>
+			<a>isNew</a>
+			<b is-accessible="true">isNew</b>
+		</field>
+		<field>
 			<a get-method="isSoldOut">isSoldOut</a>
 			<b is-accessible="true">isSoldOut</b>
 		</field>

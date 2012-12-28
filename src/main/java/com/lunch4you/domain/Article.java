@@ -1,6 +1,7 @@
 package com.lunch4you.domain;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +30,9 @@ public class Article {
 	private Integer dailyLimit;
 
 	private Boolean isActive = true;
+	
+	@Column(name = "new_flag")
+	private Boolean isNew = false;
 
 	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
 	@JoinColumn( name = "category_id" )
@@ -84,6 +88,14 @@ public class Article {
 
 	public void setIsActive( Boolean isActive ) {
 		this.isActive = isActive;
+	}
+
+	public Boolean getIsNew() {
+		return isNew;
+	}
+
+	public void setIsNew(Boolean isNew) {
+		this.isNew = isNew;
 	}
 
 	public Category getCategory() {
