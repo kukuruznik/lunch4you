@@ -1,3 +1,14 @@
+drop table if exists is_prepared;
+drop table if exists preparation;
+drop table if exists referral;
+drop table if exists order_item;
+drop table if exists plain_order;
+drop table if exists customer;
+drop table if exists article;
+drop table if exists category;
+drop table if exists delivery_location;
+
+
 -- Table "category" DDL
 
 CREATE TABLE `category` (
