@@ -1,5 +1,4 @@
 ==========   BUGS     =====================
-- when someone uses link for a meal which is not active at the moment, system does not give any message.
 - backoffice data is cached on DHL proxy, need to add non-cache for .json files
 - after deleting / closing orders in backoffice view, only the table with orders refreshes, need to refresh the table by articles as well
 - Language selector in IE6 is completely outside service box and does not do anything when clicked
