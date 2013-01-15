@@ -1,14 +1,27 @@
 Release plan / Roadmap
 ======  Major features  ======
-- Blocking meal (out of stock, etc)
-- Login
-- Different pricing for delivery and restaurant
+- Notification email about arrived delivery (pre Boba)
+- Facebook page
+- Login / anonymous access + registration
+- Evening / afternoon delivery
 - Delivery time selection
+- Different pricing for delivery and restaurant
 - Multiple articles in one order
-- Discounts calculation
-- Cafetteria interface
+	- Discounts calculation
+- Caffeteria interface
 
 ======  Minor features  ======
-- "New" article indicator
 - Food ingredients / allergen information
+
+======  v2.0  ======
+- Blocking meal (out of stock, etc)
+- Product code
+- is_new indicator manipulation in menu edit
+- "New" article indicator
+- Profile edit
+- Different color scheme for active and non-active meals in menu edit
+- Colored "Warning" for meals reaching daily limit in Backoffice view + number of portions left (if limit is set)
+
+TODO:
+- make sure that referral does not set default delivery location anymore
 

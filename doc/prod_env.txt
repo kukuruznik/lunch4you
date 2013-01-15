@@ -18,3 +18,55 @@ Installation:
 
 4) Start tomcat
 	service tomcat6 start
+
+
+-- Nova instalacia tomcatu:
+
+/srv/tomcat/tomcat<xx> kde xx je ciselny prefix pre porty. Napr. 10 = port 10080
+
+-- Tomcat restart
+hovan@vs833:~$ sudo -u tomcat /srv/tomcat/bin/tomcat restart tomcat10
+
+	
+Dalsie poznamky z instalacie
+
+text editor: nano
+logout/exit: Ctrl-D
+package manager: aptitude
+file commander: mc (search ctrl-s)
+
+aktualne otvorene porty:
+22/tcp    open  ssh
+25/tcp    open  smtp
+53/tcp    open  domain
+80/tcp    open  http
+443/tcp   open  https
+587/tcp   open  submission
+993/tcp   open  imaps
+995/tcp   open  pop3s
+8080/tcp  open  http-proxy
+10000/tcp open  snet-sensor-mgmt
+20000/tcp open  dnp
+
+nas GIT server (nefree) - bitbucket.org
+
+naistalovali sme openjdk6-jdk tomcat6 nmap sudo
+
+vyhodili sme postgres ruby
+
+zablokovali sme autostart ftp
+
+vytvoreny useri lnemeth, hovan, lunch4you
+
+
+konfiguracia pre apache
+<Proxy *>
+        Order deny,allow
+        Allow from all
+</Proxy>
+
+#    ProxyPassReverseCookiePath /lunch4you /
+
+    RewriteEngine on
+
+    RewriteRule ^/lunch4you/(.*)$   http://localhost:8080/lunch4you/$1 [L,P,QSA]
