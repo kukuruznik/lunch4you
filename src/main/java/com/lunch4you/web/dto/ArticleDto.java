@@ -15,7 +15,9 @@ public final class ArticleDto {
 	public boolean isSoldOut;
 
 	public CategoryDto category;
-	
+
+	public String code;
+
 	public String name_cz;
 	
 	public String name_en;

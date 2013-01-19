@@ -67,7 +67,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_getArticleIdFromParent : function ( el ) {
-			var articleRow = $($(el.parents("tr[class='articleRow']"))[0]);
+			var articleRow = $($(el.parents("tr[class~='articleRow']"))[0]);
 			return articleRow.attr("articleId");
 		},
 
@@ -102,6 +102,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			
 			var article = new function(){};
 			article.id = fp.id != "0" ? fp.id : null;
+			article.code = fp.code;
 			article.name_cz = fp.name_cz;
 			article.name_en = fp.name_en;
 			article.description_cz = fp.description_cz;
@@ -121,7 +122,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_getArticleRow : function (articleId) {
-			var articleRow = $("tr[class='articleRow'][articleId='" + articleId + "']");
+			var articleRow = $("tr[class~='articleRow'][articleId='" + articleId + "']");
 			return articleRow;
 		},
 

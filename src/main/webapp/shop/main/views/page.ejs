@@ -1,37 +1,43 @@
 <% var locales = Shop.Main.getAvailableLocales(); %>
 <% var navItems = Shop.Main.getNavigationItems(); %>
 
-<div id="main-caption">
-	
-	<div id="main-logo">Lunch<em>4</em>You</div>
-	<div id="main-screen-name">Screeen Name</div>
-	<div id="main-lang" >
-		
-		<div id="main-lang-selector-container" >
-		<% for ( var i = 0; i < locales.length; i++ ) { %>
-			<%= i > 0 ? "" : "" %>
-			<a id="main-lang-selector" locale="<%= locales[i] %>" href="javascript:"><div class="main-lang-flag main-lang-flag-<%= locales[i] %>"></div>
-				<!--%= locales[i] %-->
-			</a>
-		<% } %>
-		</div>
-	</div>
-	<div id="main-customerInfo">
-		<% if(Shop.customer){ %>
-		<a id="main-customer-link" href="javascript:"> <%= Shop.customer.firstName %> <%= Shop.customer.lastName %></a>
-		<% } else { %>
-			Anonymous
-		<% }%>
-	</div>
-	<div id="main-navigation">
-		<% for ( var i = 0; i < navItems.length; i++ ) { %>
-			<%= i > 0 ? "|" : "" %>
-			<a class="main-navigation-selector" navigationIndex="<%= i %>" href="javascript:"><%= msg( "main.navigation.items." + navItems[i] ) %></a>
-		<% } %>
-	</div>
 
-</div>
-
+<table id="main-header">
+	<tr>
+		<td id="logo-cell">
+			<div id="main-logo">Lunch<em>4</em>You</div>
+		</td>
+		<td id="middle-cell">
+			<div id="main-screen-name"></div>
+		</td>
+		<td id="service-cell">
+			<span id="main-customer-info">
+				<% if(Shop.customer){ %>
+				<a id="main-customer-link" href="javascript:"> <%= Shop.customer.firstName %> <%= Shop.customer.lastName %></a>
+				<% } else { %>
+					Anonymous
+				<% }%>
+			</span>
+			<span id="main-lang" >
+			<% for ( var i = 0; i < locales.length; i++ ) { %>
+				<a id="main-lang-selector" locale="<%= locales[i] %>" href="javascript:">
+					<img class="main-lang-flag" src="<%= locales[i] %>.gif"></img>
+				</a>
+			<% } %>
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td  id="navigation-cell" colspan="3">
+			<div id="main-navigation">
+				<% for ( var i = 0; i < navItems.length; i++ ) { %>
+					<%= i > 0 ? "|" : "" %>
+					<a class="main-navigation-selector" navigationIndex="<%= i %>" href="javascript:"><%= msg( "main.navigation.items." + navItems[i] ) %></a>
+				<% } %>
+			</div>
+		</td>
+	</tr>
+</table>
 
 
 <div id="main-detail">

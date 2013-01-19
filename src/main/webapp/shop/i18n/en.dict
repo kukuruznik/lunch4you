@@ -10,6 +10,7 @@
 	"main.navigation.items.contacts": "Contacts",
 
 	"menu.article.soldOut.label": "Sold Out",
+	"menu.article.new.label": "New",
 
 	"order.detail.customer": "Customer",
 	"order.detail.deliveryLocation": "Delivery Location",
@@ -17,7 +18,7 @@
 	"order.detail.note": "Note",
 	"order.detail.article": "Meal Name",
 	"order.detail.price": "Price",
-	"order.detail.viewMenu": "Today's Menu",
+	"order.detail.viewMenu": "Back to Today's Menu",
 	"order.detail.user.anonymous": "Anonymous User",
 	"order.detail.user.anonymous.message": "Please register. Only registered users can place orders.",
 
@@ -29,13 +30,15 @@
 	"order.detail.action.orderedMsg_NOT_EXISTS": "Sorry, meal does not exist.",
 	"order.detail.action.orderedMsg_NOT_AUTHENTICATED": "Sorry, this function is available only to authenticated users.",
 	"order.detail.action.changeLanguage": "Čeština",
-	"order.detail.validation.emptyDeliveryLocation" : "Please select Delivery Location of your order",	
+	"order.detail.validation.emptyDeliveryLocation" : "Please select Delivery Location for your order",	
 
 	"customer.registration.firstName": "First Name",
 	"customer.registration.lastName": "Last Name",
 	"customer.registration.email": "Email",
 	"customer.registration.ddl": "Default Pickup Location",
-	"customer.registration.subscribe": "Subscribe to weekly menu",
+	"customer.registration.subscribeMenuWeekly": "Send Weekly Menu",
+	"customer.registration.subscribeNews": "Send Newsletter",
+	"customer.registration.subscribeNews.title": "Receive information about new services, improvements, commercial announcements, special offers, new features in ordering system, etc.",
 	"customer.registration.done": "Save",
 	"customer.registration.cancel": "Cancel",
 	"customer.registration.updateSuccess.msg" : "Profile successfully updated",

@@ -22,7 +22,7 @@
 
 	<table border="0" class="menuTable">
 		<tr class="headerRow">
-			<td class="counterCell"></td>
+			<td class="codeCell"></td>
 			<td class="articleCell"></td>
 			<td class="priceCell"></td>	
 		</tr>
@@ -34,10 +34,9 @@
 			</td>
 		</tr>
 		#foreach( ${article} in ${categoryWithArticles.items} )
-		#set( $articleCounter = $articleCounter + 1 )
 		<tr>
-			<td class="counterCell">
-			${articleCounter}.
+			<td class="codeCell">
+			${article.code}
 			</td>
 			<td class="articleCell">
 			<a href="${shopURL}#view=order&meal=${article.Id}&token=${customer.token}">
@@ -66,7 +65,7 @@
 
 #end
 		<tr>
-			<td class="counterCell">
+			<td class="codeCell">
 				<span class="special-price">***</span> 
 			</td>
 			<td class="menuNotes" colspan="2">
@@ -86,7 +85,7 @@
 		 -->
 		<a href="${shopURL}#view=menu&token=${customer.token}">Menu online</a>
 		 | 
-		<a href="${shopURL}#view=referral&token=${customer.token}">Recommend Lunch4you to a friend</a>
+		<a href="${shopURL}#view=referral&token=${customer.token}">Recommend to a friend</a>
 		</p>
 	</div>
 	

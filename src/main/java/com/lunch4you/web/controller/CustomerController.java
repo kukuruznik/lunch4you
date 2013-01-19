@@ -83,9 +83,8 @@ public class CustomerController {
 		String firstName = data.get( "firstName" ).toString();
 		String lastName = data.get( "lastName" ).toString();
 		String email = data.get( "email" ).toString();
-		long defaultDeliveryLocationId = Long.parseLong(data.get( "defaultDeliveryLocationId" ).toString());
 		
-		Customer customer = menuService.registerCustomer( firstName, lastName, email, defaultDeliveryLocationId, true );
+		Customer customer = menuService.registerCustomer( firstName, lastName, email, true );
 		CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
 
 		return customerDto;
@@ -131,13 +130,11 @@ public class CustomerController {
 	ReferralDto createReferral( @RequestBody Map<String, Object> data ) {
 		logger.trace( "CustomerController.createReferral called" );
 		
-		// senderId: customer.id, deliveryLocationId: deliveryLocationId, recipientEmail : recipientEmail, referralMessage 
 		long senderId = Long.parseLong(data.get( "senderId" ).toString());
-		long deliveryLocationId = Long.parseLong(data.get( "deliveryLocationId" ).toString());
 		String recipientEmail = data.get( "recipientEmail" ).toString();
 		String referralMessage = data.get( "referralMessage" ).toString();
 
-		Referral referral = menuService.createReferral(senderId, deliveryLocationId, recipientEmail, referralMessage);
+		Referral referral = menuService.createReferral(senderId, recipientEmail, referralMessage);
 		
 		ReferralDto referralDto = beanMapper.map( referral, ReferralDto.class );
 

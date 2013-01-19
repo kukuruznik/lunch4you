@@ -4,6 +4,11 @@
 <form id="articleForm" class="input-form" action="javascript:">
 	<input name="categoryId" type="hidden" value="<%= article.category.id %>"> 
 	<input name="id" type="hidden" value="<%= article.id %>">
+
+	<div class="input-form-row">
+		<label>Code:</label> 
+		<input name="code" type="text" value="<%= article.code %>">
+	</div>
 	 
 	<div class="input-form-row">
 		<label>Name(CZ):</label> 

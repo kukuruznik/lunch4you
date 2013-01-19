@@ -1,17 +1,20 @@
 <% 	var article = this;
-	var soldOut = article.isSoldOut; 
+	var isSoldOut = article.isSoldOut; 
 	var isActive = article.isActive;
 	var isNew = article.isNew;
 	var isDailyLimit = article.dailyLimit != null;
 %>
 
+		<td class="codeCell">
+			<%= article.code %>
+		</td>
 		<td class="articleCell">
 			<div class="meal-header">
-				<%= article.name_cz %> / <%= article.name_en %></a>
+				<a href="javascript:" class="action-link" action="edit" style="color : inherit;"><%= article.name_cz %> / <%= article.name_en %></a>
 				<% if( isNew ) { %> 
 					<span class="meal-new-label">New</span> 
 				<% } %>
-				<% if(soldOut) { %> 
+				<% if(isSoldOut) { %> 
 					<span class="meal-sold-out-label">Sold out</span> 
 				<% } %>
 			</div>
@@ -20,14 +23,15 @@
 			</div>
 		</td>
 		<td class="priceCell">
-			<%= article.price %>,- Kč
+			<%= article.price %>,-
+		</td>
+		<td class="limitCell">
+			<input class="daily-limit-input" type="text" initialValue="<%= article.dailyLimit %>" value="<%= article.dailyLimit %>" onclick="this.select()">
 		</td>
 		<td class="actionsCell">
-			<a href="javascript:" class="action-link" action="edit">Edit</a>
 			<% if(isActive) { %>
 				<a href="javascript:" class="action-link" action="deactivate">Deactivate</a>
 			<% } else { %>
 				<a href="javascript:" class="action-link" action="activate">Activate</a>
 			<% } %>
-			<input class="daily-limit-input" type="text" initialValue="<%= article.dailyLimit %>" value="<%= article.dailyLimit %>" onclick="this.select()">
 		</td>

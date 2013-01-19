@@ -104,9 +104,7 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public Customer registerCustomer( String firstName, String lastName, String email, Long defaultDeliveryLocationId, boolean wantsToReceiveMenu ) {
-		
-		DeliveryLocation ddl = deliveryLocationDao.load( defaultDeliveryLocationId );
+	public Customer registerCustomer( String firstName, String lastName, String email, boolean wantsToReceiveMenu ) {
 		
 		Customer newCustomer = new Customer();
 
@@ -117,7 +115,6 @@ public final class MenuServiceImpl implements MenuService {
 		newCustomer.setLastName( lastName );
 		newCustomer.setToken( token );
 		newCustomer.setIsActive( wantsToReceiveMenu );
-		newCustomer.setDefaultDeliveryLocation( ddl );
 		return customerDao.insert( newCustomer );
 	}
 
@@ -287,6 +284,7 @@ public final class MenuServiceImpl implements MenuService {
 		}
 		Category category = categoryDao.load( categoryId );
 
+		target.setCode( article.getCode() );
 		target.setName_cz( article.getName_cz());
 		target.setName_en( article.getName_en());
 		target.setDescription_cz( article.getDescription_cz());
@@ -441,8 +439,8 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public Referral createReferral(long senderId, long deliveryLocationId,
-			String recipientEmail, String referralMessage) {
+	public Referral createReferral(long senderId, String recipientEmail,
+			String referralMessage) {
 		
 		Customer sender = getCustomer(senderId);
 		
@@ -454,7 +452,7 @@ public final class MenuServiceImpl implements MenuService {
 		Customer recipient;
 		if(recipients.size() == 0){
 			// Customer does not exist yet, create a new one
-			recipient = registerCustomer(recipientName, "", recipientEmail, deliveryLocationId, true);
+			recipient = registerCustomer(recipientName, "", recipientEmail, true);
 		}else{
 			recipient = recipients.get(0);
 		}

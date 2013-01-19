@@ -29,6 +29,7 @@ CREATE TABLE `article` (
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `version` int(11) DEFAULT NULL,
   `category_id` bigint(20) DEFAULT NULL,
+  `code` varchar(255) DEFAULT NULL,
   `name_cz` varchar(255) NOT NULL,
   `name_en` varchar(255) NOT NULL,
   `description_cz` varchar(1000) DEFAULT NULL,

@@ -38,6 +38,8 @@ public class Article {
 	@JoinColumn( name = "category_id" )
 	private Category category;
 
+	private String code;
+
 	@NotNull
 	private String name_cz;
 
@@ -104,6 +106,14 @@ public class Article {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getName_cz() {

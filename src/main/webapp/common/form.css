@@ -15,6 +15,7 @@
 .input-form-row {
 	padding : 2px 0px;
 	clear : both;
+	border : 0px black solid;
 }
 
 .input-form-buttons-row {

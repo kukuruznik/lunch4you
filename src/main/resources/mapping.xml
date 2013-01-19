@@ -61,6 +61,10 @@
 			<b is-accessible="true">category</b>
 		</field>
 		<field>
+			<a>code</a>
+			<b is-accessible="true">code</b>
+		</field>
+		<field>
 			<a>name_cz</a>
 			<b is-accessible="true">name_cz</b>
 		</field>

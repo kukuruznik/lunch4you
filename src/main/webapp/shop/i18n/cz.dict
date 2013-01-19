@@ -10,6 +10,7 @@
 	"main.navigation.items.contacts": "Kontakty",
 
 	"menu.article.soldOut.label": "Vyprodáno",
+	"menu.article.new.label": "Nové",
 
 	"order.detail.customer": "Zákazník",
 	"order.detail.deliveryLocation": "Místo vyzvednutí",
@@ -17,7 +18,7 @@
 	"order.detail.note": "Poznámka",
 	"order.detail.article": "Název jídla",
 	"order.detail.price": "Cena",
-	"order.detail.viewMenu": "Dnešní Menu",
+	"order.detail.viewMenu": "Zpět na Dnešní Menu",
 	"order.detail.user.anonymous": "Anonymní Uživatel",
 	"order.detail.user.anonymous.message": "Pouze registrovaní uživatelé mohou založit objednávku.",
 
@@ -35,9 +36,9 @@
 	"customer.registration.lastName": "Příjmení",
 	"customer.registration.email": "Email",
 	"customer.registration.ddl": "Místo vyzvednutí",
-	"customer.registration.subscribeMenuWeekly": "Zasílat týdení menu",
+	"customer.registration.subscribeMenuWeekly": "Zasílat týdenní menu",
 	"customer.registration.subscribeNews": "Zasílat novinky",
-	"customer.registration.subscribeNews.title": "Nové služby, vylepšení, komerční sdělení, speciální nabídky, nové funkce v objednávacím systému, atd.",
+	"customer.registration.subscribeNews.title": "Dostávat informace jako např. nové služby, vylepšení, komerční sdělení, speciální nabídky, nové funkce v objednávacím systému, atd.",
 	"customer.registration.done": "Uložit",
 	"customer.registration.cancel": "Zrušit",
 	"customer.registration.updateSuccess.msg" : "Profil byl úspěšne aktualizován",

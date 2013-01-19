@@ -1,10 +1,7 @@
 Release plan / Roadmap
 ======  Major features  ======
-- Notification email about arrived delivery (pre Boba)
 - Facebook page
 - Login / anonymous access + registration
-- Evening / afternoon delivery
-- Delivery time selection
 - Different pricing for delivery and restaurant
 - Multiple articles in one order
 	- Discounts calculation
@@ -14,14 +11,23 @@ Release plan / Roadmap
 - Food ingredients / allergen information
 
 ======  v2.0  ======
+DONE:
 - Blocking meal (out of stock, etc)
-- Product code
-- is_new indicator manipulation in menu edit
-- "New" article indicator
 - Profile edit
+- Product code
 - Different color scheme for active and non-active meals in menu edit
-- Colored "Warning" for meals reaching daily limit in Backoffice view + number of portions left (if limit is set)
 
 TODO:
+- test in IE6!!!
+	- may need rework of page header
 - make sure that referral does not set default delivery location anymore
+- is_new indicator manipulation in menu edit
+- "New" article indicator
+- Colored "Warning" for meals reaching daily limit in Backoffice view + number of portions left (if limit is set)
+- All language translations
 
+======  v2.1  ======
+TODO:
+- Notification email about arrived delivery (pre Boba)
+- Evening / afternoon delivery
+- Delivery time selection

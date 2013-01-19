@@ -1,0 +1,21 @@
+== Customer facing ==
+
+Ordering:
+	- Existing customer
+	- New customer (without delivery location)
+	- Sold-out item
+		- If sold out when entering Order form
+		- If sold out when sold out after submitting order
+
+Menu:
+	- Inactive items
+	- Sold-out items
+
+
+Referral:
+	- 
+
+
+== Admin / Backoffice ==
+Menu editing:
+

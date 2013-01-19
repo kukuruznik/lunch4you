@@ -3,6 +3,7 @@
 
 	<table id="menuTable">
 		<tr class="headerRow">
+			<td class="codeCell"></td>
 			<td class="articleCell"></td>
 			<td class="priceCell"></td>	
 		</tr>
@@ -10,21 +11,28 @@
 		<% var category =  this[i].entity; %>
 		<% var articles = this[i].items %>
 		<tr>
-			<td colspan="2" class="categoryCell">
+			<td colspan="3" class="categoryCell">
 				<%= localize( category, "name" ) %>
 			</td>
 		</tr>
 		<% for ( var j = 0; j < articles.length; j++ ) { %>
 			<% 
 				var article = articles[j];
-				var soldOut = article.isSoldOut; 
+				var isSoldOut = article.isSoldOut; 
+				var isNew = article.isNew;
 			%>
 			<tr class="articleRow">
+				<td class="codeCell">
+					<%= article.code %>
+				</td>
 				<td class="articleCell">
 					<div class="meal-header">
-						<a class="meal <%= soldOut ? "meal-sold-out" : "" %>" href="#view=order&meal=<%= article.id %>&token=<%= Shop.params.token %>"><%= localize( article, "name" ) %></a>
-						<% if(soldOut) { %> 
+						<a class="meal <%= isSoldOut ? "meal-sold-out" : "" %>" href="#view=order&meal=<%= article.id %>&token=<%= Shop.params.token %>"><%= localize( article, "name" ) %></a>
+						<% if(isSoldOut) { %> 
 							<span class="meal-sold-out-label">(<%= msg("menu.article.soldOut.label") %>)</span> 
+						<% } %>
+						<% if( isNew ) { %> 
+							<span class="meal-new-label"><%= msg("menu.article.new.label") %></span> 
 						<% } %>
 					</div>
 					<div class="meal-description">

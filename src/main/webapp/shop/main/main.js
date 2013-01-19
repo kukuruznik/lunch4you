@@ -1,4 +1,5 @@
 steal(
+	"common/form.css", 			// forms CSS file
 	"jquery/controller",
 	"jquery/event/bbq",
 	"jquery/dom/cookie",
@@ -10,7 +11,9 @@ steal(
 	"shop/ordering/ordering.js",
 	"shop/referral/new/newReferral.js",
 	"shop/profile/edit/editProfile.js"
-).then( function( $ ) {
+).then( 
+
+	function( $ ) {
 
 	/**
 	 * @class Shop.Main
