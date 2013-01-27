@@ -1,6 +1,7 @@
+<% var token = Shop.Main.getToken() %>
+
 <div id="menuDiv">
 	
-
 	<table id="menuTable">
 		<tr class="headerRow">
 			<td class="codeCell"></td>
@@ -27,7 +28,7 @@
 				</td>
 				<td class="articleCell">
 					<div class="meal-header">
-						<a class="meal <%= isSoldOut ? "meal-sold-out" : "" %>" href="#view=order&meal=<%= article.id %>&token=<%= Shop.params.token %>"><%= localize( article, "name" ) %></a>
+						<a class="meal <%= isSoldOut ? "meal-sold-out" : "" %>" href="#view=order&meal=<%= article.id %><%= token ? "&token=" + token : ""  %>"><%= localize( article, "name" ) %></a>
 						<% if(isSoldOut) { %> 
 							<span class="meal-sold-out-label">(<%= msg("menu.article.soldOut.label") %>)</span> 
 						<% } %>
