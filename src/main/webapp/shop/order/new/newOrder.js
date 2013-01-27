@@ -1,4 +1,11 @@
-steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common/register_customer" ).then( function( $ ) {
+steal( 
+		'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' 
+).then( 
+	
+	"./views/orderForm.ejs",
+	"./views/orderMessage.ejs",
+
+	function( $ ) {
 
 	/**
 	 * @class Shop.Order.New
