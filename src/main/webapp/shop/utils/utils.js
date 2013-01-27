@@ -29,12 +29,12 @@ steal( "jquery/class" ).then( function( $ ) {
 
 		loadFromCookie: function( key ) {
 			var value = $.cookie( key );
-			steal.dev.log( "load from cookie: ", key, " = ", value );
+			//steal.dev.log( "load from cookie: ", key, " = ", value );
 			return value;
 		},
 
 		saveToCookie: function( key, value ) {
-			steal.dev.log( "save into cookie: ", key, " = ", value );
+			//steal.dev.log( "save into cookie: ", key, " = ", value );
 			$.cookie( key, value );
 		},
 
