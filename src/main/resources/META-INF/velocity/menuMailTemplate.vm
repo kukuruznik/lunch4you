@@ -43,8 +43,11 @@
 			${article.name_cz}
 			#if( ${article.name_en} != "" )
 				/ ${article.name_en}
-			#end 
+			#end
 			</a>
+			#if( ${article.isNew} )
+				<span class="newArticle">Nové/New</span>
+			#end 			
 			- 
 			${article.description_cz}
 			#if( ${article.description_en} != "" )
@@ -77,13 +80,11 @@
 	
 	<div class="footerText">
 		<p>
-		<!-- 
+		<a href="${shopURL}#view=menu&token=${customer.token}">Menu online</a>
+		 | 
 		<a href="${shopURL}#view=profile&token=${customer.token}"
 			title="Click here to edit your profile, subscribe/unsubscribe, etc..."
 		>My profile</a>
-		 | 
-		 -->
-		<a href="${shopURL}#view=menu&token=${customer.token}">Menu online</a>
 		 | 
 		<a href="${shopURL}#view=referral&token=${customer.token}">Recommend to a friend</a>
 		</p>

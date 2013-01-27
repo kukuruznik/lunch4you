@@ -57,6 +57,11 @@
 				width : *;
 				padding-left : 10px;
 			}
+			
+			span.newArticle {
+				color : red;
+				font-style: italic;
+			}
 
 			table.menuTable td.priceCell {
 				width : 100px;
