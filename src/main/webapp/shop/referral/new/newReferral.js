@@ -1,4 +1,9 @@
-steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common/register_customer" ).then( function( $ ) {
+steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common/register_customer" ).then( 
+
+	"./views/referralDetail.ejs",
+
+
+	function( $ ) {
 
 	/**
 	 * @class Shop.Referral.New
@@ -28,7 +33,6 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 
 		_reloadData: function() {
 			this.customer = Shop.customer;
-			this.deliveryLocation = this.customer ? this.customer.defaultDeliveryLocation : null;
 
 			this._render();
 		},
@@ -40,11 +44,10 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			this._enableReferralSubmit( false );
 			var self = this;
 
-			var deliveryLocationId = this.customer.defaultDeliveryLocation.id;
 			var recipientEmail = $.trim( $( "#recipientEmail" ).attr( "value" ));
 			var referralMessage = $( "#referralMessage" ).attr( "value" );
 
-			Shop.Models.Customer.createReferral( this.customer, deliveryLocationId, recipientEmail, referralMessage, function( referral ) {
+			Shop.Models.Customer.createReferral( this.customer, recipientEmail, referralMessage, function( referral ) {
 				alert( $.EJS.Helpers.prototype.msg( "referral.detail.action.referralMsg" ) );
 				self._enableReferralSubmit( true );
 			} );
