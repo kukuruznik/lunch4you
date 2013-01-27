@@ -1,4 +1,9 @@
-steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common/register_customer" ).then( function( $ ) {
+steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common/register_customer" ).then( 
+		
+	"./views/edit.ejs",
+	"./views/updateConfirmation.ejs",
+				
+	function( $ ) {
 
 	/**
 	 * @class Shop.Profile.Edit
