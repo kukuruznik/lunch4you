@@ -1,4 +1,8 @@
-steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( function( $ ) {
+steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then(
+		
+	"./views/ordering.ejs",		
+		
+	function( $ ) {
 
 	/**
 	 * @class Shop.Contacts
