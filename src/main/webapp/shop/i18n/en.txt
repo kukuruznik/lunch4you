@@ -54,6 +54,11 @@
 	"referral.detail.validation.emptyEmailAddress" : "Email address must not be empty!",	
 	"referral.detail.validation.invalidEmailFormat" : "Invalid email address format!",
 	"referral.detail.action.referralMsg" : "Referral successfully submitted!",
-	"referral.detail.user.anonymous.message": "Please register. Only registered users can send referrals."
+	"referral.detail.user.anonymous.message": "Please register. Only registered users can send referrals.",
+
+	"contacts.header.deliveryService" : "Delivery Service",
+	"contacts.header.restaurant" : "Restaurant / Café",
+	
+	"dummy" : "dummy"
 	
 }

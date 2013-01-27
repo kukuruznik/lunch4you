@@ -12,7 +12,7 @@ $.Model('Shop.Models.Dictionary',
 
 		loadDictionary: function( locale, success ) {
 	  		return $.ajax({
-	  			url: "shop/i18n/" + locale + ".dict",
+	  			url: "shop/i18n/" + locale + ".txt",
 	  			dataType: "json",
 	  			success: success,
 	  			error: function() {

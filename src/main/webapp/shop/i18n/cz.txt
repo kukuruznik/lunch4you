@@ -25,7 +25,7 @@
 	"order.detail.action.change": "změnit",
 	"order.detail.action.order": "Poslat objednávku",
 	"order.detail.action.orderedMsg_OK": "Vaše objednávka byla úspěsně založena! Za malou chvíli obdržíte potvrzujíci email s detaily Vaší objednávky.",
-	"order.detail.action.orderedMsg_NOT_AVAILABLE": "Omlouváme se, ale požadované jídlo momentálně není v ponuce. Pokud jste klikli na link v týdenním Manu emailu, pravděpodobně jste použili starší email.",
+	"order.detail.action.orderedMsg_NOT_AVAILABLE": "Omlouváme se, ale požadované jídlo momentálně není v ponuce. Pokud jste klikli na link v emailu s týdenním menu , pravděpodobně jste použili již neaktuální email.",
 	"order.detail.action.orderedMsg_SOLD_OUT": "Omlouváme se, ale požadované jídlo bylo již mezičasem vyprodáno.",
 	"order.detail.action.orderedMsg_NOT_EXISTS": "Omlouváme se, ale požadované jídlo neexstuje.",
 	"order.detail.action.orderedMsg_NOT_AUTHENTICATED": "Omlouváme se, ale tahle akce je přístupna jen pro přihlašené uživatele.",
@@ -54,6 +54,11 @@
 	"referral.detail.validation.emptyEmailAddress" : "Emailová adresa musí být vyplněna!",
 	"referral.detail.validation.invalidEmailFormat" : "Nesprávný formát emailové adresy!",	
 	"referral.detail.action.referralMsg" : "Doporučení bylo úspěšně odesláno!",
-	"referral.detail.user.anonymous.message": "Pouze registrovaní uživatelé mohou poslat doporučení."
+	"referral.detail.user.anonymous.message": "Pouze registrovaní uživatelé mohou poslat doporučení.",
 
+	"contacts.header.deliveryService" : "Donášková služba",
+	"contacts.header.restaurant" : "Restaurace / Kavárna",
+	
+	"dummy" : "dummy"
+	
 }
