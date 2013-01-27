@@ -1,7 +1,8 @@
 <% var orderResult = this.orderResult %>
+<% var token = Shop.Main.getToken() %>
 
 <div class="general-message-dialogue">
 	<%= msg( "order.detail.action.orderedMsg_" + orderResult.resultCode ) %>
 </div>
 
-<p><a href="#view=menu&token=<%= Shop.params.token %>"><%= msg( "order.detail.viewMenu" ) %></a></p>
+<p><a href="#view=menu<%= token ? "&token=" + token : ""  %>"><%= msg( "order.detail.viewMenu" ) %></a></p>
