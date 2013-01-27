@@ -1,17 +1,8 @@
 steal(
-	"common/form.css", 			// forms CSS file
-	"jquery/controller",
-	"jquery/event/bbq",
-	"jquery/dom/cookie",
-	"shop/utils",
-	"shop/order/new/newOrder.js",
-	"shop/menu/list",
-	"shop/home/home.js",
-	"shop/contacts/contacts.js",
-	"shop/ordering/ordering.js",
-	"shop/referral/new/newReferral.js",
-	"shop/profile/edit/editProfile.js"
-).then( 
+	'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' 
+).then(	
+
+	"./views/page.ejs",
 
 	function( $ ) {
 
@@ -20,13 +11,18 @@ steal(
 	 * @parent index
 	 * @inherits jQuery.Controller Main controller for the shop application.
 	 */
-	$.Controller( 'Shop.Main',
+	$.Controller( "Shop.Main",
 
 	/** @Static */
 	{
 		_availableLocales: [ "cz", "en" ],
 		
-		_navigationItems: [ "home", "menu", "ordering", "contacts" ],
+		_navigationItems: [ 
+//		    "home", 
+		    "menu", 
+//		    "ordering", 
+		    "contacts" 
+		],
 
 		getNavigationItems : function() {
 			return this._navigationItems;
@@ -101,7 +97,7 @@ steal(
 	/** @Prototype */
 	{
 		init: function() {
-			steal.dev.log( "Shop main controller initialized" );
+			//steal.dev.log( "Shop main controller initialized" );
 
 			// we need to set this up in order to prevent IE from caching the AJAX responses
 			$.ajaxSetup( { cache: false } );
@@ -147,10 +143,6 @@ steal(
 			
 		},
 
-//		_dataLoaded: function( customerResponse, deliveryLocationsResponse, dictionaryResponse ) {
-//			this._render();			
-//		},
-
 		_customerLoaded: function( customer ) {
 			Shop.customer = customer;
 		},
@@ -170,7 +162,7 @@ steal(
 
 		_render: function() {
 			// render the main page structure
-			$( "#content" ).html( this.view( 'page', this ) );
+			$( "#content" ).html( this.view( "page", this ) );
 
 			this.initialized = true;
 			
@@ -248,8 +240,8 @@ steal(
 
 			if ( token ) {
 				this.Class.setToken( token );
-				if ( Shop.Utils.isCookieEnabled() )
-					$.bbq.removeState( "token" );
+//				if ( Shop.Utils.isCookieEnabled() )
+//					$.bbq.removeState( "token" );
 			}
 		},
 
