@@ -5,6 +5,7 @@
 
 ==========   TODO     =====================
 
+- Re-enable saving / loading from cookies
 
 - Rollout - Accenture
 	- notification about pickup at OC Ruze
