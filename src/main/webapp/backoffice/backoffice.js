@@ -28,15 +28,15 @@ steal(
 
 	$( window ).bind( "loggedIn", function( evt, data ) {
 		steal.dev.log( "logged in as ", data );
-//		$( '#meals1' ).backoffice_order_list1();
-//		$( '#meals2' ).backoffice_order_list2();
-//		$( '#meals3' ).backoffice_order_list3();
+		$( '#meals1' ).backoffice_order_list1();
+		$( '#meals2' ).backoffice_order_list2();
+		$( '#meals3' ).backoffice_order_list3();
 		$( '#menuEdit' ).backoffice_menu_edit();
 	});
 
 	$( '#overlay' ).common_login();
-//	$( '#meals1' ).backoffice_order_list1();
-//	$( '#meals2' ).backoffice_order_list2();
-//	$( '#meals3' ).backoffice_order_list3();
+	$( '#meals1' ).backoffice_order_list1();
+	$( '#meals2' ).backoffice_order_list2();
+	$( '#meals3' ).backoffice_order_list3();
 	$( '#menuEdit' ).backoffice_menu_edit();
 });
