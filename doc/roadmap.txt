@@ -3,9 +3,13 @@ Release plan / Roadmap
 - Facebook page
 - Login / anonymous access + registration
 - Different pricing for delivery and restaurant
-- Multiple articles in one order
+- Multiple items in one order
 	- Discounts calculation
+	- Shopping basket
 - Caffeteria interface
+- Item parametrization
+	- Ingredients selection / disabling
+	- Different side dishes
 
 ======  Minor features  ======
 - Food ingredients / allergen information
@@ -25,6 +29,7 @@ TODO:
 - "New" article indicator
 - Colored "Warning" for meals reaching daily limit in Backoffice view + number of portions left (if limit is set)
 - All language translations
+- Menu Admin - Referesh button
 
 ======  v2.1  ======
 TODO:

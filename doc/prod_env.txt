@@ -1,23 +1,6 @@
 
-Context file pointing to the lunch4you war:
-	/etc/tomcat6/Catalina/localhost/lunch4you.xml
-
 
 server: vs833.web4u.cz
-
-Installation:
-
-1) Stop tomcat
-	service tomcat6 stop
-
-2) Upload lunch4you.war to /home/lunch4you/tomcat6
-	- upload must be done under "lunch4you" linux account, so that it can be accessed and unzipped by Tomcat
-
-3) Delete tomcat work directory
-	rm -r /var/lib/tomcat6/webapps/lunch4you
-
-4) Start tomcat
-	service tomcat6 start
 
 
 -- Nova instalacia tomcatu:
@@ -25,8 +8,16 @@ Installation:
 /srv/tomcat/tomcat<xx> kde xx je ciselny prefix pre porty. Napr. 10 = port 10080
 
 -- Tomcat restart
-hovan@vs833:~$ sudo -u tomcat /srv/tomcat/bin/tomcat restart tomcat10
+sudo -u tomcat /srv/tomcat/bin/tomcat restart tomcat08
 
+-- Apache config
+/etc/apache2/sites-enabled/@000-default
+
+-- Skontrolovanie odislej posty
+sudo -i less /var/log/mail.info
+
+-- Postfix concurrency limit
+smtp_destination_concurrency_limit
 	
 Dalsie poznamky z instalacie
 
