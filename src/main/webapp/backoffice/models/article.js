@@ -24,9 +24,9 @@ $.Model('Backoffice.Models.Article',
 			});
 		},
 		
-	  	setActive: function( articleId, active, success, error ) {
+	  	setActive: function( articleId, active, service, success, error ) {
 			return $.ajax({
-				url: "articles/setActive.json?articleId=" + articleId + "&active=" + active,
+				url: "articles/setActive.json?articleId=" + articleId + "&active=" + active + "&service=" + service,
 				dataType: "json article.model",
 				success: success,
 				error: error || Backoffice.errorHandler
@@ -42,9 +42,9 @@ $.Model('Backoffice.Models.Article',
 			});
 		},
 
-	  	getGroupedMenu: function( activeOnly, success, error ) {
+	  	getGroupedMenu: function( activeDelivery, activeRestaurant, success, error ) {
 	  		return $.ajax({
-	  			url: "articles/groupedByCategory.json?activeOnly=" + activeOnly,
+	  			url: "articles/groupedByCategory.json?activeDelivery=" + activeDelivery + "&activeRestaurant=" + activeRestaurant,
 	  			dataType: "json article.models",
 	  			success: success,
 	  			error: error || Backoffice.errorHandler

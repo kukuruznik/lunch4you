@@ -258,7 +258,7 @@ span.switch {
 
 div.customers {
 	//background-color : red;
-	display : none;
+	//display : none;
 }
 
 div.customer-details {
@@ -448,6 +448,10 @@ input[type=text], input[type=password] {
 #menuTable td.actionsCell a {
 	font-size : 0.8em;
 	color : blue;
+}
+
+#menuTable td.active {
+	background-color : lightgreen;
 }
 
 #menuTable input.daily-limit-input {

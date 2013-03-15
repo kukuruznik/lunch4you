@@ -8,6 +8,9 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 
 	/** @Static */
 	{
+		//constants for services
+		service_Delivery : "delivery",
+		service_Restaurant : "restaurant"
 	},
 
 	/** @Prototype */
@@ -16,8 +19,11 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			
 			this.actions = {
 					"edit" : this._editArticle,
-					"activate" : this._activateArticle,
-					"deactivate" : this._deactivateArticle
+					"activateDelivery" : this._activateArticleDelivery,
+					"deactivateDelivery" : this._deactivateArticleDelivery,
+					"activateRestaurant" : this._activateArticleRestaurant,
+					"deactivateRestaurant" : this._deactivateArticleRestaurant,
+					"setIsNew" : this._deactivateArticleRestaurant
 			};
 			
 			this._reloadMenu();
@@ -88,14 +94,20 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			this._showArticleEditDialog( article, articleRow );
 		},
 
-		_activateArticle: function( article ) {
-//			alert("activate");
-			Backoffice.Models.Article.setActive( article.id, true ).done( this.proxy( "_articleSaved" ) );
+		_activateArticleDelivery: function( article ) {
+			Backoffice.Models.Article.setActive( article.id, true, this.Class.service_Delivery ).done( this.proxy( "_articleSaved" ) );
 		},
 
-		_deactivateArticle: function( article ) {
-//			alert("deactivate");
-			Backoffice.Models.Article.setActive( article.id, false ).done( this.proxy( "_articleSaved" ) );
+		_deactivateArticleDelivery: function( article ) {
+			Backoffice.Models.Article.setActive( article.id, false, this.Class.service_Delivery ).done( this.proxy( "_articleSaved" ) );
+		},
+
+		_activateArticleRestaurant: function( article ) {
+			Backoffice.Models.Article.setActive( article.id, true, this.Class.service_Restaurant ).done( this.proxy( "_articleSaved" ) );
+		},
+
+		_deactivateArticleRestaurant: function( article ) {
+			Backoffice.Models.Article.setActive( article.id, false, this.Class.service_Restaurant ).done( this.proxy( "_articleSaved" ) );
 		},
 
 		_saveArticle: function( fp ) {
@@ -163,8 +175,9 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_reloadMenu: function() {
-			var activeOnly = false;
-			Backoffice.Models.Article.getGroupedMenu( activeOnly ).done( this.proxy( "_dataLoaded" ) );
+			var activeDelivery = null;
+			var activeRestaruant = null;
+			Backoffice.Models.Article.getGroupedMenu( activeDelivery, activeRestaruant ).done( this.proxy( "_dataLoaded" ) );
 		},
 
 		_dataLoaded: function( groupedMenu ) {

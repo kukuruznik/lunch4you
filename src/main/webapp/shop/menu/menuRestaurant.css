@@ -1,0 +1,141 @@
+body {
+	font-family: Lucida Sans, Lucida Grande, Tahoma, sans-serif;
+	margin: 0;
+	line-height: 22px;
+	width: 960px;
+	margin: 0 auto;
+}
+
+
+/*
+	Menu (article list) 
+	================================================= 
+*/
+
+#menuDiv {
+	width : 100%;
+	border : 0px red solid;
+	background: url("/lunch4you/bg_content2.png") repeat-y scroll left top transparent;
+	background-size:100%;
+	text-align : center;
+	margin-top : 10px;
+	margin-bottom : 20px;
+	border-top : 3px lightgray outset;
+	border-bottom : 3px lightgray outset;
+	border-bottom : 3px lightgray inset;
+	padding-top : 20px;
+	padding-bottom : 0px;
+}
+
+#menuHeader {
+	font-weight : bold;
+	font-size : 2em;
+	padding : 10px;
+	border : 0px blue solid;
+}
+
+#menuFooter {
+	font-size : 0.8em;
+	padding : 5px;
+	border : 0px blue solid;
+}
+
+#menuTable {
+	table-layout : fixed;
+	border-collapse : collapse;
+	width : 90%;
+	border : 0px lightgray solid;
+	margin-left : 40px;
+}
+
+#menuTable td {
+	text-align: left;
+	border : 0px #eeeeee solid;
+	font: Arial; 
+}
+
+#menuTable tr.headerRow td{
+	height : 0px;
+	padding : 0;
+}
+
+#menuTable td.categoryCell {
+	font-size : 1.1em;
+	font-weight : bold;
+	padding : 10px 0px 10px 0px;
+}
+
+#menuTable tr.articleRow td{
+	height : 30px;
+}
+
+#menuTable td.newFlagCell {
+	width : 50px;
+	vertical-align : top;
+	text-align : center;
+}
+
+#menuTable td.codeCell {
+	width : 50px;
+	vertical-align : top;
+	padding-left : 10px;
+	font-style : italic;
+	font-weight : bold;
+	//color : gray;
+}
+
+#menuTable td.articleCell {
+	width : *;
+	padding-left : 10px;
+	padding-right : 10px;
+	white-space: nowrap;
+}
+
+#menuTable div.articleDiv {
+	border : 0px red solid;
+	overflow : hidden;
+}
+
+#menuTable .meal-header {
+	line-height : 20px;
+	padding-botom : 0px;
+	font-weight : bold;
+	border : 0px blue solid;
+}
+
+#menuTable span.meal-new-label {
+	font-size : .8em;
+	font-style : italic; 
+	color : red;
+}
+
+#menuTable a.meal-sold-out {
+	text-decoration: line-through;
+}
+
+#menuTable span.meal-sold-out-label {
+	font-size : .8em;
+	font-style : italic; 
+	color : red;
+}
+
+#menuTable .meal-description {
+	font-style : italic;
+	font-size : 0.7em;
+	//color : #9C822D;
+	overflow : hidden;
+	padding-left : 5px;
+	border : 0px blue solid;
+}
+
+#menuTable span.meal-padding {
+	color : gray;
+	font-size : .5em;
+}
+
+#menuTable td.priceCell {
+	width : 80px;
+	padding-left : 5px;
+	vertical-align : bottom;
+}
+

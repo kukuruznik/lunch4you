@@ -8,7 +8,9 @@ public final class ArticleDto {
 	
 	public Integer dailyLimit;
 	
-	public boolean isActive;
+	public boolean isActiveDelivery;
+	
+	public boolean isActiveRestaurant;
 
 	public boolean isNew;
 

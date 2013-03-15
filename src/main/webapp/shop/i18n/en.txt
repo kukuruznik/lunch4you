@@ -48,11 +48,12 @@
 	"profile.edit.user.anonymous.message": "Not logged in. No profile information available.",
 
 	"referral.detail.sender" : "Sender",
-	"referral.detail.recipientEmail": "Recipient Email",
+	"referral.detail.recipientEmails": "Recipients Email Addresses",
+	"referral.detail.recipientEmails_multiple": "Emails separated by comma, semicolon, tab or new line",
 	"referral.detail.referralMessage" : "Personal Message",
 	"referral.detail.action.recommend" : "Send Referral",
-	"referral.detail.validation.emptyEmailAddress" : "Email address must not be empty!",	
-	"referral.detail.validation.invalidEmailFormat" : "Invalid email address format!",
+	"referral.detail.validation.emptyEmailAddress" : "Validation error!!! \n\n Email address must not be empty!",	
+	"referral.detail.validation.invalidEmailFormat" : "Validation error!!! \n\n Following address is not a valid email address: ",
 	"referral.detail.action.referralMsg" : "Referral successfully submitted!",
 	"referral.detail.user.anonymous.message": "Please register. Only registered users can send referrals.",
 

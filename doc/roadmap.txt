@@ -10,6 +10,13 @@ Release plan / Roadmap
 - Item parametrization
 	- Ingredients selection / disabling
 	- Different side dishes
+- Notification email about arrived delivery (pre Boba)
+- Evening / afternoon delivery
+- Delivery time selection
+- Customers administration
+	- deactivation of users
+- Contacts
+	- Form to send us a message
 
 ======  Minor features  ======
 - Food ingredients / allergen information
@@ -22,17 +29,18 @@ DONE:
 - Different color scheme for active and non-active meals in menu edit
 
 TODO:
-- test in IE6!!!
-	- may need rework of page header
+
+======  v2.1  ======
+- Confirmation email
+	- Different email
+	- Send to different address
+- Meal counts
+- Re-enable cookies
+- Order Reminder / Alarm
+
+TODO:
 - make sure that referral does not set default delivery location anymore
 - is_new indicator manipulation in menu edit
 - "New" article indicator
 - Colored "Warning" for meals reaching daily limit in Backoffice view + number of portions left (if limit is set)
-- All language translations
 - Menu Admin - Referesh button
-
-======  v2.1  ======
-TODO:
-- Notification email about arrived delivery (pre Boba)
-- Evening / afternoon delivery
-- Delivery time selection

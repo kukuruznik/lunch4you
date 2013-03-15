@@ -27,6 +27,8 @@ CREATE TABLE `article` (
   `daily_limit` int(11) DEFAULT NULL,
   `price` int(11) NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `is_active_delivery` tinyint(1) NOT NULL DEFAULT '1',
+  `is_active_restaurant` tinyint(1) NOT NULL DEFAULT '1',
   `version` int(11) DEFAULT NULL,
   `category_id` bigint(20) DEFAULT NULL,
   `code` varchar(255) DEFAULT NULL,

@@ -18,9 +18,9 @@ $.Model('Shop.Models.Article',
 	  		});
 	  	},
 
-	  	getGroupedMenu: function( activeOnly, success, error ) {
+	  	getGroupedMenu: function( activeDelivery, activeRestaurant, success, error ) {
 	  		return $.ajax({
-	  			url: "articles/groupedByCategory.json?activeOnly=" + activeOnly,
+	  			url: "articles/groupedByCategory.json?activeDelivery=" + activeDelivery + "&activeRestaurant=" + activeRestaurant,
 	  			dataType: "json article.models",
 	  			success: success,
 	  			error: error || Shop.errorHandler

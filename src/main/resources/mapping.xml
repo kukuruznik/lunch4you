@@ -45,8 +45,12 @@
 			<b is-accessible="true">dailyLimit</b>
 		</field>
 		<field>
-			<a>isActive</a>
-			<b is-accessible="true">isActive</b>
+			<a>isActiveDelivery</a>
+			<b is-accessible="true">isActiveDelivery</b>
+		</field>
+		<field>
+			<a>isActiveRestaurant</a>
+			<b is-accessible="true">isActiveRestaurant</b>
 		</field>
 		<field>
 			<a>isNew</a>

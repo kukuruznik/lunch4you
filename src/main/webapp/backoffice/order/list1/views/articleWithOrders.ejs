@@ -1,13 +1,15 @@
 <!% this is of class ArticleWithOrders %>
-<% var article = this.entity %>
-<% var orders = this.items %>
+<% var group = this.group %>
+<% var article = group.entity %>
+<% var orders = group.items %>
+<% var openGroups = this.openGroups %>
 
 	<h5 id="article<%= article.id %>">
 		<span class="articleName"><%= article.name_cz %></span>
 		<span class="orderCount"><%= orders.length %></span>
 		<div style="clear : both;"></div>
 	</h5>
-	<div id="customersForArticle<%= article.id %>" class="customers">
+	<div id="customersForArticle<%= article.id %>" class="customers" style="display : <%= openGroups["" + article.id] ? "block" : "none" %>">
 	<% for ( var i = 0; i < orders.length; i++ ) { %>
 		<% var order = orders[i] %>
 		<div class="customer-details">

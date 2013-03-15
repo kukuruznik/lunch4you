@@ -15,6 +15,8 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 
 	/** @Prototype */
 	{
+		openGroups : {},
+		
 		init: function() {
 			steal.dev.log( "Order list1 controller initialized" );
 			this.articleNames = [];
@@ -26,31 +28,21 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		update: function() {
 			this._refresh();
 		},
+		
+		"#refreshList1 click": function( el, evt ) {
+			this._refresh();
+		},
 
 		"h5 click": function( el, evt ) {
 			var elementId = el.attr( "id" );
 			// parse out articleId from the element id
-			var articleId = elementId.substring("article".length); 
+			var articleId = elementId.substring("article".length);
 			// find div containing customers
 			var customersDiv = $("#customersForArticle" + articleId);
-			customersDiv.toggle();			
-		},
+			customersDiv.toggle();
 
-		"input[type=button] click": function( el, evt ) {
-			clearTimeout( this.timeOutID );
-			var infoRowElement = el.parents( "table" ).prev();
-			var articleName = infoRowElement.attr( "id" );
-			var orderGroup = this.ordersByArticleMap[ articleName ];
-			var orderIds = $( orderGroup.items ).map( function( index, order ) {
-				return order.id;
-			});
-			orderIds = $.makeArray( orderIds );
-			delete this.ordersByArticleMap[ articleName ];
-			this.articleNames = $( this.articleNames ).map( function( index, name ) {
-				if ( name != articleName )
-					return name;
-			});
-			Backoffice.Models.Order.close( orderIds, this.proxy( "_handleCloseResponse" ) );
+			var isVisible = customersDiv.is(':visible');
+			this.openGroups["" + articleId] = isVisible ? true : false;
 		},
 
 		_refresh: function() {
@@ -70,7 +62,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 
 		_renderOrdersGroupedByArticle: function( ordersGroupedByArticle ) {
 			//steal.dev.log("_renderOrdersGroupedByArticle")
-			this.element.html( this.view( 'list1', ordersGroupedByArticle ) );
+			this.element.html( this.view( 'list1', { ordersGroupedByArticle : ordersGroupedByArticle, openGroups : this.openGroups } ) );
 		}
 
 	} );

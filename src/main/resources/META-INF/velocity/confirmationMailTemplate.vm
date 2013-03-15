@@ -10,6 +10,7 @@ Price:              ${item.Article.Price},- CZK #if($isDiscount) ***#end
 
 Delivery location:  ${order.deliveryLocation.name}
 Ordered on:         ${orderDate}
+Comment / note:		${order.note}
 
 #if($isDiscount) *** Please note that a discounted price of 10,- CZK applies if main meal (meal for 80,- CZK or more) is ordered on the same day. #end 
 

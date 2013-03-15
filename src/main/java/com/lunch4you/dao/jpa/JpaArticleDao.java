@@ -34,8 +34,11 @@ public class JpaArticleDao extends AbstractReadWriteDao<Article, Long, ArticleFi
 		if ( f != null ) {
 			Predicate p = builder.and(); // always true
 
-			if ( f.isActive != null )
-				p = builder.and( p, builder.equal( root.get( "isActive" ), f.isActive ) );
+			if ( f.isActiveDelivery != null )
+				p = builder.and( p, builder.equal( root.get( "isActiveDelivery" ), f.isActiveDelivery ) );
+
+			if ( f.isActiveRestaurant != null )
+				p = builder.and( p, builder.equal( root.get( "isActiveRestaurant" ), f.isActiveRestaurant ) );
 
 			cq.where( p );
 		}

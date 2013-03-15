@@ -48,11 +48,12 @@
 	"profile.edit.user.anonymous.message": "Nejste přihlášen. Informace o profilu není k dispozici.",
 
 	"referral.detail.sender" : "Odesílatel",
-	"referral.detail.recipientEmail": "Příjemcův email",
+	"referral.detail.recipientEmails": "Email adresy příjemců",
+	"referral.detail.recipientEmails_multiple": "adresy odděleny čárkou, středníkem, tabulátorem nebo novým řádkem",
 	"referral.detail.referralMessage" : "Zpráva pro příjemce",
 	"referral.detail.action.recommend" : "Zaslat doporučení",
-	"referral.detail.validation.emptyEmailAddress" : "Emailová adresa musí být vyplněna!",
-	"referral.detail.validation.invalidEmailFormat" : "Nesprávný formát emailové adresy!",	
+	"referral.detail.validation.emptyEmailAddress" : "Chyba při validaci vstupních dat!!!\n\nEmailová adresa musí být vyplněna!",
+	"referral.detail.validation.invalidEmailFormat" : "Chyba při validaci vstupních dat!!!\n\nNesprávný formát následovné emailové adresy:",	
 	"referral.detail.action.referralMsg" : "Doporučení bylo úspěšně odesláno!",
 	"referral.detail.user.anonymous.message": "Pouze registrovaní uživatelé mohou poslat doporučení.",
 

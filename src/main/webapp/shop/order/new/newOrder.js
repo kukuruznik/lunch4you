@@ -82,7 +82,7 @@ steal(
 			} 
 
 			// check if this meal is unavailable or sold out
-			if(!article.isActive){
+			if(!article.isActiveDelivery){
 				orderResult.resultCode = "NOT_AVAILABLE";
 				this._renderMessage(orderResult);
 				return;

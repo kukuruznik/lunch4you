@@ -66,10 +66,16 @@ public class ArticleController {
 	
 	@RequestMapping( value = "/groupedByCategory.json", method = RequestMethod.GET )
 	public @ResponseBody
-	List<CategoryWithArticlesDto> getArticlesGroupedByCategory(@RequestParam boolean activeOnly) {
-		logger.trace( "ArticleController.getGroupedMenu called" );
+	List<CategoryWithArticlesDto> getArticlesGroupedByCategory(@RequestParam Map<String,String> params) {
+		logger.trace( "ArticleController.getArticlesGroupedByCategory called" );
 		
-		LinkedHashMap<Long,CategoryWithArticles> categoriesWithArticles = menuService.getArticlesByCategories( activeOnly );
+		String parActiveRestaurant = params.get("activeRestaurant");
+		Boolean activeRestaurant = parActiveRestaurant.equals("null") ? null : Boolean.parseBoolean(parActiveRestaurant);
+
+		String parActiveDelivery = params.get("activeDelivery");
+		Boolean activeDelivery = parActiveDelivery.equals("null") ? null : Boolean.parseBoolean(parActiveDelivery);
+		
+		LinkedHashMap<Long,CategoryWithArticles> categoriesWithArticles = menuService.getArticlesByCategories( activeDelivery, activeRestaurant );
 		List<CategoryWithArticlesDto> categoriesWithArticlesDtos = new ArrayList<CategoryWithArticlesDto>( );
 
 		for ( CategoryWithArticles categoryWithArticles : categoriesWithArticles.values() ) {
@@ -107,9 +113,9 @@ public class ArticleController {
 	
 	@RequestMapping( value = "/setActive.json", method = RequestMethod.GET )
 	public @ResponseBody
-	ArticleDto setActive(@RequestParam Long articleId, @RequestParam boolean active) {
+	ArticleDto setActive(@RequestParam Long articleId, @RequestParam boolean active, @RequestParam String service) {
 		
-		Article updatedArticle = menuService.setArticleActive( articleId, active );
+		Article updatedArticle = menuService.setArticleActive( articleId, active, service );
 
 		ArticleDto articleDto = beanMapper.map( updatedArticle, ArticleDto.class );
 		

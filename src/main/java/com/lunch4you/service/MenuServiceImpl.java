@@ -44,6 +44,10 @@ import com.lunch4you.domain.Referral;
 @Service
 public final class MenuServiceImpl implements MenuService {
 
+	private static final String RESTAURANT = "restaurant";
+
+	private static final String DELIVERY = "delivery";
+
 	private static final Logger logger = LoggerFactory.getLogger( MenuServiceImpl.class );
 
 	@Autowired
@@ -171,7 +175,7 @@ public final class MenuServiceImpl implements MenuService {
 		OrderItem item = new OrderItem();
 		Article article = articleDao.load( articleId );
 
-		if( !article.getIsActive() ){
+		if( !article.getIsActiveDelivery() ){
 			result.setResultCode( OrderResult.ResultCode.NOT_AVAILABLE );
 			return result;
 		}
@@ -252,11 +256,13 @@ public final class MenuServiceImpl implements MenuService {
 	 * Returns all Articles grouped by Categories. Used for generating menu.
 	 */
 	@Override
-	public LinkedHashMap<Long, CategoryWithArticles> getArticlesByCategories(boolean activeOnly) {
+	public LinkedHashMap<Long, CategoryWithArticles> getArticlesByCategories(Boolean activeDelivery, Boolean activeRestaurant) {
 
 		ArticleFilter filter = new ArticleFilter();
-		if(activeOnly)
-			filter.isActive = true;
+		if(activeDelivery != null)
+			filter.isActiveDelivery = activeDelivery;
+		if(activeRestaurant != null)
+			filter.isActiveRestaurant = activeRestaurant;
 		List<Article> articles = articleDao.find(filter );
 		LinkedHashMap<Long, CategoryWithArticles> categoriesWithArticles = new LinkedHashMap<Long, CategoryWithArticles>();
 		for(Article article : articles){
@@ -303,10 +309,14 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public Article setArticleActive(Long articleId, boolean active) {
+	public Article setArticleActive(Long articleId, boolean active, String service) {
 		Article target = articleDao.load( articleId );
 		
-		target.setIsActive( active );
+		if(service.equals(DELIVERY)){
+			target.setIsActiveDelivery( active );
+		} else if(service.equals(RESTAURANT)){
+			target.setIsActiveRestaurant( active );
+		}
 		
 		articleDao.update( target );
 		
@@ -416,7 +426,7 @@ public final class MenuServiceImpl implements MenuService {
 	@Override
 	public List<Map<String,Object>> sendMenu( ) {
 
-		LinkedHashMap<Long,CategoryWithArticles> groupedMenu = getArticlesByCategories(true);
+		LinkedHashMap<Long,CategoryWithArticles> groupedMenu = getArticlesByCategories(true, null);
 
 		List<Customer> customers = getSubscribedCustomers(true, null);
 		
@@ -439,39 +449,42 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public Referral createReferral(long senderId, String recipientEmail,
+	public List<Referral> createReferrals(long senderId, List<String> recipientEmails,
 			String referralMessage) {
 		
 		Customer sender = getCustomer(senderId);
+		List<Referral> referrals = new ArrayList<Referral>();
 		
-		String recipientName = recipientEmail.substring(0, recipientEmail.indexOf("@"));
-		// Find out if customer with this email already exists
-		CustomerFilter customerFilter = new CustomerFilter();
-		customerFilter.email = recipientEmail;
-		List<Customer> recipients = customerDao.find(customerFilter);
-		Customer recipient;
-		if(recipients.size() == 0){
-			// Customer does not exist yet, create a new one
-			recipient = registerCustomer(recipientName, "", recipientEmail, true);
-		}else{
-			recipient = recipients.get(0);
+		for (String email : recipientEmails) {
+					
+			String recipientName = email.substring(0, email.indexOf("@"));
+			// Find out if customer with this email already exists
+			CustomerFilter customerFilter = new CustomerFilter();
+			customerFilter.email = email;
+			List<Customer> recipients = customerDao.find(customerFilter);
+			Customer recipient;
+			if(recipients.size() == 0){
+				// Customer does not exist yet, create a new one
+				recipient = registerCustomer(recipientName, "", email, true);
+			}else{
+				recipient = recipients.get(0);
+			}
+
+			Referral referral = new Referral();
+			referral.setSender(sender);
+			referral.setRecipient(recipient);
+			referral.setReferralMessage( referralMessage );
+			
+			referrals.add(referral);
+			
+			referralDao.insert( referral );
+			
+			mailingService.sendReferral(referral);
+			
+			mailingService.sendMenu(recipient, getArticlesByCategories(true, null));
+	
 		}
-
-
-		Referral referral = new Referral();
-		referral.setSender(sender);
-		referral.setRecipient(recipient);
-		referral.setReferralMessage( referralMessage );
-		
-		referralDao.insert( referral );
-		
-		mailingService.sendReferral(referral);
-		
-		mailingService.sendMenu(recipient, getArticlesByCategories(true));
-
-		// TODO subscribe new customer
-		
-		return referral;
+		return referrals;
 	}
 
 	@Override

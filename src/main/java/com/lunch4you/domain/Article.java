@@ -29,8 +29,10 @@ public class Article {
 
 	private Integer dailyLimit;
 
-	private Boolean isActive = true;
-	
+	private Boolean isActiveDelivery = true;
+
+	private Boolean isActiveRestaurant = true;
+
 	@Column(name = "new_flag")
 	private Boolean isNew = false;
 
@@ -84,12 +86,20 @@ public class Article {
 		this.dailyLimit = dailyLimit;
 	}
 
-	public Boolean getIsActive() {
-		return isActive;
+	public Boolean getIsActiveDelivery() {
+		return isActiveDelivery;
 	}
 
-	public void setIsActive( Boolean isActive ) {
-		this.isActive = isActive;
+	public void setIsActiveDelivery(Boolean isActiveDelivery) {
+		this.isActiveDelivery = isActiveDelivery;
+	}
+
+	public Boolean getIsActiveRestaurant() {
+		return isActiveRestaurant;
+	}
+
+	public void setIsActiveRestaurant(Boolean isActiveRestaurant) {
+		this.isActiveRestaurant = isActiveRestaurant;
 	}
 
 	public Boolean getIsNew() {

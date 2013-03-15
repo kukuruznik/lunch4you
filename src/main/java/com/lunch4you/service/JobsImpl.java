@@ -19,7 +19,7 @@ public class JobsImpl implements Jobs {
 	@Override
 	public void emailMenu() {
 
-		LinkedHashMap<Long,CategoryWithArticles> groupedMenu = menuService.getArticlesByCategories( true );
+		LinkedHashMap<Long,CategoryWithArticles> groupedMenu = menuService.getArticlesByCategories( true, null );
 
 		List<Customer> customers = menuService.getSubscribedCustomers(true, false);
 

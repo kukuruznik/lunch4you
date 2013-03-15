@@ -38,7 +38,7 @@ public interface MenuService {
 
 	List<Article> getMenu();
 
-	LinkedHashMap<Long, CategoryWithArticles> getArticlesByCategories(boolean activeOnly);
+	LinkedHashMap<Long, CategoryWithArticles> getArticlesByCategories(Boolean activeDelivery, Boolean activeRestaurant);
 
 	List<Category> getCategories();
 
@@ -58,7 +58,7 @@ public interface MenuService {
 
 	List<Map<String, Object>> sendMenu();
 
-	Referral createReferral(long senderId, String recipientEmail, String referralMessage);
+	List<Referral> createReferrals(long senderId, List<String> recipientEmails, String referralMessage);
 
 	Customer updateCustomerProfile(Customer customerProfile,
 			long defaultDeliveryLocationId);
@@ -67,7 +67,7 @@ public interface MenuService {
 
 	Article createOrUpdateArticle(Article article, long categoryId);
 
-	Article setArticleActive(Long articleID, boolean active);
+	Article setArticleActive(Long articleID, boolean active, String service);
 
 	Article setArticleLimit(Long articleId, Integer limit);
 

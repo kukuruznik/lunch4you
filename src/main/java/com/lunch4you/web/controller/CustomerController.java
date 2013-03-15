@@ -1,5 +1,6 @@
 package com.lunch4you.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -127,17 +128,23 @@ public class CustomerController {
 
 	@RequestMapping( value = "/customers/createReferral.json", method = RequestMethod.POST )
 	public @ResponseBody
-	ReferralDto createReferral( @RequestBody Map<String, Object> data ) {
+	List<ReferralDto> createReferral( @RequestBody Map<String, Object> data ) {
 		logger.trace( "CustomerController.createReferral called" );
 		
 		long senderId = Long.parseLong(data.get( "senderId" ).toString());
-		String recipientEmail = data.get( "recipientEmail" ).toString();
+		
+		@SuppressWarnings("unchecked")
+		List<String> recipientEmails = (List<String>) data.get( "recipientEmails" );
+		
 		String referralMessage = data.get( "referralMessage" ).toString();
 
-		Referral referral = menuService.createReferral(senderId, recipientEmail, referralMessage);
-		
-		ReferralDto referralDto = beanMapper.map( referral, ReferralDto.class );
+		List<Referral> referrals = menuService.createReferrals(senderId, recipientEmails, referralMessage);
+		List<ReferralDto> referralDtos = new ArrayList<ReferralDto>();
+		for(Referral referral : referrals){			
+			ReferralDto referralDto = beanMapper.map( referral, ReferralDto.class );
+			referralDtos.add( referralDto );
+		}
 
-		return referralDto;
+		return referralDtos;
 	}
 }

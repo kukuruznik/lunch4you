@@ -51,12 +51,12 @@ $.Model('Shop.Models.Customer',
 			});
 		},
 		
-		createReferral: function( customer, recipientEmail, referralMessage, success, error ) {
+		createReferral: function( customer, recipientEmails, referralMessage, success, error ) {
 	  		return $.ajax({
 	  			url: "customers/createReferral.json",
 	  			type: "POST",
 	  			contentType: "application/json",
-	  			data: $.toJSON(  { senderId: customer.id, recipientEmail : recipientEmail, referralMessage : referralMessage } ),
+	  			data: $.toJSON(  { senderId: customer.id, recipientEmails : recipientEmails, referralMessage : referralMessage } ),
 	  			dataType: "json customer.model",
 	  			success: success,
 	  			error: error || Shop.errorHandler

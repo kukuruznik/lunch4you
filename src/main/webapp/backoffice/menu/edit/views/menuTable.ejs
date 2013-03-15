@@ -7,6 +7,7 @@
 			<td class="priceCell"></td>	
 			<td class="limitCell"></td>	
 			<td class="actionsCell"></td>	
+			<td class="actionsCell"></td>	
 		</tr>
 	<% for ( var i = 0; i < this.length; i++ ) { %>
 		<% var category =  this[i].entity; %>
@@ -20,9 +21,7 @@
 		<% for ( var j = 0; j < articles.length; j++ ) { %>
 			<% var article = articles[j]; %>
 			
-			<tr class="articleRow <%= article.isActive ? "active" : "inactive" %>" articleId="<%= article.id %>">
 			<%== $.View( '//backoffice/menu/edit/views/articleRow.ejs', article ) %>			
-			</tr>
 			
 		<% } %>
 		

@@ -44,26 +44,50 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			this._enableReferralSubmit( false );
 			var self = this;
 
-			var recipientEmail = $.trim( $( "#recipientEmail" ).attr( "value" ));
 			var referralMessage = $( "#referralMessage" ).attr( "value" );
 
-			Shop.Models.Customer.createReferral( this.customer, recipientEmail, referralMessage, function( referral ) {
+			Shop.Models.Customer.createReferral( this.customer, this.parsedEmails, referralMessage, function( referral ) {
 				alert( $.EJS.Helpers.prototype.msg( "referral.detail.action.referralMsg" ) );
 				self._enableReferralSubmit( true );
 			} );
 		},
+		
+		/**
+		 * Parses email(s) text and converts it to an array of potential email addresses and saves it within Controller namespace. 
+		 * Method does not
+		 * validate individual addresses at this point.
+		 */
+		_parseEmails : function(){
+			var emailStr = $( "#recipientEmail" ).attr( "value" );
+						
+			// split array by a set of separators
+			var arr = emailStr.split(/[,;\t\n\r]/);
+			// trim each element in the array;
+			arr = $.map( arr, function(el){ return el.trim(); });
+			// filter out any blank elements
+			arr = $.grep( arr, function(el){ return el.trim(); });
+
+			// store parsed emails into Controller namespace.
+			this.parsedEmails = arr;
+			
+		},
 
 		_validateReferralForm : function() {
-			var email = $( "#recipientEmail" ).attr( "value" );
-			
-			if ($.trim(email) == "") {				
+			this._parseEmails();
+
+			var arr = this.parsedEmails;
+
+			if (arr.length == 0) {				
 				alert( $.EJS.Helpers.prototype.msg( "referral.detail.validation.emptyEmailAddress" ) );
 				return false;
 			}
 
-			if ( !Shop.Utils.isEmailAddressValid( email ) ) {
-				alert( $.EJS.Helpers.prototype.msg( "referral.detail.validation.invalidEmailFormat" ) );
-				return false;
+			for(var i=0; i<arr.length; i++){
+				var email = arr[i];
+				if ( !Shop.Utils.isEmailAddressValid( email ) ) {
+					alert( $.EJS.Helpers.prototype.msg( "referral.detail.validation.invalidEmailFormat" ) + " " + email);
+					return false;
+				}
 			}
 			return true;
 		},

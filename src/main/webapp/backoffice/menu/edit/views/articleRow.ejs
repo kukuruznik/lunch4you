@@ -1,12 +1,15 @@
 <% 	var article = this;
 	var isSoldOut = article.isSoldOut; 
-	var isActive = article.isActive;
+	var isActive = article.isActiveDelivery || article.isActiveRestaurant;
 	var isNew = article.isNew;
 	var isDailyLimit = article.dailyLimit != null;
 %>
 
+	<tr class="articleRow <%= isActive ? "active" : "inactive" %>" articleId="<%= article.id %>">
+
 		<td class="codeCell">
 			<%= article.code %>
+			<!-- <br><%= article.isActiveDelivery %>,<%= article.isActiveRestaurant %>,<%= isActive %> -->
 		</td>
 		<td class="articleCell">
 			<div class="meal-header">
@@ -28,10 +31,19 @@
 		<td class="limitCell">
 			<input class="daily-limit-input" type="text" initialValue="<%= article.dailyLimit %>" value="<%= article.dailyLimit %>" onclick="this.select()">
 		</td>
-		<td class="actionsCell">
-			<% if(isActive) { %>
-				<a href="javascript:" class="action-link" action="deactivate">Deactivate</a>
+		<td class="actionsCell <%= isActiveDelivery ? "active" : "inactive" %>">
+			<% if(article.isActiveDelivery) { %>
+				<a href="javascript:" class="action-link" action="deactivateDelivery">Deactivate<br>Delivery</a>
 			<% } else { %>
-				<a href="javascript:" class="action-link" action="activate">Activate</a>
+				<a href="javascript:" class="action-link" action="activateDelivery">Activate<br>Delivery</a>
 			<% } %>
 		</td>
+		<td class="actionsCell <%= isActiveRestaurant ? "active" : "inactive" %>">
+			<% if(article.isActiveRestaurant) { %>
+				<a href="javascript:" class="action-link" action="deactivateRestaurant">Deactivate<br>Restaurant</a>
+			<% } else { %>
+				<a href="javascript:" class="action-link" action="activateRestaurant">Activate<br>Restaurant</a>
+			<% } %>
+		</td>
+	</tr>
+		

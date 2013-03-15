@@ -1,3 +1,13 @@
+- oznacenie hotoviek
+- oznacenie uz napisanych krabiciek
+- zrusit refresh chronologickeho zoznamu
+- na packaging napisat pocty polievok a salatov
+	- page break medzi firmami
+- zastavit / spustit predaj jednotlivych jedal
+- zastavit predaj kompletne
+	- vsetko okrem hotoviek, vsetko 
+
+
 ==========   BUGS     =====================
 - backoffice data is cached on DHL proxy, need to add non-cache for .json files
 - after deleting / closing orders in backoffice view, only the table with orders refreshes, need to refresh the table by articles as well
@@ -6,13 +16,14 @@
 ==========   TODO     =====================
 
 - Re-enable saving / loading from cookies
+- Refactor all Business contact information into properties / DB
 
 - Rollout - Accenture
 	- notification about pickup at OC Ruze
 	- edit account / unsubscribe
 	- ordering time for pickup at OC Ruze
 	- double ordering prevention
-	
+
 
 - General
 	- All dates are displayed in UTC time
@@ -30,6 +41,7 @@
 
 - UI Consolidation
 	- technique for building editable forms. Currently Register Customer uses tables, Refarral dialog uses DIVs.
+	- extract stylesheets into multiple separate files to introduce more clarity
 	
 - Pickup and payment instructions
 	- separate payment and pickup instructions fr each delivery location
@@ -62,8 +74,7 @@
 - backoffice view
 	- cooking overview
 		- Table by articles - sort by category - rework to use OrderItem DAO
-		- Table by date
-			- add email + delivery location
+		- Table by date - implement refresh by only adding new items to the top of the table, so that any form information does not get lost
 	- packaging view
 		- generate each delivery location per separate page
 		- individual artices with different colors (based on category)
@@ -113,3 +124,8 @@
 		
 - Maintenance
 	- backup script with emailing for DB
+	
+	
+petr.janda@dhl.com
+ivan@dhl.com
+petr@dhl.com; jana@dhl.com	pavel@dhl.com
