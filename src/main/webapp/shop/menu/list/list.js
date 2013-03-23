@@ -36,20 +36,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then(
 		_render: function( menu ) {
 			this.groupedMenu = menu;
 			this.element.html( this.view( 'list', this.groupedMenu ) );
-			this.newWin = window.open("shop/menu/menuRestaurant.html");
-			$(this.newWin).load(this.proxy("_loadRestaurantData"));
 		},
-
-		_loadRestaurantData: function(  ) {
-			
-			var activeDelivery = null;
-			var activeRestaurant = true;
-			Shop.Models.Article.getGroupedMenu( activeDelivery, activeRestaurant ).done( this.proxy( "_renderRestaurantMenu" ) );
-		},
-		
-		_renderRestaurantMenu : function( groupedMenu ) {
-			$(this.newWin.document.body).html( this.view( 'restaurantMenu', groupedMenu ) );
-		}
 	} );
 
 } );

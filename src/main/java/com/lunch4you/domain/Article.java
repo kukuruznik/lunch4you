@@ -24,14 +24,20 @@ public class Article {
 	@Version
 	private Integer version;
 
-	@NotNull
-	private Integer price;
+	// TODO change the name of the column in DB
+	@Column(name = "price")
+	private Integer priceDelivery;
+
+	private Integer priceRestaurant;
 
 	private Integer dailyLimit;
 
+	@Column(name = "is_active")
 	private Boolean isActiveDelivery = true;
 
-	private Boolean isActiveRestaurant = true;
+	private Boolean isActiveRestaurantWeekly = true;
+
+	private Boolean isActiveRestaurantDaily = true;
 
 	@Column(name = "new_flag")
 	private Boolean isNew = false;
@@ -70,12 +76,20 @@ public class Article {
 		this.version = version;
 	}
 
-	public Integer getPrice() {
-		return price;
+	public Integer getPriceDelivery() {
+		return priceDelivery;
 	}
 
-	public void setPrice( Integer price ) {
-		this.price = price;
+	public void setPriceDelivery( Integer price ) {
+		this.priceDelivery = price;
+	}
+
+	public Integer getPriceRestaurant() {
+		return priceRestaurant;
+	}
+
+	public void setPriceRestaurant(Integer priceRestaurant) {
+		this.priceRestaurant = priceRestaurant;
 	}
 
 	public Integer getDailyLimit() {
@@ -94,12 +108,20 @@ public class Article {
 		this.isActiveDelivery = isActiveDelivery;
 	}
 
-	public Boolean getIsActiveRestaurant() {
-		return isActiveRestaurant;
+	public Boolean getIsActiveRestaurantWeekly() {
+		return isActiveRestaurantWeekly;
 	}
 
-	public void setIsActiveRestaurant(Boolean isActiveRestaurant) {
-		this.isActiveRestaurant = isActiveRestaurant;
+	public void setIsActiveRestaurantWeekly(Boolean isActiveRestaurant) {
+		this.isActiveRestaurantWeekly = isActiveRestaurant;
+	}
+
+	public Boolean getIsActiveRestaurantDaily() {
+		return isActiveRestaurantDaily;
+	}
+
+	public void setIsActiveRestaurantDaily(Boolean isActiveRestaurantDaily) {
+		this.isActiveRestaurantDaily = isActiveRestaurantDaily;
 	}
 
 	public Boolean getIsNew() {

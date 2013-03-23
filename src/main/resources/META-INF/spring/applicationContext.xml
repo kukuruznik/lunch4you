@@ -102,6 +102,7 @@
 		<property name="from" value="${email.from}"/>
 		<property name="menuSubject" value="${email.menu.subject}"/>
 		<property name="confirmationSubject" value="${email.confirmation.subject}"/>
+		<property name="deliveryNotificationSubject" value="${email.deliveryNotification.subject}"/>
 		<property name="referralSubject" value="${email.referral.subject}"/>
 		<property name="contactURL" value="${appBase.url}/${contact.url}"></property>
 		<property name="shopURL" value="${appBase.url}/${shop.url}"></property>

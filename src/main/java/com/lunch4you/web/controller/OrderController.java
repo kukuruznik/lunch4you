@@ -91,6 +91,20 @@ public class OrderController {
 		return Collections.emptyList();
 	}
 
+	@RequestMapping( value = "/backoffice/orders/notifyDelivery.json", method = RequestMethod.PUT )
+	public @ResponseBody
+	List<Long> notifyDelivery( @RequestBody List<Long> intIds ) {
+		// IDs mapped as List<Integer> - bug?
+		List<Long> ids = new ArrayList<Long>( intIds.size() );
+//		for ( String id : intIds )
+//			ids.add( Long.parseLong( id ) );
+		logger.trace( "OrderController.delete called with ID-s: " + ids );
+
+		menuService.notifyDelivery(intIds);
+		logger.trace( "OrderController.delete called with ID-s: " + ids );
+		return Collections.emptyList();
+	}
+
 	@RequestMapping( value = "/backoffice/orders/activeByDate.json", method = RequestMethod.GET )
 	public @ResponseBody
 	List<OrderDto> findActive() {

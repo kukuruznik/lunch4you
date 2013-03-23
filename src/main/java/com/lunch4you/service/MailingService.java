@@ -13,6 +13,8 @@ public interface MailingService {
 	void sendMenu( Customer customer, LinkedHashMap<Long,CategoryWithArticles> categoriesWithArticles );
 
 	void sendOrderConfirmation( Order order );
+	
+	void sendDeliveryNotification(Order order);
 
 	void sendReferral(Referral referral);
 }

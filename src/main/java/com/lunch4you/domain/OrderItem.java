@@ -79,7 +79,7 @@ public class OrderItem {
 		sb.append( '(' ).append( id ).append( ") " );
 		sb.append( "Order item: " ).append( article );
 		sb.append( " * " ).append( amount );
-		sb.append( " = " ).append( article == null ? "N/A" : article.getPrice() * amount ).append( " credit(s)" );
+		sb.append( " = " ).append( article == null ? "N/A" : article.getPriceDelivery() * amount ).append( " credit(s)" );
 		return sb.toString();
 	}
 

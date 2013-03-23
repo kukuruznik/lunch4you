@@ -1,0 +1,62 @@
+<% var groupedMenu = this.groupedMenu %>
+<% var locale = this.locale %>
+<div id="menuDiv">
+	<div id="menuHeader">
+		Lunch4you - <%= msg("menu.menuType.restaurantWeekly", locale) %>
+	</div>
+	<table id="menuTable">
+		<tr class="headerRow">
+			<td class="newFlagCell"></td>
+			<td class="codeCell"></td>
+			<td class="articleCell"></td>
+			<td class="priceCell"></td>	
+		</tr>
+	<% for ( var i = 0; i < groupedMenu.length; i++ ) { %>
+		<% var category =  groupedMenu[i].entity; %>
+		<% var articles = groupedMenu[i].items %>
+		<tr>
+			<td class="newFlagCell"></td>
+			<td colspan="3" class="categoryCell">
+				<%= localize( category, "name", locale ) %>
+			</td>
+		</tr>
+		<% for ( var j = 0; j < articles.length; j++ ) { %>
+			<% 
+				var article = articles[j];
+				var isSoldOut = article.isSoldOut; 
+				var isNew = article.isNew;
+			%>
+			<tr class="articleRow">
+				<td class="newFlagCell">
+					<% if( isNew ) { %> 
+							<span class="meal-new-label"><%= msg("menu.article.new.label", locale) %></span> 
+					<% } %>
+				</td>
+				<td class="codeCell">
+					<%= article.code %>
+				</td>
+				<td class="articleCell">
+					<span class="meal-header">
+						<%= localize( article, "name", locale ) %>						
+					</span>
+					<br>
+					<div class="articleDiv">
+					<span class="meal-description">
+						(<%= localize( article, "description", locale ) %>)
+						. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+					</span>
+					</div>
+				</td>
+				<td class="priceCell">
+					<%= article.price %>,- Kč
+				</td>
+			</tr>
+		<% } %>
+		
+	<% } %>
+	</table>
+	<div id="menuFooter">
+		<hr style="width : 80%; border-color : lightgray;"/>
+		web: www.lunch4you.cz | email: lunch4you.cz@gmail.com | tel: +420 774 096 313
+	</div>
+</div>

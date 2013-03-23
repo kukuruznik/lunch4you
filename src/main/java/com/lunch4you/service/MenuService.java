@@ -54,6 +54,8 @@ public interface MenuService {
 
 	void deleteOrders(List<Long> ids);
 
+	void notifyDelivery(List<Long> ids);
+
 	List<Customer> getSubscribedCustomers(Boolean menuWeekly, Boolean news);
 
 	List<Map<String, Object>> sendMenu();
@@ -67,9 +69,10 @@ public interface MenuService {
 
 	Article createOrUpdateArticle(Article article, long categoryId);
 
-	Article setArticleActive(Long articleID, boolean active, String service);
+	Article setArticleFlag(Long articleId, String flagName, boolean value);
 
 	Article setArticleLimit(Long articleId, Integer limit);
+
 
 
 }

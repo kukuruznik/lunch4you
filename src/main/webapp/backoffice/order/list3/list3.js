@@ -13,6 +13,11 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 
 	/** @Prototype */
 	{
+		/**
+		 * Recently checked items (checkboxes in the list)
+		 */
+		checkedItems : {},
+
 		init: function() {
 			steal.dev.log( "Order list3 controller initialized" );
 			this.articleNames = [];
@@ -24,15 +29,17 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			this._refresh();
 		},
 
-		"h5 click": function( el, evt ) {
-			var elementId = el.attr( "id" );
-			// parse out articleId from the element id
-			var articleId = elementId.substring("article".length); 
-			// find div containing customers
-			var customersDiv = $("#customersForArticle" + articleId);
-			customersDiv.toggle();			
+		"#refreshList3 click": function( el, evt ) {
+			this._refresh();
 		},
-
+		
+		"input.orderItemSelectorCheckbox click": function( el, evt ) {
+			//alert(el.attr("orderId"));
+			var orderId = el.attr("orderId");
+			var checked = el.is(':checked');
+			this.checkedItems[orderId] = checked;
+		},
+		
 		
 		"#orderItemSelectorAllCheckbox click": function( el, evt ) {
 			var checked = el.attr("checked");
@@ -58,13 +65,13 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			}
 			
 			var orderIds = $( orderSelectors ).map( function( index, checkboxEl ) {
-				return checkboxEl.id.substring(checkboxEl.id.lastIndexOf("_") + 1);
+				return $(checkboxEl).attr("orderId");
 			});
 			
 			orderIds = $.makeArray( orderIds );
 			
 			clearTimeout( this.timeOutID );
-			Backoffice.Models.Order.executeAction( orderIds, action, this.proxy( "_handleCloseResponse" ) );
+			Backoffice.Models.Order.executeAction( orderIds, action, this.proxy( "_handleActionResponse" ) );
 		},
 
 		
@@ -75,7 +82,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 				this.timeOutID = setTimeout( this.proxy( "_refresh" ), 60000 );
 		},
 
-		_handleCloseResponse: function( notFound ) {
+		_handleActionResponse: function( notFound ) {
 			if ( notFound.length > 0 )
 				alert( "Orders with ID-s " + notFound + " not found!" );
 			
@@ -84,7 +91,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 
 		_renderOrdersByDate: function( ordersByDate ) {
 			//console.log("_renderOrdersGroupedByArticle")
-			this.element.html( this.view( 'list3', ordersByDate ) );
+			this.element.html( this.view( 'list3', {ordersByDate : ordersByDate, checkedItems : this.checkedItems} ) );
 		}
 
 	} );

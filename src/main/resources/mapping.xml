@@ -37,8 +37,12 @@
 			<b is-accessible="true">id</b>
 		</field>
 		<field>
-			<a>price</a>
-			<b is-accessible="true">price</b>
+			<a>priceDelivery</a>
+			<b is-accessible="true">priceDelivery</b>
+		</field>
+		<field>
+			<a>priceRestaurant</a>
+			<b is-accessible="true">priceRestaurant</b>
 		</field>
 		<field>
 			<a>dailyLimit</a>
@@ -49,8 +53,12 @@
 			<b is-accessible="true">isActiveDelivery</b>
 		</field>
 		<field>
-			<a>isActiveRestaurant</a>
-			<b is-accessible="true">isActiveRestaurant</b>
+			<a>isActiveRestaurantWeekly</a>
+			<b is-accessible="true">isActiveRestaurantWeekly</b>
+		</field>
+		<field>
+			<a>isActiveRestaurantDaily</a>
+			<b is-accessible="true">isActiveRestaurantDaily</b>
 		</field>
 		<field>
 			<a>isNew</a>

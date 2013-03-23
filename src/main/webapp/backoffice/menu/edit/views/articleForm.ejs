@@ -29,8 +29,18 @@
 		<textarea name="description_en"><%= article.description_en %></textarea>
 	</div>
 	<div class="input-form-row">
-		<label>Price:</label> 
-		<input name="price" type="text" value="<%= article.price %>">
+		<label>Price (delivery):</label> 
+		<input name="priceDelivery" type="text" value="<%= article.priceDelivery %>">
+	</div>
+
+	<div class="input-form-row">
+		<label>Price (restaurant):</label> 
+		<input name="priceRestaurant" type="text" value="<%= article.priceRestaurant %>">
+	</div>
+
+	<div class="input-form-row">
+		<label>New flag:</label> 
+		<input name="isNew" type="checkbox" <%= article.isNew ? "checked" : "" %>>
 	</div>
 
 		

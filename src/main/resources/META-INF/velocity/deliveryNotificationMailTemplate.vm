@@ -1,0 +1,12 @@
+#set( $item = $order.Items.get(0) )
+Dear customer,
+
+Please note that your ordered meal 
+
+	${item.Article.Name_cz}/${order.Items.get(0).Article.Name_en}
+
+has just arrived at your order location ${order.deliveryLocation.name} and is ready to be collected.
+
+
+Important Note!!!
+This is automatically generated email, please do not reply.

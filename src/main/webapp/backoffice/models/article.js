@@ -23,7 +23,16 @@ $.Model('Backoffice.Models.Article',
 				error: error || Backoffice.errorHandler
 			});
 		},
-		
+
+	  	setFlag: function( articleId, flagName, value, success, error ) {
+			return $.ajax({
+				url: "articles/setFlag.json?articleId=" + articleId + "&flagName=" + flagName + "&value=" + value,
+				dataType: "json article.model",
+				success: success,
+				error: error || Backoffice.errorHandler
+			});
+		},
+
 	  	setActive: function( articleId, active, service, success, error ) {
 			return $.ajax({
 				url: "articles/setActive.json?articleId=" + articleId + "&active=" + active + "&service=" + service,

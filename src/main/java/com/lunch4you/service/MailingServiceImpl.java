@@ -36,6 +36,8 @@ public class MailingServiceImpl implements MailingService {
 	private String menuSubject;
 	
 	private String confirmationSubject;
+	
+	private String deliveryNotificationSubject;
 
 	private String referralSubject;
 
@@ -100,7 +102,29 @@ public class MailingServiceImpl implements MailingService {
 		};
 		mailSender.send( preparator );
 	}
-	
+
+	@Override
+	public void sendDeliveryNotification( final Order order ) {
+		MimeMessagePreparator preparator = new MimeMessagePreparator() {
+
+			@Override
+			public void prepare( MimeMessage mimeMessage ) throws Exception {
+				MimeMessageHelper helper = new MimeMessageHelper( mimeMessage , "UTF-8");
+				Map<String, Object> model = new HashMap<String, Object>();
+				
+				model.put( "customer", order.getOwner() );
+				model.put( "order", order );
+				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/deliveryNotificationMailTemplate.vm", "UTF-8", model  );
+
+				helper.setFrom( from );
+				helper.setTo( order.getOwner().getEmail() );
+				helper.setSubject( deliveryNotificationSubject );
+				helper.setText( bodyText, false );
+			}
+		};
+		mailSender.send( preparator );
+	}
+
 	@Override
 	public void sendReferral(final Referral referral) {
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
@@ -151,6 +175,14 @@ public class MailingServiceImpl implements MailingService {
 	
 	public void setConfirmationSubject( String subject ) {
 		this.confirmationSubject = subject;
+	}
+
+	public String getDeliveryNotificationSubject() {
+		return deliveryNotificationSubject;
+	}
+
+	public void setDeliveryNotificationSubject(String deliveryNotificationSubject) {
+		this.deliveryNotificationSubject = deliveryNotificationSubject;
 	}
 
 	public String getReferralSubject() {

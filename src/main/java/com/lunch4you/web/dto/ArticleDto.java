@@ -4,13 +4,17 @@ public final class ArticleDto {
 
 	public Long id;
 
-	public Integer price;
-	
+	public Integer priceDelivery;
+
+	public Integer priceRestaurant;
+
 	public Integer dailyLimit;
 	
 	public boolean isActiveDelivery;
 	
-	public boolean isActiveRestaurant;
+	public boolean isActiveRestaurantWeekly;
+
+	public boolean isActiveRestaurantDaily;
 
 	public boolean isNew;
 

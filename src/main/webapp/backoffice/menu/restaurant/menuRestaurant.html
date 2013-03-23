@@ -2,9 +2,13 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="menuRestaurant.css">
 		<script>
+			function onLoadHandler(){
+				window.opener.menuOpened(window.opener);
+			}
 		</script>
 	</head>
-	<body>
+	<body onLoad="onLoadHandler();">
+		menu restaurant
 		<div id="restaurant-menu-div">
 		</div>
 	</body>

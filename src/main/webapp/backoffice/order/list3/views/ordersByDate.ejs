@@ -1,10 +1,14 @@
-<!% this is of class Order %>
-<!% var article = this.entity %>
-<% var order = this %>
+<% var order = this.order %>
+<% var checkedItems = this.checkedItems %>
 
 	<div class="orderRow">
 		<span class="orderItemSelector">
-			<input id="orderItemSelectorCheckbox_<%= order.id %>" type="checkbox" class="orderItemSelectorCheckbox">
+			<input id="orderItemSelectorCheckbox_<%= order.id %>" 
+				orderId="<%= order.id %>" 
+				type="checkbox" 
+				class="orderItemSelectorCheckbox"
+				<%= checkedItems[order.id] ? "checked" : "" %>
+			>
 		</span>
 		<span class="articleName">
 			<%= order.onlyItem.article.name_cz %>

@@ -3,10 +3,25 @@
 <% var articlesWithOrders = this.items %>
 <% var countOrderItems = this.countOrderItems %>
 
+<% 
+// prepare array with all order ID's for this location. Will be used in delivery notification email
+var orderIds = new Array();
+for ( var i = 0; i < articlesWithOrders.length; i++ ) { 
+	var articleWithOrders = articlesWithOrders[i];
+	var orders = articleWithOrders.items;
+	for ( var j = 0; j < orders.length; j++ ) { 
+		var order = orders[j];
+		orderIds.push(order.id);
+	} 
+} 
+%>
+
 <td class="deliveryLocationCell">
 	<%= deliveryLocation.abbreviation %><br>
-	<%= countOrderItems %> 
-	
+	<%= countOrderItems %> <br>
+	<input type="button" class="delivery-notification-button" value="Notify"
+		orderIds="<%= orderIds.join(",") %>"
+	>
 </td>
 
 <td class="articlesCell">

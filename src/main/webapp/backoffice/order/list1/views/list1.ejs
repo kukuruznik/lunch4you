@@ -3,7 +3,10 @@
 	<li>There are no active orders at the moment.</li>
 <% } %>
 
+<!--
 <input type="button" id="refreshList1" value="refresh"/>
+-->
+
 <b>Table by articles</b>
 <% for ( var i = 0; i < groups.length; i++ ) { %>
 		<%== $.View( '//backoffice/order/list1/views/articleWithOrders.ejs', {group : groups[ i ],  openGroups : this.openGroups } ) %>

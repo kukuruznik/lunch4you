@@ -110,12 +110,12 @@ public class ArticleController {
 		
 		return articleDto;
 	}
-	
-	@RequestMapping( value = "/setActive.json", method = RequestMethod.GET )
+
+	@RequestMapping( value = "/setFlag.json", method = RequestMethod.GET )
 	public @ResponseBody
-	ArticleDto setActive(@RequestParam Long articleId, @RequestParam boolean active, @RequestParam String service) {
+	ArticleDto setFlag(@RequestParam Long articleId, @RequestParam String flagName, @RequestParam boolean value) {
 		
-		Article updatedArticle = menuService.setArticleActive( articleId, active, service );
+		Article updatedArticle = menuService.setArticleFlag( articleId, flagName, value );
 
 		ArticleDto articleDto = beanMapper.map( updatedArticle, ArticleDto.class );
 		

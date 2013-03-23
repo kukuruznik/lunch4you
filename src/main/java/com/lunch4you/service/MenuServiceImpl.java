@@ -44,10 +44,6 @@ import com.lunch4you.domain.Referral;
 @Service
 public final class MenuServiceImpl implements MenuService {
 
-	private static final String RESTAURANT = "restaurant";
-
-	private static final String DELIVERY = "delivery";
-
 	private static final Logger logger = LoggerFactory.getLogger( MenuServiceImpl.class );
 
 	@Autowired
@@ -295,7 +291,9 @@ public final class MenuServiceImpl implements MenuService {
 		target.setName_en( article.getName_en());
 		target.setDescription_cz( article.getDescription_cz());
 		target.setDescription_en( article.getDescription_en());
-		target.setPrice( article.getPrice() );
+		target.setPriceDelivery( article.getPriceDelivery() );
+		target.setPriceRestaurant( article.getPriceRestaurant() );
+		target.setIsNew( article.getIsNew() );
 		target.setCategory( category );
 		
 		if(articleId == null){
@@ -309,19 +307,24 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public Article setArticleActive(Long articleId, boolean active, String service) {
+	public Article setArticleFlag(Long articleId, String flagName, boolean value) {
 		Article target = articleDao.load( articleId );
 		
-		if(service.equals(DELIVERY)){
-			target.setIsActiveDelivery( active );
-		} else if(service.equals(RESTAURANT)){
-			target.setIsActiveRestaurant( active );
+		if(flagName.equals("isActiveDelivery")){
+			target.setIsActiveDelivery( value );
+		} else if(flagName.equals("isActiveRestaurantWeekly")){
+			target.setIsActiveRestaurantWeekly( value );
+		} else if(flagName.equals("isActiveRestaurantDaily")){
+			target.setIsActiveRestaurantDaily( value );
+		} else if(flagName.equals("isNew")){
+			target.setIsNew( value );
 		}
 		
 		articleDao.update( target );
 		
 		return target;
 	}
+
 
 	@Override
 	public Article setArticleLimit(Long articleId, Integer limit) {
@@ -509,6 +512,21 @@ public final class MenuServiceImpl implements MenuService {
 
 		for ( Order o : orders ) {
 			orderDao.delete(o);
+		}
+	}
+
+	@Override
+	public void notifyDelivery( List<Long> ids ) {
+		OrderFilter filter = new OrderFilter();
+		filter.ids = ids;
+		List<Order> orders = orderDao.find( filter );
+
+		for ( Order order : orders ) {
+			try {
+				mailingService.sendDeliveryNotification( order );
+			} catch ( MailSendException e ) {
+				logger.error( "Delivery notification e-mail sending failed!", e );
+			}
 		}
 	}
 

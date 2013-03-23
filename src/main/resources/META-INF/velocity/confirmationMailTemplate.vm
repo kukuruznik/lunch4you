@@ -6,7 +6,7 @@ This is an automated confirmation email about your recently placed order to Lunc
 Order details:
 
 Meal:               ${item.Article.Name_cz}/${order.Items.get(0).Article.Name_en}
-Price:              ${item.Article.Price},- CZK #if($isDiscount) ***#end
+Price:              ${item.Article.PriceDelivery},- CZK #if($isDiscount) ***#end
 
 Delivery location:  ${order.deliveryLocation.name}
 Ordered on:         ${orderDate}

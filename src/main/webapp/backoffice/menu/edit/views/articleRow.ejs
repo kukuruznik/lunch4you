@@ -1,6 +1,6 @@
 <% 	var article = this;
 	var isSoldOut = article.isSoldOut; 
-	var isActive = article.isActiveDelivery || article.isActiveRestaurant;
+	var isActive = article.isActiveDelivery || article.isActiveRestaurantWeekly || article.isActiveRestaurantDaily;
 	var isNew = article.isNew;
 	var isDailyLimit = article.dailyLimit != null;
 %>
@@ -9,7 +9,6 @@
 
 		<td class="codeCell">
 			<%= article.code %>
-			<!-- <br><%= article.isActiveDelivery %>,<%= article.isActiveRestaurant %>,<%= isActive %> -->
 		</td>
 		<td class="articleCell">
 			<div class="meal-header">
@@ -26,24 +25,29 @@
 			</div>
 		</td>
 		<td class="priceCell">
-			<%= article.price %>,-
+			<%= article.priceDelivery %>,-
+		</td>
+		<td class="priceCell">
+			<%= article.priceRestaurant %>,-
 		</td>
 		<td class="limitCell">
 			<input class="daily-limit-input" type="text" initialValue="<%= article.dailyLimit %>" value="<%= article.dailyLimit %>" onclick="this.select()">
 		</td>
-		<td class="actionsCell <%= isActiveDelivery ? "active" : "inactive" %>">
-			<% if(article.isActiveDelivery) { %>
-				<a href="javascript:" class="action-link" action="deactivateDelivery">Deactivate<br>Delivery</a>
-			<% } else { %>
-				<a href="javascript:" class="action-link" action="activateDelivery">Activate<br>Delivery</a>
-			<% } %>
+		<td class="actionsCell">
+			New<br>
+			<input id="flagCheckbox" flagName="isNew" type="checkbox" <%= isNew ? "checked" : "" %>>
 		</td>
-		<td class="actionsCell <%= isActiveRestaurant ? "active" : "inactive" %>">
-			<% if(article.isActiveRestaurant) { %>
-				<a href="javascript:" class="action-link" action="deactivateRestaurant">Deactivate<br>Restaurant</a>
-			<% } else { %>
-				<a href="javascript:" class="action-link" action="activateRestaurant">Activate<br>Restaurant</a>
-			<% } %>
+		<td class="actionsCell <%= isActiveDelivery ? "active" : "inactive" %>">
+			Del<br>
+			<input id="flagCheckbox" flagName="isActiveDelivery" type="checkbox" <%= isActiveDelivery ? "checked" : "" %>>
+		</td>
+		<td class="actionsCell <%= isActiveRestaurantWeekly ? "active" : "inactive" %>">
+			RestW<br>
+			<input id="flagCheckbox" flagName="isActiveRestaurantWeekly" type="checkbox" <%= isActiveRestaurantWeekly ? "checked" : "" %>>
+		</td>
+		<td class="actionsCell <%= isActiveRestaurantDaily ? "active" : "inactive" %>">
+			RestD<br>
+			<input id="flagCheckbox" flagName="isActiveRestaurantDaily" type="checkbox" <%= isActiveRestaurantDaily ? "checked" : "" %>>
 		</td>
 	</tr>
 		

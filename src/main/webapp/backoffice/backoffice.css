@@ -47,9 +47,26 @@ h5:HOVER {
 	background-color: #eee;
 }
 
+#navigation {
+	border : 0px black solid;
+	margin-bottom : 10px;
+}
+
 div.tab-selectors{
 	border : 0px grey solid;
-	margin-bottom : 10px;
+	float : left;
+	clear : none;
+}
+
+div.menu-navigation {
+	float : right;
+}
+
+div.menu-link{
+	border : 0px grey solid;
+	display : inline;
+	text-decoration : underline;
+	cursor : pointer;
 }
 
 div.tab-selectors div.tab-selector{
@@ -441,7 +458,8 @@ input[type=text], input[type=password] {
 
 
 #menuTable td.actionsCell {
-	width : 100px;
+	width : 50px;
+	border : 1px gray solid;
 }
 
 

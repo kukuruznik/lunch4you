@@ -8,9 +8,6 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 
 	/** @Static */
 	{
-		//constants for services
-		service_Delivery : "delivery",
-		service_Restaurant : "restaurant"
 	},
 
 	/** @Prototype */
@@ -21,8 +18,8 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 					"edit" : this._editArticle,
 					"activateDelivery" : this._activateArticleDelivery,
 					"deactivateDelivery" : this._deactivateArticleDelivery,
-					"activateRestaurant" : this._activateArticleRestaurant,
-					"deactivateRestaurant" : this._deactivateArticleRestaurant,
+					"activateRestaurantWeekly" : this._activateArticleRestaurantWeekly,
+					"deactivateRestaurantWeekly" : this._deactivateArticleRestaurantWeekly,
 					"setIsNew" : this._deactivateArticleRestaurant
 			};
 			
@@ -59,6 +56,16 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 				Backoffice.Models.Article.setLimit( articleId, val ).done( this.proxy( "_articleSaved" ) );
 			}
 		},
+		
+		
+		"#flagCheckbox click": function( el, evt ) {
+		
+			var articleId = this._getArticleIdFromParent(el);
+			var flagName = el.attr("flagName");
+			var value = el.is(":checked");
+
+			Backoffice.Models.Article.setFlag( articleId, flagName, value ).done( this.proxy( "_articleSaved" ) );
+		},
 
 		"#cancelButton click": function( el, evt ) {
 
@@ -94,22 +101,6 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			this._showArticleEditDialog( article, articleRow );
 		},
 
-		_activateArticleDelivery: function( article ) {
-			Backoffice.Models.Article.setActive( article.id, true, this.Class.service_Delivery ).done( this.proxy( "_articleSaved" ) );
-		},
-
-		_deactivateArticleDelivery: function( article ) {
-			Backoffice.Models.Article.setActive( article.id, false, this.Class.service_Delivery ).done( this.proxy( "_articleSaved" ) );
-		},
-
-		_activateArticleRestaurant: function( article ) {
-			Backoffice.Models.Article.setActive( article.id, true, this.Class.service_Restaurant ).done( this.proxy( "_articleSaved" ) );
-		},
-
-		_deactivateArticleRestaurant: function( article ) {
-			Backoffice.Models.Article.setActive( article.id, false, this.Class.service_Restaurant ).done( this.proxy( "_articleSaved" ) );
-		},
-
 		_saveArticle: function( fp ) {
 			
 			var article = new function(){};
@@ -119,7 +110,9 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			article.name_en = fp.name_en;
 			article.description_cz = fp.description_cz;
 			article.description_en = fp.description_en;
-			article.price = fp.price;
+			article.priceDelivery = fp.priceDelivery;
+			article.priceRestaurant = fp.priceRestaurant;
+			article.isNew = fp.isNew ? true : false;
 			
 			Backoffice.Models.Article.createOrUpdateArticle( article, fp.categoryId ).done( this.proxy( "_articleSaved" ) );
 		},
