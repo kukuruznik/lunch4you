@@ -20,16 +20,7 @@ steal(
 
 	/** @Static */
 	{
-		_availableLocales: [ "cz", "en" ],
 		
-		getAvailableLocales : function() {
-			return this._availableLocales;
-		},
-		
-		getLocale : function() {
-			return "cz";
-		} 
-
 	},
 
 	/** @Prototype */
@@ -40,54 +31,26 @@ steal(
 			// reference to another window with menu
 			this.menuWindow = null;
 			
-			// we need to set this up in order to prevent IE from caching the AJAX responses
-			$.ajaxSetup( { cache: false } );
-			
-			Backoffice.Main.dictionary = new Array();
-
-
-			$.EJS.Helpers.prototype.msg = function( key, locale ) {
-				return Backoffice.Main.dictionary[locale][ key ];
-			};
-
-			$.EJS.Helpers.prototype.localize = function( object, attrName, locale ) {
-				
-				return object[ attrName + "_" + (locale ? locale : Backoffice.Main.getLocale()) ];
-			};
 			
 			var self = this;
 			window.menuOpened = function( menuWindow ) {
 				self._loadRestaurantData( menuWindow );
 			};
-		
-
-			
-			var dictionaryDfrEN = Shop.Models.Dictionary.loadDictionary( "en", this.proxy( "_dictionaryLoadedEN" ) );
-			var dictionaryDfrCZ = Shop.Models.Dictionary.loadDictionary( "cz", this.proxy( "_dictionaryLoadedCZ" ) );
-//
-//			$.when( customerDfr, deliveryLocationsDfr, dictionaryDfr ).done( this.proxy( "_render" ) );
-			
-		},
-
-
-		_dictionaryLoadedEN: function( dictionary ) {
-			Backoffice.Main.dictionary["en"] = dictionary;
-		},
-
-		_dictionaryLoadedCZ: function( dictionary ) {
-			Backoffice.Main.dictionary["cz"] = dictionary;
 		},
 
 
 		_loadRestaurantData: function( menuWindow ) {
-			if (this.menuType == "restaurantWeekly"){
-				
-			} else if (this.menuType == "restaurantDaily") {
-				
-			}
+
 			var activeDelivery = null;
-			var activeRestaurant = true;
-			Backoffice.Models.Article.getGroupedMenu( activeDelivery, activeRestaurant ).done( this.proxy( "_renderRestaurantMenu" ) );
+			var activeRestaurantWeekly = null;
+			var activeRestaurantDaily = null;
+
+			if (this.menuType == "restaurantWeekly"){
+				activeRestaurantWeekly = true;				
+			} else if (this.menuType == "restaurantDaily") {
+				activeRestaurantDaily = true;				
+			}
+			Backoffice.Models.Article.getGroupedMenu( activeDelivery, activeRestaurantWeekly, activeRestaurantDaily ).done( this.proxy( "_renderRestaurantMenu" ) );
 		},
 		
 		_renderRestaurantMenu : function( groupedMenu ) {
@@ -99,7 +62,7 @@ steal(
 			// save menu type to controller to refer to later
 			this.menuType = el.attr("menuType");
 
-			// save menu type to controller to refer to later
+			// save locale to controller to refer to later
 			this.menuLocale = el.attr("locale");
 
 			

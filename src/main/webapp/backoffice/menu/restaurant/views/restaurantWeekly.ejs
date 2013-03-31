@@ -1,6 +1,6 @@
 <% var groupedMenu = this.groupedMenu %>
 <% var locale = this.locale %>
-<div id="menuDiv">
+<div id="menuDiv" class="menu-weekly">
 	<div id="menuHeader">
 		Lunch4you - <%= msg("menu.menuType.restaurantWeekly", locale) %>
 	</div>
@@ -48,7 +48,7 @@
 					</div>
 				</td>
 				<td class="priceCell">
-					<%= article.price %>,- Kč
+					<%= article.priceRestaurant %>,- Kč
 				</td>
 			</tr>
 		<% } %>

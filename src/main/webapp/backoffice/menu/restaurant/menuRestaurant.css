@@ -2,10 +2,13 @@ body {
 	font-family: Lucida Sans, Lucida Grande, Tahoma, sans-serif;
 	margin: 0;
 	line-height: 22px;
-	width: 960px;
+	width : 960px;
 	margin: 0 auto;
 }
 
+hr {
+	width : 80%;
+}
 
 /*
 	Menu (article list) 
@@ -15,16 +18,23 @@ body {
 #menuDiv {
 	width : 100%;
 	border : 0px red solid;
-	background: url("/lunch4you/bg_content2.png") repeat-y scroll left top transparent;
-	background-size:100%;
 	text-align : center;
 	margin-top : 10px;
 	margin-bottom : 20px;
-	border-top : 3px lightgray outset;
-	border-bottom : 3px lightgray outset;
-	border-bottom : 3px lightgray inset;
 	padding-top : 20px;
 	padding-bottom : 0px;
+}
+
+#menuDiv.menu-weekly {
+	background: url("/lunch4you/bg_content2.png") repeat-y scroll left top transparent;
+	background-size:100%;
+	border-top : 3px lightgray outset;
+	border-bottom : 3px lightgray inset;
+}
+
+#menuDiv.menu-daily {
+	border : 0px gray solid;
+	height : 650px;
 }
 
 #menuHeader {
@@ -60,8 +70,9 @@ body {
 }
 
 #menuTable td.categoryCell {
-	font-size : 1.1em;
+	font-size : 1.3em;
 	font-weight : bold;
+	font-style : italic;
 	padding : 10px 0px 10px 0px;
 }
 
@@ -79,6 +90,7 @@ body {
 	width : 50px;
 	vertical-align : top;
 	padding-left : 10px;
+	font-size : 1.2em;
 	font-style : italic;
 	font-weight : bold;
 	//color : gray;
@@ -101,6 +113,7 @@ body {
 	padding-botom : 0px;
 	font-weight : bold;
 	border : 0px blue solid;
+	font-size : 1.2em;
 }
 
 #menuTable span.meal-new-label {
@@ -137,5 +150,6 @@ body {
 	width : 80px;
 	padding-left : 5px;
 	vertical-align : bottom;
+	//font-size : 1.2em;
 }
 

@@ -38,7 +38,7 @@ public interface MenuService {
 
 	List<Article> getMenu();
 
-	LinkedHashMap<Long, CategoryWithArticles> getArticlesByCategories(Boolean activeDelivery, Boolean activeRestaurant);
+	LinkedHashMap<Long, CategoryWithArticles> getArticlesByCategories(Boolean activeDelivery, Boolean activeRestaurantWeekly, Boolean activeRestaurantDaily);
 
 	List<Category> getCategories();
 

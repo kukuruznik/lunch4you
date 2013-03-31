@@ -12,7 +12,7 @@
 	"menu.article.soldOut.label": "Sold Out",
 	"menu.article.new.label": "New",
 	"menu.menuType.restaurantWeekly" : "Weekly Menu",
-	"menu.menuType.restaurantDaily" : "Daily Specials",
+	"menu.menuType.restaurantDaily" : "Today's specials",
 
 	"order.detail.customer": "Customer",
 	"order.detail.deliveryLocation": "Delivery Location",

@@ -252,13 +252,15 @@ public final class MenuServiceImpl implements MenuService {
 	 * Returns all Articles grouped by Categories. Used for generating menu.
 	 */
 	@Override
-	public LinkedHashMap<Long, CategoryWithArticles> getArticlesByCategories(Boolean activeDelivery, Boolean activeRestaurant) {
+	public LinkedHashMap<Long, CategoryWithArticles> getArticlesByCategories(Boolean activeDelivery, Boolean activeRestaurantWeekly, Boolean activeRestaurantDaily) {
 
 		ArticleFilter filter = new ArticleFilter();
 		if(activeDelivery != null)
 			filter.isActiveDelivery = activeDelivery;
-		if(activeRestaurant != null)
-			filter.isActiveRestaurant = activeRestaurant;
+		if(activeRestaurantWeekly != null)
+			filter.isActiveRestaurantWeekly = activeRestaurantWeekly;
+		if(activeRestaurantDaily != null)
+			filter.isActiveRestaurantDaily = activeRestaurantDaily;
 		List<Article> articles = articleDao.find(filter );
 		LinkedHashMap<Long, CategoryWithArticles> categoriesWithArticles = new LinkedHashMap<Long, CategoryWithArticles>();
 		for(Article article : articles){
@@ -429,7 +431,7 @@ public final class MenuServiceImpl implements MenuService {
 	@Override
 	public List<Map<String,Object>> sendMenu( ) {
 
-		LinkedHashMap<Long,CategoryWithArticles> groupedMenu = getArticlesByCategories(true, null);
+		LinkedHashMap<Long,CategoryWithArticles> groupedMenu = getArticlesByCategories(true, null, null);
 
 		List<Customer> customers = getSubscribedCustomers(true, null);
 		
@@ -484,7 +486,7 @@ public final class MenuServiceImpl implements MenuService {
 			
 			mailingService.sendReferral(referral);
 			
-			mailingService.sendMenu(recipient, getArticlesByCategories(true, null));
+			mailingService.sendMenu(recipient, getArticlesByCategories(true, null, null));
 	
 		}
 		return referrals;

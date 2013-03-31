@@ -69,13 +69,16 @@ public class ArticleController {
 	List<CategoryWithArticlesDto> getArticlesGroupedByCategory(@RequestParam Map<String,String> params) {
 		logger.trace( "ArticleController.getArticlesGroupedByCategory called" );
 		
-		String parActiveRestaurant = params.get("activeRestaurant");
-		Boolean activeRestaurant = parActiveRestaurant.equals("null") ? null : Boolean.parseBoolean(parActiveRestaurant);
-
 		String parActiveDelivery = params.get("activeDelivery");
 		Boolean activeDelivery = parActiveDelivery.equals("null") ? null : Boolean.parseBoolean(parActiveDelivery);
+
+		String parActiveRestaurantWeekly = params.get("activeRestaurantWeekly");
+		Boolean activeRestaurantWeekly = parActiveRestaurantWeekly.equals("null") ? null : Boolean.parseBoolean(parActiveRestaurantWeekly);
 		
-		LinkedHashMap<Long,CategoryWithArticles> categoriesWithArticles = menuService.getArticlesByCategories( activeDelivery, activeRestaurant );
+		String parActiveRestaurantDaily = params.get("activeRestaurantDaily");
+		Boolean activeRestaurantDaily = parActiveRestaurantDaily.equals("null") ? null : Boolean.parseBoolean(parActiveRestaurantDaily);
+
+		LinkedHashMap<Long,CategoryWithArticles> categoriesWithArticles = menuService.getArticlesByCategories( activeDelivery, activeRestaurantWeekly, activeRestaurantDaily );
 		List<CategoryWithArticlesDto> categoriesWithArticlesDtos = new ArrayList<CategoryWithArticlesDto>( );
 
 		for ( CategoryWithArticles categoryWithArticles : categoriesWithArticles.values() ) {

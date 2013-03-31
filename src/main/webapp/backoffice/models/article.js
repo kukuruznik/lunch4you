@@ -51,9 +51,9 @@ $.Model('Backoffice.Models.Article',
 			});
 		},
 
-	  	getGroupedMenu: function( activeDelivery, activeRestaurant, success, error ) {
+	  	getGroupedMenu: function( activeDelivery, activeRestaurantWeekly, activeRestaurantDaily, success, error ) {
 	  		return $.ajax({
-	  			url: "articles/groupedByCategory.json?activeDelivery=" + activeDelivery + "&activeRestaurant=" + activeRestaurant,
+	  			url: "articles/groupedByCategory.json?activeDelivery=" + activeDelivery + "&activeRestaurantWeekly=" + activeRestaurantWeekly + "&activeRestaurantDaily=" + activeRestaurantDaily,
 	  			dataType: "json article.models",
 	  			success: success,
 	  			error: error || Backoffice.errorHandler

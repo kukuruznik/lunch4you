@@ -2,11 +2,7 @@
 	<div>There are no active orders at the moment.</div>
 <% } %>
 <% for ( var i = 0; i < this.length; i++ ) { %>
-<table id="packagingTable">
-	<tr>
-		<%== $.View( '//backoffice/order/list2/views/deliveryLocationWithArticles.ejs', this[ i ] ) %>
-	</tr>
-</table>
-<br class="pageBreak">
+	<%== $.View( '//backoffice/order/list2/views/deliveryLocationWithArticles.ejs', this[ i ] ) %>
+	<br class="pageBreak">
 <% } %>
 

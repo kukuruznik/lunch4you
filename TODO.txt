@@ -1,6 +1,12 @@
+- doladit velkosti pisma pre menu v restike
+- delivery notification
+	- dodat Alert a potom alert o uspesnom odoslani
+- pisanie mailu otvarat do noveho okna
+- pridat miesto pre telefonne cislo
 - oznacenie hotoviek
 - oznacenie uz napisanych krabiciek
-- zrusit refresh chronologickeho zoznamu
+	- dorobit flag na objednavku, zapamatat v databaze
+	- dorobit checkbox do oboch stlpcov v Cooking view
 - na packaging napisat pocty polievok a salatov
 	- page break medzi firmami
 - zastavit / spustit predaj jednotlivych jedal
@@ -9,9 +15,9 @@
 
 
 ==========   BUGS     =====================
+- If I change my default delivery location, it is applied only after refresh
 - backoffice data is cached on DHL proxy, need to add non-cache for .json files
 - after deleting / closing orders in backoffice view, only the table with orders refreshes, need to refresh the table by articles as well
-- Language selector in IE6 is completely outside service box and does not do anything when clicked
 
 ==========   TODO     =====================
 
@@ -20,9 +26,7 @@
 
 - Rollout - Accenture
 	- notification about pickup at OC Ruze
-	- edit account / unsubscribe
 	- ordering time for pickup at OC Ruze
-	- double ordering prevention
 
 
 - General

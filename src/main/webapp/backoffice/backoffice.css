@@ -1,3 +1,9 @@
+@media print {
+	.noPrint {
+		display:none;
+	}
+}
+
 body {
 	font-family:Lucida Sans,Lucida Grande,Arial,sans-serif;
 	margin:0;
@@ -40,11 +46,15 @@ h4 {
 }
 
 br.pageBreak {
-	page-break-after : always;
+	//page-break-after : always;
 }
 
 h5:HOVER {
 	background-color: #eee;
+}
+
+#backoffice-header {
+	
 }
 
 #navigation {
@@ -197,61 +207,74 @@ div.tab-selectors div.tab-selector{
 
 /***************************************/
 
-#meals2 #packagingTable{
+#packagingLocation {
+	border : 1px gray solid;
+	padding : 10px;	
+}
+
+#packagingStatsTable {
 	table-layout:fixed; 
-	width : 1000px;
-	border-spacing : 0px;
-	//border-collapse:collapse;
-	border : 2px black solid;
-	font-size : 1.5em; 
-}
-
-
-#meals2 #packagingTable td{
-	/* This coloroverrides all different colors for particular cells */
-	border-color : black;
-}
-
-
-#meals2 .deliveryLocationCell {
-	border : 2px red solid;
-	width : 120px; 
-	padding : 4px;
-	vertical-align : top;
-}
-
-#meals2 .articlesCell {
-	border : 0px red solid;
-	padding : 0px;
-	width : *; 
-}
-
-#meals2 .articlesTable {
-	table-layout : fixed;
 	width : 100%;
 	border-spacing : 0px;
-	//border-collapse:collapse;
-	border : 0px black solid;
+	border : 2px gray solid;
+	font-size : 1.5em; 
+	margin-bottom : 10px;
+}
+
+#packagingStatsTable td {
+	border : 2px gray solid;
+	padding : 4px;
+}
+
+#packagingStatsTable .deliveryLocationCell {
+	//border : 2px red solid;
+	width : 150px;
+	vertical-align : center;
+	font-weight : bold;
+}
+
+#packagingStatsTable td.stat-column {
+	text-align : center;
+}
+
+#packagingStatsTable td.dummy-column {
+	width : *;
+}
+
+#packagingTable {
+	table-layout:fixed; 
+	width : 100%;
+	border-spacing : 0px;
+	border : 1px gray solid;
+	margin-left : 0px;
+	font-size : 1.2em; 
 }
 
 
-#meals2 .articlesTable td{
+#packagingTable td{
+	/* This coloroverrides all different colors for particular cells */
+	border-color : black;
+	border : 1px gray solid;
+	vertical-align : top;
+	padding : 4px;
+}
+
+#packagingTable .articleCountCell {
+	width : 40px;
+	text-align : center;
+}
+
+#packagingTable .articleCell {
+	width : 500px; 
+}
+
+#packagingTable .ordersCell {
+	width : *; 
+	border : 0px gray solid;
 	padding : 0px;
 }
 
-#meals2 .articleCell {
-	width : 500px; 
-	padding : 4px;
-	vertical-align : top;
-	border : 2px gray solid;
-}
-
-#meals2 .ordersCell {
-	width : *; 
-	border : 0px gray solid;
-}
-
-#meals2 .ordersTable {
+#packagingTable .ordersTable {
 	table-layout : fixed;
 	width : 100%;
 	border-spacing : 0px;
@@ -259,10 +282,9 @@ div.tab-selectors div.tab-selector{
 	border : 0px green solid;
 }
 
-#meals2 .ordersTable td {
-	border : 2px lightgreen solid;
-	height : 1.5em;
-	padding-left : 4px;
+#packagingTable .ordersTable td {
+	border : 1px gray solid;
+	padding : 4px;
 }
 
 span.switch {

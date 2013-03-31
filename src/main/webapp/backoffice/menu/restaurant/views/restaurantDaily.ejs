@@ -1,7 +1,16 @@
+<% var groupedMenu = this.groupedMenu %>
+<% var locales = Backoffice.Main.getAvailableLocales(); %>
 
-<div id="menuDiv">
+<% for ( var h = 0; h < locales.length; h++ ) { 
+	var locale = locales[h];
+%>
+
+	<% if (h < locales.length){ %>
+	<% } %>
+
+<div id="menuDiv" class="menu-daily">
 	<div id="menuHeader">
-		Lunch4you - Menu
+		<%= msg("menu.menuType.restaurantDaily", locale) %>
 	</div>
 	<table id="menuTable">
 		<tr class="headerRow">
@@ -10,13 +19,13 @@
 			<td class="articleCell"></td>
 			<td class="priceCell"></td>	
 		</tr>
-	<% for ( var i = 0; i < this.length; i++ ) { %>
-		<% var category =  this[i].entity; %>
-		<% var articles = this[i].items %>
+	<% for ( var i = 0; i < groupedMenu.length; i++ ) { %>
+		<% var category =  groupedMenu[i].entity; %>
+		<% var articles = groupedMenu[i].items %>
 		<tr>
 			<td class="newFlagCell"></td>
 			<td colspan="3" class="categoryCell">
-				<%= localize( category, "name" ) %>
+				<%= localize( category, "name", locale ) %>
 			</td>
 		</tr>
 		<% for ( var j = 0; j < articles.length; j++ ) { %>
@@ -28,7 +37,7 @@
 			<tr class="articleRow">
 				<td class="newFlagCell">
 					<% if( isNew ) { %> 
-							<span class="meal-new-label"><%= msg("menu.article.new.label") %></span> 
+							<span class="meal-new-label"><%= msg("menu.article.new.label", locale) %></span> 
 					<% } %>
 				</td>
 				<td class="codeCell">
@@ -36,26 +45,23 @@
 				</td>
 				<td class="articleCell">
 					<span class="meal-header">
-						<%= localize( article, "name" ) %>						
+						<%= localize( article, "name", locale ) %>						
 					</span>
 					<br>
 					<div class="articleDiv">
 					<span class="meal-description">
-						(<%= localize( article, "description" ) %>)
+						(<%= localize( article, "description", locale ) %>)
 						. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 					</span>
 					</div>
 				</td>
 				<td class="priceCell">
-					<%= article.price %>,- Kč
+					<%= article.priceRestaurant %>,- Kč
 				</td>
 			</tr>
 		<% } %>
 		
 	<% } %>
 	</table>
-	<div id="menuFooter">
-		<hr style="width : 80%; border-color : lightgray;"/>
-		web: www.lunch4you.cz | email: lunch4you.cz@gmail.com | tel: +420 774 096 313
-	</div>
 </div>
+<% } %>

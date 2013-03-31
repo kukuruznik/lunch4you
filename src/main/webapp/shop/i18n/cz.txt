@@ -12,7 +12,7 @@
 	"menu.article.soldOut.label": "Vyprodáno",
 	"menu.article.new.label": "Nové",
 	"menu.menuType.restaurantWeekly" : "Týdení Menu",
-	"menu.menuType.restaurantDaily" : "Denní nabídka",
+	"menu.menuType.restaurantDaily" : "Dnešní nabídka",
 
 	"order.detail.customer": "Zákazník",
 	"order.detail.deliveryLocation": "Místo vyzvednutí",

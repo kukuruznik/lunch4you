@@ -168,9 +168,11 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_reloadMenu: function() {
+			// create filter variables and leave them empty to show all articles
 			var activeDelivery = null;
-			var activeRestaruant = null;
-			Backoffice.Models.Article.getGroupedMenu( activeDelivery, activeRestaruant ).done( this.proxy( "_dataLoaded" ) );
+			var activeRestaruantWeekly = null;
+			var activeRestaruantDaily = null;
+			Backoffice.Models.Article.getGroupedMenu( activeDelivery, activeRestaruantWeekly, activeRestaruantDaily ).done( this.proxy( "_dataLoaded" ) );
 		},
 
 		_dataLoaded: function( groupedMenu ) {

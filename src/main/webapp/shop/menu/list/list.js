@@ -1,7 +1,6 @@
 steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 	
-	"./views/list.ejs", 
-	"./views/restaurantMenu.ejs", 
+	"./views/list.ejs",
 	
 	function( $ ) {
 
@@ -28,9 +27,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then(
 		},
 
 		_reloadMenu: function() {
-			var activeDelivery = true;
-			var activeRestaurant = null;
-			Shop.Models.Article.getGroupedMenu( activeDelivery, activeRestaurant ).done( this.proxy( "_render" ) );
+			Shop.Models.Article.getGroupedMenu( ).done( this.proxy( "_render" ) );
 		},
 
 		_render: function( menu ) {

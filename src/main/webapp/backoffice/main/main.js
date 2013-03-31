@@ -34,10 +34,36 @@ steal(
 	/** @Prototype */
 	{
 		init: function() {
+
+			// we need to set this up in order to prevent IE from caching the AJAX responses
+			$.ajaxSetup( { cache: false } );
 			
-			this._render();
+			Backoffice.Main.dictionary = new Array();
+
+
+			$.EJS.Helpers.prototype.msg = function( key, locale ) {
+				return Backoffice.Main.dictionary[locale][ key ];
+			};
+
+			$.EJS.Helpers.prototype.localize = function( object, attrName, locale ) {
+				
+				return object[ attrName + "_" + (locale ? locale : Backoffice.Main.getLocale()) ];
+			};
+			var dictionaryDfrEN = Shop.Models.Dictionary.loadDictionary( "en", this.proxy( "_dictionaryLoadedEN" ) );
+			var dictionaryDfrCZ = Shop.Models.Dictionary.loadDictionary( "cz", this.proxy( "_dictionaryLoadedCZ" ) );
+//
+			$.when( dictionaryDfrEN, dictionaryDfrCZ ).done( this.proxy( "_render" ) );
 			
 		},
+
+		_dictionaryLoadedEN: function( dictionary ) {
+			this.Class.dictionary["en"] = dictionary;
+		},
+
+		_dictionaryLoadedCZ: function( dictionary ) {
+			this.Class.dictionary["cz"] = dictionary;
+		},
+
 
 		_render: function() {
 			// render the main page structure

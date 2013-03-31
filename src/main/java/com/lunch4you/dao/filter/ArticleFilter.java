@@ -5,6 +5,7 @@ public final class ArticleFilter {
 
 	public Boolean isActiveDelivery;
 
-	public Boolean isActiveRestaurant;
+	public Boolean isActiveRestaurantWeekly;
 
+	public Boolean isActiveRestaurantDaily;
 }
