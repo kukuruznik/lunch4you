@@ -6,6 +6,7 @@ steal(
 	'./order/list2/list2.js',
 	'./order/list3/list3.js',
 	'./menu/edit/menuEdit.js',
+	'backoffice/label/print',
 	'./menu/restaurant/menuRestaurant.js',
 	'//common/login/login.js'
 ).then( 

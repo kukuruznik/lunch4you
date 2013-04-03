@@ -73,6 +73,7 @@ steal(
 			$( '#meals2' ).backoffice_order_list2();
 			$( '#meals3' ).backoffice_order_list3();
 			$( '#menuEdit' ).backoffice_menu_edit();
+			$( '#labelPrinting' ).backoffice_label_print();
 			$( '#menuNavigation' ).backoffice_menu_restaurant();
 
 		},

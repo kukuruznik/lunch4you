@@ -1,0 +1,39 @@
+<% var pages = this %>
+
+<div id="print-preview">
+<% for ( var pageIndex = 0; pageIndex < pages.length; pageIndex++ ) { %>
+	<% var rows = pages[ pageIndex ] %>
+	<div class="page" data-number="<%= pageIndex %>">
+		<% for ( var rowIndex = 0; rowIndex < rows.length; rowIndex++ ) { %>
+			<% var row = rows[ rowIndex ] %>
+			<% for ( var i = 0; i < row.length; i++ ) { %>
+				<% var order = row[ i ] %>
+				<div class="label-position" data-row="<%= rowIndex %>" data-col="<%= i %>">
+				<% if ( order === false ) { %>
+					<div class="not-used">(empty)</div>
+				<% } else if ( order == null ) { %>
+					<ul>
+						<li>&nbsp;</li>
+					</ul>
+				<% } else { %>
+					<ul>
+						<li><%= order.entity.name_cz %></li>
+						<li><%= order.entity.name_en %></li>
+						<li>
+						<% if ( order.items[ 0 ].note ) { %>
+							<%= order.items[ 0 ].note %>
+						<% } else { %>
+							&nbsp;
+						<% } %>
+						</li>
+						<li>&nbsp;</li>
+						<li><%= order.items[ 0 ].owner.firstName %></li>
+						<li><%= order.items[ 0 ].deliveryLocation.name %></li>
+					</ul>
+				<% } %>
+				</div>
+			<% } %>
+		<% } %>
+	</div>
+<% } %>
+</div>
