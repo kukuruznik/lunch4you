@@ -15,7 +15,6 @@ steal( "jquery/controller", "jquery/view/ejs", "jquery/controller/view" ).then( 
 		init: function() {
 			this.rows = 5;
 			this.cols = 2; // would be fine to externalize
-			this.labelsPerPage = this.rows * this.cols;
 
 			this._refresh();
 		},
@@ -89,7 +88,6 @@ steal( "jquery/controller", "jquery/view/ejs", "jquery/controller/view" ).then( 
 				addPageTemplateIfMissing = function() {
 					// the number of page templates is always greater or equal to the page index
 					if ( self.pageTemplates.length == pageNum ) {
-						console.log( "Adding page template", self.pageTemplates.length );
 						self.pageTemplates.push( createNewPageTemplate() );
 					}
 				},
@@ -97,7 +95,6 @@ steal( "jquery/controller", "jquery/view/ejs", "jquery/controller/view" ).then( 
 				addPageIfMissing = function() {
 					// the number of pages is always greater or equal to the page index
 					if ( self.pages.length == pageNum ) {
-						console.log( "Adding page ", self.pages.length );
 						self.pages.push( [] );
 					}
 				},
@@ -107,7 +104,6 @@ steal( "jquery/controller", "jquery/view/ejs", "jquery/controller/view" ).then( 
 
 					// the number of rows is always greater or equal to the row index
 					if ( lastPage.length == row ) {
-						console.log( "Adding row ", lastPage.length );
 						lastPage.push( [] );
 					}
 				},
@@ -125,7 +121,7 @@ steal( "jquery/controller", "jquery/view/ejs", "jquery/controller/view" ).then( 
 				};
 
 			// initializing the templates (masks)
-			this.pageTemplates = [];
+			this.pageTemplates = this.pageTemplates || [];
 
 			if ( Backoffice.lastPage )
 				this.pageTemplates.push( Backoffice.lastPage );
