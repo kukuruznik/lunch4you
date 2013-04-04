@@ -96,6 +96,7 @@ CREATE TABLE `order_item` (
   `amount` int(11) NOT NULL,
   `article_id` bigint(20) NOT NULL,
   `order_id` bigint(20) NOT NULL,
+  `is_label_printed` tinyint(1) DEFAULT '0',
   `version` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `order_items_article` (`article_id`),

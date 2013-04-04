@@ -8,4 +8,6 @@ public class OrderItemDto {
 	public Integer amount;
 
 	public ArticleDto article;
+
+	public Boolean isLabelPrinted;
 }

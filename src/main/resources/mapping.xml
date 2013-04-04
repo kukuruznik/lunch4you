@@ -213,6 +213,10 @@
 			<a>article</a>
 			<b is-accessible="true">article</b>
 		</field>
+		<field>
+			<a>isLabelPrinted</a>
+			<b is-accessible="true">isLabelPrinted</b>
+		</field>
 	</mapping>
 
 	<mapping>

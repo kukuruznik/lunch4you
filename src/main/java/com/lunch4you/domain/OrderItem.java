@@ -34,6 +34,8 @@ public class OrderItem {
 	@JoinColumn( name = "order_id", insertable=false, updatable=false  )
 	private Order order;
 
+	private Boolean isLabelPrinted = false;
+
 	public Long getId() {
 		return id;
 	}
@@ -74,6 +76,14 @@ public class OrderItem {
 		this.order = order;
 	}
 
+	public Boolean getIsLabelPrinted() {
+		return isLabelPrinted;
+	}
+
+	public void setIsLabelPrinted(Boolean isLabelPrinted) {
+		this.isLabelPrinted = isLabelPrinted;
+	}
+
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append( '(' ).append( id ).append( ") " );
@@ -82,5 +92,4 @@ public class OrderItem {
 		sb.append( " = " ).append( article == null ? "N/A" : article.getPriceDelivery() * amount ).append( " credit(s)" );
 		return sb.toString();
 	}
-
 }
