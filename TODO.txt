@@ -1,32 +1,33 @@
-- doladit velkosti pisma pre menu v restike
-- delivery notification
-	- dodat Alert a potom alert o uspesnom odoslani
+- Backoffice
+	- dorobit navigaciu
+- packaging view
+	- dorobit priamu navigaciu pre boba
+	- asi najlepsie aj samostatne view
+- Menu email
+	- move link to current menu to top
+	- move recommendation to the top
+	- notification about pickup at OC Ruze
 - pisanie mailu otvarat do noveho okna
 - pridat miesto pre telefonne cislo
 - oznacenie hotoviek
 - oznacenie uz napisanych krabiciek
 	- dorobit flag na objednavku, zapamatat v databaze
 	- dorobit checkbox do oboch stlpcov v Cooking view
-- na packaging napisat pocty polievok a salatov
-	- page break medzi firmami
 - zastavit / spustit predaj jednotlivych jedal
 - zastavit predaj kompletne
 	- vsetko okrem hotoviek, vsetko 
 
-
 ==========   BUGS     =====================
 - If I change my default delivery location, it is applied only after refresh
-- backoffice data is cached on DHL proxy, need to add non-cache for .json files
 - after deleting / closing orders in backoffice view, only the table with orders refreshes, need to refresh the table by articles as well
 
 ==========   TODO     =====================
 
 - Re-enable saving / loading from cookies
 - Refactor all Business contact information into properties / DB
+	- change Contacts page to use properties values, not hardcoded contacts
 
-- Rollout - Accenture
-	- notification about pickup at OC Ruze
-	- ordering time for pickup at OC Ruze
+- ordering time for pickup at OC Ruze
 
 
 - General
@@ -46,7 +47,8 @@
 - UI Consolidation
 	- technique for building editable forms. Currently Register Customer uses tables, Refarral dialog uses DIVs.
 	- extract stylesheets into multiple separate files to introduce more clarity
-	
+	- validations
+		- currently same validations are coded individually (multiple times). E.g. email validation in registration and profile forms	
 - Pickup and payment instructions
 	- separate payment and pickup instructions fr each delivery location
 		- currently only DHL implemented
@@ -58,9 +60,7 @@
 		This is not intuitive as people expect it to show current setting. PLus it would not work if we had 3 languages. We need to implement some kind of a selector
 
 - Article
-	- Add "Code" to article, add it to menu display - P1
 	- Consider maintaining sort order of meals within a category
-	- New Flag - P2
 
 - Customer (DB)
 	- add "created_on" (timestamp), so that we can track new customers
@@ -78,11 +78,6 @@
 - backoffice view
 	- cooking overview
 		- Table by articles - sort by category - rework to use OrderItem DAO
-		- Table by date - implement refresh by only adding new items to the top of the table, so that any form information does not get lost
-	- packaging view
-		- generate each delivery location per separate page
-		- individual artices with different colors (based on category)
-		- Number of meals to BOLD
 		
 - Packaging Type	P4
 	- create test data
@@ -90,33 +85,24 @@
 	- displaying package type and ordering in views / reports
 
 - Ordering
-	- Delivery location - create checkbox to treat the selected delivery location as default (stored in profile)
 	- Find out how to publish ordering/pickup instructions
 		- probably different instructions for each delivery location
 
 - Referral dialog
 	- add Default Delivery Location select box to define recipient's delivey location. P2
-	- create "Email preview" so that user can see what message will be sent to recipient 	P4
 
 - Order Confirmation email
 	- consider what other information needs to be included	P2
-	- send different email to Lunch4you showing all important info already in subject P2
 
-- Online Menu
-	- add Special discount functionality (use manu emailing as template)
 
 - Emailing general
 	- refactor VM templates (mostly headers and footers) to use more templates with variables rather than clones of the same texts
 		- introduce new variables (e.g. time of ordering, location)
+	- introduce "standard" context variables for all emails
 
 - Menu Emailing
 	- Manual triggering of menu emailing, currently only as JSON URL but no UI	 P3
-	- unsubscribe feature	P3
-	- New Flag - P2
 
-- Daily close up (EOB)
-	- deactivate all orders from previous day, currently manual process 	P4
-	
 - Menu administration P4
 
 	
@@ -128,8 +114,3 @@
 		
 - Maintenance
 	- backup script with emailing for DB
-	
-	
-petr.janda@dhl.com
-ivan@dhl.com
-petr@dhl.com; jana@dhl.com	pavel@dhl.com

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lunch4you.domain.Customer;
@@ -58,22 +59,19 @@ public class CustomerController {
 		}
 	}
 
-	@RequestMapping( value = "/customers/sendMenu.json", method = RequestMethod.GET )
+	@RequestMapping( value = "/customers/byEmail.json", method = RequestMethod.GET )
 	public @ResponseBody
-	List<Map<String, Object>> sendMenu( ) {
-		logger.trace( "CustomerController.sendMenu called" );
+	CustomerDto findByEmail( @RequestParam String email ) {
 
-		List<Map<String,Object>> results = menuService.sendMenu();
-		
-				
-		// replace each customer object in the result set with CustomerDTO object
-		for(Map<String, Object> result : results){
-			Customer customer = (Customer) result.get("customer");
-//			CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
-			result.put("customer", customer.getFirstName() + " " + customer.getLastName() + " " + customer.getEmail());
+		Customer customer = menuService.findCustomerByEmail( email );
+
+		if ( customer == null ) {
+			return null;
+		} else {
+			CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
+	
+			return customerDto;
 		}
-		
-		return results;
 	}
 
 	@RequestMapping( value = "/customers", method = RequestMethod.POST )
@@ -81,12 +79,17 @@ public class CustomerController {
 	CustomerDto createNew( @RequestBody Map<String, Object> data ) {
 		logger.trace( "CustomerController.createNew called with data: " + data );
 
+		String email = data.get( "email" ).toString();
 		String firstName = data.get( "firstName" ).toString();
 		String lastName = data.get( "lastName" ).toString();
-		String email = data.get( "email" ).toString();
+		if(firstName.isEmpty() && lastName.isEmpty())
+			firstName = email.substring(0, email.indexOf("@"));
 		
 		Customer customer = menuService.registerCustomer( firstName, lastName, email, true );
 		CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
+		
+		// exceptionally manually map token, it is needed by the client
+		customerDto.token = customer.getToken();
 
 		return customerDto;
 	}
@@ -95,7 +98,7 @@ public class CustomerController {
 	public @ResponseBody
 	CustomerDto updateCurrent( @RequestBody CustomerDto customerDto ) {
 		logger.trace( "CustomerController.updateCurrent called with data: " + customerDto );
-
+	
 		Customer customer = menuService.getCustomer( customerDto.id );
 		beanMapper.map( customerDto, customer );
 		customer = menuService.updateCustomer( customer );
@@ -103,8 +106,7 @@ public class CustomerController {
 		
 		return customerDto;
 	}
-	
-	
+
 	/**
 	 * Updates only certain attributes related to user's profile
 	 * @param data
@@ -120,11 +122,29 @@ public class CustomerController {
 		long defaultDeliveryLocationId = Long.parseLong( data.get( "defaultDeliveryLocationId" ).toString() );
 		
 		Customer customer = menuService.updateCustomerProfile( customerProfile, defaultDeliveryLocationId );
-
+	
 		CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
 		
 		return customerDto;
 	}
+
+	@RequestMapping( value = "/customers/sendMenu.json", method = RequestMethod.GET )
+		public @ResponseBody
+		List<Map<String, Object>> sendMenu( ) {
+			logger.trace( "CustomerController.sendMenu called" );
+	
+			List<Map<String,Object>> results = menuService.sendMenu();
+			
+					
+			// replace each customer object in the result set with CustomerDTO object
+			for(Map<String, Object> result : results){
+				Customer customer = (Customer) result.get("customer");
+	//			CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
+				result.put("customer", customer.getFirstName() + " " + customer.getLastName() + " " + customer.getEmail());
+			}
+			
+			return results;
+		}
 
 	@RequestMapping( value = "/customers/createReferral.json", method = RequestMethod.POST )
 	public @ResponseBody

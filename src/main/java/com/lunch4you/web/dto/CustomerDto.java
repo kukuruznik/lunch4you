@@ -11,6 +11,11 @@ public class CustomerDto {
 	
 	public String email;
 
+	/**
+	 *  This field is mapped / populated only in some cases, as it carries sensitive information
+	 */
+	public String token;
+
 	public Integer credit;
 	
 	public boolean isActive;

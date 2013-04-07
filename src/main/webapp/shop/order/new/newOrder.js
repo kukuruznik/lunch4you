@@ -29,7 +29,7 @@ steal(
 			this._reloadData();
 		},
 
-		"#submitButton click": function( el, evt ) {
+		"#orderForm #submitButton click": function( el, evt ) {
 			this._createOrder();
 		},
 

@@ -1,6 +1,6 @@
-steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common/register_customer" ).then( 
+steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 
-	"./views/referralDetail.ejs",
+	"./views/referralForm.ejs",
 
 
 	function( $ ) {
@@ -27,7 +27,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			this._reloadData();
 		},
 
-		"#submitButton click": function( el, evt ) {
+		"#referralForm #submitButton click": function( el, evt ) {
 			this._submitReferral();
 		},
 
@@ -98,7 +98,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 		},
 
 		_render: function() {
-			this.element.html( this.view( 'referralDetail', this ) );
+			this.element.html( this.view( 'referralForm', this ) );
 		}
 	} );
 

@@ -1,16 +1,14 @@
 steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common/register_customer" ).then( 
 		
-	"./views/edit.ejs",
-	"./views/updateConfirmation.ejs",
+	"./views/signinForm.ejs",
 				
 	function( $ ) {
 
 	/**
-	 * @class Shop.Profile.Edit
 	 * @parent index
 	 * @inherits jQuery.Controller Handles profile editing.
 	 */
-	$.Controller( 'Shop.Profile.Edit',
+	$.Controller( 'Shop.Auth.Signin',
 
 	/** @Static */
 	{
@@ -19,8 +17,6 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 	/** @Prototype */
 	{
 		init: function() {
-			steal.dev.log( "Profile edit controller initialized" );
-			//TODO is there a different way how to access this object? What does "this" refer to?
 			this.token = Shop.Main.getToken();
 			this._reloadData();
 		},
@@ -61,7 +57,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 
 			Shop.Models.Customer.updateProfile( cust, ddlId , function( ) {
 				self._renderConfirmation();
-				Shop.Main.reloadCustomer();
+				Shop.Main.prototype._reloadCustomer();
 			} );
 		},
 

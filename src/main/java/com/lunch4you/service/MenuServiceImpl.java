@@ -90,6 +90,16 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
+	public Customer findCustomerByEmail( String email ) {
+		CustomerFilter filter = new CustomerFilter();
+		filter.email = email;
+
+		List<Customer> foundCustomers = customerDao.find( filter );
+		return foundCustomers.size() == 0 ? null : foundCustomers.get( 0 );
+	}
+
+	
+	@Override
 	public List<Customer> getAllCustomers() {
 		return customerDao.loadAll();
 	}

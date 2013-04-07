@@ -1,18 +1,16 @@
 #set( $item = $order.Items.get(0) )
 Dear customer,
 
-This is an automated confirmation email about your recently placed order to Lunch4you service. Please note that some links within this email are personalized for your account, do not forward this email to other recipients.
+This is an automated confirmation email about your recently placed order to Lunch4you service.
 
 Order details:
 
-Meal:               ${item.Article.Name_cz}/${order.Items.get(0).Article.Name_en}
-Price:              ${item.Article.PriceDelivery},- CZK #if($isDiscount) ***#end
+Item:               ${item.Article.Name_cz}/${order.Items.get(0).Article.Name_en}
+Price:              ${item.Article.PriceDelivery},- CZK
 
 Delivery location:  ${order.deliveryLocation.name}
 Ordered on:         ${orderDate}
 Comment / note:		${order.note}
-
-#if($isDiscount) *** Please note that a discounted price of 10,- CZK applies if main meal (meal for 80,- CZK or more) is ordered on the same day. #end 
 
 
 For further ordering please use following link:
@@ -20,3 +18,4 @@ ${shopURL}#view=menu&token=${customer.token}
 
 Important Note!!!
 This is automatically generated email, please do not reply. In case of any questions or issues, please contact Lunch4you service at ${contactDetails}
+Please note that some links within this email are personalized for your account, do not forward this email to other recipients.

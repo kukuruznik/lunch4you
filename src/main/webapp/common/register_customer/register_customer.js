@@ -20,7 +20,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', 'jquery
 			this._render();
 		},
 
-		"#submitButton click": function( el, evt ) {
+		"#customerForm #submitButton click": function( el, evt ) {
 			var formParams = this.element.find( "form" ).formParams();
 			this.element.trigger( "updateProfile", formParams );
 			evt.preventDefault();

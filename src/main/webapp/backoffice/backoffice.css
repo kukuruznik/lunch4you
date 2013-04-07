@@ -11,6 +11,7 @@ body {
 	width:1080px;
 	margin:0 auto;
 }
+
 h1 {
 	padding:30px 0 10px;
 	margin-top:0;
@@ -130,6 +131,10 @@ div.tab-selectors div.tab-selector{
 	border : 0px black solid;
 }
 
+/****************************
+   Cooking view - Chronological list  
+****************************/
+
 #meals3{
 	width : 630px;
 }
@@ -205,7 +210,21 @@ div.tab-selectors div.tab-selector{
 	border : 0px black solid;
 }
 
-/***************************************/
+/**************************************
+	Packaging view
+**************************************/
+
+#refreshPackagingButton {
+}
+
+input.delivery-notification-button {
+	width : 140px;
+	height : 80px;
+	margin : 0;
+	font-size : 1.3em;
+	background-color : red;
+	float : left;
+}
 
 #packagingLocation {
 	border : 1px gray solid;
@@ -310,15 +329,6 @@ div.customer-details span.location {
 	width : 100px;
 }
 
-input {
-	margin: 0.5em auto;
-	display: block;
-}
-
-input[type=text], input[type=password] {
-	width: 100%;
-}
-
 #overlay {
 	display: none;
 	position: absolute;
@@ -344,6 +354,7 @@ input[type=text], input[type=password] {
 */
 
 #articleForm {
+	width : 700px;
 }
 
 

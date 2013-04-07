@@ -1,13 +1,24 @@
 {
-	"header.menu": "Menu",
-	"header.order": "Order",
-	"header.referral": "Referral",
-	"header.profile": "User Profile",
+	"common.form.required" : "Required field",
+	"form.title.menu": "Menu",
+	"form.title.order": "Order",
+	"form.title.referral": "Recommend to a friend",
+	"form.title.profile": "User Profile",
+	"form.title.register": "New user registration",
+	"form.title.signin": "Existing user Sign In",
+
+	"main.navigation.anonymous": "Anonymous user",
 
 	"main.navigation.items.home": "Home",
 	"main.navigation.items.menu": "Today's Menu",
 	"main.navigation.items.ordering": "How to order",
 	"main.navigation.items.contacts": "Contacts",
+	"main.navigation.items.referral": "Recommend to a friend",
+
+	"main.navigation.link.registration": "Register",
+	"main.navigation.link.registration.title": "If you don't have an account yet, register here",
+	"main.navigation.link.login": "Log In",
+	"main.navigation.link.login.title": "If you want to sing in with an existing account, click here",
 
 	"menu.article.soldOut.label": "Sold Out",
 	"menu.article.new.label": "New",

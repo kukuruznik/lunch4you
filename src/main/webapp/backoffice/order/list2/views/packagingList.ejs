@@ -1,0 +1,193 @@
+<!% this refers to an array with objects of class DeliveryLocationWithArticlesDto %>
+<% if ( this.length == 0 ) { %>
+	<div>There are no active orders at the moment.</div>
+<% } %>
+<% 
+	var cur = new Date();
+	var formattedDate = cur.getDate() + "." + cur.getMonth() + "." + cur.getFullYear();
+	
+	// global (for all locations) stats variables
+	var count_all_soups = 0;
+	var count_all_smallsalads = 0;
+	var count_all_other = 0;
+	var sum_all_price = 0;
+
+%>
+<%= formattedDate %> 
+<input type="button" id="refreshPackagingButton" value="refresh" class="noPrint"/>
+<% 
+for ( var k = 0; k < this.length; k++ ) { 
+	var deliveryLocationWithArticles = this[ k ];
+	var deliveryLocation = deliveryLocationWithArticles.entity;
+	var articlesWithOrders = deliveryLocationWithArticles.items;
+	var countOrderItems = deliveryLocationWithArticles.countOrderItems;
+
+	// prepare array with all order ID's for this location. Will be used in delivery notification email
+	var orderIds = new Array();
+	
+	// prepare categories (list of category Id's) for stats
+	var categories_soups = [1];
+	var categories_smallsalads = [2];
+	
+	// stats per location
+	var count_location_soups = 0;
+	var count_location_smallsalads = 0;
+	var count_location_other = 0;
+	var sum_location_price = 0;
+
+
+	for ( var i = 0; i < articlesWithOrders.length; i++ ) { 
+		var articleWithOrders = articlesWithOrders[i];
+		var article = articleWithOrders.entity;
+		var categoryId = article.category.id;
+		var orders = articleWithOrders.items;
+		
+		if($.inArray(categoryId, categories_soups) != -1){
+			count_location_soups += orders.length;
+			count_all_soups += orders.length;
+		} else if($.inArray(categoryId, categories_smallsalads) != -1){
+			count_location_smallsalads += orders.length;
+			count_all_smallsalads += orders.length;
+		} else {
+			count_location_other += orders.length;
+			count_all_other += orders.length;
+		}
+		
+		for ( var j = 0; j < orders.length; j++ ) { 
+			var order = orders[j];
+			orderIds.push(order.id);
+			sum_location_price += article.priceDelivery;
+			sum_all_price += article.priceDelivery;
+		}
+	} 
+%>
+
+	<div id="packagingLocation">
+	
+	<!-- Statistics for current location -->
+	<table id="packagingStatsTable">
+		<tr>
+			<td rowspan="2" class="deliveryLocationCell">
+				<%= deliveryLocation.abbreviation %>
+			</td>
+			<td rowspan="2" class="dummy-column">
+				<input type="button" class="delivery-notification-button noPrint"
+					deliveryLocation="<%= deliveryLocation.abbreviation %>" 
+					value="Notifikace"
+					orderIds="<%= orderIds.join(",") %>"
+				>
+			</td>
+			<td class="stat-column">
+				Polévky
+			</td>
+			<td class="stat-column">
+				Saláty malé
+			</td>
+			<td class="stat-column">
+				Ostatní
+			</td>
+			<td class="stat-column">
+				Spolu
+			</td>
+			<td class="stat-column">
+				Suma
+			</td>
+		</tr>
+		<tr>
+			<td class="stat-column">
+				<%= count_location_soups %>
+			</td>
+			<td class="stat-column">
+				<%= count_location_smallsalads %>
+			</td>
+			<td class="stat-column">
+				<%= count_location_other %>
+			</td>
+			<td class="stat-column">
+				<%= countOrderItems %>
+			</td>
+			<td class="stat-column">
+				<%= sum_location_price %>,-
+			</td>
+		</tr>
+	</table>
+	
+	<table id="packagingTable">
+	<% for ( var i = 0; i < articlesWithOrders.length; i++ ) { %>
+		<% var articleWithOrders = articlesWithOrders[i] %>
+		<% var article = articleWithOrders.entity %>
+		<% var orders = articleWithOrders.items %>
+			<tr>
+				<td class="articleCountCell">
+					<%= orders.length %>
+				</td>
+				<td class="articleCell">
+					<%= article.name_cz %>
+				</td>
+				
+				<td class="ordersCell">
+				
+					<table class="ordersTable">
+		<% for ( var j = 0; j < orders.length; j++ ) { %>
+			<% var order = orders[j] %>
+						<tr>
+							<td class="orderCell">
+								<%= order.owner.firstName %> <%= order.owner.lastName %>
+							</td>
+							<td class="priceCell">
+								<%= article.priceDelivery %>,-
+							</td>
+						</tr>
+		<% } %>
+					</table>
+				</td>
+			</tr>
+	<% } %>
+	</table>	
+	</div>
+	<br class="pageBreak">
+<% } %>
+
+	<!-- Statistics for all locations -->	
+	<div id="packagingLocation">
+	<table id="packagingStatsTable">
+		<tr>
+			<td rowspan="2" class="deliveryLocationCell">
+				Suma
+			</td>
+			<td class="stat-column">
+				Polévky
+			</td>
+			<td class="stat-column">
+				Saláty malé
+			</td>
+			<td class="stat-column">
+				Ostatní
+			</td>
+			<td class="stat-column">
+				Spolu
+			</td>
+			<td class="stat-column">
+				Suma
+			</td>
+			<td rowspan="2" class="dummy-column">
+			</td>
+		</tr>
+		<tr>
+			<td class="stat-column">
+				<%= count_all_soups %>
+			</td>
+			<td class="stat-column">
+				<%= count_all_smallsalads %>
+			</td>
+			<td class="stat-column">
+				<%= count_all_other %>
+			</td>
+			<td class="stat-column">
+			</td>
+			<td class="stat-column">
+				<%= sum_all_price %>,-
+			</td>
+		</tr>
+	</table>
+	</div>

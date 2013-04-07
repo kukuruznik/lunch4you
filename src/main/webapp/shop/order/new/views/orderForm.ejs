@@ -5,6 +5,8 @@
 
 <% if ( user ) { %>
 <form id="orderForm" class="input-form" action="javascript:">
+
+	<div class="input-form-title"><%= msg( "form.title.order" ) %></div>
 	
 	<div class="input-form-row">
 		<label><%= msg( "order.detail.article" ) %>:</label> 
@@ -34,6 +36,8 @@
 				<%= (deliveryLocation && deliveryLocation.id == deliveryLocations[ i ].id) ? "selected" : "" %> ><%= deliveryLocations[ i ].name %></option>
 		<% } %>
 		</select>
+		<br>
+		<label></label>
 		<div id="setDdlDiv" style="display : none;">
 			<input id="setDefaultDeliveryLocation" type="checkbox">
 			<%= msg( "order.detail.setDefaultDeliveryLocation" ) %>

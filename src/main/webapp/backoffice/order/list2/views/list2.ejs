@@ -1,8 +1,0 @@
-<% if ( this.length == 0 ) { %>
-	<div>There are no active orders at the moment.</div>
-<% } %>
-<% for ( var i = 0; i < this.length; i++ ) { %>
-	<%== $.View( '//backoffice/order/list2/views/deliveryLocationWithArticles.ejs', this[ i ] ) %>
-	<br class="pageBreak">
-<% } %>
-

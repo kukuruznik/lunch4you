@@ -1,7 +1,7 @@
 
 -- Backup scripts --
 -- backup / dumps complete database including create statements
-mysqldump -u lunch4you -plunch4you lunch4you > /home/lunch4you/backup.sql
+mysqldump -u lunch4you -plunch4you lunch4you > /home/lnemeth/backup/lunch4you-backup.sql
 
 -- Reload scripts --
 -- migration dumps only data, using full INSERT statements with column names

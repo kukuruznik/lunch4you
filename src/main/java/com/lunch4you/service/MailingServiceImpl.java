@@ -80,11 +80,9 @@ public class MailingServiceImpl implements MailingService {
 				Map<String, Object> model = new HashMap<String, Object>();
 				
 				Long categoryId = order.getItems().get(0).getArticle().getCategory().getId();
-				boolean isDiscount = (categoryId == 1 || categoryId == 2);
 				
 				model.put( "customer", order.getOwner() );
 				model.put( "order", order );
-				model.put( "isDiscount", isDiscount);
 				// need to create new date, cause order does not have date assigned yet as it is assigned by DB
 				// TODO Change this once date on new order is assigned by the app
 				model.put( "orderDate", new Date());
@@ -95,7 +93,7 @@ public class MailingServiceImpl implements MailingService {
 
 				helper.setFrom( from );
 				helper.setTo( order.getOwner().getEmail() );
-				helper.setBcc( backofficeEmailAddress );
+//				helper.setBcc( backofficeEmailAddress );
 				helper.setSubject( confirmationSubject );
 				helper.setText( bodyText, false );
 			}

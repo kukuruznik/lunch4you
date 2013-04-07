@@ -8,15 +8,18 @@ make sure that shop.html is switched to development mode, otherwise compiler wil
 	"steal/steal.js"
 
 run command:
-	C:\home\ladi\projects\javascriptmvc-3.2.4>js steal/buildjs C:\Users\ladi\git\lunch4you\src\main\webapp\shop.html -to C:\Users\ladi\git\lunch4you\src\main\webapp\shop
+	C:\home\ladi\projects\javascriptmvc-3.2.4 > js steal/buildjs C:\Users\ladi\git\lunch4you\src\main\webapp\shop.html -to C:\Users\ladi\git\lunch4you\src\main\webapp\shop
 
-replace in generated file shop/production.js
-	"C:/Users/ladi/git/lunch4you/src/main/webapp/shop/production.css"
-	with: "shop/production.css"
+Remove in generated file shop/production.js
+	"C:/Users/ladi/git/lunch4you/src/main/webapp/"
 
 replace in shop.html
-	"steal/steal.js"
-	with "steal/steal.production.js"
+	- enable first 2 script includes
+	- disable third scrip (dev version)
+
+Increase JS/CSS build number
+	- increase version number in shop.html
+	- rename shop/production.js to shop/production.v[xx].js
 
 deploy war file
 

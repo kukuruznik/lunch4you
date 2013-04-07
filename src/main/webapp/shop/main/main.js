@@ -17,11 +17,12 @@ steal(
 	{
 		_availableLocales: [ "cz", "en" ],
 		
-		_navigationItems: [ 
+		_navigationItems: [
 //		    "home", 
 		    "menu", 
 //		    "ordering", 
-		    "contacts" 
+		    "contacts",
+		    "referral"
 		],
 
 		getNavigationItems : function() {
@@ -79,7 +80,7 @@ steal(
 		 */
 		reloadCustomer: function() {
 			var token = this.getToken();
-			Shop.Models.Customer.findByToken( token, this.proxy( "_customerLoaded" ) );
+			Shop.Models.Customer.findByToken( token, Shop.Main.prototype.proxy( "_customerLoaded" ) );
 		},
 
 		navigateTo: function( viewName, params ) {
@@ -206,6 +207,12 @@ steal(
 			case "profile":
 				this._setScreen( "shop_profile_edit" );
 				break;
+			case "register":
+				this._setScreen( "shop_auth_register" );
+				break;
+			case "signin":
+				this._setScreen( "shop_auth_signin" );
+				break;
 			default:
 				alert( "Invalid URL! Unknown or missing view." );
 			};
@@ -224,7 +231,19 @@ steal(
 			// initiate screen refresh
 			this._loadDictionary( newLocale );
 		},
-		
+
+		"#main-referral-link click" : function( el, evt ) {
+			this.Class.navigateTo( "referral" );
+		},
+
+		"#main-registration-link click" : function( el, evt ) {
+			this.Class.navigateTo( "register" );
+		},
+
+		"#main-login-link click" : function( el, evt ) {
+			this.Class.navigateTo( "signin" );
+		},
+
 		".main-navigation-selector click" : function( el, evt ) {
 			var navIndex = el.attr("navigationIndex");
 			var navItem = this.Class.getNavigationItems()[navIndex];

@@ -33,7 +33,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then(
 		_render: function( menu ) {
 			this.groupedMenu = menu;
 			this.element.html( this.view( 'list', this.groupedMenu ) );
-		},
+		}
 	} );
 
 } );

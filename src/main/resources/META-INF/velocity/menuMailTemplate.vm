@@ -8,14 +8,32 @@
 	<body>
 	
 	<div class="headerText">
-		#set( $headerTemplateName = "META-INF/velocity/menuMailTemplate_header_" + $customer.defaultDeliveryLocation.abbreviation + ".html")
+		#set( $headerTemplateName = "META-INF/velocity/menuMailTemplate_header.html")
 		#parse( $headerTemplateName )
 		
-		<p>
-		<span class="importantNote"> Important Note : </span> All links in this email are personalized to authenticate you automatically. Please do not forward this email. If you would like to recommend Lunch4you to a friend, please use the link below the menu.
 	</div>
 
 	<hr style="border : 0px; border-top : 1px lightgray solid;">
+	<div class="headerText">
+		<span class="importantNote"> Important Note : </span> All links in this email are personalized for your automatic Sign In to our ordering system. Please do not forward this email.
+	</div>
+	<hr style="border : 0px; border-top : 1px lightgray solid;">
+
+	<div class="footerText">
+		<p>
+		<a href="${shopURL}#view=menu&token=${customer.token}">Online Menu</a>
+		 | 
+		<a href="${shopURL}#view=profile&token=${customer.token}"
+			title="Click here to edit your profile, subscriptions, etc..."
+		>My profile</a>
+		 | 
+		<a href="${shopURL}#view=profile&token=${customer.token}"
+			title="Click here to unsubscribe from automatic emails"
+		>Unsubscribe</a>
+		 | 
+		<a href="${shopURL}#view=referral&token=${customer.token}">Recommend to a friend</a>
+		</p>
+	</div>
 
 
 #set( $articleCounter = 0 )
@@ -57,9 +75,6 @@
 			<td class="priceCell">
 				<span class="nowrap">
 				${article.priceDelivery},- CZK
-				#if( ${category.id} == 1 or ${category.id} == 2)
-					<span class="special-price" title="Please refer to special prices note at the bottom of this email">***</span>
-				#end
 				</span>
 				
 			</td>
@@ -67,28 +82,9 @@
 	#end
 
 #end
-		<tr>
-			<td class="codeCell">
-				<span class="special-price">***</span> 
-			</td>
-			<td class="menuNotes" colspan="2">
-				<i>Price of this item is 10,- CZK when ordered together with a main meal.</i>
-			</td>
-		</tr>
 	</table>
 	<hr style="border : 0px; border-top : 1px lightgray solid;">	
 	
-	<div class="footerText">
-		<p>
-		<a href="${shopURL}#view=menu&token=${customer.token}">Menu online</a>
-		 | 
-		<a href="${shopURL}#view=profile&token=${customer.token}"
-			title="Click here to edit your profile, subscribe/unsubscribe, etc..."
-		>My profile</a>
-		 | 
-		<a href="${shopURL}#view=referral&token=${customer.token}">Recommend to a friend</a>
-		</p>
-	</div>
 	
 	
 	<div class="footerText">

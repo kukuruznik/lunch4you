@@ -18,6 +18,15 @@ $.Model('Shop.Models.Customer',
 	  		});
 	  	},
 
+		findByEmail: function( email, success, error ) {
+			return $.ajax({
+	  			url: "customers/byEmail.json?email="+email,
+	  			dataType: "json customer.model",
+	  			success: success,
+	  			error: error || Shop.errorHandler
+	  		});
+	  	},
+	  	
 	  	getCurrent: function( success, error ) {
 			return $.ajax({
 	  			url: "shop/currentCustomer.json",

@@ -2,6 +2,9 @@
 
 <% if ( user ) { %>
 <form id="referralForm" class="input-form" action="javascript:">
+
+	<div class="input-form-title"><%= msg( "form.title.referral" ) %></div>
+
 	<div class="input-form-row">
 		<label><%= msg( "referral.detail.sender" ) %>:</label>
 		<div id="currentCustomerDetails">
@@ -11,7 +14,7 @@
 	</div>
 
 	<div class="input-form-row">
-		<label><%= msg( "referral.detail.recipientEmails" ) %>:<br><br>
+		<label><%= msg( "referral.detail.recipientEmails" ) %>:<br>
 		<span>(<%= msg( "referral.detail.recipientEmails_multiple" ) %>)</span></label> 
 		<textarea id="recipientEmail" type="text"></textarea>
 	</div>

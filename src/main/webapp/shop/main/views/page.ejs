@@ -15,9 +15,19 @@
 				<% if(Shop.customer){ %>
 				<a id="main-customer-link" href="javascript:"> <%= Shop.customer.firstName %> <%= Shop.customer.lastName %></a>
 				<% } else { %>
-					Anonymous
+					<%= msg( "main.navigation.anonymous") %>
+					<!-- prepared for future
+					<a id="main-registration-link" href="javascript:"
+						title="<%= msg( "main.navigation.link.registration.title") %>"
+					><%= msg( "main.navigation.link.registration") %></a>
+					/
+					<a id="main-login-link" href="javascript:"
+						title="<%= msg( "main.navigation.link.login.title") %>"
+					><%= msg( "main.navigation.link.login") %></a>
+					-->
 				<% }%>
 			</span>
+			|
 			<span id="main-lang" >
 			<% for ( var i = 0; i < locales.length; i++ ) { %>
 				<a id="main-lang-selector" locale="<%= locales[i] %>" href="javascript:">

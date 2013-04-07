@@ -224,6 +224,10 @@ li.category {
 	================================================= 
 */
 
+#orderForm {
+	width : 600px;
+}
+
 #articleName {
 	font-weight : bold;	
 }
@@ -233,7 +237,9 @@ li.category {
 }
 
 #setDdlDiv {
-	font-size: .8em; 
+	font-size: .8em;
+	font-style : italic; 
+	Xcolor : #808080;
 }
 
 #note {
@@ -251,14 +257,18 @@ li.category {
 	================================================= 
 */
 
+#referralForm {
+	width : 700px;
+}
+
 #recipientEmail {
 	width : 25em;
-	height : 6em;
+	height : 5em;
 }
 
 #referralMessage {
-	width : 25em;
-	height : 6em;
+	width : 30em;
+	height : 8em;
 }
 
 /*

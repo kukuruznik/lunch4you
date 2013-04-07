@@ -12,6 +12,14 @@
 	border-radius: 4px;
 }
 
+.input-form-title {
+	border-bottom : 1px lightgray solid;
+	font-size : 1.2em;
+	text-align : center;
+	margin-bottom : 10px;
+	padding : 10px;
+}
+
 .input-form-row {
 	padding : 2px 0px;
 	clear : both;
@@ -23,6 +31,10 @@
 	padding : 0.5em;
 	clear : both;
 	border : 0px red solid;
+}
+
+.input-form .required {
+	color : red;
 }
 
 .input-form label {

@@ -1,11 +1,11 @@
 #set( $item = $order.Items.get(0) )
 Dear customer,
 
-Please note that your ordered meal 
+Please note that your meal 
 
 	${item.Article.Name_cz}/${order.Items.get(0).Article.Name_en}
 
-has just arrived at your order location ${order.deliveryLocation.name} and is ready to be collected.
+has just arrived at ${order.deliveryLocation.name} and is ready to be collected.
 
 
 Important Note!!!

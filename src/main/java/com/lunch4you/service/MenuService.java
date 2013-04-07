@@ -24,6 +24,8 @@ public interface MenuService {
 
 	Customer findCustomerByToken( String token );
 
+	Customer findCustomerByEmail(String email);
+
 	List<Customer> getAllCustomers();
 
 	Customer registerCustomer( String firstName, String lastName, String email, boolean wantsToReceiveMenu ); // we might need a RegistrationInfo class in the future 
@@ -72,6 +74,7 @@ public interface MenuService {
 	Article setArticleFlag(Long articleId, String flagName, boolean value);
 
 	Article setArticleLimit(Long articleId, Integer limit);
+
 
 
 

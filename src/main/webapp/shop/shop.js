@@ -13,6 +13,8 @@ steal(
 	,"shop/ordering/ordering.js"
 	,"shop/referral/new/newReferral.js"
 	,"shop/profile/edit/editProfile.js"
+	,"shop/auth/register/register.js"
+	,"shop/auth/signin/signin.js"
 	,"shop/shop.css" 			// application CSS file
 	,"common/form.css" 			// forms CSS file
 	,"shop/models/models.js"		// steals all your models

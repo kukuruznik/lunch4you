@@ -35,7 +35,7 @@ steal( "jquery/class" ).then( function( $ ) {
 
 		saveToCookie: function( key, value ) {
 			//steal.dev.log( "save into cookie: ", key, " = ", value );
-			$.cookie( key, value );
+			$.cookie( key, value, {expires : 90} );
 		},
 
 		enableInput: function( input, enable ) {

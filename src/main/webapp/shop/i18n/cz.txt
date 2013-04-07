@@ -1,13 +1,24 @@
 {
-	"header.menu": "Nabídka",
-	"header.order": "Objednávka",
-	"header.referral": "Doporučení",
-	"header.profile": "Uživatelský profil",
+	"common.form.required" : "Povinné pole",
+	"form.title.menu": "Nabídka",
+	"form.title.order": "Objednávka",
+	"form.title.referral": "Doporučit známému",
+	"form.title.profile": "Uživatelský profil",
+	"form.title.register": "Registrace nového uživatele",
+	"form.title.signin": "Přihlášení stávajícího uživatele",
+
+	"main.navigation.anonymous": "Nepřihlášený uživatel",
 
 	"main.navigation.items.home": "Domovská stránka",
 	"main.navigation.items.menu": "Dnešní Menu",
 	"main.navigation.items.ordering": "Jak si objednat",
 	"main.navigation.items.contacts": "Kontakty",
+	"main.navigation.items.referral": "Doporučit známému",
+
+	"main.navigation.link.registration": "Registrace",
+	"main.navigation.link.registration.title": "Nemáte-li u nás ješte účet a chcete se zaregistrovat, klikněte zde",
+	"main.navigation.link.login": "Přihlášení",
+	"main.navigation.link.login.title": "Chcete-li se přihlásit pod již existujícím účtem, klikněte zde",
 
 	"menu.article.soldOut.label": "Vyprodáno",
 	"menu.article.new.label": "Nové",
@@ -16,7 +27,7 @@
 
 	"order.detail.customer": "Zákazník",
 	"order.detail.deliveryLocation": "Místo vyzvednutí",
-	"order.detail.setDefaultDeliveryLocation" : "Použít jako předvolené pro budoucí objednávky",
+	"order.detail.setDefaultDeliveryLocation" : "Nastavit jako předvolené pro budoucí objednávky",
 	"order.detail.note": "Poznámka",
 	"order.detail.article": "Název jídla",
 	"order.detail.price": "Cena",
@@ -46,6 +57,8 @@
 	"customer.registration.updateSuccess.msg" : "Profil byl úspěšne aktualizován",
 	"customer.registration.validation.emptyEmailAddress" : "Emailová adresa musí být vyplněna!",
 	"customer.registration.validation.invalidEmailFormat" : "Nesprávný formát emailové adresy!",
+
+	"auth.register.submit": "Registrovat",
 
 	"profile.edit.user.anonymous.message": "Nejste přihlášen. Informace o profilu není k dispozici.",
 

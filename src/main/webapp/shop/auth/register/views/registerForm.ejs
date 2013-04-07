@@ -1,0 +1,30 @@
+<% var firstNameId = "reg_firstName" %>
+<% var lastNameId = "reg_lastName" %>
+<% var emailId = "reg_email" %>
+
+<form id="registerForm" class="input-form" action="javascript:">
+
+	<div class="input-form-title"><%= msg( "form.title.register" ) %></div>
+
+	<div class="input-form-row">
+		<label for="<%= firstNameId %>"><%= msg( "customer.registration.firstName" ) %>:</label>
+		<input type="text" name="firstName" id="<%= firstNameId %>" value=""/>
+	</div>
+
+	<div class="input-form-row">
+		<label for="<%= lastNameId %>"><%= msg( "customer.registration.lastName" ) %>:</label>
+		<input type="text" name="lastName" id="<%= lastNameId %>" value=""/>
+	</div>
+
+	<div class="input-form-row">
+		<label for="<%= emailId %>"><%= msg( "customer.registration.email" ) %>:<span 
+			class="required"
+			title="<%= msg( "common.form.required" ) %>"
+		>*</span></label>
+		<input type="text" name="email" id="<%= emailId %>" value="petr@me.com"/>
+	</div>
+
+	<div class="input-form-buttons-row">
+		<input type="button" id="submitButton" value="<%= msg( "auth.register.submit" ) %>"/>
+	</div>
+</form>
