@@ -1,4 +1,4 @@
-steal( "jquery/controller", "jquery/view/ejs", "jquery/controller/view" ).then( "./views/layout.ejs", function() {
+steal( "jquery/controller", "jquery/view/ejs", "jquery/controller/view", "backoffice/models" ).then( "./views/layout.ejs", function() {
 
 	/**
 	 * @class Backoffice.Label.Print
@@ -36,7 +36,14 @@ steal( "jquery/controller", "jquery/view/ejs", "jquery/controller/view" ).then( 
 		},
 
 		_refresh: function() {
-			Backoffice.Models.Order.getActiveOrdersGroupedByArticle().done( this.proxy( "_ordersRead" ) );			
+			var allOrders = window.opener.Backoffice.orders;
+			var idsToPrint = window.opener.Backoffice.orderIdsToPrint;
+			var orders = [];
+
+			for ( var i = 0; i < allOrders.length; i++ )
+				if ( idsToPrint.indexOf( allOrders[ i ].id ) != -1 )
+					orders.push( allOrders[ i ] );
+			this._ordersRead( orders );			
 		},
 
 		_ordersRead: function( orders ) {

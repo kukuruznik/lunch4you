@@ -17,18 +17,18 @@
 					</ul>
 				<% } else { %>
 					<ul>
-						<li><%= order.entity.name_cz %></li>
-						<li><%= order.entity.name_en %></li>
+						<li><%= order.onlyItem.article.name_cz %></li>
+						<li><%= order.onlyItem.article.name_en %></li>
 						<li>
-						<% if ( order.items[ 0 ].note ) { %>
-							<%= order.items[ 0 ].note %>
+						<% if ( order.note ) { %>
+							<%= order.note %>
 						<% } else { %>
 							&nbsp;
 						<% } %>
 						</li>
 						<li>&nbsp;</li>
-						<li><%= order.items[ 0 ].owner.firstName %></li>
-						<li><%= order.items[ 0 ].deliveryLocation.name %></li>
+						<li><%= order.owner.firstName %></li>
+						<li><%= order.deliveryLocation.name %></li>
 					</ul>
 				<% } %>
 				</div>

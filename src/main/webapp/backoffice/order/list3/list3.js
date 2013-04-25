@@ -65,13 +65,20 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			}
 			
 			var orderIds = $( orderSelectors ).map( function( index, checkboxEl ) {
-				return $(checkboxEl).attr("orderId");
+				return parseInt( $(checkboxEl).attr("orderId") );
 			});
 			
 			orderIds = $.makeArray( orderIds );
+			Backoffice.orderIdsToPrint = orderIds;
 			
 			clearTimeout( this.timeOutID );
-			Backoffice.Models.Order.executeAction( orderIds, action, this.proxy( "_handleActionResponse" ) );
+
+			if ( action === "print" ) {
+				var newWin = Backoffice.Utils.openWindow( "printing.html", "printing" );
+				newWin.focus();
+			} else {
+				Backoffice.Models.Order.executeAction( orderIds, action, this.proxy( "_handleActionResponse" ) );
+			}
 		},
 
 		
@@ -90,6 +97,8 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		_renderOrdersByDate: function( ordersByDate ) {
+			// store the value in global Backoffice object
+			Backoffice.orders = ordersByDate;
 			//console.log("_renderOrdersGroupedByArticle")
 			this.element.html( this.view( 'list3', {ordersByDate : ordersByDate, checkedItems : this.checkedItems} ) );
 		}

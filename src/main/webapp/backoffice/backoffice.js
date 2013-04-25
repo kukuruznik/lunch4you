@@ -2,11 +2,11 @@ steal(
 	'./backoffice.css', 		// application CSS file
 	'common/form.css', 			// application CSS file
 	'./models/models.js',		// steals all your models
+	"./utils/utils.js",
 	'./order/list1/list1.js',
 	'./order/list2/list2.js',
 	'./order/list3/list3.js',
 	'./menu/edit/menuEdit.js',
-	'backoffice/label/print',
 	'./menu/restaurant/menuRestaurant.js',
 	'//common/login/login.js'
 ).then( 
