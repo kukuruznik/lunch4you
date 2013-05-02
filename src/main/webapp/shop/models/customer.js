@@ -20,12 +20,31 @@ $.Model('Shop.Models.Customer',
 
 		findByEmail: function( email, success, error ) {
 			return $.ajax({
-	  			url: "customers/byEmail.json?email="+email,
+	  			url: "customers/byEmail.json?email=" + email,
 	  			dataType: "json customer.model",
 	  			success: success,
 	  			error: error || Shop.errorHandler
 	  		});
 	  	},
+	  	
+		findByPin: function( email, pin, success, error ) {
+			return $.ajax({
+	  			url: "customers/byPin.json?email=" + email + "&pin=" + pin,
+	  			dataType: "json customer.model",
+	  			success: success,
+	  			error: error || Shop.errorHandler
+	  		});
+	  	},
+
+	  	sendSigninEmail: function( email, success, error ) {
+			return $.ajax({
+	  			url: "customers/sendSignInEmail.json?email="+email,
+	  			dataType: "json customer.model",
+	  			success: success,
+	  			error: error || Shop.errorHandler
+	  		});
+	  	},
+	  	
 	  	
 	  	getCurrent: function( success, error ) {
 			return $.ajax({
@@ -36,9 +55,9 @@ $.Model('Shop.Models.Customer',
 	  		});
 	  	},
 
-		create: function( customer, success, error ) {
+		register: function( customer, success, error ) {
 	  		return $.ajax({
-	  			url: "customers.json",
+	  			url: "customers/register.json",
 	  			type: "POST",
 	  			contentType: "application/json",
 	  			data: $.toJSON( customer ),

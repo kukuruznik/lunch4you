@@ -1,12 +1,15 @@
+
+==========   BUGS     =====================
+- If I change my default delivery location, it is applied only after refresh
+- after deleting / closing orders in backoffice view, only the table with orders refreshes, need to refresh the table by articles as well
+
+==========   TODO     =====================
+
 - Backoffice
 	- dorobit navigaciu
 - packaging view
 	- dorobit priamu navigaciu pre boba
 	- asi najlepsie aj samostatne view
-- Menu email
-	- move link to current menu to top
-	- move recommendation to the top
-	- notification about pickup at OC Ruze
 - pisanie mailu otvarat do noveho okna
 - pridat miesto pre telefonne cislo
 - oznacenie hotoviek
@@ -16,12 +19,6 @@
 - zastavit / spustit predaj jednotlivych jedal
 - zastavit predaj kompletne
 	- vsetko okrem hotoviek, vsetko 
-
-==========   BUGS     =====================
-- If I change my default delivery location, it is applied only after refresh
-- after deleting / closing orders in backoffice view, only the table with orders refreshes, need to refresh the table by articles as well
-
-==========   TODO     =====================
 
 - Re-enable saving / loading from cookies
 - Refactor all Business contact information into properties / DB
@@ -58,6 +55,11 @@
 	- Language toggle switch does not work in IE6
 	- Currently UI shows the flag of the other language (to which language will bechanged after clicking) P2
 		This is not intuitive as people expect it to show current setting. PLus it would not work if we had 3 languages. We need to implement some kind of a selector
+
+- Preferred language
+	- make selection in Profile
+	- use preferred language in emailing
+	- add language selector to recommendation
 
 - Article
 	- Consider maintaining sort order of meals within a category

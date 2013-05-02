@@ -18,6 +18,8 @@ import org.springframework.mail.MailSendException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lunch4you.auth.AuthHelper;
+import com.lunch4you.auth.AuthHelper.SignInRequest;
 import com.lunch4you.dao.ArticleDao;
 import com.lunch4you.dao.CategoryDao;
 import com.lunch4you.dao.CustomerDao;
@@ -69,6 +71,9 @@ public final class MenuServiceImpl implements MenuService {
 
 	@Autowired
 	private MailingService mailingService;
+	
+	@Autowired
+	private AuthHelper authHelper;
 
 	@Override
 	public Article findArticleById( Long id ) {
@@ -98,6 +103,10 @@ public final class MenuServiceImpl implements MenuService {
 		return foundCustomers.size() == 0 ? null : foundCustomers.get( 0 );
 	}
 
+	@Override
+	public boolean verifyPin( String email, String pin ) {
+		return authHelper.verifyPin( email, pin );
+	}
 	
 	@Override
 	public List<Customer> getAllCustomers() {
@@ -113,8 +122,27 @@ public final class MenuServiceImpl implements MenuService {
 		return customerDao.find(filter );
 	}
 
+	
 	@Override
-	public Customer registerCustomer( String firstName, String lastName, String email, boolean wantsToReceiveMenu ) {
+	public Customer registerCustomer( String firstName, String lastName, String email ) {
+		
+		Customer customer = createCustomer(firstName, lastName, email);
+		SignInRequest req = authHelper.createSignInRequest( customer );
+
+		System.err.println("pin : "+ req.getPin());
+
+		mailingService.sendRegistration(customer, req);
+	
+		return customer;
+	}
+
+	@Override
+	public Customer createCustomer( String email ) {
+		String recipientName = email.substring(0, email.indexOf("@"));
+		return registerCustomer(recipientName, "", email);
+	}
+
+	public Customer createCustomer( String firstName, String lastName, String email ) {
 		
 		Customer newCustomer = new Customer();
 
@@ -124,7 +152,6 @@ public final class MenuServiceImpl implements MenuService {
 		newCustomer.setFirstName( firstName );
 		newCustomer.setLastName( lastName );
 		newCustomer.setToken( token );
-		newCustomer.setIsActive( wantsToReceiveMenu );
 		return customerDao.insert( newCustomer );
 	}
 
@@ -152,6 +179,12 @@ public final class MenuServiceImpl implements MenuService {
 		
 		return customerDao.update( target );
 		
+	}
+
+	@Override
+	public void sendSignInEmail(Customer customer) {
+		SignInRequest req = authHelper.createSignInRequest( customer );
+		//System.err.println("pin : "+ req.getPin());
 	}
 
 	@Override
@@ -472,7 +505,6 @@ public final class MenuServiceImpl implements MenuService {
 		
 		for (String email : recipientEmails) {
 					
-			String recipientName = email.substring(0, email.indexOf("@"));
 			// Find out if customer with this email already exists
 			CustomerFilter customerFilter = new CustomerFilter();
 			customerFilter.email = email;
@@ -480,7 +512,7 @@ public final class MenuServiceImpl implements MenuService {
 			Customer recipient;
 			if(recipients.size() == 0){
 				// Customer does not exist yet, create a new one
-				recipient = registerCustomer(recipientName, "", email, true);
+				recipient = createCustomer(email);
 			}else{
 				recipient = recipients.get(0);
 			}

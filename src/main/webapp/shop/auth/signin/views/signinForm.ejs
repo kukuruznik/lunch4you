@@ -1,9 +1,19 @@
-<% var user = this.customer %>
+<% var emailId = "reg_email" %>
+<% var email = Shop.Auth.Signin.getSigninEmail() %>
 
-<div class="customer-box">
-<% if ( user ) { %>
-	<div id="profile-edit"></div>
-<% } else { %>
-	<p><%= msg( "profile.edit.user.anonymous.message" ) %></p>
-<% } %>
-</div>
+<form id="signinForm" class="input-form" action="javascript:">
+
+	<div class="input-form-title"><%= msg( "form.title.signin" ) %></div>
+
+	<div class="input-form-row">
+		<label for="<%= emailId %>"><%= msg( "customer.registration.email" ) %>:<span 
+			class="required"
+			title="<%= msg( "common.form.required" ) %>"
+		>*</span></label>
+		<input type="text" name="email" id="<%= emailId %>" value="<%= email ? email : "" %>"/>
+	</div>
+
+	<div class="input-form-buttons-row">
+		<input type="button" id="submitButton" value="<%= msg( "auth.signin.submit" ) %>"/>
+	</div>
+</form>

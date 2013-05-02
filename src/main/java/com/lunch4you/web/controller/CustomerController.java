@@ -74,9 +74,27 @@ public class CustomerController {
 		}
 	}
 
-	@RequestMapping( value = "/customers", method = RequestMethod.POST )
+	@RequestMapping( value = "/customers/byPin.json", method = RequestMethod.GET )
 	public @ResponseBody
-	CustomerDto createNew( @RequestBody Map<String, Object> data ) {
+	CustomerDto findByPin( @RequestParam String email, @RequestParam String pin ) {
+
+		boolean pinOK = menuService.verifyPin( email, pin );
+		if(!pinOK){
+			return null;
+		}
+
+		Customer customer = menuService.findCustomerByEmail( email );
+		CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
+		
+		// Map token to DTO object manually, this is exceptional situation
+		customerDto.token = customer.getToken();
+		
+		return customerDto;
+	}
+
+	@RequestMapping( value = "/customers/register.json", method = RequestMethod.POST )
+	public @ResponseBody
+	CustomerDto register( @RequestBody Map<String, Object> data ) {
 		logger.trace( "CustomerController.createNew called with data: " + data );
 
 		String email = data.get( "email" ).toString();
@@ -85,15 +103,25 @@ public class CustomerController {
 		if(firstName.isEmpty() && lastName.isEmpty())
 			firstName = email.substring(0, email.indexOf("@"));
 		
-		Customer customer = menuService.registerCustomer( firstName, lastName, email, true );
+		Customer customer = menuService.registerCustomer( firstName, lastName, email );
 		CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
 		
-		// exceptionally manually map token, it is needed by the client
-		customerDto.token = customer.getToken();
-
 		return customerDto;
 	}
-	
+
+	@RequestMapping( value = "/customers/sendSignInEmail.json", method = RequestMethod.GET )
+	public @ResponseBody
+	void sendSignInEmail( @RequestParam String email ) throws Exception {
+
+		Customer customer = menuService.findCustomerByEmail( email );
+		
+		if(customer == null)
+			throw new Exception("User with given email does not exist");
+
+		menuService.sendSignInEmail( customer );
+
+	}
+
 	@RequestMapping( value = "/customers/updateCustomer.json", method = RequestMethod.POST )
 	public @ResponseBody
 	CustomerDto updateCurrent( @RequestBody CustomerDto customerDto ) {

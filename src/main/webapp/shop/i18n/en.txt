@@ -6,6 +6,7 @@
 	"form.title.profile": "User Profile",
 	"form.title.register": "New user registration",
 	"form.title.signin": "Existing user Sign In",
+	"form.title.pin": "Single-use Sign In code verification",
 
 	"main.navigation.anonymous": "Anonymous user",
 
@@ -48,6 +49,7 @@
 	"customer.registration.firstName": "First Name",
 	"customer.registration.lastName": "Last Name",
 	"customer.registration.email": "Email",
+	"customer.registration.pin": "PIN",
 	"customer.registration.ddl": "Default Pickup Location",
 	"customer.registration.subscribeMenuWeekly": "Send Weekly Menu",
 	"customer.registration.subscribeNews": "Send Newsletter",
@@ -57,6 +59,10 @@
 	"customer.registration.updateSuccess.msg" : "Profile successfully updated",
 	"customer.registration.validation.emptyEmailAddress" : "Email address must not be empty!",
 	"customer.registration.validation.invalidEmailFormat" : "Invalid email address format!",
+
+	"auth.register.submit": "Register",
+	"auth.signin.submit": "Send verificaiton code",
+	"auth.pin.submit": "Submit",
 
 	"profile.edit.user.anonymous.message": "Not logged in. No profile information available.",
 

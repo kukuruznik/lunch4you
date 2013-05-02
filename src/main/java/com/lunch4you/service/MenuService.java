@@ -28,7 +28,9 @@ public interface MenuService {
 
 	List<Customer> getAllCustomers();
 
-	Customer registerCustomer( String firstName, String lastName, String email, boolean wantsToReceiveMenu ); // we might need a RegistrationInfo class in the future 
+	Customer createCustomer(String email);
+
+	Customer registerCustomer( String firstName, String lastName, String email ); // we might need a RegistrationInfo class in the future 
 	
 	Customer updateCustomer( Customer customer ); // we might need a RegistrationInfo class in the future 
 
@@ -67,6 +69,8 @@ public interface MenuService {
 	Customer updateCustomerProfile(Customer customerProfile,
 			long defaultDeliveryLocationId);
 
+	void sendSignInEmail(Customer customer);
+
 	void setDefaultDeliveryLocation(long customerId, long deliveryLocationId);
 
 	Article createOrUpdateArticle(Article article, long categoryId);
@@ -74,6 +78,9 @@ public interface MenuService {
 	Article setArticleFlag(Long articleId, String flagName, boolean value);
 
 	Article setArticleLimit(Long articleId, Integer limit);
+
+	boolean verifyPin(String email, String pin);
+
 
 
 

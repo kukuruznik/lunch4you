@@ -1,0 +1,19 @@
+<% var emailId = "reg_email" %>
+<% var pinId = "reg_pin" %>
+
+<form id="pinForm" class="input-form" action="javascript:">
+
+	<div class="input-form-title"><%= msg( "form.title.pin" ) %></div>
+
+	<div class="input-form-row">
+		<label for="<%= pinId %>"><%= msg( "customer.registration.pin" ) %>:<span 
+			class="required"
+			title="<%= msg( "common.form.required" ) %>"
+		>*</span></label>
+		<input type="text" name="pin" id="<%= pinId %>" value=""/>
+	</div>
+
+	<div class="input-form-buttons-row">
+		<input type="button" id="submitButton" value="<%= msg( "auth.pin.submit" ) %>"/>
+	</div>
+</form>

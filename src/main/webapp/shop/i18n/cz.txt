@@ -6,6 +6,7 @@
 	"form.title.profile": "Uživatelský profil",
 	"form.title.register": "Registrace nového uživatele",
 	"form.title.signin": "Přihlášení stávajícího uživatele",
+	"form.title.pin": "Ověření jednorázového přihlašovacího kódu",
 
 	"main.navigation.anonymous": "Nepřihlášený uživatel",
 
@@ -48,6 +49,7 @@
 	"customer.registration.firstName": "Jméno",
 	"customer.registration.lastName": "Příjmení",
 	"customer.registration.email": "Email",
+	"customer.registration.pin": "Přihlašovací kód",
 	"customer.registration.ddl": "Místo vyzvednutí",
 	"customer.registration.subscribeMenuWeekly": "Zasílat týdenní menu",
 	"customer.registration.subscribeNews": "Zasílat novinky",
@@ -59,6 +61,8 @@
 	"customer.registration.validation.invalidEmailFormat" : "Nesprávný formát emailové adresy!",
 
 	"auth.register.submit": "Registrovat",
+	"auth.signin.submit": "Zaslat jednorázový PIN kód",
+	"auth.pin.submit": "Odeslat",
 
 	"profile.edit.user.anonymous.message": "Nejste přihlášen. Informace o profilu není k dispozici.",
 

@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<style>
+		#include( "META-INF/velocity/menuMailTemplate.css" )
+		</style>
+	</head>
+	
+	<body>
+	
+	Registration email...
+
+		<p>
+			PIN: ${pin}
+		</p>
+
+		<p>
+		<a href="${shopURL}#view=menu&token=${customer.token}">Online Menu</a>
+		 | 
+		<a href="${shopURL}#view=profile&token=${customer.token}"
+			title="Click here to edit your profile, subscriptions, etc..."
+		>My profile</a>
+		</p>
+
+	</body>
+</html>

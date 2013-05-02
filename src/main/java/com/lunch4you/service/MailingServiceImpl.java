@@ -14,6 +14,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
+import com.lunch4you.auth.AuthHelper.SignInRequest;
 import com.lunch4you.domain.CategoryWithArticles;
 import com.lunch4you.domain.Customer;
 import com.lunch4you.domain.Order;
@@ -32,6 +33,8 @@ public class MailingServiceImpl implements MailingService {
 	private String contactDetails;
 	
 	private String from;
+
+	private String registrationSubject;
 
 	private String menuSubject;
 	
@@ -145,6 +148,40 @@ public class MailingServiceImpl implements MailingService {
 		};
 		mailSender.send( preparator );
 		
+	}
+
+	@Override
+	public void sendRegistration(final Customer customer, final SignInRequest req) {
+		MimeMessagePreparator preparator = new MimeMessagePreparator() {
+
+			@Override
+			public void prepare( MimeMessage mimeMessage ) throws Exception {
+				MimeMessageHelper helper = new MimeMessageHelper( mimeMessage , "UTF-8");
+				Map<String, Object> model = new HashMap<String, Object>();
+				model.put( "customer", customer);
+				model.put( "shopURL", shopURL );
+				model.put( "contactURL", contactURL );
+				model.put( "contactDetails", contactDetails );
+				model.put( "pin", req.getPin() );
+				
+				
+				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/registrationMailTemplate.vm", "UTF-8", model  );
+
+				helper.setFrom( from );
+				helper.setTo( customer.getEmail() );
+				helper.setSubject( registrationSubject );
+				helper.setText( bodyText, true );
+			}
+		};
+		mailSender.send( preparator );
+	}
+
+	public String getRegistrationSubject() {
+		return registrationSubject;
+	}
+
+	public void setRegistrationSubject(String registrationSubject) {
+		this.registrationSubject = registrationSubject;
 	}
 
 	public String getContactDetails() {

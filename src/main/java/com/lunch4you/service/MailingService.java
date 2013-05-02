@@ -2,6 +2,7 @@ package com.lunch4you.service;
 
 import java.util.LinkedHashMap;
 
+import com.lunch4you.auth.AuthHelper.SignInRequest;
 import com.lunch4you.domain.CategoryWithArticles;
 import com.lunch4you.domain.Customer;
 import com.lunch4you.domain.Order;
@@ -17,4 +18,6 @@ public interface MailingService {
 	void sendDeliveryNotification(Order order);
 
 	void sendReferral(Referral referral);
+
+	void sendRegistration(Customer newCustomer, SignInRequest req);
 }

@@ -17,22 +17,10 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 	/** @Prototype */
 	{
 		init: function() {
-			this.token = Shop.Main.getToken();
-			this._reloadData();
+			this._render();
 		},
 
 		update: function() {
-			this._reloadData();
-		},
-
-		_reloadData: function() {
-			this._onDataLoaded();
-		},
-
-		_onDataLoaded: function( ) {
-						
-			this.customer = Shop.customer; // can be null!
-
 			this._render();
 		},
 
@@ -65,13 +53,13 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 			cust.firstName = $.trim( $( "#reg_firstName" ).attr( "value" ));
 			cust.lastName = $.trim( $( "#reg_lastName" ).attr( "value" ));
 
-			Shop.Models.Customer.create( cust , this.proxy( "_customerCreatedHandler"));
+			Shop.Models.Customer.register( cust , this.proxy( "_customerCreatedHandler"));
 		},
 
 		_customerCreatedHandler : function( customer ) {
+			// TODO message taht user was created and verification code was sent
 			alert("customer created ");
-			Shop.Main.setToken( customer.token );
-			//this._renderConfirmation();
+			window.location.href="#view=signin&phase=verifyPIN&email=" + customer.email;
 		},
 
 		_validateInputForm : function() {
