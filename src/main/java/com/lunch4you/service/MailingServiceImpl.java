@@ -20,6 +20,7 @@ import com.lunch4you.domain.Customer;
 import com.lunch4you.domain.Order;
 import com.lunch4you.domain.Referral;
 
+// TODO refactor the way how standard properties/values are passed to each email
 public class MailingServiceImpl implements MailingService {
 
 	@Autowired
@@ -35,6 +36,8 @@ public class MailingServiceImpl implements MailingService {
 	private String from;
 
 	private String registrationSubject;
+	
+	private String signInSubject;
 
 	private String menuSubject;
 	
@@ -62,7 +65,7 @@ public class MailingServiceImpl implements MailingService {
 				model.put( "contactDetails", contactDetails );
 				model.put( "categoriesWithArticles", categoriesWithArticles.values() );
 				
-				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/menuMailTemplate.vm", "UTF-8", model  );
+				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/menuMail.vm", "UTF-8", model  );
 
 				helper.setFrom( from );
 				helper.setTo( customer.getEmail() );
@@ -92,7 +95,7 @@ public class MailingServiceImpl implements MailingService {
 				model.put( "shopURL", shopURL );
 				model.put( "contactURL", contactURL );
 				model.put( "contactDetails", contactDetails );
-				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/confirmationMailTemplate.vm", "UTF-8", model  );
+				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/confirmationMail.vm", "UTF-8", model  );
 
 				helper.setFrom( from );
 				helper.setTo( order.getOwner().getEmail() );
@@ -115,7 +118,7 @@ public class MailingServiceImpl implements MailingService {
 				
 				model.put( "customer", order.getOwner() );
 				model.put( "order", order );
-				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/deliveryNotificationMailTemplate.vm", "UTF-8", model  );
+				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/deliveryNotificationMail.vm", "UTF-8", model  );
 
 				helper.setFrom( from );
 				helper.setTo( order.getOwner().getEmail() );
@@ -137,7 +140,7 @@ public class MailingServiceImpl implements MailingService {
 				model.put( "referral", referral );
 				model.put( "shopURL", shopURL );
 				model.put( "customer", referral.getRecipient() );
-				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/referralMailTemplate.vm", "UTF-8", model  );
+				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/referralMail.vm", "UTF-8", model  );
 
 				helper.setFrom( from );
 				helper.setTo( referral.getRecipient().getEmail() );
@@ -165,11 +168,37 @@ public class MailingServiceImpl implements MailingService {
 				model.put( "pin", req.getPin() );
 				
 				
-				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/registrationMailTemplate.vm", "UTF-8", model  );
+				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/registrationMail.vm", "UTF-8", model  );
 
 				helper.setFrom( from );
 				helper.setTo( customer.getEmail() );
 				helper.setSubject( registrationSubject );
+				helper.setText( bodyText, true );
+			}
+		};
+		mailSender.send( preparator );
+	}
+
+	@Override
+	public void sendSignIn(final Customer customer, final SignInRequest req) {
+		MimeMessagePreparator preparator = new MimeMessagePreparator() {
+
+			@Override
+			public void prepare( MimeMessage mimeMessage ) throws Exception {
+				MimeMessageHelper helper = new MimeMessageHelper( mimeMessage , "UTF-8");
+				Map<String, Object> model = new HashMap<String, Object>();
+				model.put( "customer", customer);
+				model.put( "shopURL", shopURL );
+				model.put( "contactURL", contactURL );
+				model.put( "contactDetails", contactDetails );
+				model.put( "pin", req.getPin() );
+				
+				
+				String bodyText = VelocityEngineUtils.mergeTemplateIntoString( velocityEngine, "META-INF/velocity/signInMail.vm", "UTF-8", model  );
+
+				helper.setFrom( from );
+				helper.setTo( customer.getEmail() );
+				helper.setSubject( signInSubject );
 				helper.setText( bodyText, true );
 			}
 		};
@@ -182,6 +211,14 @@ public class MailingServiceImpl implements MailingService {
 
 	public void setRegistrationSubject(String registrationSubject) {
 		this.registrationSubject = registrationSubject;
+	}
+
+	public String getSignInSubject() {
+		return signInSubject;
+	}
+
+	public void setSignInSubject(String signInSubject) {
+		this.signInSubject = signInSubject;
 	}
 
 	public String getContactDetails() {

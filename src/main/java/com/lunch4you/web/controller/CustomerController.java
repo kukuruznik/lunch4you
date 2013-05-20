@@ -109,16 +109,24 @@ public class CustomerController {
 		return customerDto;
 	}
 
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping( value = "/customers/sendSignInEmail.json", method = RequestMethod.GET )
 	public @ResponseBody
-	void sendSignInEmail( @RequestParam String email ) throws Exception {
+	CustomerDto sendSignInEmail( @RequestParam String email ) throws Exception {
 
 		Customer customer = menuService.findCustomerByEmail( email );
 		
 		if(customer == null)
-			throw new Exception("User with given email does not exist");
+			return null;
 
 		menuService.sendSignInEmail( customer );
+		CustomerDto customerDto = beanMapper.map( customer, CustomerDto.class );
+		return customerDto;
 
 	}
 

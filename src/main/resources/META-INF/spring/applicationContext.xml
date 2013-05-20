@@ -104,6 +104,7 @@
 		<property name="contactDetails" value="${email.contactDetails}"/>
 		<property name="from" value="${email.from}"/>
 		<property name="registrationSubject" value="${email.registration.subject}"/>
+		<property name="signInSubject" value="${email.signin.subject}"/>
 		<property name="menuSubject" value="${email.menu.subject}"/>
 		<property name="confirmationSubject" value="${email.confirmation.subject}"/>
 		<property name="deliveryNotificationSubject" value="${email.deliveryNotification.subject}"/>

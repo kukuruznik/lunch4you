@@ -1,14 +1,14 @@
 <html>
 	<head>
 		<style>
-		#include( "META-INF/velocity/menuMailTemplate.css" )
+		#include( "META-INF/velocity/menuMail.css" )
 		</style>
 	</head>
 	
 	<body>
 	
 	<div class="headerText">
-		#set( $headerTemplateName = "META-INF/velocity/menuMailTemplate_header.html")
+		#set( $headerTemplateName = "META-INF/velocity/menuMail_header.html")
 		#parse( $headerTemplateName )
 		
 	</div>
@@ -88,7 +88,7 @@
 	
 	
 	<div class="footerText">
-		#set( $footerTemplateName = "META-INF/velocity/menuMailTemplate_footer_" + $customer.defaultDeliveryLocation.abbreviation + ".html")
+		#set( $footerTemplateName = "META-INF/velocity/menuMail_footer_" + $customer.defaultDeliveryLocation.abbreviation + ".html")
 		#parse( $footerTemplateName )
 
 		<h4>Lunch4you Contacts</h4>

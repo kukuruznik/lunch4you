@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<style>
-		#include( "META-INF/velocity/menuMailTemplate.css" )
+		#include( "META-INF/velocity/menuMail.css" )
 		</style>
 	</head>
 	

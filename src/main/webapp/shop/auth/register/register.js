@@ -39,11 +39,10 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 		},
 
 		_customerCheckedHandler : function( customer ) {
-			
+			// Check whether customer already exists
 			if( customer ){
 				// customer already exists
-				// TODO handle this situation
-				alert("Customer with this email address already exists");
+				alert($.EJS.Helpers.prototype.msg( "auth.register.userExists" ));
 				return;
 			}
 			
@@ -58,7 +57,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view', "common
 
 		_customerCreatedHandler : function( customer ) {
 			// TODO message taht user was created and verification code was sent
-			alert("customer created ");
+			alert($.EJS.Helpers.prototype.msg( "auth.register.userCreated" ));
 			window.location.href="#view=signin&phase=verifyPIN&email=" + customer.email;
 		},
 

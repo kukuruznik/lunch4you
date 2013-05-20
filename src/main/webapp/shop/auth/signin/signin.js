@@ -42,7 +42,11 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then(
 		"#pinForm #submitButton click": function( el, evt ) {
 			this._submitPin();
 		},
-
+		
+		/**
+		 * Phase 1 - requesting Sign-in / verification email
+		 * Handler when user submits his email address to obtain a verification / sign-in email
+		 */
 		_submitEmail : function( ) {
 
 			if ( ! this._validateInputForm() )
@@ -54,6 +58,20 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then(
 			Shop.Models.Customer.sendSigninEmail( email , this.proxy( "_emailSentHandler"));
 		},
 
+		_emailSentHandler : function( customer ) {
+			if(!customer){
+				alert($.EJS.Helpers.prototype.msg( "auth.signin.userNotExist" ));
+				return;
+			}
+			
+			this._renderPinForm();
+			alert($.EJS.Helpers.prototype.msg( "auth.signin.emailSent" ));
+		},
+
+		/**
+		 * Phase 2 - PIN verification
+		 * Handler when user submits his email address to obtain a verification / sign-in email
+		 */
 		_submitPin : function( ) {
 			var pin = $.trim( $( "#reg_pin" ).attr( "value" ));
 			var email = this.Class.getSigninEmail();
@@ -75,10 +93,6 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then(
 			}
 		},
 
-		_emailSentHandler : function( customer ) {
-			alert("SignIn email sent");
-			this._renderPinForm();
-		},
 
 		_validateInputForm : function() {
 			var email = $( "#reg_email" ).attr( "value" );

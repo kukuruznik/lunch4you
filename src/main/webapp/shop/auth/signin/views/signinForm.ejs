@@ -4,13 +4,16 @@
 <form id="signinForm" class="input-form" action="javascript:">
 
 	<div class="input-form-title"><%= msg( "form.title.signin" ) %></div>
+	
+	<div class="input-form-instruction"><%= msg( "auth.signin.instructions" ) %></div>
 
 	<div class="input-form-row">
 		<label for="<%= emailId %>"><%= msg( "customer.registration.email" ) %>:<span 
 			class="required"
 			title="<%= msg( "common.form.required" ) %>"
 		>*</span></label>
-		<input type="text" name="email" id="<%= emailId %>" value="<%= email ? email : "" %>"/>
+		<!--input type="text" name="email" id="<%= emailId %>" value="<%= email ? email : "" %>"/-->
+		<input type="text" name="email" id="<%= emailId %>" value="petr@me.com"/>
 	</div>
 
 	<div class="input-form-buttons-row">

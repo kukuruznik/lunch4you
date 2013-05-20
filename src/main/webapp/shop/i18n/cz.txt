@@ -6,7 +6,7 @@
 	"form.title.profile": "Uživatelský profil",
 	"form.title.register": "Registrace nového uživatele",
 	"form.title.signin": "Přihlášení stávajícího uživatele",
-	"form.title.pin": "Ověření jednorázového přihlašovacího kódu",
+	"form.title.pin": "Ověření přihlašovacího kódu (PIN)",
 
 	"main.navigation.anonymous": "Nepřihlášený uživatel",
 
@@ -34,7 +34,7 @@
 	"order.detail.price": "Cena",
 	"order.detail.viewMenu": "Zpět na Dnešní Menu",
 	"order.detail.user.anonymous": "Anonymní Uživatel",
-	"order.detail.user.anonymous.message": "Pouze registrovaní uživatelé mohou založit objednávku.",
+	"order.detail.user.anonymous.message": "Tato funkce je přístupna pouze přihlášeným uživatelům.",
 
 	"order.detail.action.change": "změnit",
 	"order.detail.action.order": "Poslat objednávku",
@@ -46,10 +46,11 @@
 	"order.detail.action.changeLanguage": "English",
 	"order.detail.validation.emptyDeliveryLocation" : "Prosíme vyberte místo vyzvednutí objednaného zboží",	
 
+	"customer.registration.instructions": "Pro registraci nového uživatele, vyplňte prosím Vaše základní údaje. Odesláním formuláře bude vytvořen Váš účet. Pro ověření existence Vaši email adresy Vám bude odeslán jednorázový ověřovací / přihlašovací kód (PIN). V následujícím formuláři použijte tento kód pro přihlášení k Vašemu novému účtu.",
 	"customer.registration.firstName": "Jméno",
 	"customer.registration.lastName": "Příjmení",
 	"customer.registration.email": "Email",
-	"customer.registration.pin": "Přihlašovací kód",
+	"customer.registration.pin": "Přihlašovací kód (PIN)",
 	"customer.registration.ddl": "Místo vyzvednutí",
 	"customer.registration.subscribeMenuWeekly": "Zasílat týdenní menu",
 	"customer.registration.subscribeNews": "Zasílat novinky",
@@ -61,8 +62,14 @@
 	"customer.registration.validation.invalidEmailFormat" : "Nesprávný formát emailové adresy!",
 
 	"auth.register.submit": "Registrovat",
-	"auth.signin.submit": "Zaslat jednorázový PIN kód",
-	"auth.pin.submit": "Odeslat",
+	"auth.register.userExists": "Uživatel s touhle email adresou již existuje. Pro přihlášení k existujícímu účtu použijte link \"Přihlášení\"",
+	"auth.register.userCreated": "Váš účet byl úspěšne vytvořen! Děkujeme! \n\n Na Vámi uvedenou adresu byl zaslán email s jednorázovým přihlašovacím kódem (PIN). Pro prřihlášení, vyplňte tento kód v následujícím formuláři.",
+
+	"auth.signin.instructions": "Pro přihlášení k již existujícímu účtu, zadejte svoji email adresu a bude Vám zaslán email s jednorázovým přihlašovacím kódem (PIN). Zadáním tohto kódu v následujícím formuláři bude oveřena existence Vašeho účtu. V budoucnu již budete v tomhle prohlížeči na tomhle zařízení automaticky přihlášeni (použitím Cookies).",
+	"auth.signin.submit": "Zaslat přihlašovací kód (PIN)",
+	"auth.signin.emailSent": "Na Vámi uvedenou adresu byl zaslán email s jednorázovým přihlašovacím kódem (PIN). V následujícím formuláři vyplňte tento kód.",
+	"auth.signin.userNotExist": "Uživatel s Vámi zadanou email adresou neexistuje. Jste-li nový uživatel, prosíme zaregistrujte se kliknutím na link \"Registrace\"",
+	"auth.pin.submit": "Přihlásit",
 
 	"profile.edit.user.anonymous.message": "Nejste přihlášen. Informace o profilu není k dispozici.",
 
@@ -74,7 +81,7 @@
 	"referral.detail.validation.emptyEmailAddress" : "Chyba při validaci vstupních dat!!!\n\nEmailová adresa musí být vyplněna!",
 	"referral.detail.validation.invalidEmailFormat" : "Chyba při validaci vstupních dat!!!\n\nNesprávný formát následovné emailové adresy:",	
 	"referral.detail.action.referralMsg" : "Doporučení bylo úspěšně odesláno!",
-	"referral.detail.user.anonymous.message": "Pouze registrovaní uživatelé mohou poslat doporučení.",
+	"referral.detail.user.anonymous.message": "Tato funkce je přístupna pouze přihlášeným uživatelům.",
 
 	"contacts.header.deliveryService" : "Donášková služba",
 	"contacts.header.restaurant" : "Restaurace / Kavárna",

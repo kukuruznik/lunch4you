@@ -20,4 +20,6 @@ public interface MailingService {
 	void sendReferral(Referral referral);
 
 	void sendRegistration(Customer newCustomer, SignInRequest req);
+
+	void sendSignIn(Customer customer, SignInRequest req);
 }

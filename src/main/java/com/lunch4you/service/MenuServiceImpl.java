@@ -184,6 +184,7 @@ public final class MenuServiceImpl implements MenuService {
 	@Override
 	public void sendSignInEmail(Customer customer) {
 		SignInRequest req = authHelper.createSignInRequest( customer );
+		mailingService.sendSignIn(customer, req);
 		//System.err.println("pin : "+ req.getPin());
 	}
 

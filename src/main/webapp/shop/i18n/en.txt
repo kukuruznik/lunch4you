@@ -5,8 +5,8 @@
 	"form.title.referral": "Recommend to a friend",
 	"form.title.profile": "User Profile",
 	"form.title.register": "New user registration",
-	"form.title.signin": "Existing user Sign In",
-	"form.title.pin": "Single-use Sign In code verification",
+	"form.title.signin": "Existing user Sign-In",
+	"form.title.pin": "Sign-In code (PIN) verification",
 
 	"main.navigation.anonymous": "Anonymous user",
 
@@ -18,7 +18,7 @@
 
 	"main.navigation.link.registration": "Register",
 	"main.navigation.link.registration.title": "If you don't have an account yet, register here",
-	"main.navigation.link.login": "Log In",
+	"main.navigation.link.login": "Sign In",
 	"main.navigation.link.login.title": "If you want to sing in with an existing account, click here",
 
 	"menu.article.soldOut.label": "Sold Out",
@@ -34,7 +34,7 @@
 	"order.detail.price": "Price",
 	"order.detail.viewMenu": "Back to Today's Menu",
 	"order.detail.user.anonymous": "Anonymous User",
-	"order.detail.user.anonymous.message": "Please register. Only registered users can place orders.",
+	"order.detail.user.anonymous.message": "This functionality is available only to signed-in users.",
 
 	"order.detail.action.change": "change",
 	"order.detail.action.order": "Submit Order",
@@ -46,10 +46,11 @@
 	"order.detail.action.changeLanguage": "Čeština",
 	"order.detail.validation.emptyDeliveryLocation" : "Please select Delivery Location for your order",	
 
+	"customer.registration.instructions": "To register, please fill in your basic personal information. Submit the form to create your new account. To verify an existence of your email address, an email was sent to you containing a single-use Sign-In code (PIN). Please use this code in following form to sign in to your new account.",
 	"customer.registration.firstName": "First Name",
 	"customer.registration.lastName": "Last Name",
 	"customer.registration.email": "Email",
-	"customer.registration.pin": "PIN",
+	"customer.registration.pin": "Sign-In code (PIN)",
 	"customer.registration.ddl": "Default Pickup Location",
 	"customer.registration.subscribeMenuWeekly": "Send Weekly Menu",
 	"customer.registration.subscribeNews": "Send Newsletter",
@@ -61,8 +62,14 @@
 	"customer.registration.validation.invalidEmailFormat" : "Invalid email address format!",
 
 	"auth.register.submit": "Register",
-	"auth.signin.submit": "Send verificaiton code",
-	"auth.pin.submit": "Submit",
+	"auth.register.userExists": "User with this email address already exists. To sign in to your account please use the \"Sign In\" link.",
+	"auth.register.userCreated": "Your account was successfully created! Thank you! \n\n An email was sent to your email containing single-use Sign-In code (PIN). Please use this code in following form to sign in.",
+
+	"auth.signin.instructions": "For Sign-In to an existing account, please provide your email address and a single-use Sign-In code (PIN) will be sent to you. By using this code in the following form the system will check the existence of your account. In future you will be automatically signed in when using this browser on this device (using Cookies).",
+	"auth.signin.submit": "Send Sign-In code (PIN)",
+	"auth.signin.emailSent": "An email was sent to your email address containing single-use code (PIN). Please provide this code in the following dialog.",
+	"auth.signin.userNotExist": "User with given email addess already exists. If you are a new user, please register using link \"Register\"",
+	"auth.pin.submit": "Sign In",
 
 	"profile.edit.user.anonymous.message": "Not logged in. No profile information available.",
 
@@ -74,7 +81,7 @@
 	"referral.detail.validation.emptyEmailAddress" : "Validation error!!! \n\n Email address must not be empty!",	
 	"referral.detail.validation.invalidEmailFormat" : "Validation error!!! \n\n Following address is not a valid email address: ",
 	"referral.detail.action.referralMsg" : "Referral successfully submitted!",
-	"referral.detail.user.anonymous.message": "Please register. Only registered users can send referrals.",
+	"referral.detail.user.anonymous.message": "This functionality is available only to signed-in users.",
 
 	"contacts.header.deliveryService" : "Delivery Service",
 	"contacts.header.restaurant" : "Restaurant / Café",
