@@ -59,6 +59,7 @@
 	"customer.registration.cancel": "Cancel",
 	"customer.registration.updateSuccess.msg" : "Profile successfully updated",
 	"customer.registration.validation.emptyEmailAddress" : "Email address must not be empty!",
+	"customer.registration.validation.invalidPIN" : "Invalid PIN!",
 	"customer.registration.validation.invalidEmailFormat" : "Invalid email address format!",
 
 	"auth.register.submit": "Register",
@@ -69,6 +70,7 @@
 	"auth.signin.submit": "Send Sign-In code (PIN)",
 	"auth.signin.emailSent": "An email was sent to your email address containing single-use code (PIN). Please provide this code in the following dialog.",
 	"auth.signin.userNotExist": "User with given email addess already exists. If you are a new user, please register using link \"Register\"",
+	"auth.signin.success.message": "Sign In successful!",
 	"auth.pin.submit": "Sign In",
 
 	"profile.edit.user.anonymous.message": "Not logged in. No profile information available.",

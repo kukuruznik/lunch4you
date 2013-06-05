@@ -80,7 +80,7 @@ steal(
 		 */
 		reloadCustomer: function() {
 			var token = this.getToken();
-			Shop.Models.Customer.findByToken( token, Shop.Main.prototype.proxy( "_customerLoaded" ) );
+			Shop.Models.Customer.findByToken( token, Shop.Main.prototype.proxy( "_customerReloaded" ) );
 		},
 
 		navigateTo: function( viewName, params ) {
@@ -145,6 +145,11 @@ steal(
 		},
 
 		_customerLoaded: function( customer ) {
+			Shop.customer = customer;
+		},
+
+		_customerReloaded: function( customer ) {
+			alert("_customerReloaded");
 			Shop.customer = customer;
 		},
 

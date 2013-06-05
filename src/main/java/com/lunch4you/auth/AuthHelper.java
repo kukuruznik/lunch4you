@@ -20,8 +20,10 @@ public class AuthHelper {
 		int randomNum =  minimum + i;
 		if(randomNum < 0) 
 			randomNum = randomNum * -1;
-		
-		return String.format("%04d", randomNum );
+
+		String str = String.format("%04d", randomNum );
+		System.err.println(str);
+		return str;
 	}
 
 	public SignInRequest createSignInRequest(Customer customer) {

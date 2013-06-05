@@ -81,7 +81,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then(
 		_pinSentHandler : function( customer ) {
 			if(!customer){
 				// TODO handle this situation with proper text and instructions
-				alert("Invalid PIN");
+				alert($.EJS.Helpers.prototype.msg( "customer.registration.validation.invalidPIN" ));
 				
 			} else {
 				Shop.Main.setToken( customer.token );
@@ -112,6 +112,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then(
 		},
 
 		_render: function() {
+			//this._renderSuccess(); return;
 			var phase = Shop.params.phase;
 			if(phase == "verifyPIN") {
 				this.Class.setSigninEmail(Shop.params.email);

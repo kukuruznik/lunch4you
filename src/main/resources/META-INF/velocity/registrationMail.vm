@@ -7,19 +7,33 @@
 	
 	<body>
 	
-	Registration email...
-
+		Vážený příjemce,
+		
 		<p>
-			PIN: ${pin}
+		Děkujeme za Vaší registraci na Lunch4you! Pro dokončení registrace a přihlášení do Lunch4you web-aplikace, 
+		použijte prosím dole uvedený jednorázový přihlašovací kód.
+		</p>
+		<p>
+			Jednorázový přihlašovací kód (PIN): <b>${pin}</b>
+		</p>
+		
+		S pozdravem,
+		Lunch4you team.
+		
+		<hr>
+		
+		Dear recipient,
+		
+		<p>
+		Thank you for registering with Lunch4you! To complete your registration please use the single-use sign-in code (PIN) below and type
+		it into the Sign-in form.
+		</p>
+		<p>
+			Single-use sign-in code (PIN): <b>${pin}</b>
 		</p>
 
-		<p>
-		<a href="${shopURL}#view=menu&token=${customer.token}">Online Menu</a>
-		 | 
-		<a href="${shopURL}#view=profile&token=${customer.token}"
-			title="Click here to edit your profile, subscriptions, etc..."
-		>My profile</a>
-		</p>
+		Best regards,
+		Lunch4you team.
 
 	</body>
 </html>

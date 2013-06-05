@@ -59,6 +59,7 @@
 	"customer.registration.cancel": "Zrušit",
 	"customer.registration.updateSuccess.msg" : "Profil byl úspěšne aktualizován",
 	"customer.registration.validation.emptyEmailAddress" : "Emailová adresa musí být vyplněna!",
+	"customer.registration.validation.invalidPIN" : "Neplatný PIN!",
 	"customer.registration.validation.invalidEmailFormat" : "Nesprávný formát emailové adresy!",
 
 	"auth.register.submit": "Registrovat",
@@ -69,6 +70,7 @@
 	"auth.signin.submit": "Zaslat přihlašovací kód (PIN)",
 	"auth.signin.emailSent": "Na Vámi uvedenou adresu byl zaslán email s jednorázovým přihlašovacím kódem (PIN). V následujícím formuláři vyplňte tento kód.",
 	"auth.signin.userNotExist": "Uživatel s Vámi zadanou email adresou neexistuje. Jste-li nový uživatel, prosíme zaregistrujte se kliknutím na link \"Registrace\"",
+	"auth.signin.success.message": "Přihlášení proběhlo úspěšne!",
 	"auth.pin.submit": "Přihlásit",
 
 	"profile.edit.user.anonymous.message": "Nejste přihlášen. Informace o profilu není k dispozici.",

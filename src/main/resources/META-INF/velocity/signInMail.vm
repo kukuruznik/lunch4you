@@ -7,19 +7,31 @@
 	
 	<body>
 	
-	SignIn email...
-
+		Vážený příjemce,
+		
 		<p>
-			PIN: ${pin}
+		Pro přihlášení do Lunch4you web-aplikace, použijte prosím dole uvedený jednorázový přihlašovací kód.
+		</p>
+		<p>
+			Jednorázový přihlašovací kód (PIN): <b>${pin}</b>
+		</p>
+		
+		S pozdravem,
+		Lunch4you team.
+		
+		<hr>
+		
+		Dear recipient,
+		
+		<p>
+		Please use the single-use sign-in code (PIN) below and to sign in to Lunch4you web aplpication.
+		</p>
+		<p>
+			Single-use sign-in code (PIN): <b>${pin}</b>
 		</p>
 
-		<p>
-		<a href="${shopURL}#view=menu&token=${customer.token}">Online Menu</a>
-		 | 
-		<a href="${shopURL}#view=profile&token=${customer.token}"
-			title="Click here to edit your profile, subscriptions, etc..."
-		>My profile</a>
-		</p>
+		Best regards,
+		Lunch4you team.
 
 	</body>
 </html>
