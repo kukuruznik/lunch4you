@@ -146,6 +146,10 @@ div.tab-selectors div.tab-selector{
 	padding : 2px;
 }
 
+#orderActions {
+	float: right;
+}
+
 #meals3 .orderAction {
 	text-decoration : underline;
 	color : blue;

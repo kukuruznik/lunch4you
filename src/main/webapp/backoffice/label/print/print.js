@@ -171,6 +171,10 @@ steal( "jquery/controller", "jquery/view/ejs", "jquery/controller/view", "backof
 			this._render();
 		},
 
+		"input[type=button] click": function( el, evt ) {
+			console.log( "Orders to update: ", this.orders );
+		},
+
 		_render: function() {
 			this.element.html( this.view( "layout", this.pages ) );
 		}

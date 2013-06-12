@@ -39,8 +39,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 			var checked = el.is(':checked');
 			this.checkedItems[orderId] = checked;
 		},
-		
-		
+
 		"#orderItemSelectorAllCheckbox click": function( el, evt ) {
 			var checked = el.attr("checked");
 			var orderSelectors = $(".orderItemSelectorCheckbox");
@@ -52,7 +51,27 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 				}
 			});
 		},
-		
+
+		"#orderItemSelectorNotPrinted click": function( el, evt ) {
+			var orderSelectors = $( ".orderItemSelectorCheckbox" );
+			var orders = Backoffice.orders;
+
+			orderSelectors.each( function( index ) {
+				var orderId = $( this ).attr( "orderId" );
+
+				for ( var i = 0; i < orders.length; i++ ) {
+					var id = orders[ i ].id;
+					
+					if ( orderId == id ) {
+						if ( orders[ i ].onlyItem.isLabelPrinted )
+							$( this ).attr( "checked", false );
+						else
+							$( this ).attr( "checked", true );
+					}
+				}
+			} );
+		},
+
 		"#ordersActionButton click": function( el, evt ) {
 			var action = el.attr("action");
 			var orderSelectors = $(".orderItemSelectorCheckbox:checked");

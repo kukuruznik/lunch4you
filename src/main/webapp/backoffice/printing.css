@@ -5,6 +5,23 @@ body {
 #print-preview {
 	background-color: silver;
 	padding: 0.5em;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 3em;
+	overflow: auto;
+}
+
+#button-bar {
+	background-color: silver;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	height: 2em;
+	text-align: center;
+	padding: 0.5em;
 }
 
 #print-preview .page {
