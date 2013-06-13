@@ -536,7 +536,7 @@ public final class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public List<Long> closeOrders( List<Long> ids ) {
+	public void closeOrders( List<Long> ids ) {
 		OrderFilter filter = new OrderFilter();
 		filter.status = Order.Status.OPEN;
 		filter.ids = ids;
@@ -546,7 +546,6 @@ public final class MenuServiceImpl implements MenuService {
 			ids.remove( o.getId() );
 			o.setStatus( Order.Status.CLOSED );
 		}
-		return ids;
 	}
 
 	@Override

@@ -149,8 +149,9 @@ steal(
 		},
 
 		_customerReloaded: function( customer ) {
-			alert("_customerReloaded");
+			//alert("_customerReloaded");
 			Shop.customer = customer;
+			$( "#main-header-pane" ).html( this.view( "mainHeader", this ) );
 		},
 
 		_deliveryLocationsLoaded: function( deliveryLocations ) {

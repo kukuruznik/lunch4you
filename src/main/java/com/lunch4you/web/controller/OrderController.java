@@ -65,26 +65,17 @@ public class OrderController {
 
 	@RequestMapping( value = "/backoffice/orders/close.json", method = RequestMethod.PUT )
 	public @ResponseBody
-	List<Long> close( @RequestBody List<String> intIds ) {
-		// IDs mapped as List<Integer> - bug?
-		List<Long> ids = new ArrayList<Long>( intIds.size() );
-		for ( String id : intIds )
-			ids.add( Long.parseLong( id ) );
+	List<Long> close( @RequestBody List<Long> ids ) {
 		logger.trace( "OrderController.close called with ID-s: " + ids );
 
-		List<Long> missingOrders = menuService.closeOrders( ids );
+		menuService.closeOrders( ids );
 
-		return missingOrders;
+		return Collections.emptyList();
 	}
 
 	@RequestMapping( value = "/backoffice/orders/delete.json", method = RequestMethod.PUT )
 	public @ResponseBody
-	List<Long> delete( @RequestBody List<String> intIds ) {
-		// IDs mapped as List<Integer> - bug?
-		List<Long> ids = new ArrayList<Long>( intIds.size() );
-		for ( String id : intIds )
-			ids.add( Long.parseLong( id ) );
-		logger.trace( "OrderController.delete called with ID-s: " + ids );
+	List<Long> delete( @RequestBody List<Long> ids ) {
 
 		menuService.deleteOrders(ids);
 		logger.trace( "OrderController.delete called with ID-s: " + ids );
@@ -93,15 +84,9 @@ public class OrderController {
 
 	@RequestMapping( value = "/backoffice/orders/notifyDelivery.json", method = RequestMethod.PUT )
 	public @ResponseBody
-	List<Long> notifyDelivery( @RequestBody List<Long> intIds ) {
-		// IDs mapped as List<Integer> - bug?
-		List<Long> ids = new ArrayList<Long>( intIds.size() );
-//		for ( String id : intIds )
-//			ids.add( Long.parseLong( id ) );
-		logger.trace( "OrderController.delete called with ID-s: " + ids );
+	List<Long> notifyDelivery( @RequestBody List<Long> ids ) {
 
-		menuService.notifyDelivery(intIds);
-		logger.trace( "OrderController.delete called with ID-s: " + ids );
+		menuService.notifyDelivery(ids);
 		return Collections.emptyList();
 	}
 

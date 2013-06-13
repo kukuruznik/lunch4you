@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<style>
-		#include( "META-INF/velocity/referralMailTemplate.css" )
+		#include( "META-INF/velocity/referralMail.css" )
 		</style>
 	</head>
 	

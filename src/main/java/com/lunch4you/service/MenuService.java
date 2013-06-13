@@ -54,7 +54,7 @@ public interface MenuService {
 
 	LinkedHashMap<Long, DeliveryLocationWithArticles> getActiveOrdersByDeliveryLocation();
 	
-	List<Long> closeOrders( List<Long> ids );
+	void closeOrders( List<Long> ids );
 
 	void deleteOrders(List<Long> ids);
 
