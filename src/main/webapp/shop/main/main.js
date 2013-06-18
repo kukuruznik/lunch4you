@@ -75,6 +75,10 @@ steal(
 			return result[0];
 		},
 
+		setDefaultDeliveryLocation : function (locationId){
+			Shop.customer.defaultDeliveryLocation = this.getDeliveryLocationById(locationId); 
+		},
+
 		/**
 		 * Reloads current customer object (by token). This method should be called after any updates to user's profile
 		 */

@@ -10,26 +10,27 @@
 				<% var order = row[ i ] %>
 				<div class="label-position" data-row="<%= rowIndex %>" data-col="<%= i %>">
 				<% if ( order === false ) { %>
-					<div class="not-used">(empty)</div>
+					<div class="not-used noPrint">(empty)</div>
 				<% } else if ( order == null ) { %>
-					<ul>
-						<li>&nbsp;</li>
-					</ul>
+					<div class="not-used noPrint">(empty)</div>
 				<% } else { %>
-					<ul>
-						<li><%= order.onlyItem.article.name_cz %></li>
-						<li><%= order.onlyItem.article.name_en %></li>
-						<li>
-						<% if ( order.note ) { %>
-							<%= order.note %>
-						<% } else { %>
-							&nbsp;
-						<% } %>
-						</li>
-						<li>&nbsp;</li>
-						<li><%= order.owner.firstName %></li>
-						<li><%= order.deliveryLocation.name %></li>
-					</ul>
+					<table class="label-layout" cellpadding="0" cellspacing="0">
+						<tr>
+							<td colspan="2" class="customer-name"><%= order.owner.firstName %> <%= order.owner.lastName %></td>
+						</tr>
+						<tr>
+							<td colspan="2" class="article">
+							<%= order.onlyItem.article.name_cz %>
+							<% if ( order.note ) { %>
+								<%= order.note %>
+							<% } %>
+							</td>
+						</tr>
+						<tr>
+							<td class="delivery-location"><%= order.deliveryLocation.name %></td>
+							<td class="l4u-url">www.lunch4you.cz</td>
+						</tr>						
+					</table>
 				<% } %>
 				</div>
 			<% } %>
@@ -37,6 +38,6 @@
 	</div>
 <% } %>
 </div>
-<div id="button-bar">
+<div id="button-bar" class="noPrint">
 	<input type="button" value="Mark as Printed"/>
 </div>

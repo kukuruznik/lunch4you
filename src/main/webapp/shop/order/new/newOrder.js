@@ -114,6 +114,10 @@ steal(
 			// 2) selected location is different from the one in the profile
 			var setDdl = setDefaultDeliveryLocation && ( !custDdlId || custDdlId != selectedDlId);
 			
+			// Set default delivery location on current Customer object
+			if(setDdl)
+				Shop.Main.setDefaultDeliveryLocation(selectedDlId);
+			
 			var note = $( "#note" ).val();
 			
 			Shop.Models.Order.create( this.article, this.customer, selectedDlId, setDdl, note, function( orderResult ) {

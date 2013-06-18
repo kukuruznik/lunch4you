@@ -28,6 +28,16 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		update: function() {
 			this._refresh();
 		},
+		
+		_getSelectedOrderIds: function(){
+			var orderSelectors = $(".orderItemSelectorCheckbox:checked");			
+			var orderIds = $( orderSelectors ).map( function( index, checkboxEl ) {
+				return parseInt( $(checkboxEl).attr("orderId") );
+			});
+			
+			return $.makeArray( orderIds );
+			
+		},
 
 		"#refreshList3 click": function( el, evt ) {
 			this._refresh();
@@ -73,31 +83,33 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then( 
 		},
 
 		"#ordersActionButton click": function( el, evt ) {
-			var action = el.attr("action");
-			var orderSelectors = $(".orderItemSelectorCheckbox:checked");
-			if(orderSelectors.size() == 0 ){
+			var orderIds = this._getSelectedOrderIds();
+
+			if(orderIds.length == 0 ){
 				alert("No orders selected!");
 				return;
 			}
+
+			var action = el.attr("action");
 			if( !confirm("Are you sure you want to " + action.toUpperCase() + " these Orders?") ){
 				return;
 			}
-			
-			var orderIds = $( orderSelectors ).map( function( index, checkboxEl ) {
-				return parseInt( $(checkboxEl).attr("orderId") );
-			});
-			
-			orderIds = $.makeArray( orderIds );
+						
+			Backoffice.Models.Order.executeAction( orderIds, action, this.proxy( "_handleActionResponse" ) );
+		},
+
+		"#printLabelsButton click": function( el, evt ) {
+			var orderIds = this._getSelectedOrderIds();
+
+			if(orderIds.length == 0 ){
+				alert("No orders selected!");
+				return;
+			}
+						
 			Backoffice.orderIdsToPrint = orderIds;
 			
-			clearTimeout( this.timeOutID );
-
-			if ( action === "print" ) {
-				var newWin = Backoffice.Utils.openWindow( "printing.html", "printing" );
-				newWin.focus();
-			} else {
-				Backoffice.Models.Order.executeAction( orderIds, action, this.proxy( "_handleActionResponse" ) );
-			}
+			var newWin = Backoffice.Utils.openWindow( "printing.html", "printing" );
+			newWin.focus();
 		},
 
 		

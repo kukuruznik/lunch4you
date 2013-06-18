@@ -1,9 +1,17 @@
+@media print {
+	.noPrint {
+		display:none;
+	}
+
+}
+
+
+
 body {
 	margin: 0;
 }
 
 #print-preview {
-	background-color: silver;
 	padding: 0.5em;
 	position: absolute;
 	top: 0;
@@ -25,11 +33,11 @@ body {
 }
 
 #print-preview .page {
-	width: 420px; /* 210 x 2 */
-	height: 594px; /* 297 x 2 */
+	//width: 420px; /* 210 x 2 */
+	//height: 594px; /* 297 x 2 */
 	margin: auto;
 	background-color: white;
-	border: 1px solid gray;
+	border: 1px white solid;
 }
 
 #print-preview .page ul {
@@ -41,12 +49,64 @@ body {
 #print-preview .page .label-position {
 	/*margin: 0;
 	padding: 0;*/
-	width: 209px;
+	padding : 0px 20px 20px 0px;
+	width: 290px;
 	float: left;
-	height: 119px;
+	height: 159px;
+	margin-right : 40px;
+	//background-color : #e0e0e0;
+	background-color : white;
 	text-align: center;
 	font-size: 50%;
 	line-height: 1.2em;
+	border : 1px black dashed;
+}
+
+#print-preview table.label-layout {
+	table-layout: fixed;
+	width : 100%;
+	//width : 185px;
+	border : 0px black solid;
+}
+
+#print-preview table.label-layout td{
+	border : 1px white solid;
+}
+
+#print-preview .page div {
+	border : 0px black solid;
+}
+
+#print-preview .customer-name {
+	padding : 0px;
+	white-space : nowrap;
+	overflow : hidden;
+	text-align : left;
+	font-size: 2em;
+	height : 15px;
+}
+
+#print-preview .article {
+	font-size: 3em;
+	line-height: 25px;
+	height : 70px;
+}
+
+#print-preview .delivery-location {
+	width : *;
+	padding-right : 5px;
+	overflow : hidden;
+	white-space : nowrap;
+	text-align : left;
+	vertical-align : bottom;
+	font-size: 1.5em;
+	height : 15px;
+}
+
+#print-preview .l4u-url {
+	width : 70px;
+	text-align: right;
+	vertical-align : bottom;
 }
 
 #print-preview .page .label-position:HOVER {
@@ -58,7 +118,7 @@ body {
 
 #print-preview .page .not-used {
 	background-color: #eee;
-	line-height: 119px;
+	line-height: 50px;
 }
 
 #print-preview .page .not-used:HOVER {

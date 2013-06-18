@@ -12,7 +12,7 @@ steal( "jquery/class" ).then( function( $ ) {
 		openWindow: function( url, name, width, height ) {
 			width = width || 800;
 			height = height || 600;
-			var optionsText = "width=" + width + ",height=" + height;
+			var optionsText = "width=" + width + ",height=" + height + ", menubar=yes, toolbar=yes";
 			return window.open( url, name, optionsText );
 		}
 	},
