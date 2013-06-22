@@ -86,6 +86,10 @@ steal(
 			var token = this.getToken();
 			Shop.Models.Customer.findByToken( token, Shop.Main.prototype.proxy( "_customerReloaded" ) );
 		},
+		
+		getCustomer : function(){
+			return Shop.customer;
+		},
 
 		navigateTo: function( viewName, params ) {
 			var token = Shop.params.token;
@@ -172,6 +176,7 @@ steal(
 		},
 
 		_render: function() {
+			//alert(1);
 			// render the main page structure
 			$( "#content" ).html( this.view( "page", this ) );
 

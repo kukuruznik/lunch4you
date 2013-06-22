@@ -2,6 +2,7 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then(
 		
 	"./views/signinForm.ejs",
 	"./views/pinForm.ejs",
+	"./views/signedIn.ejs",
 	"./views/success.ejs",
 				
 	function( $ ) {
@@ -112,7 +113,11 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then(
 		},
 
 		_render: function() {
-			//this._renderSuccess(); return;
+			if(Shop.Main.getCustomer()){
+				//alert(2)
+				this._renderSignedInForm();
+			}
+			
 			var phase = Shop.params.phase;
 			if(phase == "verifyPIN") {
 				this.Class.setSigninEmail(Shop.params.email);
@@ -128,6 +133,10 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then(
 
 		_renderSuccess: function() {
 			this.element.html( this.view( "success" ) );
+		},
+
+		_renderSignedInForm: function() {
+			this.element.html( this.view( "signedIn" ) );
 		},
 
 		_renderPinForm: function() {
