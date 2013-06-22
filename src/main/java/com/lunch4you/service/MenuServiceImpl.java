@@ -129,8 +129,6 @@ public final class MenuServiceImpl implements MenuService {
 		Customer customer = createCustomer(firstName, lastName, email);
 		SignInRequest req = authHelper.createSignInRequest( customer );
 
-		System.err.println("pin : "+ req.getPin());
-
 		mailingService.sendRegistration(customer, req);
 	
 		return customer;
@@ -185,7 +183,6 @@ public final class MenuServiceImpl implements MenuService {
 	public void sendSignInEmail(Customer customer) {
 		SignInRequest req = authHelper.createSignInRequest( customer );
 		mailingService.sendSignIn(customer, req);
-		//System.err.println("pin : "+ req.getPin());
 	}
 
 	@Override

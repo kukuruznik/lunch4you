@@ -3,22 +3,19 @@
 		display:none;
 	}
 
-}
+	.page .label {
+		background-color : white;
+	}
 
+}
 
 
 body {
 	margin: 0;
-}
-
-#print-preview {
-	padding: 0.5em;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 3em;
-	overflow: auto;
+	padding: 0;
+	font-family: sans-serif;
+	height : 100%; 
+	border : 0px black dashed;
 }
 
 #button-bar {
@@ -32,95 +29,119 @@ body {
 	padding: 0.5em;
 }
 
-#print-preview .page {
-	//width: 420px; /* 210 x 2 */
-	//height: 594px; /* 297 x 2 */
-	margin: auto;
+.page {
+	width: 200mm; /* 210 x 2 */
+	height: 285mm; /* 297 x 2 */
 	background-color: white;
-	border: 1px white solid;
+	white-space : nowrap;
+	border: 0px red solid;
+	overflow : hidden;
+	clear : both;
 }
 
-#print-preview .page ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
 
-#print-preview .page .label-position {
+.page .label {
 	/*margin: 0;
 	padding: 0;*/
-	padding : 0px 20px 20px 0px;
-	width: 290px;
-	float: left;
-	height: 159px;
-	margin-right : 40px;
-	//background-color : #e0e0e0;
-	background-color : white;
-	text-align: center;
-	font-size: 50%;
-	line-height: 1.2em;
-	border : 1px black dashed;
+	padding : 4mm;
+	width: 90mm;
+	height: 39.25mm;
+	overflow : hidden;
+	float : left;
+	clear : none;
+	//background-color : lightgray;
+	border : 1px white dashed;
 }
 
-#print-preview table.label-layout {
-	table-layout: fixed;
+table.label-layout {
+	width : 90mm;
+	border : 0px blue solid;
+}
+
+table.label-layout td{
+	border : 0px orange solid;
+	//border-spacing:0;
+	//border-collapse:collapse;	
+}
+
+.delivery-location {
 	width : 100%;
-	//width : 185px;
-	border : 0px black solid;
-}
-
-#print-preview table.label-layout td{
-	border : 1px white solid;
-}
-
-#print-preview .page div {
-	border : 0px black solid;
-}
-
-#print-preview .customer-name {
-	padding : 0px;
 	white-space : nowrap;
 	overflow : hidden;
-	text-align : left;
-	font-size: 2em;
-	height : 15px;
+	text-align : center;
+	font-size: 1.4em;
+	//font-weight: bold;
+	line-height : 1.4em;
+	height : 28px;
+	border : 0px red solid;
 }
 
-#print-preview .article {
-	font-size: 3em;
-	line-height: 25px;
-	height : 70px;
-}
 
-#print-preview .delivery-location {
-	width : *;
-	padding-right : 5px;
-	overflow : hidden;
+.customer-name {
+	width : 90mm;
 	white-space : nowrap;
-	text-align : left;
-	vertical-align : bottom;
-	font-size: 1.5em;
-	height : 15px;
+	overflow : hidden;	
+	text-align : center;
+	font-size: 1.4em;
+	font-weight: bold;
+	line-height : 1.5em;
+	height : 25px;
+	border : 0px red solid;
 }
 
-#print-preview .l4u-url {
-	width : 70px;
-	text-align: right;
-	vertical-align : bottom;
+
+
+td.article-cell{
+	height : 50px;
+	font-size: 1em;
+	font-weight: bold;
+	text-align : center;
+	white-space: normal;
+	border : 0px red solid;
 }
 
-#print-preview .page .label-position:HOVER {
+
+td.logo-cell{
+	text-align : center;
+}
+
+.l4u-logo {
+	background-image: url("../l4u-logo-color-mono.png");
+	background-size:50px;
+	background-repeat:no-repeat; 
+	background-position : right;
+	float : left;
+	clear : none; 
+	width : 120px;
+	height : 50px;
+	border : 0px red solid;
+}
+
+.l4u-url {
+	width : 150px;
+	height : 50px;
+	line-height : 50px;
+	font-size: 1em;
+	font-weight: bold;
+	float : left;
+	text-align: left;
+	padding-left : 10px;
+	clear : none;
+	border : 0px red solid;
+}
+
+.page .label:HOVER {
 	background-color: #fee;
 }
 
-#print-preview .page ul li {
+.page ul li {
 }
 
-#print-preview .page .not-used {
+.page .not-used {
 	background-color: #eee;
 	line-height: 50px;
 }
 
-#print-preview .page .not-used:HOVER {
+.page .not-used:HOVER {
 	background-color: #efe;
 }

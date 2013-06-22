@@ -22,12 +22,11 @@ public class AuthHelper {
 			randomNum = randomNum * -1;
 
 		String str = String.format("%04d", randomNum );
-		System.err.println(str);
 		return str;
 	}
 
 	public SignInRequest createSignInRequest(Customer customer) {
-		String email = customer.getEmail();
+		String email = customer.getEmail().toLowerCase();
 		String pin = generatePin();
 		
 		SignInRequest req = new SignInRequest(email, pin);
@@ -37,29 +36,30 @@ public class AuthHelper {
 		return req;
 	}
 	
+	public boolean verifyPin(String email, String pin) {
+		String emailLowerCase = email.toLowerCase();
+		SignInRequest req = requests.get( emailLowerCase );
+		if(req == null)
+			return false;
+		if(req.email.equals(emailLowerCase) && req.pin.equals(pin) )
+			return true;
+		return false;
+	}
+
 	public static class SignInRequest {
 		String email;
 		String pin;
-
+	
 		public SignInRequest(String email, String pin) {
 			super();
 			this.email = email;
 			this.pin = pin;
 		}
-
+	
 		public String getPin() {
 			return pin;
 		}
 		
-	}
-
-	public boolean verifyPin(String email, String pin) {
-		SignInRequest req = requests.get( email );
-		if(req == null)
-			return false;
-		if(req.email.equals(email) && req.pin.equals(pin) )
-			return true;
-		return false;
 	}
 
 }

@@ -1,6 +1,5 @@
 <% var pages = this %>
 
-<div id="print-preview">
 <% for ( var pageIndex = 0; pageIndex < pages.length; pageIndex++ ) { %>
 	<% var rows = pages[ pageIndex ] %>
 	<div class="page" data-number="<%= pageIndex %>">
@@ -8,36 +7,45 @@
 			<% var row = rows[ rowIndex ] %>
 			<% for ( var i = 0; i < row.length; i++ ) { %>
 				<% var order = row[ i ] %>
-				<div class="label-position" data-row="<%= rowIndex %>" data-col="<%= i %>">
+				<div class="label" data-row="<%= rowIndex %>" data-col="<%= i %>">
+				
 				<% if ( order === false ) { %>
 					<div class="not-used noPrint">(empty)</div>
 				<% } else if ( order == null ) { %>
 					<div class="not-used noPrint">(empty)</div>
 				<% } else { %>
+					
 					<table class="label-layout" cellpadding="0" cellspacing="0">
 						<tr>
-							<td colspan="2" class="customer-name"><%= order.owner.firstName %> <%= order.owner.lastName %></td>
-						</tr>
-						<tr>
-							<td colspan="2" class="article">
-							<%= order.onlyItem.article.name_cz %>
-							<% if ( order.note ) { %>
-								<%= order.note %>
-							<% } %>
+							<td class="top-line-cell">
+								<div class="delivery-location"><%= order.deliveryLocation.name %></div>
+								<div class="customer-name"><%= order.owner.firstName %> <%= order.owner.lastName %></div>
 							</td>
 						</tr>
 						<tr>
-							<td class="delivery-location"><%= order.deliveryLocation.name %></td>
-							<td class="l4u-url">www.lunch4you.cz</td>
+							<td class="article-cell">
+								<%= order.onlyItem.article.name_cz %>
+							</td>
+						</tr>
+						<tr>
+							<td class="logo-cell">
+								<div class="l4u-logo"></div>
+								<div class="l4u-url">www.lunch4you.cz</div>
+							</td>
 						</tr>						
 					</table>
 				<% } %>
 				</div>
+				<% if ( i == row.length - 1 ) { %>
+					<br style="clear : both">
+				<% } %>
+		
 			<% } %>
 		<% } %>
 	</div>
 <% } %>
-</div>
+<!--
 <div id="button-bar" class="noPrint">
 	<input type="button" value="Mark as Printed"/>
 </div>
+-->

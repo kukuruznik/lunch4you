@@ -3,14 +3,16 @@
 
 
 <table id="main-header">
+	<tr class="dummy-row">
+		<td class="left-column"></td>
+		<td class="middle-column"></td>
+		<td class="right-column"></td>
+	</t>
 	<tr>
-		<td id="logo-cell">
-			<div id="main-logo">Lunch<em>4</em>You</div>
+		<td id="logo-cell" class="left-column" rowspan="2">
+			<div id="main-logo"></div>
 		</td>
-		<td id="middle-cell">
-			<div id="main-screen-name"></div>
-		</td>
-		<td id="service-cell">
+		<td id="service-cell" colspan="2">
 			<span id="main-customer-info">
 				<% if(Shop.customer){ %>
 				<a id="main-customer-link" href="javascript:"> <%= Shop.customer.firstName %> <%= Shop.customer.lastName %></a>
@@ -38,13 +40,15 @@
 		</td>
 	</tr>
 	<tr>
-		<td  id="navigation-cell" colspan="3">
+		<td  id="navigation-cell">
 			<div id="main-navigation">
 				<% for ( var i = 0; i < navItems.length; i++ ) { %>
 					<%= i > 0 ? "|" : "" %>
 					<a class="main-navigation-selector" navigationIndex="<%= i %>" href="javascript:"><%= msg( "main.navigation.items." + navItems[i] ) %></a>
 				<% } %>
 			</div>
+		</td>
+		<td class="right-column">
 		</td>
 	</tr>
 </table>

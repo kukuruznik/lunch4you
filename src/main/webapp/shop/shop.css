@@ -85,48 +85,62 @@ li.category {
 
 #main-header {
 	width : 100%;
+	border-spacing:0;
+	border-collapse:collapse;	
 	background-color: #f80;
+	//background-color: #28485C;
+	//background-color: #B4D56F;
 	color: white;
 }
 
+#main-header tr.dummy-row td {
+	padding : 0px;
+}
+
 #main-header td{
-	vertical-align: bottom;
+	//vertical-align: bottom;
+	border : 0px white solid;
+}
+
+#main-header td.left-column, #main-header td.right-column{
+	width : 150px;
+}
+
+#main-header td.middle-column{
+	width : *;
 }
 
 #main-header a {
 	color : white;
 }
 
-#logo-cell {
-	width : 300px;	
-	text-align: left;
+#logo-cell {	
 }
 
-#middle-cell {
-	width : *;
-	text-align: center;
-	vertical-align: middle;
-}
 
 #service-cell {
-	width : 300px;
 	text-align: right;
-	vertical-align: middle;
-	margin : 0px;
+	vertical-align: top;
+	height : 60px;
+	padding-top : 10px;
+	padding-right : 10px;
 	white-space: nowrap;
 }
 
 #navigation-cell {
 	text-align: center;
+	vertical-align: bottom;
 }
 
 #main-logo {
-	text-shadow: 1px 1px 2px #840;
-	float: left;
-	font-size: 2em;
-	padding : 5px;
-	font-weight: bold; 
-	border : 0px black solid;
+	background-image: url("../l4u-logo-color-green.png");
+	background-size:100px;
+	background-repeat:no-repeat; 
+	background-position : center; 
+	width : 120px;
+	height : 90px;
+	float : right;
+	border : 0px white solid;
 }
 
 #main-logo em {

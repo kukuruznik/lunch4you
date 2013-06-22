@@ -114,8 +114,8 @@ steal( 'jquery/controller', 'jquery/view/ejs', 'jquery/controller/view' ).then(
 
 		_render: function() {
 			if(Shop.Main.getCustomer()){
-				//alert(2)
 				this._renderSignedInForm();
+				return;
 			}
 			
 			var phase = Shop.params.phase;

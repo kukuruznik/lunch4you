@@ -8,7 +8,8 @@ make sure that shop.html is switched to development mode, otherwise compiler wil
 	"steal/steal.js"
 
 run command:
-	C:\home\ladi\projects\javascriptmvc-3.2.4 > js steal/buildjs C:\Users\ladi\git\lunch4you\src\main\webapp\shop.html -to C:\Users\ladi\git\lunch4you\src\main\webapp\shop
+	C:\home\ladi\projects\javascriptmvc-3.2.4 
+		> js steal/buildjs C:\Users\ladi\git\lunch4you\src\main\webapp\shop.html -to C:\Users\ladi\git\lunch4you\src\main\webapp\shop
 
 Remove in generated file shop/production.js
 	"C:/Users/ladi/git/lunch4you/src/main/webapp/"

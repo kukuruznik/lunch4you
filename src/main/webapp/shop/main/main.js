@@ -3,6 +3,7 @@ steal(
 ).then(	
 
 	"./views/page.ejs",
+	"./views/mainHeader.ejs",
 
 	function( $ ) {
 
