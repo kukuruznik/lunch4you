@@ -23,7 +23,7 @@ steal( "jquery/controller", "jquery/view/ejs", "jquery/controller/view", "backof
 			this._refresh();
 		},
 
-		".label-position click": function( el, evt ) {
+		".label click": function( el, evt ) {
 			var innerElement = el.children().first();
 			var pageElement = el.parent();
 			var pageNum = pageElement.data().number;
