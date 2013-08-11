@@ -43,9 +43,10 @@ body {
 .page .label {
 	/*margin: 0;
 	padding: 0;*/
-	padding : 4mm;
-	width: 90mm;
-	height: 39.25mm;
+	padding : 5mm;
+	width: 88mm;
+	//height: 39.25mm;
+	height: 47mm;
 	overflow : hidden;
 	float : left;
 	clear : none;
@@ -54,7 +55,7 @@ body {
 }
 
 table.label-layout {
-	width : 90mm;
+	width : 100%;
 	border : 0px blue solid;
 }
 
@@ -65,27 +66,25 @@ table.label-layout td{
 }
 
 .delivery-location {
-	width : 100%;
 	white-space : nowrap;
 	overflow : hidden;
 	text-align : center;
 	font-size: 1.4em;
 	//font-weight: bold;
 	line-height : 1.4em;
-	height : 28px;
+	height : 40px;
 	border : 0px red solid;
 }
 
 
 .customer-name {
-	width : 90mm;
 	white-space : nowrap;
 	overflow : hidden;	
 	text-align : center;
 	font-size: 1.4em;
 	font-weight: bold;
-	line-height : 1.5em;
-	height : 25px;
+	line-height : 1.3em;
+	height : 30px;
 	border : 0px red solid;
 }
 
@@ -93,7 +92,7 @@ table.label-layout td{
 
 td.article-cell{
 	height : 50px;
-	font-size: 1em;
+	font-size: 1.2em;
 	font-weight: bold;
 	text-align : center;
 	white-space: normal;
