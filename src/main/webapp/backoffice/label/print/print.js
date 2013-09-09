@@ -13,7 +13,7 @@ steal( "jquery/controller", "jquery/view/ejs", "jquery/controller/view", "backof
 	/** @Prototype */
 	{
 		init: function() {
-			this.rows = 5;
+			this.rows = 6;
 			this.cols = 2; // would be fine to externalize
 
 			this._refresh();
