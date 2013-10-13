@@ -48,3 +48,39 @@ order_time_stamp,
 delivery_location_name,
 customer_first_name,
 customer_last_name
+;
+
+drop view v_referral;
+create view v_referral as
+SELECT
+`sender`.`id` sender_id,
+`sender`.`first_name` sender_first_name,
+`sender`.`last_name` sender_last_name,
+`sender`.`email` sender_email,
+`sender`.`is_active` sender_is_active,
+`sender`.`default_delivery_location_id` sender_default_delivery_location_id,
+`sender`.`is_subscribed_menu_weekly` sender_is_subscribed_menu_weekly,
+`sender`.`is_subscribed_news` sender_is_subscribed_news,
+`sender_delivery_location`.`name` sender_delivery_location_name,
+`referral`.`id` `referral_id`,
+`referral`.`referral_message`,
+`referral`.`time_stamp`,
+DATE(`referral`.`time_stamp`) r_date,
+MONTH(`referral`.`time_stamp`) r_month,
+YEAR(`referral`.`time_stamp`) r_year,
+`recipient`.`id` recipient_id,
+`recipient`.`first_name` recipient_first_name,
+`recipient`.`last_name` recipient_last_name,
+`recipient`.`email` recipient_email,
+`recipient`.`is_active` recipient_is_active,
+`recipient`.`default_delivery_location_id` recipient_default_delivery_location_id,
+`recipient`.`is_subscribed_menu_weekly` recipient_is_subscribed_menu_weekly,
+`recipient`.`is_subscribed_news` recipient_is_subscribed_news,
+`recipient_delivery_location`.`name` recipient_delivery_location_name
+FROM
+`referral`
+Inner Join `customer` AS `sender` ON `referral`.`sender_id` = `sender`.`id`
+Inner Join `customer` AS `recipient` ON `referral`.`recipient_id` = `recipient`.`id`
+left outer Join `delivery_location` AS `sender_delivery_location` ON `sender`.`default_delivery_location_id` = `sender_delivery_location`.`id`
+left outer Join `delivery_location` AS `recipient_delivery_location` ON `recipient`.`default_delivery_location_id` = `recipient_delivery_location`.`id`
+;
