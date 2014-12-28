@@ -15,3 +15,18 @@ group by r_year, r_month
 -- Referral grouped by company
 select sender_delivery_location_name, count(referral_id) from v_referral
 group by sender_delivery_location_name
+
+
+-- Orders grouped by weeks
+
+select 
+year(order_time_stamp), 
+week(order_time_stamp),
+ delivery_location_name, 
+count(*) 
+
+from v_order_item
+group by 
+year(order_time_stamp), 
+week(order_time_stamp),
+ delivery_location_name
