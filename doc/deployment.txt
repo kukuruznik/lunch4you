@@ -9,14 +9,14 @@ make sure that shop.html is switched to development mode, otherwise compiler wil
 
 run command:
 	C:\home\ladi\projects\javascriptmvc-3.2.4 
-		> js steal/buildjs C:\Users\ladi\git\lunch4you\src\main\webapp\shop.html -to C:\Users\ladi\git\lunch4you\src\main\webapp\shop
+		> js steal/buildjs C:\home\ladi\git\lunch4you\src\main\webapp\shop.html -to C:\home\ladi\git\lunch4you\src\main\webapp\shop
 
 Remove in generated file shop/production.js
-	"C:/Users/ladi/git/lunch4you/src/main/webapp/"
+	"C:/home/ladi/git/lunch4you/src/main/webapp/"
 
 replace in shop.html
 	- enable first 2 script includes
-	- disable third scrip (dev version)
+	- disable third script (dev version)
 
 Increase JS/CSS build number
 	- increase version number in shop.html
