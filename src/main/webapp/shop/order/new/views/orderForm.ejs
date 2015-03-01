@@ -31,7 +31,11 @@
 		<label><%= msg( "order.detail.deliveryLocation" ) %>:</label>
 		<select id="deliveryLocationsSelect">
 			<option value="-1"></option> 
-		<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
+		<% for ( var i = 0; i < deliveryLocations.length; i++ ) {
+			if(!deliveryLocations[ i ].isActive){
+				continue;
+			}			 
+		%>
 			<option value="<%= deliveryLocations[ i ].id %>" 
 				<%= (deliveryLocation && deliveryLocation.id == deliveryLocations[ i ].id) ? "selected" : "" %> ><%= deliveryLocations[ i ].name %></option>
 		<% } %>

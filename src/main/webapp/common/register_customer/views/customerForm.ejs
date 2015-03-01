@@ -32,7 +32,11 @@
 	
 		<select name="defaultDeliveryLocationId" id="<%= ddlId %>">
 			<option value="-1"></option> 
-		<% for ( var i = 0; i < deliveryLocations.length; i++ ) { %>
+		<% for ( var i = 0; i < deliveryLocations.length; i++ ) { 
+			if(!deliveryLocations[ i ].isActive){
+				continue;
+			}			 
+		%>
 			<option value="<%= deliveryLocations[ i ].id %>" <%= ddl && deliveryLocations[ i ].id == ddl.id ? "selected='selected'" : "" %>>
 				<%= deliveryLocations[ i ].name %>
 			</option>

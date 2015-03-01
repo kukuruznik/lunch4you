@@ -30,3 +30,10 @@ group by
 year(order_time_stamp), 
 week(order_time_stamp),
  delivery_location_name
+
+
+-- total number of orders and revenue
+
+select count(*), sum(article_price) from v_order_item
+where 
+order_time_stamp > '2012-12-31'
